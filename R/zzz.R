@@ -4,8 +4,9 @@
     packageStartupMessage(paste(pkgname, ver[1], "\t", ver[2]))
     if (is.null(getOption("cu_options")))
         options("cu_options" = list(
-            baseurl = "https://api.clickup.com",
-            version = "v2"))
+            baseurl = "https://api.clickup.com", # API url
+            version = "v2",                      # API version
+            tz = ""))                            # time zone for unix dates
     invisible(NULL)
 }
 
