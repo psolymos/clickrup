@@ -1,0 +1,15 @@
+Package: clickrup
+Type: Package
+Title: Interacting with the ClickUp v2 API from R
+Version: 0.0.1
+Date: 2020-06-10
+Author: Peter Solymos [aut, cre] (<https://orcid.org/0000-0001-7337-1740>)
+Maintainer: Peter Solymos <psolymos@gmail.com>
+Description: Work with ClickUp.
+License: MIT
+LazyLoad: yes
+LazyData: true
+Depends: httr
+URL: https://github.com/psolymos/clickrup
+BugReports: https://github.com/psolymos/clickrup/issues
+VignetteBuilder: knitr
