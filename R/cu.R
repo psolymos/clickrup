@@ -3,9 +3,10 @@
 # need to `export CU_PAT="TOKEY"` but RStudio won't see it on Mac
 # follow this: http://btibert3.github.io/2015/12/08/Environment-Variables-in-Rstudio-on-Mac.html
 cu_pat <- function() {
-    pat <- Sys.getenv("CU_PAT", unset=NA)
-    if (is.na(pat))
-        stop("You need to set CU_PAT environment variable: see ?Sys.setenv")
+    pat <- Sys.getenv("CU_PAT")
+    if (identical(pat, ""))
+        stop("Set CU_PAT env var as your ClickUp personal access token",
+            call. = FALSE)
     pat
 }
 
@@ -35,17 +36,18 @@ cu_options <- function(...) {
 ## convenience function for GET requests
 .cu_get <- function(..., query=list()) {
     resp <- httr::GET(
-            modify_url(getOption("cu_options")$baseurl,
+            httr::modify_url(getOption("cu_options")$baseurl,
                        path = .cu_path(...),
                        query = query),
-            httr::add_headers(Authorization = cu_pat()))
+            httr::add_headers(Authorization = cu_pat()),
+            user_agent("http://github.com/psolymos/clickrup"))
     if (http_type(resp) != "application/json") {
         stop("API did not return json", call. = FALSE)
     }
     cont <- jsonlite::fromJSON(
         httr::content(resp, "text"),
         simplifyVector = FALSE)
-    if (http_error(resp)) {
+    if (httr::http_error(resp)) {
         stop(
             sprintf("ClickUp API request failed [%s]\n%s - %s",
                 status_code(resp), cont$err, cont$ECODE),
@@ -63,4 +65,14 @@ cu_date <- function(x, tz = NULL, ...) {
     as.POSIXct(as.numeric(x)/1000, tz = tz, origin="1970-01-01", ...)
 }
 
-
+## The API is rate limited per OAuth token.
+## You will receive a 429 HTTP status code if you exceed the rate limit.
+## The rate limit is 100 requests per minute per token and is subject to change.
+## Actually it looks like limit is 900/min
+cu_ratelimit <- function(x) {
+    if (!inherits(x, "cu"))
+        stop("x must be a cu object")
+    h <- httr::headers(attr(x, "response"))
+    list(limit=as.integer(h[["x-ratelimit-limit"]]),
+        remaining=as.integer(h[["x-ratelimit-remaining"]]))
+}
