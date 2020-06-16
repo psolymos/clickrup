@@ -6,7 +6,9 @@
         options("cu_options" = list(
             baseurl = "https://api.clickup.com", # API url
             version = "v2",                      # API version
-            tz = ""))                            # time zone for unix dates
+            tz = "",                             # time zone for unix dates
+            useragent = "http://github.com/psolymos/clickrup"
+            ))
     invisible(NULL)
 }
 

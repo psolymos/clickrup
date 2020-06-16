@@ -33,14 +33,8 @@ cu_options <- function(...) {
     gsub("//", "/", path)
 }
 
-## convenience function for GET requests
-.cu_get <- function(..., query=list()) {
-    resp <- httr::GET(
-            httr::modify_url(getOption("cu_options")$baseurl,
-                       path = .cu_path(...),
-                       query = query),
-            httr::add_headers(Authorization = cu_pat()),
-            user_agent("http://github.com/psolymos/clickrup"))
+## convenience function to handle responses
+.cu_process <- function(resp) {
     if (http_type(resp) != "application/json") {
         stop("API did not return json", call. = FALSE)
     }
@@ -58,12 +52,82 @@ cu_options <- function(...) {
     cont
 }
 
+## convenience function for GET requests
+.cu_get <- function(..., query=list()) {
+    resp <- httr::GET(
+            httr::modify_url(getOption("cu_options")$baseurl,
+                       path = .cu_path(...),
+                       query = query),
+            httr::add_headers(Authorization = cu_pat()),
+            httr::content_type_json(),
+            accept_json(),
+            user_agent(getOption("cu_options")$useragent))
+    cont <- .cu_process(resp)
+    class(cont) <- c(class(cont), "cu_get")
+    cont
+}
+
+## convenience function for POST requests
+.cu_post <- function(..., body=NULL, query=list()) {
+    resp <- httr::POST(
+            httr::modify_url(getOption("cu_options")$baseurl,
+                       path = .cu_path(...),
+                       query = query),
+            httr::add_headers(Authorization = cu_pat()),
+            httr::content_type_json(),
+            accept_json(),
+            body=jsonlite::toJSON(body, auto_unbox=TRUE),
+            encode="json",
+            user_agent(getOption("cu_options")$useragent))
+    cont <- .cu_process(resp)
+    class(cont) <- c(class(cont), "cu_post")
+    cont
+}
+## convenience function for PUT requests
+.cu_put <- function(..., body=NULL, query=list()) {
+    resp <- httr::PUT(
+            httr::modify_url(getOption("cu_options")$baseurl,
+                       path = .cu_path(...),
+                       query = query),
+            httr::add_headers(Authorization = cu_pat()),
+            httr::content_type_json(),
+            accept_json(),
+            body=jsonlite::toJSON(body, auto_unbox=TRUE),
+            encode="json",
+            user_agent(getOption("cu_options")$useragent))
+    cont <- .cu_process(resp)
+    class(cont) <- c(class(cont), "cu_put")
+    cont
+}
+## convenience function for DELETE requests
+.cu_delete <- function(..., body=NULL, query=list()) {
+    resp <- httr::DELETE(
+            httr::modify_url(getOption("cu_options")$baseurl,
+                       path = .cu_path(...),
+                       query = query),
+            httr::add_headers(Authorization = cu_pat()),
+            httr::content_type_json(),
+            accept_json(),
+            body=jsonlite::toJSON(body, auto_unbox=TRUE),
+            encode="json",
+            user_agent(getOption("cu_options")$useragent))
+    cont <- .cu_process(resp)
+    class(cont) <- c(class(cont), "cu_delete")
+    cont
+}
+
+## unix times in CU are milliseconds (sec x1000)
 ## function to transform unix dates to POSIXct
 cu_date <- function(x, tz = NULL, ...) {
     if (is.null(tz))
         tz <- getOption("cu_options")$tz
     as.POSIXct(as.numeric(x)/1000, tz = tz, origin="1970-01-01", ...)
 }
+## turning POSIXct to unix time
+cu_time <- function(x) {
+    as.numeric(unclass(as.POSIXct(x))*1000)
+}
+
 
 ## The API is rate limited per OAuth token.
 ## You will receive a 429 HTTP status code if you exceed the rate limit.
@@ -75,4 +139,56 @@ cu_ratelimit <- function(x) {
     h <- httr::headers(attr(x, "response"))
     list(limit=as.integer(h[["x-ratelimit-limit"]]),
         remaining=as.integer(h[["x-ratelimit-remaining"]]))
+}
+
+## turns cu object into a list
+as.list.cu <- function(x, ...) {
+    attr(x, "response") <- NULL
+    unclass(x)
+}
+
+## print without response attribute
+print.cu <- function(x, ...) {
+    print(as.list(x), ...)
+    invisible(x)
+}
+
+## str without the response attribute
+str.cu <- function(x, ...) {
+    str(as.list(x), ...)
+    invisible(x)
+}
+
+## extracts the response attribute
+cu_response <- function(x, ...) {
+    if (!inherits(x, "cu"))
+        stop("x must be a cu object")
+    attr(x, "response")
+}
+
+cu_priority <- function(score) {
+    p <- factor(as.character(score), c("1", "2", "3", "4"))
+    levels(p) <- c("Urgent", "High", "Normal", "Low")
+    as.character(p)
+}
+
+
+
+## WRAPPERS
+
+# include_closed = FALSE by default
+cu_get_tasks_all <- function(team_id, ...) {
+    p <- 0
+    done <- FALSE
+    out <- list(tasks=NULL)
+    while (!done) {
+        batch <- cu_get_tasks_filtered(team_id, page=p)
+        if (length(batch$tasks)) {
+            out$tasks <- c(out$tasks, batch$tasks)
+            p <- p + 1
+        } else {
+            done <- TRUE
+        }
+    }
+    out
 }
