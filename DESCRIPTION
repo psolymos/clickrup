@@ -6,10 +6,12 @@ Date: 2020-06-10
 Author: Peter Solymos [aut, cre] (<https://orcid.org/0000-0001-7337-1740>)
 Maintainer: Peter Solymos <psolymos@gmail.com>
 Description: Work with ClickUp.
-License: MIT
+License: MIT + file LICENSE
 LazyLoad: yes
 LazyData: true
 Depends: httr
+Imports: jsonlite
+Suggests: knitr
 URL: https://github.com/psolymos/clickrup
 BugReports: https://github.com/psolymos/clickrup/issues
 VignetteBuilder: knitr
