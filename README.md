@@ -1,4 +1,4 @@
-# clickrup <img src="https://raw.githubusercontent.com/psolymos/clickrup/master/inst/images/clickrup.jpg" align="right" style="padding-left:10px;background-color:white;width:200px;" />
+# clickrup <img src="https://raw.githubusercontent.com/psolymos/clickrup/master/inst/images/clickrup.jpg" align="right" style="padding-left:10px;background-color:white;" width="200px" />
 > Interacting with the ClickUp v2 API from R
 
 [ClickUp](https://clickup.com/?noRedirect=true) is a cloud-based collaboration and project management tool. 
