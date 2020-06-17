@@ -28,7 +28,7 @@ export(
     cu_get_tracked_time, cu_get_user, cu_get_view,
     cu_get_view_comments, cu_get_view_tasks, cu_get_webhooks,
     cu_invite_guest_to_workspace, cu_invite_user_to_workspace,
-    cu_options, cu_pat, cu_post_list_comment, cu_post_task_comment,
+    cu_options, cu_post_list_comment, cu_post_task_comment,
     cu_post_view_comment, cu_priority, cu_put_update_comment,
     cu_ratelimit, cu_remove_field_value, cu_remove_guest_from_folder,
     cu_remove_guest_from_list, cu_remove_guest_from_task,
@@ -36,7 +36,8 @@ export(
     cu_response, cu_set_custom_field_value, cu_time, cu_track_time,
     cu_update_folder, cu_update_goal, cu_update_list,
     cu_update_space, cu_update_task, cu_update_view,
-    cu_update_webhook, print.cu, str.cu
+    cu_update_webhook, print.cu, str.cu,
+    cu_set_pat, cu_get_pat
 )
 
 importFrom("utils", "str")

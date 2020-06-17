@@ -2,12 +2,16 @@
 
 # need to `export CU_PAT="TOKEY"` but RStudio won't see it on Mac
 # follow this: http://btibert3.github.io/2015/12/08/Environment-Variables-in-Rstudio-on-Mac.html
-cu_pat <- function() {
+cu_get_pat <- function() {
     pat <- Sys.getenv("CU_PAT")
     if (identical(pat, ""))
         stop("Set CU_PAT env var as your ClickUp personal access token",
             call. = FALSE)
     pat
+}
+
+cu_set_pat <- function(token) {
+    Sys.setenv(CU_PAT=token)
 }
 
 ## this allows manipulating cu options conveniently
@@ -58,7 +62,7 @@ cu_options <- function(...) {
             httr::modify_url(getOption("cu_options")$baseurl,
                        path = .cu_path(...),
                        query = query),
-            httr::add_headers(Authorization = cu_pat()),
+            httr::add_headers(Authorization = cu_get_pat()),
             httr::content_type_json(),
             accept_json(),
             user_agent(getOption("cu_options")$useragent))
@@ -73,7 +77,7 @@ cu_options <- function(...) {
             httr::modify_url(getOption("cu_options")$baseurl,
                        path = .cu_path(...),
                        query = query),
-            httr::add_headers(Authorization = cu_pat()),
+            httr::add_headers(Authorization = cu_get_pat()),
             httr::content_type_json(),
             accept_json(),
             body=jsonlite::toJSON(body, auto_unbox=TRUE),
@@ -89,7 +93,7 @@ cu_options <- function(...) {
             httr::modify_url(getOption("cu_options")$baseurl,
                        path = .cu_path(...),
                        query = query),
-            httr::add_headers(Authorization = cu_pat()),
+            httr::add_headers(Authorization = cu_get_pat()),
             httr::content_type_json(),
             accept_json(),
             body=jsonlite::toJSON(body, auto_unbox=TRUE),
@@ -105,7 +109,7 @@ cu_options <- function(...) {
             httr::modify_url(getOption("cu_options")$baseurl,
                        path = .cu_path(...),
                        query = query),
-            httr::add_headers(Authorization = cu_pat()),
+            httr::add_headers(Authorization = cu_get_pat()),
             httr::content_type_json(),
             accept_json(),
             body=jsonlite::toJSON(body, auto_unbox=TRUE),
