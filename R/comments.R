@@ -57,7 +57,7 @@ cu_post_view_comment <- function(view_id, ...) {
 ##   "assignee": 183,
 ##   "notify_all": true
 ## }
-cu_post_list_comment <- function(view_id, ...) {
+cu_post_list_comment <- function(list_id, ...) {
     .cu_post("list", list_id, "comment",
         body=list(...))
 }

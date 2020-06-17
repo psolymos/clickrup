@@ -45,7 +45,7 @@ cu_create_webhook <- function(team_id, endpoint, events="*", ...) {
     .cu_post("team", team_id, "webhook",
         body=list(endpoint=endpoint, events=events),
         query=list(...))
-
+}
 
 ## Webhooks / Update Webhook
 ## PUT https://api.clickup.com/api/v2/webhook/webhook_id
@@ -66,7 +66,7 @@ cu_create_webhook <- function(team_id, endpoint, events="*", ...) {
 ##   "status": "active"
 ## }
 ## ... passes props to body
-cu_update_webhook <- function(view_id, ...) {
+cu_update_webhook <- function(webhook_id, ...) {
     .cu_put("webhook", webhook_id,
         body=list(...))
 }

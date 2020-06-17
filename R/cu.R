@@ -182,7 +182,7 @@ cu_get_tasks_all <- function(team_id, ...) {
     done <- FALSE
     out <- list(tasks=NULL)
     while (!done) {
-        batch <- cu_get_tasks_filtered(team_id, page=p)
+        batch <- cu_get_tasks_filtered(team_id, page=p, ...)
         if (length(batch$tasks)) {
             out$tasks <- c(out$tasks, batch$tasks)
             p <- p + 1

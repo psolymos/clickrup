@@ -1,4 +1,4 @@
-.onAttach <- function(libname, pkgname){
+.onAttach <- function(libname, pkgname) {
     ver <- read.dcf(file=system.file("DESCRIPTION", package=pkgname),
                     fields=c("Version", "Date"))
     packageStartupMessage(paste(pkgname, ver[1], "\t", ver[2]))
@@ -12,7 +12,7 @@
     invisible(NULL)
 }
 
-.onUnload <- function(libpath){
+.onUnload <- function(libpath) {
     options("cu_options" = NULL)
     invisible(NULL)
 }

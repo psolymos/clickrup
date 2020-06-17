@@ -28,7 +28,7 @@ cu_create_folder <- function(space_id, name) {
 ## {
 ##   "name": "Updated Folder Name"
 ## }
-cu_update_folder <- function(space_id, name) {
+cu_update_folder <- function(folder_id, name) {
     .cu_put("folder", folder_id,
         body=list(name=name))
 }
@@ -40,7 +40,7 @@ cu_update_folder <- function(space_id, name) {
 ##     folder_id
 ##     Example: 457.
 ##     Number
-cu_delete_folder <- function(space_id, name) {
+cu_delete_folder <- function(folder_id, name) {
     .cu_delete("folder", folder_id)
 }
 

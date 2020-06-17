@@ -108,7 +108,7 @@ cu_get_goal <- function(goal_id) {
 ##   "task_ids": [],
 ##   "list_ids": []
 ## }
-cu_create_key_result <- function(team_id, ...) {
+cu_create_key_result <- function(goal_id, ...) {
     .cu_post("goal", goal_id, "key_result",
         body=list(...))
 }

@@ -42,7 +42,7 @@ cu_create_space_tag <- function(space_id, name, ...) {
 ##     tag_name
 ##     Example: name.
 ##     String
-cu_edit_space_tag <- function(space_id) {
+cu_edit_space_tag <- function(space_id, tag_name) {
     .cu_put("space", space_id, "tag", tag_name)
 }
 
