@@ -1,4 +1,4 @@
-# clickrup
+# clickrup <img src="https://raw.githubusercontent.com/psolymos/clickrup/master/inst/images/clickrup.png" align="right" style="padding-left:10px;background-color:white;" />
 > Interacting with the ClickUp v2 API from R
 
 ![](inst/images/clickrup.png)
