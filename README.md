@@ -1,13 +1,13 @@
 # clickrup <img src="https://raw.githubusercontent.com/psolymos/clickrup/master/inst/images/clickrup.png" align="right" style="padding-left:10px;background-color:white;" />
 > Interacting with the ClickUp v2 API from R
 
-![](inst/images/clickrup.png)
-
 [ClickUp](https://clickup.com/?noRedirect=true) is a cloud-based collaboration and project management tool. 
 Features include tasks, docs, chat, goals, and [more](https://clickup.com/features).
 
 The {clickrup} R package wraps the ClickUp [API v2](https://clickup.com/api). 
 See the [roadmap](https://github.com/psolymos/clickrup/issues/1) for what is currently included in the package.
+
+## Prerequisites
 
 ### Set up personal access token (PAT)
 
@@ -27,11 +27,11 @@ Install the {clickrup} package:
 remotes::install_github("psolymos/clickrup")
 ```
 
-Open R and add your token as an environment variables, there are 
-[various ways](https://stackoverflow.com/questions/12291418/how-can-i-make-r-read-my-environmental-variables) of doing this. 
+Add your ClickUp token as an environment variable. There are 
+[various ways](https://stackoverflow.com/questions/12291418/how-can-i-make-r-read-my-environmental-variables) of doing that. 
 The simplest is to use `Sys.setenv(CU_PAT="your_token")` adding your token from the previous step.
 
-### API endpoints
+## API endpoints
 
 The first step you want to do is to get the IDs for your workspaces (teams is the legacy term for this in the API):
 
@@ -49,4 +49,10 @@ For example **Get Filtered Team Tasks** will be `cu_get_filtered_team_tasks()`.
 Function arguments are the *Parameters* listed on the API page, `...` passes optional parameters, query parameters, 
 or elements for the body.
 
+## Issues
 
+https://github.com/psolymos/clickrup/issues
+
+## License
+
+[MIT](LICENSE) &copy; 2020 Peter Solymos
