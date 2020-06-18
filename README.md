@@ -9,23 +9,21 @@ See the [roadmap](https://github.com/psolymos/clickrup/issues/1) for what is cur
 
 ## Prerequisites
 
-### Set up personal access token (PAT)
-
-Follow this [tutorial](https://docs.clickup.com/en/articles/1367130-getting-started-with-the-clickup-api):
-
-- Sign up for ClickUp (free or paid version)
-- Navigate to your personal Settings 
-- Click Apps  in the left sidebar
-- Click Generate  to create your API token
-- Click Copy  to copy the key to your clipboard 
-
-### Working with the API from R
-
 Install the {clickrup} package:
 
 ```R
 remotes::install_github("psolymos/clickrup")
 ```
+
+### Set up personal access token (PAT)
+
+Follow this [tutorial](https://docs.clickup.com/en/articles/1367130-getting-started-with-the-clickup-api):
+
+- Sign up for ClickUp (you can use this referral [link](https://clickup.com?fp_ref=peter51) to do so, it's free)
+- Navigate to your personal *Settings* 
+- Click *Apps* in the left sidebar
+- Click *Generate* to create your API token
+- Click *Copy* to copy the key to your clipboard 
 
 Add your ClickUp token as an environment variable. There are 
 [various ways](https://stackoverflow.com/questions/12291418/how-can-i-make-r-read-my-environmental-variables) of doing that. 
@@ -36,6 +34,8 @@ The simplest is to use `Sys.setenv(CU_PAT="your_token")` adding your token from 
 The first step you want to do is to get the IDs for your workspaces (teams is the legacy term for this in the API):
 
 ```R
+library(clickrup)
+
 cu_get_teams()
 ```
 
