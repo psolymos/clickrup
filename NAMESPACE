@@ -24,7 +24,7 @@ export(
     cu_get_space_tags, cu_get_space_views, cu_get_spaces,
     cu_get_task, cu_get_task_comments, cu_get_task_members,
     cu_get_task_templates, cu_get_tasks, cu_get_tasks_all,
-    cu_get_tasks_filtered, cu_get_team_views, cu_get_teams,
+    cu_get_team_views, cu_get_teams,
     cu_get_tracked_time, cu_get_user, cu_get_view,
     cu_get_view_comments, cu_get_view_tasks, cu_get_webhooks,
     cu_invite_guest_to_workspace, cu_invite_user_to_workspace,
@@ -37,7 +37,7 @@ export(
     cu_update_folder, cu_update_goal, cu_update_list,
     cu_update_space, cu_update_task, cu_update_view,
     cu_update_webhook, print.cu, str.cu,
-    cu_set_pat, cu_get_pat
+    cu_set_pat, cu_get_pat, cu_get_filtered_team_tasks
 )
 
 importFrom("utils", "str")

@@ -288,7 +288,7 @@ cu_get_task <- function(task_id) {
 ##
 ## By default this does not include closed tasks. To page tasks,
 ## pass the page number you wish to fetch.
-cu_get_tasks_filtered <- function(team_id, ...) {
+cu_get_filtered_team_tasks <- function(team_id, ...) {
     .cu_get("team", team_id, "task",
             query = list(...))
 }
