@@ -144,10 +144,10 @@ str(Folders, 3)
 #>   .. ..$ override_statuses: logi TRUE
 #>   .. ..$ hidden           : logi FALSE
 #>   .. ..$ space            :List of 2
-#>   .. ..$ task_count       : chr "15"
+#>   .. ..$ task_count       : chr "10"
 #>   .. ..$ archived         : logi FALSE
 #>   .. ..$ statuses         :List of 13
-#>   .. ..$ lists            :List of 3
+#>   .. ..$ lists            :List of 2
 #>   .. ..$ permission_level : chr "create"
 ```
 
@@ -159,7 +159,7 @@ folder_id <- Folders$folders[[1]]$id
 Lists <- cu_get_lists(folder_id)
 str(Lists, 3)
 #> List of 1
-#>  $ lists:List of 3
+#>  $ lists:List of 2
 #>   ..$ :List of 14
 #>   .. ..$ id               : chr "31538033"
 #>   .. ..$ name             : chr "Hotfix"
@@ -190,6 +190,19 @@ str(Lists, 3)
 #>   .. ..$ archived         : logi FALSE
 #>   .. ..$ override_statuses: logi FALSE
 #>   .. ..$ permission_level : chr "create"
+
+cu_get_lists_folderless(space_id)
+#> $lists
+#> list()
+```
+
+The functions `cu_get_spaces`, `cu_get_folders`, and `cu_get_lists`
+accept the argument `archived` to return archived spaces/folders/lists
+
+``` r
+str(cu_get_lists(folder_id, archived=TRUE), 3)
+#> List of 1
+#>  $ lists:List of 1
 #>   ..$ :List of 14
 #>   .. ..$ id               : chr "31538034"
 #>   .. ..$ name             : chr "Backlog"
@@ -202,13 +215,9 @@ str(Lists, 3)
 #>   .. ..$ start_date       : NULL
 #>   .. ..$ folder           :List of 4
 #>   .. ..$ space            :List of 3
-#>   .. ..$ archived         : logi FALSE
+#>   .. ..$ archived         : logi TRUE
 #>   .. ..$ override_statuses: logi FALSE
 #>   .. ..$ permission_level : chr "create"
-
-cu_get_lists_folderless(space_id)
-#> $lists
-#> list()
 ```
 
 ### Tasks
@@ -239,15 +248,34 @@ length(subTasks$tasks)
 Getting all the tasks (possibly filtered) in a Workspace is done via the
 `cu_get_filtered_team_tasks` function. This function returns tasks in
 batches of 100. If you don’t want to deal with paging, use the wrapper
-function `cu_get_tasks_all`
+function `cu_get_tasks_all` The list of tasks returned does not include
+closed tasks, to get those as well we need to pass the `include_closed`
+query parameter
 
 ``` r
-allSubTasks <- cu_get_tasks_all(team_id, subtasks=TRUE)
+## without closed tasks
+length(cu_get_tasks_all(team_id, subtasks=TRUE)$tasks)
+#> [1] 17
+
+## with closed tasks
+allSubTasks <- cu_get_tasks_all(team_id, subtasks=TRUE,
+                                include_closed=TRUE)
 length(allSubTasks$tasks)
-#> [1] 22
+#> [1] 18
+
+Status <- sapply(allSubTasks$tasks, function(z) z$status$status)
+data.frame(table(Status))
+#>          Status Freq
+#> 1        Closed    1
+#> 2   in progress    3
+#> 3 investigating    2
+#> 4          Open    5
+#> 5    production    1
+#> 6        review    4
+#> 7        staged    2
 ```
 
-Let’s inspect the first few elements of a Tasl object
+Let’s inspect the first few elements of a Task object
 
 ``` r
 str(Tasks$tasks[[1]][1:10])
@@ -300,22 +328,14 @@ x2$parent
 Dependencies are stored in the `$dependencies` property
 
 ``` r
-x1$dependencies
-#> [[1]]
-#> [[1]]$task_id
-#> [1] "8ckjp5"
-#> 
-#> [[1]]$depends_on
-#> [1] "8ckjpg"
-#> 
-#> [[1]]$type
-#> [1] 1
-#> 
-#> [[1]]$date_created
-#> [1] "1592458378628"
-#> 
-#> [[1]]$userid
-#> [1] "4300475"
+str(x1$dependencies)
+#> List of 1
+#>  $ :List of 5
+#>   ..$ task_id     : chr "8ckjp5"
+#>   ..$ depends_on  : chr "8ckjpg"
+#>   ..$ type        : int 1
+#>   ..$ date_created: chr "1592458378628"
+#>   ..$ userid      : chr "4300475"
 ```
 
 ### Helper functions
@@ -336,13 +356,13 @@ str(cu_options())
 ``` r
 cu_response(Teams)
 #> Response [https://api.clickup.com/api/v2/team]
-#>   Date: 2020-06-18 07:36
+#>   Date: 2020-06-18 16:40
 #>   Status: 200
 #>   Content-Type: application/json; charset=utf-8
 #>   Size: 776 B
 ```
 
-Check rate limits and remaining requests
+Check rate limits and remaining requests (rate is limited by the minute)
 
 ``` r
 cu_ratelimit(subTasks)
@@ -350,8 +370,18 @@ cu_ratelimit(subTasks)
 #> [1] 900
 #> 
 #> $remaining
-#> [1] 893
+#> [1] 890
 ```
+
+### Formatting the request body
+
+`PUSH` and `PUT` requests often require to send data as part of the
+request body. Check the API examples and use `I()` when the API expects
+an array as part of the body. For example when passing data to
+`cu_create_task`, `assignees` is an array of the assignees’ userids to
+be added. Adding a single userid without `I()` will drop the brackets,
+but `list(name = "New Task Name", assignees = I(183))` will result in
+the expected JSON object: `{ "name": "New Task Name", "assignees": [183] }`.
 
 ## Issues
 

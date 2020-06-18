@@ -67,7 +67,7 @@ cu_create_task <- function(list_id, ...) {
 ##     String
 ##
 ## Only pass properties you want to update.
-## It is unnesseary to pass the entire task object. assignees is an
+## It is unnceessary to pass the entire task object. assignees is an
 ## array of the assignees' userids to be added to this task.
 ## priority is an integer mapping as 1 : Urgent, 2 : High, 3 : Normal, 4 : Low.
 ## Time estimate is in milliseconds.
