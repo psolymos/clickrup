@@ -1,15 +1,10 @@
-library(httr)
+#remotes::install_github("psolymos/clickrup")
+
+library(clickrup)
 library(igraph)
 library(DiagrammeR)
 
-source("R/cu.R")
-source("R/tasks.R")
-source("R/teams.R")
-source("R/spaces.R")
-
-options("cu_options"=list(version="v2",
-                          baseurl="https://api.clickup.com",
-                          tz=""))
+cu_set_pat(Sys.getenv("CU_PAT_A"))
 
 wsp <- cu_get_teams()
 wsp_id <- wsp$teams[[1L]]$id
@@ -39,6 +34,7 @@ Spaces <- do.call(rbind, lapply(Spaces$spaces, function(z) {
 rownames(Spaces) <- Spaces$id
 
 
+
 task_table <- do.call(rbind, lapply(Tasks, function(z) {
     data.frame(id=z$id,
               name=z$name,
@@ -51,30 +47,26 @@ task_table <- do.call(rbind, lapply(Tasks, function(z) {
               space=as.character(Spaces[z$space$id, "name"]),
               stringsAsFactors = FALSE)
 }))
-
-
-cu_create_space(2342712, "Test")
-
-
-
-#task_deps <- lapply(Tasks, function(z) {
-#    sapply(z$dependencies, "[[", "depends_on")
-#})
+table(is.na(task_table$parent))
 
 task_el <- do.call(rbind, lapply(Tasks, function(z) {
     d <- sapply(z$dependencies, "[[", "depends_on")
-    data.frame(from=d, to=rep(z$id, length(d)), stringsAsFactors = FALSE)
+    k <- sapply(z$dependencies, "[[", "task_id")
+    data.frame(from=d, to=k, stringsAsFactors = FALSE)
 }))
-#task_el <- task_el[task_el[,"from"] %in% rownames(task_table)[
-#    task_table$folder=="All-in-one Analysis"],]
-task_el <- as.matrix(task_el[task_el[,1]!=task_el[,2],])
 
 el <- cbind(
-  task_table$name[match(task_el[,1], task_table$id)],
-  task_table$name[match(task_el[,2], task_table$id)])
+  from=task_table$name[match(task_el[,1], task_table$id)],
+  to=task_table$name[match(task_el[,2], task_table$id)])
 el[is.na(el)] <- task_el[is.na(el)]
 
+d <- data.frame(table(el[,1]))
+d <- d[order(d$Freq, decreasing=TRUE),]
+
 g <- graph_from_edgelist(el)
+V(g)$label = V(g)$name
+V(g)$name = factor(V(g)$name, levels=as.character(V(g)$name))
+V(g)$size <- degree(g, mode="all")
 
 plot(g, edge.arrow.size=.5, vertex.color="gold", vertex.size=15,
      vertex.frame.color="gray", vertex.label.color="black",
@@ -84,12 +76,19 @@ plot(g, vertex.shape="none", #vertex.label=V(net)$media,
      vertex.label.font=2, vertex.label.color="gray40",
      vertex.label.cex=.7, edge.color="gray85", arrow.size=0.2)
 
-V(g)$label = V(g)$name
-V(g)$name = factor(V(g)$name, levels=as.character(V(g)$name))
+
 g2 <- from_igraph(g)
 
-render_graph(g2)
+render_graph(g2, output = "visNetwork")
 #grViz(generate_dot(g2))
+
+plot(g,
+     vertex.size        = V(g)$size/2,
+     #vertex.label.cex   = V(g)$size/50,
+     #vertex.label.color = "black",
+     #edge.curved        = TRUE,
+     vertex.label.family = "sans"
+     )
 
 str(Tasks[["6wh5np"]])
 
@@ -119,30 +118,4 @@ cu_get_lists_folderless(4450981)
 cu_get_lists(10736465)
 cu_get_list(25249327)
 
-
-
-## attachment
-
-## Attachments / Post Task Attachment
-## POST https://api.clickup.com/api/v2/task/task_id/attachment
-## task_id: Example: 9hv. String
-
-
-    req <- httr::POST(
-            httr::modify_url(getOption("cu_options")$baseurl,
-                       path = .cu_path("task", "5ye7nu", "attachment")),
-            httr::add_headers(Authorization = cu_pat(),
-                              "Content-Type" = "multipart/form-data"),
-            encode="multipart",
-            body=upload_file("inst/examples/example.png"),
-            user_agent("http://github.com/psolymos/clickrup"))
-content(req)
-
-png("inst/examples/example.png")
-set.seed(1)
-#hist(rnorm(10^6), main="Demo image", col="pink", border="red", xlab="x")
-plot(0, col=2, pch=19, axes=FALSE, ann=FALSE)
-dev.off()
-
-txt <- base64enc::base64encode("inst/examples/example.png")
 
