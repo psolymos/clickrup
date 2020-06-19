@@ -258,17 +258,17 @@ length(subTasks$tasks)
 Getting all the tasks (possibly filtered) in a Workspace is done via the
 `cu_get_filtered_team_tasks` function. This function returns tasks in
 batches of 100. If you don’t want to deal with paging, use the wrapper
-function `cu_get_tasks_all` The list of tasks returned does not include
+function `cu_get_all_team_tasks` The list of tasks returned does not include
 closed tasks, to get those as well we need to pass the `include_closed`
 query parameter
 
 ``` r
 ## without closed tasks
-length(cu_get_tasks_all(team_id, subtasks=TRUE)$tasks)
+length(cu_get_all_team_tasks(team_id, subtasks=TRUE)$tasks)
 #> [1] 17
 
 ## with closed tasks
-allSubTasks <- cu_get_tasks_all(team_id, subtasks=TRUE,
+allSubTasks <- cu_get_all_team_tasks(team_id, subtasks=TRUE,
                                 include_closed=TRUE)
 length(allSubTasks$tasks)
 #> [1] 18

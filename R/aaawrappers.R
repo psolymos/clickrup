@@ -1,7 +1,7 @@
 ## Wrapper functions
 
 # include_closed = FALSE by default
-cu_get_tasks_all <- function(team_id, ...) {
+cu_get_all_team_tasks <- function(team_id, ...) {
     p <- 0
     done <- FALSE
     out <- list(tasks=NULL)
