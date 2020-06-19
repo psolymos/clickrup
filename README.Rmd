@@ -239,6 +239,22 @@ drop the brackets, but
 the expected JSON object:
 `{ "name": "New Task Name", "assignees": [183] }`.
 
+### Attachments
+
+We can upload files as attachments to tasks:
+
+```{r eval=FALSE}
+f <- file.path(tempdir(), "example.png")
+
+png(f)
+hist(rnorm(10^6), col=2, main="Example")
+dev.off()
+
+cu_post_task_attachment("8ach57", f)
+
+unlink(f) # delete file
+```
+
 ## Issues
 
 https://github.com/psolymos/clickrup/issues

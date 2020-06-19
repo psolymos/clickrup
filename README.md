@@ -220,7 +220,7 @@ str(cu_get_lists(folder_id, archived=TRUE), 3)
 #>   .. ..$ status           : NULL
 #>   .. ..$ priority         : NULL
 #>   .. ..$ assignee         : NULL
-#>   .. ..$ task_count       : int 5
+#>   .. ..$ task_count       : chr "5"
 #>   .. ..$ due_date         : NULL
 #>   .. ..$ start_date       : NULL
 #>   .. ..$ folder           :List of 4
@@ -258,9 +258,9 @@ length(subTasks$tasks)
 Getting all the tasks (possibly filtered) in a Workspace is done via the
 `cu_get_filtered_team_tasks` function. This function returns tasks in
 batches of 100. If you don’t want to deal with paging, use the wrapper
-function `cu_get_all_team_tasks` The list of tasks returned does not include
-closed tasks, to get those as well we need to pass the `include_closed`
-query parameter
+function `cu_get_all_team_tasks` The list of tasks returned does not
+include closed tasks, to get those as well we need to pass the
+`include_closed` query parameter
 
 ``` r
 ## without closed tasks
@@ -366,7 +366,7 @@ str(cu_options())
 ``` r
 cu_response(Teams)
 #> Response [https://api.clickup.com/api/v2/team]
-#>   Date: 2020-06-19 19:59
+#>   Date: 2020-06-19 23:04
 #>   Status: 200
 #>   Content-Type: application/json; charset=utf-8
 #>   Size: 776 B
@@ -380,7 +380,7 @@ cu_ratelimit(subTasks)
 #> [1] 900
 #> 
 #> $remaining
-#> [1] 892
+#> [1] 878
 ```
 
 ### Formatting the request body
@@ -393,6 +393,22 @@ be added. Adding a single userid without `I()` will drop the brackets,
 but `list(name = "New Task Name", assignees = I(183))` will result in
 the expected JSON object: `{ "name": "New Task Name", "assignees": [183]
 }`.
+
+### Attachments
+
+We can upload files as attachments to tasks:
+
+``` r
+f <- file.path(tempdir(), "example.png")
+
+png(f)
+hist(rnorm(10^6), col=2, main="Example")
+dev.off()
+
+cu_post_task_attachment("8ach57", f)
+
+unlink(f) # delete file
+```
 
 ## Issues
 
