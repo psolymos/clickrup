@@ -22,18 +22,26 @@ remotes::install_github("psolymos/clickrup")
 Follow this
 [tutorial](https://docs.clickup.com/en/articles/1367130-getting-started-with-the-clickup-api):
 
-  - Sign up for ClickUp (you can use this referral
-    [link](https://clickup.com?fp_ref=peter51) to do so, it’s free)
-  - Navigate to your personal *Settings*
-  - Click *Apps* in the left sidebar
-  - Click *Generate* to create your API token
-  - Click *Copy* to copy the key to your clipboard
+  - sign up for ClickUp (you can use this referral
+    [link](https://clickup.com?fp_ref=peter51) to do so, it’s free),
+  - navigate to your personal *Settings*,
+  - click *Apps* in the left sidebar,
+  - click *Generate* to create your API token,
+  - click *Copy* to copy the token to your clipboard.
 
-Add your ClickUp token as an environment variable. There are [various
-ways](https://stackoverflow.com/questions/12291418/how-can-i-make-r-read-my-environmental-variables)
-of doing that. Use `Sys.setenv(CU_PAT="your_token")` or add a line with
-`CU_PAT="your_token"` to the `.Renviron` file. adding `"your_token"`
-from the previous step.
+Now add your ClickUp token as an environment variable:
+
+  - open the file `.Renviron`: `file.edit("~/.Renviron")`,
+  - add a line with `CU_PAT="your_token"` to the `.Renviron` file and
+    save it,
+  - check with `Sys.getenv("CU_PAT")`, it should return the token.
+
+The ClickUp token will look something like
+`pk_4753994_EXP7MPOJ7XQM5UJDV2M45MPF0YHH5YHO`.
+
+The `cu_set_pat` function uses `Sys.setenv` to set the `CU_PAT`
+environment variable for other processes called from within R or future
+calls to `Sys.getenv` from the same R process.
 
 ## API endpoints
 
@@ -56,15 +64,14 @@ passes optional parameters, query parameters, or elements for the body.
 
 ## Examples
 
-Load the package and set the access token. `cu_get_pat()` returns the
-token invisibly, so it doesn’t end up in logs.
+Load the package and set the access token if it is not already set.
+`cu_get_pat()` returns the token invisibly, so it doesn’t end up in
+logs.
 
 ``` r
 library(clickrup)
 #> Loading required package: httr
 #> clickrup 0.0.1    2020-06-10
-
-#cu_set_pat("pk_4753994_EXP7MPOJ7XQM5UJDV2M45MPF0YHH5YHO")
 cu_get_pat() # returns PAT invisibly
 ```
 
@@ -82,7 +89,10 @@ includes the following levels:
   - Subtasks
   - Checklists
 
-We can list Workspaces that we have access to as
+We can list Workspaces that we have access to using the `cu_get_teams()`
+function. It takes no arguments, it only passes the access token behind
+the scenes, so it is a good way to test if things are working as
+expected
 
 ``` r
 Teams <- cu_get_teams()
@@ -210,7 +220,7 @@ str(cu_get_lists(folder_id, archived=TRUE), 3)
 #>   .. ..$ status           : NULL
 #>   .. ..$ priority         : NULL
 #>   .. ..$ assignee         : NULL
-#>   .. ..$ task_count       : chr "5"
+#>   .. ..$ task_count       : int 5
 #>   .. ..$ due_date         : NULL
 #>   .. ..$ start_date       : NULL
 #>   .. ..$ folder           :List of 4
@@ -309,7 +319,7 @@ cu_time(cu_date(Tasks$tasks[[1]]$date_created))
 ```
 
 A single task can be accessed through the task ID (note: copying the
-task ID from the ClickUp gui will prepend the task ID by a hash,
+task ID from the ClickUp GUI will prepend the task ID by a hash,
 `"#8ckjp5"`, but the API expects ID without the hash `"8ckjp5"`).
 
 The `$parent` property is `NULL` for Tasks, and it contains the parent
@@ -356,7 +366,7 @@ str(cu_options())
 ``` r
 cu_response(Teams)
 #> Response [https://api.clickup.com/api/v2/team]
-#>   Date: 2020-06-18 16:40
+#>   Date: 2020-06-19 19:59
 #>   Status: 200
 #>   Content-Type: application/json; charset=utf-8
 #>   Size: 776 B
@@ -370,7 +380,7 @@ cu_ratelimit(subTasks)
 #> [1] 900
 #> 
 #> $remaining
-#> [1] 890
+#> [1] 892
 ```
 
 ### Formatting the request body
@@ -381,7 +391,8 @@ an array as part of the body. For example when passing data to
 `cu_create_task`, `assignees` is an array of the assignees’ userids to
 be added. Adding a single userid without `I()` will drop the brackets,
 but `list(name = "New Task Name", assignees = I(183))` will result in
-the expected JSON object: `{ "name": "New Task Name", "assignees": [183] }`.
+the expected JSON object: `{ "name": "New Task Name", "assignees": [183]
+}`.
 
 ## Issues
 
