@@ -177,12 +177,12 @@ str(Tasks$tasks[[1]][1:10])
 ```
 
 Dates are given as Unix time (in milliseconds),
-`cu_date` and `cu_time` is there to convert back and forth
+`cu_date_from` and `cu_date_to` is there to convert back and forth
 
 ```{r}
 Tasks$tasks[[1]]$date_created
-cu_date(Tasks$tasks[[1]]$date_created)
-cu_time(cu_date(Tasks$tasks[[1]]$date_created))
+cu_date_from(Tasks$tasks[[1]]$date_created)
+cu_date_to(cu_date_from(Tasks$tasks[[1]]$date_created))
 ```
 
 A single task can be accessed through the task ID

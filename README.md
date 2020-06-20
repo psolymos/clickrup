@@ -70,7 +70,6 @@ logs.
 
 ``` r
 library(clickrup)
-#> Loading required package: httr
 #> clickrup 0.0.1    2020-06-10
 cu_get_pat() # returns PAT invisibly
 ```
@@ -306,16 +305,16 @@ str(Tasks$tasks[[1]][1:10])
 #>  $ archived    : logi FALSE
 ```
 
-Dates are given as Unix time (in milliseconds), `cu_date` and `cu_time`
-is there to convert back and forth
+Dates are given as Unix time (in milliseconds), `cu_date_from` and
+`cu_date_to` is there to convert back and forth
 
 ``` r
 Tasks$tasks[[1]]$date_created
 #> [1] "1592452913384"
-cu_date(Tasks$tasks[[1]]$date_created)
+cu_date_from(Tasks$tasks[[1]]$date_created)
 #> [1] "2020-06-17 22:01:53 MDT"
-cu_time(cu_date(Tasks$tasks[[1]]$date_created))
-#> [1] 1.592453e+12
+cu_date_to(cu_date_from(Tasks$tasks[[1]]$date_created))
+#> [1] "1592452913384"
 ```
 
 A single task can be accessed through the task ID (note: copying the
@@ -366,7 +365,7 @@ str(cu_options())
 ``` r
 cu_response(Teams)
 #> Response [https://api.clickup.com/api/v2/team]
-#>   Date: 2020-06-19 23:04
+#>   Date: 2020-06-20 07:13
 #>   Status: 200
 #>   Content-Type: application/json; charset=utf-8
 #>   Size: 776 B
@@ -380,7 +379,7 @@ cu_ratelimit(subTasks)
 #> [1] 900
 #> 
 #> $remaining
-#> [1] 878
+#> [1] 880
 ```
 
 ### Formatting the request body

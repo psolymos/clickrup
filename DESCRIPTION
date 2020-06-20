@@ -9,9 +9,10 @@ Description: Work with ClickUp.
 License: MIT + file LICENSE
 LazyLoad: yes
 LazyData: true
-Depends: httr
-Imports: jsonlite
+Imports: httr, jsonlite
 Suggests: knitr
 URL: https://github.com/psolymos/clickrup
 BugReports: https://github.com/psolymos/clickrup/issues
 VignetteBuilder: knitr
+RoxygenNote: 7.0.2
+Encoding: UTF-8
