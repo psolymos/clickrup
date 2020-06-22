@@ -16,7 +16,7 @@
 #' @export
 #' @name cu-role
 cu_role <- function(role) {
-    p <- factor(as.character(score), c("1", "2", "3", "4"))
+    p <- factor(as.character(role), c("1", "2", "3", "4"))
     levels(p) <- c("Owner", "Admin", "Member", "Guest")
     as.character(p)
 }
