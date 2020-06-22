@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Managing ClickUp personal access token. — cu-pat • clickrup</title>
+<title>Managing ClickUp personal access token — cu-pat • clickrup</title>
 
 
 <!-- jquery -->
@@ -35,13 +35,13 @@
 
 
 
-<meta property="og:title" content="Managing ClickUp personal access token. — cu-pat" />
+<meta property="og:title" content="Managing ClickUp personal access token — cu-pat" />
 <meta property="og:description" content="The ClickUp API requires a personal access token (PAT)
 to be sent with each API request.
-The `cu_set_pat` function uses `Sys.setenv` to set
-the `CU_PAT` environment variable for other processes
-called from within R or future calls to `Sys.getenv` from the same
-R process. `cu_get_pat` is used to retrieve the PAT for the API calls." />
+The cu_set_pat function uses Sys.setenv to set
+the CU_PAT environment variable for other processes
+called from within R or future calls to Sys.getenv from the same
+R process. cu_get_pat is used to retrieve the PAT for the API calls." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -110,7 +110,7 @@ R process. `cu_get_pat` is used to retrieve the PAT for the API calls." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Managing ClickUp personal access token.</h1>
+    <h1>Managing ClickUp personal access token</h1>
     <small class="dont-index">Source: <a href='https://github.com/psolymos/clickrup/blob/master/R/cu-pat.R'><code>R/cu-pat.R</code></a></small>
     <div class="hidden name"><code>cu-pat.Rd</code></div>
     </div>
@@ -118,10 +118,10 @@ R process. `cu_get_pat` is used to retrieve the PAT for the API calls." />
     <div class="ref-description">
     <p>The ClickUp API requires a personal access token (PAT)
 to be sent with each API request.
-The `cu_set_pat` function uses `Sys.setenv` to set
-the `CU_PAT` environment variable for other processes
-called from within R or future calls to `Sys.getenv` from the same
-R process. `cu_get_pat` is used to retrieve the PAT for the API calls.</p>
+The <code>cu_set_pat</code> function uses <code>Sys.setenv</code> to set
+the <code>CU_PAT</code> environment variable for other processes
+called from within R or future calls to <code>Sys.getenv</code> from the same
+R process. <code>cu_get_pat</code> is used to retrieve the PAT for the API calls.</p>
     </div>
 
     <pre class="usage"><span class='fu'>cu_get_pat</span>()
@@ -139,25 +139,29 @@ R process. `cu_get_pat` is used to retrieve the PAT for the API calls.</p>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>`cu_set_pat` returns logical similarly to [Sys.setenv()].</p>
-<p>`cu_get_pat` returns the ClickUp PAT will look something like
-`pk_4753994_EXP7MPOJ7XQM5UJDV2M45MPF0YHH5YHO`.</p>
+    <p><code>cu_set_pat</code> returns logical similarly to <code><a href='https://rdrr.io/r/base/Sys.setenv.html'>Sys.setenv()</a></code>.</p>
+<p><code>cu_get_pat</code> returns the ClickUp PAT will look something like
+<code>pk_4753994_EXP7MPOJ7XQM5UJDV2M45MPF0YHH5YHO</code>.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>To set up a ClickUp PAT, Follow this
-[tutorial](https://docs.clickup.com/en/articles/1367130-getting-started-with-the-clickup-api):</p>
-<p>* sign up for ClickUp (you can use this referral [link](https://clickup.com?fp_ref=peter51) to do so, it's free),
-* navigate to your personal *Settings*,
-* click *Apps* in the left sidebar,
-* click *Generate* to create your API token,
-* click *Copy* to copy the token to your clipboard.</p>
-<p>Now add your ClickUp token as an environment variable:</p>
-<p>* open the file `.Renviron`: `file.edit("~/.Renviron")`,
-* add a line with `CU_PAT="your_token"` to the `.Renviron` file and save it,
-* check with `Sys.getenv("CU_PAT")`, it should return the token.</p>
+<a href='https://docs.clickup.com/en/articles/1367130-getting-started-with-the-clickup-api'>tutorial</a>:</p><ul>
+<li><p>sign up for ClickUp (you can use this referral <a href='https://clickup.com?fp_ref=peter51'>link</a> to do so, it's free),</p></li>
+<li><p>navigate to your personal <em>Settings</em>,</p></li>
+<li><p>click <em>Apps</em> in the left sidebar,</p></li>
+<li><p>click <em>Generate</em> to create your API token,</p></li>
+<li><p>click <em>Copy</em> to copy the token to your clipboard.</p></li>
+</ul>
+
+<p>Now add your ClickUp token as an environment variable:</p><ul>
+<li><p>open the file <code>.Renviron</code>: <code><a href='https://rdrr.io/r/utils/file.edit.html'>file.edit("~/.Renviron")</a></code>,</p></li>
+<li><p>add a line with <code>CU_PAT="your_token"</code> to the <code>.Renviron</code> file and save it,</p></li>
+<li><p>check with <code><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv("CU_PAT")</a></code>, it should return the token.</p></li>
+</ul>
+
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>[Sys.setenv()] and [Sys.getenv()]</p></div>
+    <div class='dont-index'><p><code><a href='https://rdrr.io/r/base/Sys.setenv.html'>Sys.setenv()</a></code> and <code><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv()</a></code></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

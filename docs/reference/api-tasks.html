@@ -137,15 +137,15 @@
       <th>...</th>
       <td><p>Named arguments to be passed to API request body,
 of as query parameters,
-see the ClickUp API documentation (&lt;https://clickup.com/api&gt;).</p></td>
+see the ClickUp API documentation (<a href='https://clickup.com/api'>https://clickup.com/api</a>).</p></td>
     </tr>
     <tr>
       <th>task_id</th>
-      <td><p>Task ID.</p></td>
+      <td><p>Task ID. The ClickUp GUI prepends task IDs with a leading hash, <code><a href='cu-task-id.html'>cu_task_id()</a></code> is used internally to normalize task IDs.</p></td>
     </tr>
     <tr>
       <th>archived</th>
-      <td><p>Logical, to returne archived (`TRUE`) lists.</p></td>
+      <td><p>Logical, to returne archived (<code>TRUE</code>) lists.</p></td>
     </tr>
     <tr>
       <th>team_id</th>
@@ -158,59 +158,74 @@ see the ClickUp API documentation (&lt;https://clickup.com/api&gt;).</p></td>
     <p>A cu object.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>### Create task</p>
-<p>`assignees` is an array of the assignees' userids to be added to this task.
-`priority` is an integer mapping as 1 : Urgent, 2 : High, 3 : Normal, 4 : Low
-([cu_priority()]). Time estimate is in milliseconds.
+    
+<h3>Create task</h3>
+
+
+<p><code>assignees</code> is an array of the assignees' userids to be added to this task.
+<code>priority</code> is an integer mapping as 1 : Urgent, 2 : High, 3 : Normal, 4 : Low
+(<code><a href='cu-priority.html'>cu_priority()</a></code>). Time estimate is in milliseconds.
 See the fields section below to see the custom fields available on a list.
-If `notify_all` is true, creation notifications will be sent to everyone
+If <code>notify_all</code> is true, creation notifications will be sent to everyone
 including the creator of the task. Instead of content you can pass
-`markdown_content` with valid markdown syntax to add formatting to the
+<code>markdown_content</code> with valid markdown syntax to add formatting to the
 task description. Passing an existing task ID in the parent property
 will make the new task a subtask of that parent.
 The parent you pass must not be a subtask itself,
 and must be part of the list that you pass in the URL params.
-The `links_to` accepts a task ID to create a linked dependency on
+The <code>links_to</code> accepts a task ID to create a linked dependency on
 the new task.</p>
-<p>### Update task</p>
+
+<h3>Update task</h3>
+
+
 <p>Only pass properties you want to update.
 It is unnecessary to pass the entire task object.</p>
-<p>### Get tasks</p>
+
+<h3>Get tasks</h3>
+
+
 <p>The maximum number of tasks returned in this response is 100.
 When you are paging this request, you should check list limit against
 the length of each response to determine if you are on the last page.
 By default this does not include closed tasks. To page tasks,
-pass the page number you wish to fetch. [cu_get_all_team_tasks()]
+pass the page number you wish to fetch. <code><a href='cu-get-all-team-tasks.html'>cu_get_all_team_tasks()</a></code>
 is a wrapper to spare paging.</p>
-<p>### Filter query parameters</p>
-<p>When value is an array, use `I()` to make sure atomic vectors
-remain JSON arrays in the output.</p>
-<p>* archived: return archived tasks.
-* page: page to fetch (starts at 0)
-* order_by: order by field, defaults to created; options: id, created,
-    updated, due_date.
-* reverse: reverse order.
-* subtasks: include subtasks, default false.
-* space_ids: spaces to query, array.
-* project_ids: projects to query, array.
-* statuses: statuses to query, array.
-* include_closed: by default, the api does not include closed tasks.
-    Set this to true and dont send a status filter to include closed tasks.
-* assignees: ssignees to query, array.
-* due_date_gt: filter due date greater than posix time.
-* due_date_lt: filter due date less than posix time.
-* date_created_gt: filter date created greater than posix time.
-* date_created_lt: filter date created less than posix time.
-* date_updated_gt: filter date updated greater than posix time.
-* date_updated_lt: filter date updated less than posix time
-* custom_fields: filter by custom fields. Must be a stringified
-  JSON array of objects. See the custom fields section of the API docs
-  for more details.</p>
+
+<h3>Filter query parameters</h3>
+
+
+<p>When value is an array, use <code><a href='https://rdrr.io/r/base/AsIs.html'>I()</a></code> to make sure atomic vectors
+remain JSON arrays in the output.</p><ul>
+<li><p>archived: return archived tasks.</p></li>
+<li><p>page: page to fetch (starts at 0)</p></li>
+<li><p>order_by: order by field, defaults to created; options: id, created,
+updated, due_date.</p></li>
+<li><p>reverse: reverse order.</p></li>
+<li><p>subtasks: include subtasks, default false.</p></li>
+<li><p>space_ids: spaces to query, array.</p></li>
+<li><p>project_ids: projects to query, array.</p></li>
+<li><p>statuses: statuses to query, array.</p></li>
+<li><p>include_closed: by default, the api does not include closed tasks.
+Set this to true and dont send a status filter to include closed tasks.</p></li>
+<li><p>assignees: ssignees to query, array.</p></li>
+<li><p>due_date_gt: filter due date greater than posix time.</p></li>
+<li><p>due_date_lt: filter due date less than posix time.</p></li>
+<li><p>date_created_gt: filter date created greater than posix time.</p></li>
+<li><p>date_created_lt: filter date created less than posix time.</p></li>
+<li><p>date_updated_gt: filter date updated greater than posix time.</p></li>
+<li><p>date_updated_lt: filter date updated less than posix time</p></li>
+<li><p>custom_fields: filter by custom fields. Must be a stringified
+JSON array of objects. See the custom fields section of the API docs
+for more details.</p></li>
+</ul>
+
+
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>[cu-class] for the cu object class, [cu_date_to()] and
-  [cu_date_from()] to work with POSIX dates,
-  [cu_get_all_team_tasks()] is a wrapper.</p></div>
+    <div class='dont-index'><p><a href='cu-class.html'>cu</a> for the cu object class, <code><a href='cu-date.html'>cu_date_to()</a></code> and
+<code><a href='cu-date.html'>cu_date_from()</a></code> to work with POSIX dates,
+<code><a href='cu-get-all-team-tasks.html'>cu_get_all_team_tasks()</a></code> is a wrapper. <code><a href='cu-task-id.html'>cu_task_id()</a></code> to remove leading hashes from task IDs.</p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

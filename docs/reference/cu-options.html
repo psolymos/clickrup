@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Global options for the clickrup package. — cu-options • clickrup</title>
+<title>Global options for the clickrup package — cu-options • clickrup</title>
 
 
 <!-- jquery -->
@@ -35,7 +35,7 @@
 
 
 
-<meta property="og:title" content="Global options for the clickrup package. — cu-options" />
+<meta property="og:title" content="Global options for the clickrup package — cu-options" />
 <meta property="og:description" content="Options store and allow to set global values for the ClickUp API
 and for clickrup functions." />
 <meta name="twitter:card" content="summary" />
@@ -106,7 +106,7 @@ and for clickrup functions." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Global options for the clickrup package.</h1>
+    <h1>Global options for the clickrup package</h1>
     <small class="dont-index">Source: <a href='https://github.com/psolymos/clickrup/blob/master/R/cu-options.R'><code>R/cu-options.R</code></a></small>
     <div class="hidden name"><code>cu-options.Rd</code></div>
     </div>
@@ -129,20 +129,22 @@ and for clickrup functions.</p>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>When parameters are set by `cu_options`, their former values are
+    <p>When parameters are set by <code>cu_options</code>, their former values are
 returned in an invisible named list. Such a list can be passed as an
-argument to `cu_options` to restore the parameter values.
-Tags are the following:</p>
-<p>* `baseurl`: ClickUp API base URL.
-* `version`: ClickUp API version.
-* `tz`: time zone.
-* `useragent`: user agent.</p>
+argument to <code>cu_options</code> to restore the parameter values.
+Tags are the following:</p><ul>
+<li><p><code>baseurl</code>: ClickUp API base URL.</p></li>
+<li><p><code>version</code>: ClickUp API version.</p></li>
+<li><p><code>tz</code>: time zone.</p></li>
+<li><p><code>useragent</code>: user agent.</p></li>
+</ul>
+
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Options are mostly for internal use and to allow API version changes
 in the future.</p>
-<p>The `tz` (time zone) option can be set globally for [cu_date_from()].
-The default value `""` means current time zone, see [strptime()].</p>
+<p>The <code>tz</code> (time zone) option can be set globally for <code><a href='cu-date.html'>cu_date_from()</a></code>.
+The default value <code>""</code> means current time zone, see <code><a href='https://rdrr.io/r/base/strptime.html'>strptime()</a></code>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='fu'>cu_options</span>())</div><div class='output co'>#&gt; List of 4

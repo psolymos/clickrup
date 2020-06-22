@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Users — api-users • clickrup</title>
+<title>Turn ClickUp API role to meaningful label — cu-role • clickrup</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,10 @@
 
 
 
-<meta property="og:title" content="Users — api-users" />
-<meta property="og:description" content="Working with users in ClickUp tasks (Enterprise only feture)." />
+<meta property="og:title" content="Turn ClickUp API role to meaningful label — cu-role" />
+<meta property="og:description" content="The ClickUp API returns role as integer.
+The cu_role function maps these scores to the priority labels
+Owner (1), Admin (2), Member (3), Guest (4)." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -105,67 +107,42 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Users</h1>
-    <small class="dont-index">Source: <a href='https://github.com/psolymos/clickrup/blob/master/R/api-users.R'><code>R/api-users.R</code></a></small>
-    <div class="hidden name"><code>api-users.Rd</code></div>
+    <h1>Turn ClickUp API role to meaningful label</h1>
+    <small class="dont-index">Source: <a href='https://github.com/psolymos/clickrup/blob/master/R/cu-role.R'><code>R/cu-role.R</code></a></small>
+    <div class="hidden name"><code>cu-role.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Working with users in ClickUp tasks (Enterprise only feture).</p>
+    <p>The ClickUp API returns role as integer.
+The <code>cu_role</code> function maps these scores to the priority labels
+Owner (1), Admin (2), Member (3), Guest (4).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>cu_invite_user_to_workspace</span>(<span class='no'>team_id</span>, <span class='no'>email</span>, <span class='kw'>admin</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)
-
-<span class='fu'>cu_edit_user_on_workspace</span>(<span class='no'>team_id</span>, <span class='no'>user_id</span>, <span class='no'>username</span>, <span class='kw'>admin</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)
-
-<span class='fu'>cu_remove_user_from_workspace</span>(<span class='no'>team_id</span>, <span class='no'>user_id</span>)
-
-<span class='fu'>cu_get_user</span>(<span class='no'>team_id</span>, <span class='no'>user_id</span>)</pre>
+    <pre class="usage"><span class='fu'>cu_role</span>(<span class='no'>role</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>team_id</th>
-      <td><p>Team (workspace) ID.</p></td>
-    </tr>
-    <tr>
-      <th>email</th>
-      <td><p>Email.</p></td>
-    </tr>
-    <tr>
-      <th>admin</th>
-      <td><p>Logical, admin account or not</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Named arguments to be passed to API request body,
-see the ClickUp API documentation (<a href='https://clickup.com/api'>https://clickup.com/api</a>).</p></td>
-    </tr>
-    <tr>
-      <th>user_id</th>
-      <td><p>User ID.</p></td>
-    </tr>
-    <tr>
-      <th>username</th>
-      <td><p>User name.</p></td>
+      <th>role</th>
+      <td><p>Character or numeric values between 1 and 4.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A cu object.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+    <p>Returns a character vector with the labels.</p>
 
-    <div class='dont-index'><p><a href='cu-class.html'>cu</a> for the cu object class.</p></div>
-
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>cu_role</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>3</span>, <span class='fl'>4</span>))</div><div class='output co'>#&gt; [1] "Owner"  "Admin"  "Member" "Guest" </div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
-      <li><a href="#see-also">See also</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>

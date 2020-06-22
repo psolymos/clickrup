@@ -36,9 +36,9 @@
 
 
 <meta property="og:title" content="Handling ClickUp date/time values. — cu-date" />
-<meta property="og:description" content="`cu_date_from` turns ClickUp date/time format (Unix time
-in milliseconds) to [POSIXct()].
-`cu_date_to` turns a POSIXct coercible date/time value
+<meta property="og:description" content="cu_date_from turns ClickUp date/time format (Unix time
+in milliseconds) to POSIXct().
+cu_date_to turns a POSIXct coercible date/time value
 back to Unix time." />
 <meta name="twitter:card" content="summary" />
 
@@ -114,9 +114,9 @@ back to Unix time." />
     </div>
 
     <div class="ref-description">
-    <p>`cu_date_from` turns ClickUp date/time format (Unix time
-in milliseconds) to [POSIXct()].
-`cu_date_to` turns a POSIXct coercible date/time value
+    <p><code>cu_date_from</code> turns ClickUp date/time format (Unix time
+in milliseconds) to <code><a href='https://rdrr.io/r/base/DateTimeClasses.html'>POSIXct()</a></code>.
+<code>cu_date_to</code> turns a POSIXct coercible date/time value
 back to Unix time.</p>
     </div>
 
@@ -133,11 +133,11 @@ back to Unix time.</p>
     </tr>
     <tr>
       <th>tz</th>
-      <td><p>time zone, when `NULL` it defaults to `cu_options()$tz`.</p></td>
+      <td><p>time zone, when <code>NULL</code> it defaults to <code>cu_options()$tz</code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Other optional arguments passed to [as.POSIXct()].</p></td>
+      <td><p>Other optional arguments passed to <code><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXct()</a></code>.</p></td>
     </tr>
     <tr>
       <th>dt</th>
@@ -147,11 +147,11 @@ back to Unix time.</p>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>`cu_date_from` returns [POSIXct()].</p>
-<p>`cu_date_to` returns Unix time as character .</p>
+    <p><code>cu_date_from</code> returns <code><a href='https://rdrr.io/r/base/DateTimeClasses.html'>POSIXct()</a></code>.</p>
+<p><code>cu_date_to</code> returns Unix time as character .</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>[cu_options()] to set `tz` globally.</p></div>
+    <div class='dont-index'><p><code><a href='cu-options.html'>cu_options()</a></code> to set <code>tz</code> globally.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {

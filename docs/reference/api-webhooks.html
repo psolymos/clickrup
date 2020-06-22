@@ -140,8 +140,8 @@
     <tr>
       <th>...</th>
       <td><p>Named arguments to be passed to API request body,
-e.g. `"endpoint"`, `"events"`, or `"status"`,
-see the ClickUp API documentation (&lt;https://clickup.com/api&gt;).</p></td>
+e.g. <code>"endpoint"</code>, <code>"events"</code>, or <code>"status"</code>,
+see the ClickUp API documentation (<a href='https://clickup.com/api'>https://clickup.com/api</a>).</p></td>
     </tr>
     <tr>
       <th>webhook_id</th>
@@ -155,34 +155,34 @@ see the ClickUp API documentation (&lt;https://clickup.com/api&gt;).</p></td>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>You may filter the location of resources that get sent to a webhook
-by passing an optional `space_id`, `folder_id`, `list_id`, or
-`task_id` in the body of the request.
+by passing an optional <code>space_id</code>, <code>folder_id</code>, <code>list_id</code>, or
+<code>task_id</code> in the body of the request.
 Without specifying any events, all event types
 will be sent to the webhook. However, you can filter for specific
 actions by sending an events array. To subscribe to specific events,
 pass an array of events that you want to subscribe to,
-otherwise pass `"*"` to subscribe to everything.</p>
-<p>Events include: `"taskCreated"`
-    `"taskUpdated"`
-    `"taskDeleted"`
-    `"listCreated"`
-    `"listUpdated"`
-    `"listDeleted"`
-    `"folderCreated"`
-    `"folderUpdated"`
-    `"folderDeleted"`
-    `"spaceCreated"`
-    `"spaceUpdated"`
-    `"spaceDeleted"`
-    `"goalCreated"`
-    `"goalUpdated"`
-    `"goalDeleted"`
-    `"keyResultCreated"`
-    `"keyResultUpdated"`
-    `"keyResultDeleted"`.</p>
+otherwise pass <code><a href='https://rdrr.io/r/base/Arithmetic.html'>"*"</a></code> to subscribe to everything.</p>
+<p>Events include: <code>"taskCreated"</code>
+<code>"taskUpdated"</code>
+<code>"taskDeleted"</code>
+<code>"listCreated"</code>
+<code>"listUpdated"</code>
+<code>"listDeleted"</code>
+<code>"folderCreated"</code>
+<code>"folderUpdated"</code>
+<code>"folderDeleted"</code>
+<code>"spaceCreated"</code>
+<code>"spaceUpdated"</code>
+<code>"spaceDeleted"</code>
+<code>"goalCreated"</code>
+<code>"goalUpdated"</code>
+<code>"goalDeleted"</code>
+<code>"keyResultCreated"</code>
+<code>"keyResultUpdated"</code>
+<code>"keyResultDeleted"</code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>[cu-class] for the cu object class.</p></div>
+    <div class='dont-index'><p><a href='cu-class.html'>cu</a> for the cu object class. <code><a href='cu-task-id.html'>cu_task_id()</a></code> to remove leading hashes from task IDs.</p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

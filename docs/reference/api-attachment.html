@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Attachments / Post Task Attachment — api-attachment • clickrup</title>
+<title>Attachments — api-attachment • clickrup</title>
 
 
 <!-- jquery -->
@@ -35,7 +35,7 @@
 
 
 
-<meta property="og:title" content="Attachments / Post Task Attachment — api-attachment" />
+<meta property="og:title" content="Attachments — api-attachment" />
 <meta property="og:description" content="Result from a call to the API endpoint
 POST https://api.clickup.com/api/v2/task/task_id/attachment" />
 <meta name="twitter:card" content="summary" />
@@ -106,7 +106,7 @@ POST https://api.clickup.com/api/v2/task/task_id/attachment" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Attachments / Post Task Attachment</h1>
+    <h1>Attachments</h1>
     <small class="dont-index">Source: <a href='https://github.com/psolymos/clickrup/blob/master/R/api-attachments.R'><code>R/api-attachments.R</code></a></small>
     <div class="hidden name"><code>api-attachment.Rd</code></div>
     </div>
@@ -132,11 +132,11 @@ POST https://api.clickup.com/api/v2/task/task_id/attachment</p>
     <tr>
       <th>filename</th>
       <td><p>File name as it will show up in CluckUp,
-deduced from `attachment` when not provided (`NULL`).</p></td>
+deduced from <code>attachment</code> when not provided (<code>NULL</code>).</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Can be used to pass mime `type` argument to [httr::upload_file()],
+      <td><p>Can be used to pass mime <code>type</code> argument to <code><a href='https://httr.r-lib.org/reference/upload_file.html'>httr::upload_file()</a></code>,
 mime type is guessed otherwise.</p></td>
     </tr>
     </table>
@@ -146,7 +146,7 @@ mime type is guessed otherwise.</p></td>
     <p>A cu object.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>[cu-class] for the cu object class.</p></div>
+    <div class='dont-index'><p><a href='cu-class.html'>cu</a> for the cu object class.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {

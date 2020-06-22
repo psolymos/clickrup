@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ClickUp API rate limit. — cu-ratelimit • clickrup</title>
+<title>ClickUp API rate limit — cu-ratelimit • clickrup</title>
 
 
 <!-- jquery -->
@@ -35,10 +35,10 @@
 
 
 
-<meta property="og:title" content="ClickUp API rate limit. — cu-ratelimit" />
+<meta property="og:title" content="ClickUp API rate limit — cu-ratelimit" />
 <meta property="og:description" content="The ClickUp API is rate limited per OAuth/PAT token.
 You will receive a 429 HTTP status code if you exceed the rate limit.
-According to the API description (&amp;lt;https://clickup.com/api&amp;gt;),
+According to the API description (https://clickup.com/api),
 the rate limit is 100 requests per minute per token and is subject to change.
 At the time of writing, the limit is 900/min/token." />
 <meta name="twitter:card" content="summary" />
@@ -109,7 +109,7 @@ At the time of writing, the limit is 900/min/token." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>ClickUp API rate limit.</h1>
+    <h1>ClickUp API rate limit</h1>
     <small class="dont-index">Source: <a href='https://github.com/psolymos/clickrup/blob/master/R/cu-ratelimit.R'><code>R/cu-ratelimit.R</code></a></small>
     <div class="hidden name"><code>cu-ratelimit.Rd</code></div>
     </div>
@@ -117,7 +117,7 @@ At the time of writing, the limit is 900/min/token." />
     <div class="ref-description">
     <p>The ClickUp API is rate limited per OAuth/PAT token.
 You will receive a 429 HTTP status code if you exceed the rate limit.
-According to the API description (&lt;https://clickup.com/api&gt;),
+According to the API description (<a href='https://clickup.com/api'>https://clickup.com/api</a>),
 the rate limit is 100 requests per minute per token and is subject to change.
 At the time of writing, the limit is 900/min/token.</p>
     </div>
@@ -135,12 +135,14 @@ At the time of writing, the limit is 900/min/token.</p>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Returns a list with the following elements:</p>
-<p>* `limit`: rate limit (per minute),
-* `remaining`: remaining requests.</p>
+    <p>Returns a list with the following elements:</p><ul>
+<li><p><code>limit</code>: rate limit (per minute),</p></li>
+<li><p><code>remaining</code>: remaining requests.</p></li>
+</ul>
+
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>[cu-class] for the cu object class.</p></div>
+    <div class='dont-index'><p><a href='cu-class.html'>cu</a> for the cu object class.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
