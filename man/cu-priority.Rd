@@ -3,7 +3,7 @@
 \name{cu-priority}
 \alias{cu-priority}
 \alias{cu_priority}
-\title{Turn ClickUp API priority scores to labels.}
+\title{Turn ClickUp API priority scores to labels}
 \usage{
 cu_priority(score)
 }

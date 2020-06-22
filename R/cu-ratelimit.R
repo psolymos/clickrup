@@ -1,4 +1,4 @@
-#' ClickUp API rate limit.
+#' ClickUp API rate limit
 #'
 #' The ClickUp API is rate limited per OAuth/PAT token.
 #' You will receive a 429 HTTP status code if you exceed the rate limit.

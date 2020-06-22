@@ -188,13 +188,15 @@ cu_date_to(cu_date_from(Tasks$tasks[[1]]$date_created))
 A single task can be accessed through the task ID
 (note: copying the task ID from the ClickUp GUI will prepend
 the task ID by a hash, `"#8ckjp5"`, but the API expects
-ID without the hash `"8ckjp5"`).
+ID without the hash `"8ckjp5"`). Use the `cu_task_id` function to get
+rid of the leading hash (all API call use this function to
+normalize task IDs).
 
 The `$parent` property is `NULL` for Tasks, and 
 it contains the parent Task ID for Subtasks
 
 ```{r}
-x1 <- cu_get_task("8ckjp5") # task
+x1 <- cu_get_task(cu_task_id("#8ckjp5")) # task
 x1$parent
 
 x2 <- cu_get_task("8ckjru") # subtask

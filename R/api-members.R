@@ -23,6 +23,7 @@ NULL
 ##    Example: 9hz.
 ##    String
 cu_get_task_members <- function(task_id) {
+    task_id <- cu_task_id(task_id)
     .cu_get("task", task_id, "member")
 }
 

@@ -63,7 +63,7 @@
 #'
 #' @param team_id Team (workspace) ID.
 #' @param list_id List ID.
-#' @param task_id Task ID.
+#' @param task_id Task ID. The ClickUp GUI prepends task IDs with a leading hash, [cu_task_id()] is used internally to normalize task IDs.
 #' @param archived Logical, to returne archived (`TRUE`) lists.
 #' @param ... Named arguments to be passed to API request body,
 #'   of as query parameters,
@@ -75,7 +75,7 @@
 #'
 #' @seealso [cu-class] for the cu object class, [cu_date_to()] and
 #'   [cu_date_from()] to work with POSIX dates,
-#'   [cu_get_all_team_tasks()] is a wrapper.
+#'   [cu_get_all_team_tasks()] is a wrapper. [cu_task_id()] to remove leading hashes from task IDs.
 #'
 #' @name api-tasks
 NULL
@@ -173,6 +173,7 @@ cu_create_task <- function(list_id, ...) {
 ##     "archived": false,
 ## }
 cu_update_task <- function(task_id, ...) {
+    task_id <- cu_task_id(task_id)
     .cu_put("task", task_id,
         body=list(...))
 }
@@ -187,6 +188,7 @@ cu_update_task <- function(task_id, ...) {
 ##     Example: 9xh.
 ##     String
 cu_delete_task <- function(task_id) {
+    task_id <- cu_task_id(task_id)
     .cu_delete("task", task_id)
 }
 
@@ -291,6 +293,7 @@ cu_get_tasks <- function(list_id, archived=FALSE, ...) {
 ##     Example: 9hz.
 ##     String
 cu_get_task <- function(task_id) {
+    task_id <- cu_task_id(task_id)
     .cu_get("task", task_id)
 }
 

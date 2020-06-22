@@ -4,7 +4,7 @@
 \alias{cu-pat}
 \alias{cu_get_pat}
 \alias{cu_set_pat}
-\title{Managing ClickUp personal access token.}
+\title{Managing ClickUp personal access token}
 \usage{
 cu_get_pat()
 

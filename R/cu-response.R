@@ -1,4 +1,4 @@
-#' Extracts the response attribute.
+#' Extracts the response attribute
 #'
 #' The function extracts the response attribute from a cu object
 #' after an ClickUp API call.

@@ -3,7 +3,7 @@
 \name{cu-options}
 \alias{cu-options}
 \alias{cu_options}
-\title{Global options for the clickrup package.}
+\title{Global options for the clickrup package}
 \usage{
 cu_options(...)
 }

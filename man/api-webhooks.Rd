@@ -65,5 +65,5 @@ Events include: `"taskCreated"`
     `"keyResultDeleted"`.
 }
 \seealso{
-[cu-class] for the cu object class.
+[cu-class] for the cu object class. [cu_task_id()] to remove leading hashes from task IDs.
 }

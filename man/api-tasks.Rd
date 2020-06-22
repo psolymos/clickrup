@@ -29,7 +29,7 @@ cu_get_filtered_team_tasks(team_id, ...)
 of as query parameters,
 see the ClickUp API documentation (<https://clickup.com/api>).}
 
-\item{task_id}{Task ID.}
+\item{task_id}{Task ID. The ClickUp GUI prepends task IDs with a leading hash, [cu_task_id()] is used internally to normalize task IDs.}
 
 \item{archived}{Logical, to returne archived (`TRUE`) lists.}
 
@@ -102,5 +102,5 @@ remain JSON arrays in the output.
 \seealso{
 [cu-class] for the cu object class, [cu_date_to()] and
   [cu_date_from()] to work with POSIX dates,
-  [cu_get_all_team_tasks()] is a wrapper.
+  [cu_get_all_team_tasks()] is a wrapper. [cu_task_id()] to remove leading hashes from task IDs.
 }

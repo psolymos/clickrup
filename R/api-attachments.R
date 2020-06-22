@@ -1,4 +1,4 @@
-#' Attachments / Post Task Attachment
+#' Attachments
 #'
 #' Result from a call to the API endpoint
 #' POST https://api.clickup.com/api/v2/task/task_id/attachment
@@ -45,6 +45,7 @@
 
 ## ... can be used to pass type argument to httr::upload_file
 cu_post_task_attachment <- function(task_id, attachment, filename=NULL, ...) {
+    task_id <- cu_task_id(task_id)
     if (is.null(filename))
         filename <- basename(attachment)
     resp <- httr::POST(

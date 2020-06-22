@@ -1,4 +1,4 @@
-#' Turn ClickUp API priority scores to labels.
+#' Turn ClickUp API priority scores to labels
 #'
 #' The ClickUp API returns prority values as integer scores.
 #' The `cu_priority` function maps these scores to the priority labels

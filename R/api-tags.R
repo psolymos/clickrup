@@ -103,6 +103,7 @@ cu_delete_space_tag <- function(space_id) {
 ##     Example: name.
 ##     String
 cu_add_tag_to_task <- function(task_id, tag_name) {
+    task_id <- cu_task_id(task_id)
     .cu_post("task", task_id, "tag", tag_name)
 }
 
@@ -120,6 +121,7 @@ cu_add_tag_to_task <- function(task_id, tag_name) {
 ##     Example: name.
 ##     String
 cu_delete_space_tag <- function(task_id, tag_name) {
+    task_id <- cu_task_id(task_id)
     .cu_delete("task", task_id, "tag", tag_name)
 }
 

@@ -3,7 +3,7 @@
 \name{api-attachment}
 \alias{api-attachment}
 \alias{cu_post_task_attachment}
-\title{Attachments / Post Task Attachment}
+\title{Attachments}
 \usage{
 cu_post_task_attachment(task_id, attachment, filename = NULL, ...)
 }

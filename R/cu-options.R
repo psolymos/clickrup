@@ -1,4 +1,4 @@
-#' Global options for the clickrup package.
+#' Global options for the clickrup package
 #'
 #' Options store and allow to set global values for the ClickUp API
 #' and for clickrup functions.

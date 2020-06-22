@@ -36,6 +36,7 @@ NULL
 ##   "notify_all": true
 ## }
 cu_post_task_comment <- function(task_id, ...) {
+    task_id <- cu_task_id(task_id)
     .cu_post("task", task_id, "comment",
         body=list(...))
 }
@@ -97,7 +98,8 @@ cu_post_list_comment <- function(list_id, ...) {
 ##    Example: 9hz.
 ##    String
 cu_get_task_comments <- function(task_id) {
-  .cu_get("task", task_id, "comment")
+    task_id <- cu_task_id(task_id)
+    .cu_get("task", task_id, "comment")
 }
 
 

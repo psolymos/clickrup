@@ -35,6 +35,7 @@ NULL
 ##   "depends_on": "9hw"
 ## }
 cu_add_dependency <- function(task_id, depends_on, dependency_of) {
+    task_id <- cu_task_id(task_id)
     if (missing(depends_on) && missing(dependency_of))
         stop("Provide one of depends_on or dependency_of", call.=FALSE)
     if (!missing(depends_on) && !missing(dependency_of))
@@ -68,6 +69,7 @@ cu_add_dependency <- function(task_id, depends_on, dependency_of) {
 ## One and only one of depends_on or dependency_of must be passed in the
 ## query params.
 cu_delete_dependency <- function(task_id, depends_on, dependency_of) {
+    task_id <- cu_task_id(task_id)
     if (missing(depends_on) && missing(dependency_of))
         stop("Provide one of depends_on or dependency_of", call.=FALSE)
     if (!missing(depends_on) && !missing(dependency_of))
@@ -94,6 +96,7 @@ cu_delete_dependency <- function(task_id, depends_on, dependency_of) {
 ##     Example: 9hz.
 ##     String
 cu_add_task_link <- function(task_id, links_to) {
+    task_id <- cu_task_id(task_id)
     .cu_post("task", task_id, "link", links_to)
 }
 
@@ -111,5 +114,6 @@ cu_add_task_link <- function(task_id, links_to) {
 ##     Example: 9hz.
 ##     String
 cu_delete_dependency <- function(task_id, links_to) {
+    task_id <- cu_task_id(task_id)
     .cu_delete("task", task_id, "link", links_to)
 }

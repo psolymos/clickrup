@@ -1,4 +1,4 @@
-#' Handling task IDs.
+#' Handling task IDs
 #'
 #' Task IDs are prepended with a hash when copied from the ClickUp GUI.
 #' The function checks and removes the leading hash.

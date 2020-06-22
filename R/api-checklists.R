@@ -50,6 +50,7 @@ NULL
 ## POST https://api.clickup.com/api/v2/task/task_id/checklist
 ##    task_id    Example: 9hz.    String
 cu_create_checklist <- function(task_id, name) {
+    task_id <- cu_task_id(task_id)
     .cu_post("task", task_id, "checklist",
         body=list(name = name))
 }

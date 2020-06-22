@@ -119,6 +119,7 @@ cu_get_guest <- function(team_id, guest_id) {
 ##   "permission_level": "read"
 ## }
 cu_add_guest_to_task <- function(task_id, guest_id, permission_level="read") {
+    task_id <- cu_task_id(task_id)
     permission_level <- match.arg(permission_level,
         c("read", "comment", "edit", "create"))
     .cu_post("task", task_id, "guest", guest_id,
@@ -139,6 +140,7 @@ cu_add_guest_to_task <- function(task_id, guest_id, permission_level="read") {
 ##     Example: 403.
 ##     Number
 cu_remove_guest_from_task <- function(task_id, guest_id) {
+    task_id <- cu_task_id(task_id)
     .cu_delete("task", task_id, "guest", guest_id)
 }
 

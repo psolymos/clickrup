@@ -3,7 +3,7 @@
 \name{cu-response}
 \alias{cu-response}
 \alias{cu_response}
-\title{Extracts the response attribute.}
+\title{Extracts the response attribute}
 \usage{
 cu_response(x)
 }

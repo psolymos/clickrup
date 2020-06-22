@@ -3,7 +3,7 @@
 \name{cu-ratelimit}
 \alias{cu-ratelimit}
 \alias{cu_ratelimit}
-\title{ClickUp API rate limit.}
+\title{ClickUp API rate limit}
 \usage{
 cu_ratelimit(x)
 }

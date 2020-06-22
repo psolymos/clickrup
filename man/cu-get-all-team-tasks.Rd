@@ -3,7 +3,7 @@
 \name{cu-get-all-team-tasks}
 \alias{cu-get-all-team-tasks}
 \alias{cu_get_all_team_tasks}
-\title{Wrapper function to get all tasks from a workspace.}
+\title{Wrapper function to get all tasks from a workspace}
 \usage{
 cu_get_all_team_tasks(team_id, ...)
 }

@@ -39,6 +39,7 @@ NULL
 ## use cu_time to turn POSIXct into unix time for start/end
 ## note: unix time is also in milliseconds (sec x 1000)
 cu_track_time <- function(task_id, ...) {
+    task_id <- cu_task_id(task_id)
     .cu_post("task", task_id, "time",
         body=list(...))
 }
@@ -55,6 +56,7 @@ cu_track_time <- function(task_id, ...) {
 ##
 ## Get time tracked for a task.
 cu_get_tracked_time <- function(task_id) {
+    task_id <- cu_task_id(task_id)
     .cu_get("task", task_id, "time")
 }
 
@@ -83,6 +85,7 @@ cu_get_tracked_time <- function(task_id) {
 ## use cu_time to turn POSIXct into unix time for start/end
 ## note: unix time is also in milliseconds (sec x 1000)
 cu_edit_time_tracked <- function(task_id, interval_id, ...) {
+    task_id <- cu_task_id(task_id)
     .cu_put("task", task_id, "time", interval_id,
         body=list(...))
 }
@@ -103,5 +106,6 @@ cu_edit_time_tracked <- function(task_id, interval_id, ...) {
 ##
 ## Delete a time tracked entry
 cu_delete_time_tracked <- function(task_id, interval_id) {
+    task_id <- cu_task_id(task_id)
     .cu_delete("task", task_id, "time", interval_id)
 }

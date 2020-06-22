@@ -1,4 +1,4 @@
-#' Managing ClickUp personal access token.
+#' Managing ClickUp personal access token
 #'
 #' The ClickUp API requires a personal access token (PAT)
 #' to be sent with each API request.

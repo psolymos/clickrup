@@ -1,4 +1,4 @@
-#' Wrapper function to get all tasks from a workspace.
+#' Wrapper function to get all tasks from a workspace
 #'
 #' The wrapper function uses [cu_get_filtered_team_tasks()]
 #' but takes care of paging.

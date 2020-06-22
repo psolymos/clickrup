@@ -43,7 +43,7 @@
 #'
 #' A cu object.
 #'
-#' @seealso [cu-class] for the cu object class.
+#' @seealso [cu-class] for the cu object class. [cu_task_id()] to remove leading hashes from task IDs.
 #'
 #' @name api-webhooks
 NULL
