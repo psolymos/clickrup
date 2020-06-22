@@ -2,7 +2,7 @@
 
 library(clickrup)
 library(igraph)
-library(DiagrammeR)
+library(networkD3) # http://christophergandrud.github.io/networkD3/
 
 cu_set_pat(Sys.getenv("CU_PAT_A"))
 
@@ -23,7 +23,7 @@ wsp_members <- do.call(rbind, lapply(wsp$teams[[1L]]$members, function(z) {
 
 
 team_id <- 2342712
-Tasks <- cu_get_tasks_all(team_id, subtasks="true")
+Tasks <- cu_get_all_team_tasks(team_id, subtasks="true")
 Tasks <- Tasks$tasks
 length(Tasks)
 names(Tasks) <- sapply(Tasks, "[[", "id")
@@ -37,15 +37,15 @@ rownames(Spaces) <- Spaces$id
 
 task_table <- do.call(rbind, lapply(Tasks, function(z) {
     data.frame(id=z$id,
-              name=z$name,
-              status=z$status$status,
-              parent=if (is.null(z$parent)) NA else z$parent,
-              priority=if (is.null(z$priority)) NA else z$priority$priority,
-              due_date=if (is.null(z$due_date)) NA else cu_date(z$due_date),
-              list=z$list$name,
-              folder=z$folder$name,
-              space=as.character(Spaces[z$space$id, "name"]),
-              stringsAsFactors = FALSE)
+        name=z$name,
+        status=z$status$status,
+        parent=if (is.null(z$parent)) NA else z$parent,
+        priority=if (is.null(z$priority)) NA else z$priority$priority,
+        due_date=if (is.null(z$due_date)) NA else cu_date_from(z$due_date),
+        list=z$list$name,
+        folder=z$folder$name,
+        space=as.character(Spaces[z$space$id, "name"]),
+        stringsAsFactors = FALSE)
 }))
 table(is.na(task_table$parent))
 
@@ -65,8 +65,24 @@ d <- d[order(d$Freq, decreasing=TRUE),]
 
 g <- graph_from_edgelist(el)
 V(g)$label = V(g)$name
-V(g)$name = factor(V(g)$name, levels=as.character(V(g)$name))
 V(g)$size <- degree(g, mode="all")
+
+
+d3 <- igraph_to_networkD3(g)
+#d3$nodes$group <- task_table$space[match(d3$nodes$name, task_table$name)]
+d3$nodes$group <- task_table$list[match(d3$nodes$name, task_table$name)]
+d3$nodes$group[is.na(d3$nodes$group)] <- "None"
+
+n1 <- simpleNetwork(data.frame(el))
+
+n2 <- forceNetwork(Links = d3$links, Nodes = d3$nodes,
+             Source = 'source', Target = 'target',
+             NodeID = 'name', Group = 'group',
+             linkDistance=50,
+             legend=TRUE)
+
+#saveNetwork(n2, file = 'Net1.html')
+#cu_post_task_attachment("7ygh8h", "Net1.html")
 
 plot(g, edge.arrow.size=.5, vertex.color="gold", vertex.size=15,
      vertex.frame.color="gray", vertex.label.color="black",
@@ -77,7 +93,10 @@ plot(g, vertex.shape="none", #vertex.label=V(net)$media,
      vertex.label.cex=.7, edge.color="gray85", arrow.size=0.2)
 
 
-g2 <- from_igraph(g)
+library(DiagrammeR)
+g1 <- g
+V(g1)$name = factor(V(g)$name, levels=as.character(V(g)$name))
+g2 <- from_igraph(g1)
 
 render_graph(g2, output = "visNetwork")
 #grViz(generate_dot(g2))
