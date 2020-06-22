@@ -24,8 +24,8 @@ cu_get_webhooks(team_id)
 \item{events}{Events (see Details).}
 
 \item{...}{Named arguments to be passed to API request body,
-e.g. `"endpoint"`, `"events"`, or `"status"`,
-see the ClickUp API documentation (<https://clickup.com/api>).}
+e.g. \code{"endpoint"}, \code{"events"}, or \code{"status"},
+see the ClickUp API documentation (\url{https://clickup.com/api}).}
 
 \item{webhook_id}{Webhook ID.}
 }
@@ -37,33 +37,33 @@ Working with webhooks in ClickUp tasks.
 }
 \details{
 You may filter the location of resources that get sent to a webhook
-by passing an optional `space_id`, `folder_id`, `list_id`, or
-`task_id` in the body of the request.
+by passing an optional \code{space_id}, \code{folder_id}, \code{list_id}, or
+\code{task_id} in the body of the request.
 Without specifying any events, all event types
 will be sent to the webhook. However, you can filter for specific
 actions by sending an events array. To subscribe to specific events,
 pass an array of events that you want to subscribe to,
-otherwise pass `"*"` to subscribe to everything.
+otherwise pass \code{"*"} to subscribe to everything.
 
-Events include: `"taskCreated"`
-    `"taskUpdated"`
-    `"taskDeleted"`
-    `"listCreated"`
-    `"listUpdated"`
-    `"listDeleted"`
-    `"folderCreated"`
-    `"folderUpdated"`
-    `"folderDeleted"`
-    `"spaceCreated"`
-    `"spaceUpdated"`
-    `"spaceDeleted"`
-    `"goalCreated"`
-    `"goalUpdated"`
-    `"goalDeleted"`
-    `"keyResultCreated"`
-    `"keyResultUpdated"`
-    `"keyResultDeleted"`.
+Events include: \code{"taskCreated"}
+\code{"taskUpdated"}
+\code{"taskDeleted"}
+\code{"listCreated"}
+\code{"listUpdated"}
+\code{"listDeleted"}
+\code{"folderCreated"}
+\code{"folderUpdated"}
+\code{"folderDeleted"}
+\code{"spaceCreated"}
+\code{"spaceUpdated"}
+\code{"spaceDeleted"}
+\code{"goalCreated"}
+\code{"goalUpdated"}
+\code{"goalDeleted"}
+\code{"keyResultCreated"}
+\code{"keyResultUpdated"}
+\code{"keyResultDeleted"}.
 }
 \seealso{
-[cu-class] for the cu object class. [cu_task_id()] to remove leading hashes from task IDs.
+\linkS4class{cu} for the cu object class. \code{\link[=cu_task_id]{cu_task_id()}} to remove leading hashes from task IDs.
 }

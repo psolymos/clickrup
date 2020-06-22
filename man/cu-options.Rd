@@ -11,15 +11,16 @@ cu_options(...)
 \item{...}{Options to set.}
 }
 \value{
-When parameters are set by `cu_options`, their former values are
+When parameters are set by \code{cu_options}, their former values are
 returned in an invisible named list. Such a list can be passed as an
-argument to `cu_options` to restore the parameter values.
+argument to \code{cu_options} to restore the parameter values.
 Tags are the following:
-
-* `baseurl`: ClickUp API base URL.
-* `version`: ClickUp API version.
-* `tz`: time zone.
-* `useragent`: user agent.
+\itemize{
+\item \code{baseurl}: ClickUp API base URL.
+\item \code{version}: ClickUp API version.
+\item \code{tz}: time zone.
+\item \code{useragent}: user agent.
+}
 }
 \description{
 Options store and allow to set global values for the ClickUp API
@@ -29,8 +30,8 @@ and for clickrup functions.
 Options are mostly for internal use and to allow API version changes
 in the future.
 
-The `tz` (time zone) option can be set globally for [cu_date_from()].
-The default value `""` means current time zone, see [strptime()].
+The \code{tz} (time zone) option can be set globally for \code{\link[=cu_date_from]{cu_date_from()}}.
+The default value \code{""} means current time zone, see \code{\link[=strptime]{strptime()}}.
 }
 \examples{
 str(cu_options())

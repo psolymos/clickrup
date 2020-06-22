@@ -10,8 +10,8 @@ cu_get_all_team_tasks(team_id, ...)
 \arguments{
 \item{team_id}{Team ID of tasks.}
 
-\item{...}{All query parameters for [cu_get_filtered_team_tasks()]
-except for `page` (paging is taken care of), e.g. `include_closed`
+\item{...}{All query parameters for \code{\link[=cu_get_filtered_team_tasks]{cu_get_filtered_team_tasks()}}
+except for \code{page} (paging is taken care of), e.g. \code{include_closed}
 to include closed tasks.}
 }
 \value{
@@ -19,9 +19,9 @@ A list parsed from the JSON response.
 The return object does not have a response attribute.
 }
 \description{
-The wrapper function uses [cu_get_filtered_team_tasks()]
+The wrapper function uses \code{\link[=cu_get_filtered_team_tasks]{cu_get_filtered_team_tasks()}}
 but takes care of paging.
 }
 \seealso{
-[cu-class] for the cu object class.
+\linkS4class{cu} for the cu object class.
 }

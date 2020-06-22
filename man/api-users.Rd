@@ -24,7 +24,7 @@ cu_get_user(team_id, user_id)
 \item{admin}{Logical, admin account or not}
 
 \item{...}{Named arguments to be passed to API request body,
-see the ClickUp API documentation (<https://clickup.com/api>).}
+see the ClickUp API documentation (\url{https://clickup.com/api}).}
 
 \item{user_id}{User ID.}
 
@@ -37,5 +37,5 @@ A cu object.
 Working with users in ClickUp tasks (Enterprise only feture).
 }
 \seealso{
-[cu-class] for the cu object class.
+\linkS4class{cu} for the cu object class.
 }

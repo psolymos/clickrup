@@ -27,7 +27,7 @@ cu_delete_space_tag(task_id, tag_name)
 \item{name}{Tag name.}
 
 \item{...}{Named arguments to be passed to API request body,
-see the ClickUp API documentation (<https://clickup.com/api>).}
+see the ClickUp API documentation (\url{https://clickup.com/api}).}
 
 \item{tag_name}{Tag name.}
 
@@ -40,5 +40,5 @@ A cu object.
 Working with tags in ClickUp tasks.
 }
 \seealso{
-[cu-class] for the cu object class.
+\linkS4class{cu} for the cu object class.
 }

@@ -27,11 +27,11 @@ cu_get_filtered_team_tasks(team_id, ...)
 
 \item{...}{Named arguments to be passed to API request body,
 of as query parameters,
-see the ClickUp API documentation (<https://clickup.com/api>).}
+see the ClickUp API documentation (\url{https://clickup.com/api}).}
 
-\item{task_id}{Task ID. The ClickUp GUI prepends task IDs with a leading hash, [cu_task_id()] is used internally to normalize task IDs.}
+\item{task_id}{Task ID. The ClickUp GUI prepends task IDs with a leading hash, \code{\link[=cu_task_id]{cu_task_id()}} is used internally to normalize task IDs.}
 
-\item{archived}{Logical, to returne archived (`TRUE`) lists.}
+\item{archived}{Logical, to returne archived (\code{TRUE}) lists.}
 
 \item{team_id}{Team (workspace) ID.}
 }
@@ -42,65 +42,70 @@ A cu object.
 Working with tasks in ClickUp tasks.
 }
 \details{
-### Create task
+\subsection{Create task}{
 
-`assignees` is an array of the assignees' userids to be added to this task.
-`priority` is an integer mapping as 1 : Urgent, 2 : High, 3 : Normal, 4 : Low
-([cu_priority()]). Time estimate is in milliseconds.
+\code{assignees} is an array of the assignees' userids to be added to this task.
+\code{priority} is an integer mapping as 1 : Urgent, 2 : High, 3 : Normal, 4 : Low
+(\code{\link[=cu_priority]{cu_priority()}}). Time estimate is in milliseconds.
 See the fields section below to see the custom fields available on a list.
-If `notify_all` is true, creation notifications will be sent to everyone
+If \code{notify_all} is true, creation notifications will be sent to everyone
 including the creator of the task. Instead of content you can pass
-`markdown_content` with valid markdown syntax to add formatting to the
+\code{markdown_content} with valid markdown syntax to add formatting to the
 task description. Passing an existing task ID in the parent property
 will make the new task a subtask of that parent.
 The parent you pass must not be a subtask itself,
 and must be part of the list that you pass in the URL params.
-The `links_to` accepts a task ID to create a linked dependency on
+The \code{links_to} accepts a task ID to create a linked dependency on
 the new task.
+}
 
-### Update task
+\subsection{Update task}{
 
 Only pass properties you want to update.
 It is unnecessary to pass the entire task object.
+}
 
-### Get tasks
+\subsection{Get tasks}{
 
 The maximum number of tasks returned in this response is 100.
 When you are paging this request, you should check list limit against
 the length of each response to determine if you are on the last page.
 By default this does not include closed tasks. To page tasks,
-pass the page number you wish to fetch. [cu_get_all_team_tasks()]
+pass the page number you wish to fetch. \code{\link[=cu_get_all_team_tasks]{cu_get_all_team_tasks()}}
 is a wrapper to spare paging.
+}
 
-### Filter query parameters
+\subsection{Filter query parameters}{
 
-When value is an array, use `I()` to make sure atomic vectors
+When value is an array, use \code{I()} to make sure atomic vectors
 remain JSON arrays in the output.
-
-* archived: return archived tasks.
-* page: page to fetch (starts at 0)
-* order_by: order by field, defaults to created; options: id, created,
-    updated, due_date.
-* reverse: reverse order.
-* subtasks: include subtasks, default false.
-* space_ids: spaces to query, array.
-* project_ids: projects to query, array.
-* statuses: statuses to query, array.
-* include_closed: by default, the api does not include closed tasks.
-    Set this to true and dont send a status filter to include closed tasks.
-* assignees: ssignees to query, array.
-* due_date_gt: filter due date greater than posix time.
-* due_date_lt: filter due date less than posix time.
-* date_created_gt: filter date created greater than posix time.
-* date_created_lt: filter date created less than posix time.
-* date_updated_gt: filter date updated greater than posix time.
-* date_updated_lt: filter date updated less than posix time
-* custom_fields: filter by custom fields. Must be a stringified
-  JSON array of objects. See the custom fields section of the API docs
-  for more details.
+\itemize{
+\item archived: return archived tasks.
+\item page: page to fetch (starts at 0)
+\item order_by: order by field, defaults to created; options: id, created,
+updated, due_date.
+\item reverse: reverse order.
+\item subtasks: include subtasks, default false.
+\item space_ids: spaces to query, array.
+\item project_ids: projects to query, array.
+\item statuses: statuses to query, array.
+\item include_closed: by default, the api does not include closed tasks.
+Set this to true and dont send a status filter to include closed tasks.
+\item assignees: ssignees to query, array.
+\item due_date_gt: filter due date greater than posix time.
+\item due_date_lt: filter due date less than posix time.
+\item date_created_gt: filter date created greater than posix time.
+\item date_created_lt: filter date created less than posix time.
+\item date_updated_gt: filter date updated greater than posix time.
+\item date_updated_lt: filter date updated less than posix time
+\item custom_fields: filter by custom fields. Must be a stringified
+JSON array of objects. See the custom fields section of the API docs
+for more details.
+}
+}
 }
 \seealso{
-[cu-class] for the cu object class, [cu_date_to()] and
-  [cu_date_from()] to work with POSIX dates,
-  [cu_get_all_team_tasks()] is a wrapper. [cu_task_id()] to remove leading hashes from task IDs.
+\linkS4class{cu} for the cu object class, \code{\link[=cu_date_to]{cu_date_to()}} and
+\code{\link[=cu_date_from]{cu_date_from()}} to work with POSIX dates,
+\code{\link[=cu_get_all_team_tasks]{cu_get_all_team_tasks()}} is a wrapper. \code{\link[=cu_task_id]{cu_task_id()}} to remove leading hashes from task IDs.
 }

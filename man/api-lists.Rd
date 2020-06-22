@@ -29,13 +29,13 @@ cu_get_list(list_id)
 \item{folder_id}{Folder ID.}
 
 \item{...}{Named arguments to be passed to API request body,
-see the ClickUp API documentation (<https://clickup.com/api>).}
+see the ClickUp API documentation (\url{https://clickup.com/api}).}
 
 \item{space_id}{SPace ID.}
 
 \item{list_id}{List ID.}
 
-\item{archived}{Logical, to returne archived (`TRUE`) lists.}
+\item{archived}{Logical, to returne archived (\code{TRUE}) lists.}
 }
 \value{
 A cu object.
@@ -44,5 +44,5 @@ A cu object.
 Working with lists in ClickUp tasks.
 }
 \seealso{
-[cu-class] for the cu object class.
+\linkS4class{cu} for the cu object class.
 }

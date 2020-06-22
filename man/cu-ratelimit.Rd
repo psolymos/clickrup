@@ -12,14 +12,15 @@ cu_ratelimit(x)
 }
 \value{
 Returns a list with the following elements:
-
-* `limit`: rate limit (per minute),
-* `remaining`: remaining requests.
+\itemize{
+\item \code{limit}: rate limit (per minute),
+\item \code{remaining}: remaining requests.
+}
 }
 \description{
 The ClickUp API is rate limited per OAuth/PAT token.
 You will receive a 429 HTTP status code if you exceed the rate limit.
-According to the API description (<https://clickup.com/api>),
+According to the API description (\url{https://clickup.com/api}),
 the rate limit is 100 requests per minute per token and is subject to change.
 At the time of writing, the limit is 900/min/token.
 }
@@ -31,5 +32,5 @@ cu_ratelimit(task)
 
 }
 \seealso{
-[cu-class] for the cu object class.
+\linkS4class{cu} for the cu object class.
 }

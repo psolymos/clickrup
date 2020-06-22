@@ -20,8 +20,8 @@ cu_delete_time_tracked(task_id, interval_id)
 \item{task_id}{Task ID.}
 
 \item{...}{Named arguments to be passed to API request body,
-see the ClickUp API documentation (<https://clickup.com/api>).
-Edit the `start`, `end`, or total `time` of a time tracked entry.}
+see the ClickUp API documentation (\url{https://clickup.com/api}).
+Edit the \code{start}, \code{end}, or total \code{time} of a time tracked entry.}
 
 \item{interval_id}{Interval ID.}
 }
@@ -32,6 +32,6 @@ A cu object.
 Working with time tracking in ClickUp tasks.
 }
 \seealso{
-[cu-class] for the cu object class,
-  [cu_date_from()] and [cu_date_to()] to deal with POSIX times.
+\linkS4class{cu} for the cu object class,
+\code{\link[=cu_date_from]{cu_date_from()}} and \code{\link[=cu_date_to]{cu_date_to()}} to deal with POSIX times.
 }

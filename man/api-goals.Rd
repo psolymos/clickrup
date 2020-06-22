@@ -32,7 +32,7 @@ cu_delete_key_result(key_result_id)
 \item{team_id}{Team ID.}
 
 \item{...}{Named arguments to be passed to API request body,
-see the ClickUp API documentation (<https://clickup.com/api>).}
+see the ClickUp API documentation (\url{https://clickup.com/api}).}
 
 \item{goal_id}{Goal ID.}
 
@@ -45,5 +45,5 @@ A cu object.
 Working with goals in ClickUp tasks.
 }
 \seealso{
-[cu-class] for the cu object class.
+\linkS4class{cu} for the cu object class.
 }

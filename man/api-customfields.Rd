@@ -22,8 +22,8 @@ cu_remove_field_value(task_id, field_id)
 
 \item{...}{Named arguments to be passed to API request body.
 The accessible fields can be found on the task object from the
-[cu_get_task()] route. This is where you can retrieve the `field_id`.
-see the ClickUp API documentation (<https://clickup.com/api>).}
+\code{\link[=cu_get_task]{cu_get_task()}} route. This is where you can retrieve the \code{field_id}.
+see the ClickUp API documentation (\url{https://clickup.com/api}).}
 }
 \value{
 A cu object.
@@ -32,5 +32,5 @@ A cu object.
 Working with custom fields in ClickUp tasks.
 }
 \seealso{
-[cu-class] for the cu object class.
+\linkS4class{cu} for the cu object class.
 }

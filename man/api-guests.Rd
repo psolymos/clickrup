@@ -40,12 +40,12 @@ cu_remove_guest_from_folder(folder_id, guest_id)
 \item{guest_id}{Guest ID.}
 
 \item{...}{Named arguments to be passed to API request body,
-see the ClickUp API documentation (<https://clickup.com/api>).}
+see the ClickUp API documentation (\url{https://clickup.com/api}).}
 
 \item{task_id}{Task ID.}
 
 \item{permission_level}{Permisson level can be
-`"read"`, `"comment"`, `"edit"`, or `"create"`.}
+\code{"read"}, \code{"comment"}, \code{"edit"}, or \code{"create"}.}
 
 \item{list_id}{List ID.}
 
@@ -58,5 +58,5 @@ A cu object.
 Working with guests in ClickUp tasks (Enterprise only feature).
 }
 \seealso{
-[cu-class] for the cu object class.
+\linkS4class{cu} for the cu object class.
 }

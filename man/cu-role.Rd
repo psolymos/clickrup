@@ -15,7 +15,7 @@ Returns a character vector with the labels.
 }
 \description{
 The ClickUp API returns role as integer.
-The `cu_role` function maps these scores to the priority labels
+The \code{cu_role} function maps these scores to the priority labels
 Owner (1), Admin (2), Member (3), Guest (4).
 }
 \examples{

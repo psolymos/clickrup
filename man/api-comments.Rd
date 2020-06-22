@@ -32,7 +32,7 @@ cu_delete_comment(comment_id)
 \item{task_id}{Task ID.}
 
 \item{...}{Named arguments to be passed to API request body,
-see the ClickUp API documentation (<https://clickup.com/api>).}
+see the ClickUp API documentation (\url{https://clickup.com/api}).}
 
 \item{view_id}{View ID.}
 
@@ -47,5 +47,5 @@ A cu object.
 Working with comments in ClickUp tasks.
 }
 \seealso{
-[cu-class] for the cu object class.
+\linkS4class{cu} for the cu object class.
 }

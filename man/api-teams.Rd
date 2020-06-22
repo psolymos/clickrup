@@ -11,7 +11,7 @@ cu_get_teams()
 A cu object.
 }
 \description{
-Working with teams (workspaces) in ClickUp tasks (<https://clickup.com/api>).
+Working with teams (workspaces) in ClickUp tasks (\url{https://clickup.com/api}).
 Teams is the legacy term for what are now called workspaces in ClickUp.
 For compatablitly, the term team is still used in the API v2.
 This is NOT the new 'Teams' feature which represents a group of users.
@@ -23,5 +23,5 @@ cu_get_teams()
 
 }
 \seealso{
-[cu-class] for the cu object class.
+\linkS4class{cu} for the cu object class.
 }

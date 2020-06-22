@@ -27,5 +27,5 @@ from the call. The response is stored as an attribute.
 Methods are defined for better printing and coercion.
 }
 \seealso{
-[cu_response()] for retrieving the response attribute from a cu object.
+\code{\link[=cu_response]{cu_response()}} for retrieving the response attribute from a cu object.
 }

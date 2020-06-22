@@ -19,10 +19,10 @@ cu_delete_dependency(task_id, links_to)
 \item{task_id}{Task ID.}
 
 \item{depends_on}{A waiting on dependency of the task.
-One and only one of `depends_on` or `dependency_of` must be passed.}
+One and only one of \code{depends_on} or \code{dependency_of} must be passed.}
 
 \item{dependency_of}{A blocking dependency of the task.
-One and only one of `depends_on` or `dependency_of` must be passed.}
+One and only one of \code{depends_on} or \code{dependency_of} must be passed.}
 
 \item{links_to}{Link to another task.}
 }
@@ -30,8 +30,8 @@ One and only one of `depends_on` or `dependency_of` must be passed.}
 A cu object.
 }
 \description{
-Working dependencies xyz in ClickUp tasks (<https://clickup.com/api>).
+Working dependencies xyz in ClickUp tasks (\url{https://clickup.com/api}).
 }
 \seealso{
-[cu-class] for the cu object class.
+\linkS4class{cu} for the cu object class.
 }

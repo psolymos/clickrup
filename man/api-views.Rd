@@ -46,7 +46,7 @@ cu_delete_view(view_id)
 \item{name}{View name.}
 
 \item{...}{Named arguments to be passed to API request body,
-see the ClickUp API documentation (<https://clickup.com/api>).}
+see the ClickUp API documentation (\url{https://clickup.com/api}).}
 
 \item{space_id}{Space ID.}
 
@@ -65,5 +65,5 @@ A cu object.
 Working views in ClickUp tasks.
 }
 \seealso{
-[cu-class] for the cu object class.
+\linkS4class{cu} for the cu object class.
 }

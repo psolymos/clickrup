@@ -13,9 +13,9 @@ cu_post_task_attachment(task_id, attachment, filename = NULL, ...)
 \item{attachment}{Path to a file.}
 
 \item{filename}{File name as it will show up in CluckUp,
-deduced from `attachment` when not provided (`NULL`).}
+deduced from \code{attachment} when not provided (\code{NULL}).}
 
-\item{...}{Can be used to pass mime `type` argument to [httr::upload_file()],
+\item{...}{Can be used to pass mime \code{type} argument to \code{\link[httr:upload_file]{httr::upload_file()}},
 mime type is guessed otherwise.}
 }
 \value{
@@ -41,5 +41,5 @@ unlink(f) # clean up the image
 
 }
 \seealso{
-[cu-class] for the cu object class.
+\linkS4class{cu} for the cu object class.
 }

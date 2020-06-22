@@ -14,12 +14,12 @@ cu_get_shared(team_id)
 A cu object.
 }
 \description{
-Working with shared hierarchy in ClickUp tasks (<https://clickup.com/api>).
+Working with shared hierarchy in ClickUp tasks (\url{https://clickup.com/api}).
 Returns all resources you have access to where you don't have
 access to its parent. For example, if you have access to a
 shared task, but don't have access to its parent list, it will
 come back in this request.
 }
 \seealso{
-[cu-class] for the cu object class.
+\linkS4class{cu} for the cu object class.
 }

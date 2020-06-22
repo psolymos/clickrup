@@ -34,7 +34,7 @@ the checklist to exist on the task. If you want the checklist to be
 in the first position, pass 0.}
 
 \item{...}{Named arguments to be passed to API request body,
-see the ClickUp API documentation (<https://clickup.com/api>).}
+see the ClickUp API documentation (\url{https://clickup.com/api}).}
 
 \item{checklist_item_id}{Checklist item ID.}
 }
@@ -69,5 +69,5 @@ cu_delete_checklist(cli$checklist$id)
 
 }
 \seealso{
-[cu-class] for the cu object class.
+\linkS4class{cu} for the cu object class.
 }

@@ -13,21 +13,21 @@ cu_date_to(dt)
 \arguments{
 \item{ms}{ClickUp date/time format, Unix time in milliseconds.}
 
-\item{tz}{time zone, when `NULL` it defaults to `cu_options()$tz`.}
+\item{tz}{time zone, when \code{NULL} it defaults to \code{cu_options()$tz}.}
 
-\item{...}{Other optional arguments passed to [as.POSIXct()].}
+\item{...}{Other optional arguments passed to \code{\link[=as.POSIXct]{as.POSIXct()}}.}
 
 \item{dt}{POSIXct coercible date/time value.}
 }
 \value{
-`cu_date_from` returns [POSIXct()].
+\code{cu_date_from} returns \code{\link[=POSIXct]{POSIXct()}}.
 
-`cu_date_to` returns Unix time as character .
+\code{cu_date_to} returns Unix time as character .
 }
 \description{
-`cu_date_from` turns ClickUp date/time format (Unix time
-in milliseconds) to [POSIXct()].
-`cu_date_to` turns a POSIXct coercible date/time value
+\code{cu_date_from} turns ClickUp date/time format (Unix time
+in milliseconds) to \code{\link[=POSIXct]{POSIXct()}}.
+\code{cu_date_to} turns a POSIXct coercible date/time value
 back to Unix time.
 }
 \examples{
@@ -47,5 +47,5 @@ identical(cu_date_from(task_up$due_date), due_date)
 
 }
 \seealso{
-[cu_options()] to set `tz` globally.
+\code{\link[=cu_options]{cu_options()}} to set \code{tz} globally.
 }

@@ -14,35 +14,37 @@ cu_set_pat(token)
 \item{token}{ClickUp personal access token.}
 }
 \value{
-`cu_set_pat` returns logical similarly to [Sys.setenv()].
+\code{cu_set_pat} returns logical similarly to \code{\link[=Sys.setenv]{Sys.setenv()}}.
 
-`cu_get_pat` returns the ClickUp PAT will look something like
-`pk_4753994_EXP7MPOJ7XQM5UJDV2M45MPF0YHH5YHO`.
+\code{cu_get_pat} returns the ClickUp PAT will look something like
+\code{pk_4753994_EXP7MPOJ7XQM5UJDV2M45MPF0YHH5YHO}.
 }
 \description{
 The ClickUp API requires a personal access token (PAT)
 to be sent with each API request.
-The `cu_set_pat` function uses `Sys.setenv` to set
-the `CU_PAT` environment variable for other processes
-called from within R or future calls to `Sys.getenv` from the same
-R process. `cu_get_pat` is used to retrieve the PAT for the API calls.
+The \code{cu_set_pat} function uses \code{Sys.setenv} to set
+the \code{CU_PAT} environment variable for other processes
+called from within R or future calls to \code{Sys.getenv} from the same
+R process. \code{cu_get_pat} is used to retrieve the PAT for the API calls.
 }
 \details{
 To set up a ClickUp PAT, Follow this
-[tutorial](https://docs.clickup.com/en/articles/1367130-getting-started-with-the-clickup-api):
-
-* sign up for ClickUp (you can use this referral [link](https://clickup.com?fp_ref=peter51) to do so, it's free),
-* navigate to your personal *Settings*,
-* click *Apps* in the left sidebar,
-* click *Generate* to create your API token,
-* click *Copy* to copy the token to your clipboard.
+\href{https://docs.clickup.com/en/articles/1367130-getting-started-with-the-clickup-api}{tutorial}:
+\itemize{
+\item sign up for ClickUp (you can use this referral \href{https://clickup.com?fp_ref=peter51}{link} to do so, it's free),
+\item navigate to your personal \emph{Settings},
+\item click \emph{Apps} in the left sidebar,
+\item click \emph{Generate} to create your API token,
+\item click \emph{Copy} to copy the token to your clipboard.
+}
 
 Now add your ClickUp token as an environment variable:
-
-* open the file `.Renviron`: `file.edit("~/.Renviron")`,
-* add a line with `CU_PAT="your_token"` to the `.Renviron` file and save it,
-* check with `Sys.getenv("CU_PAT")`, it should return the token.
+\itemize{
+\item open the file \code{.Renviron}: \code{file.edit("~/.Renviron")},
+\item add a line with \code{CU_PAT="your_token"} to the \code{.Renviron} file and save it,
+\item check with \code{Sys.getenv("CU_PAT")}, it should return the token.
+}
 }
 \seealso{
-[Sys.setenv()] and [Sys.getenv()]
+\code{\link[=Sys.setenv]{Sys.setenv()}} and \code{\link[=Sys.getenv]{Sys.getenv()}}
 }

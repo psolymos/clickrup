@@ -23,7 +23,7 @@ To page task templates, pass the page number you wish to fetch.}
 \item{name}{Name of the task.}
 
 \item{...}{Named arguments to be passed to API request body,
-see the ClickUp API documentation (<https://clickup.com/api>).}
+see the ClickUp API documentation (\url{https://clickup.com/api}).}
 }
 \value{
 A cu object.
@@ -32,5 +32,5 @@ A cu object.
 Working with task templates in ClickUp tasks.
 }
 \seealso{
-[cu-class] for the cu object class.
+\linkS4class{cu} for the cu object class.
 }

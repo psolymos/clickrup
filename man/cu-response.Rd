@@ -11,11 +11,11 @@ cu_response(x)
 \item{x}{An object of class cu.}
 }
 \value{
-A response object as returned by [httr::response()].
+A response object as returned by \code{\link[httr:response]{httr::response()}}.
 Only calls to existing API endpoints return a response attribute.
 Wrapper functions that make multiple calls to endpoints
 (e.g. due to paging etc.) do not store the responses
-and return `NULL`.
+and return \code{NULL}.
 }
 \description{
 The function extracts the response attribute from a cu object
@@ -29,6 +29,6 @@ cu_response(task)
 
 }
 \seealso{
-[httr::response()] for the response object,
-  and [cu-class] for the cu object class.
+\code{\link[httr:response]{httr::response()}} for the response object,
+and \linkS4class{cu} for the cu object class.
 }

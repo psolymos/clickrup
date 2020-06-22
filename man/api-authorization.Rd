@@ -29,5 +29,5 @@ going through the OAuth flow.
 Applications utilizing the personal API token do not need these functions.
 }
 \seealso{
-[cu-class] for the cu object class.
+\linkS4class{cu} for the cu object class.
 }

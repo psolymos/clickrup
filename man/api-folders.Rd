@@ -26,14 +26,14 @@ cu_get_folder(folder_id)
 
 \item{folder_id}{Folder ID.}
 
-\item{archived}{Logical, to returne archived (`TRUE`) folders.}
+\item{archived}{Logical, to returne archived (\code{TRUE}) folders.}
 }
 \value{
 A cu object.
 }
 \description{
-Working with folders in ClickUp tasks (<https://clickup.com/api>).
+Working with folders in ClickUp tasks (\url{https://clickup.com/api}).
 }
 \seealso{
-[cu-class] for the cu object class.
+\linkS4class{cu} for the cu object class.
 }

@@ -19,8 +19,8 @@ cu_get_list_members(list_id)
 A cu object.
 }
 \description{
-Working with members in ClickUp tasks (<https://clickup.com/api>).
+Working with members in ClickUp tasks (\url{https://clickup.com/api}).
 }
 \seealso{
-[cu-class] for the cu object class.
+\linkS4class{cu} for the cu object class.
 }
