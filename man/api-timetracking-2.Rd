@@ -53,8 +53,7 @@ Note: Only Workspace Owners/Admins have access to do this.}
 \item{timer_id}{Timer ID.}
 
 \item{...}{Named arguments to be passed to API request body,
-see the ClickUp API documentation (\url{https://clickup.com/api}).
-Edit the \code{start}, \code{end}, or total \code{time} of a time tracked entry.}
+see the ClickUp API documentation (\url{https://clickup.com/api}).}
 }
 \value{
 A cu object.
