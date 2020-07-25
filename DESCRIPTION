@@ -1,8 +1,8 @@
 Package: clickrup
 Type: Package
 Title: Interacting with the ClickUp v2 API from R
-Version: 0.0.1
-Date: 2020-06-10
+Version: 0.0.2
+Date: 2020-07-24
 Author: Peter Solymos [aut, cre] (<https://orcid.org/0000-0001-7337-1740>)
 Maintainer: Peter Solymos <psolymos@gmail.com>
 Description: Work with ClickUp.
