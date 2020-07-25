@@ -1,6 +1,11 @@
-#' Time tracking
+#' Time tracking legacy
 #'
 #' Working with time tracking in ClickUp tasks.
+#' Note: This is the legacy API for time tracking.
+#' Please use the new Time tracking API.
+#' You won't be able to update timer entries that uses our
+#' Time Tracking 2.0 features that uses labels, descriptions,
+#' and making time entries billable.
 
 #' @param task_id Task ID.
 #' @param interval_id Interval ID.
@@ -11,15 +16,17 @@
 #' @return
 #'
 #' A cu object.
+#' Note: the legacy API comes with a deprecation warning.
 #'
-#' @seealso [cu-class] for the cu object class,
+#' @seealso [api-timetracking-2] for Time Tracking 2.0,
+#'   [cu-class] for the cu object class,
 #'   [cu_date_from()] and [cu_date_to()] to deal with POSIX times.
 #'
-#' @name api-timetracking
+#' @name api-timetracking-legacy
 NULL
 
 #' @export
-#' @rdname api-timetracking
+#' @rdname api-timetracking-legacy
 ## Time Tracking / Track time
 ## POST https://api.clickup.com/api/v2/task/task_id/time
 ##
@@ -39,6 +46,7 @@ NULL
 ## use cu_time to turn POSIXct into unix time for start/end
 ## note: unix time is also in milliseconds (sec x 1000)
 cu_track_time <- function(task_id, ...) {
+    .Deprecated("cu_create_time_entry")
     task_id <- cu_task_id(task_id)
     .cu_post("task", task_id, "time",
         body=list(...))
@@ -46,7 +54,7 @@ cu_track_time <- function(task_id, ...) {
 
 
 #' @export
-#' @rdname api-timetracking
+#' @rdname api-timetracking-legacy
 ## Time Tracking / Get tracked time
 ## GET https://api.clickup.com/api/v2/task/task_id/time
 ##
@@ -56,13 +64,14 @@ cu_track_time <- function(task_id, ...) {
 ##
 ## Get time tracked for a task.
 cu_get_tracked_time <- function(task_id) {
+    .Deprecated("cu_get_time_entries_within_date_range")
     task_id <- cu_task_id(task_id)
     .cu_get("task", task_id, "time")
 }
 
 
 #' @export
-#' @rdname api-timetracking
+#' @rdname api-timetracking-legacy
 ## Time Tracking / Edit time tracked
 ## PUT https://api.clickup.com/api/v2/task/task_id/time/interval_id
 ##
@@ -85,6 +94,7 @@ cu_get_tracked_time <- function(task_id) {
 ## use cu_time to turn POSIXct into unix time for start/end
 ## note: unix time is also in milliseconds (sec x 1000)
 cu_edit_time_tracked <- function(task_id, interval_id, ...) {
+    .Deprecated("cu_update_time_entry")
     task_id <- cu_task_id(task_id)
     .cu_put("task", task_id, "time", interval_id,
         body=list(...))
@@ -92,7 +102,7 @@ cu_edit_time_tracked <- function(task_id, interval_id, ...) {
 
 
 #' @export
-#' @rdname api-timetracking
+#' @rdname api-timetracking-legacy
 ## Time Tracking / Delete time tracked
 ## DELETE https://api.clickup.com/api/v2/task/task_id/time/interval_id
 ##
@@ -106,6 +116,7 @@ cu_edit_time_tracked <- function(task_id, interval_id, ...) {
 ##
 ## Delete a time tracked entry
 cu_delete_time_tracked <- function(task_id, interval_id) {
+    .Deprecated("cu_delete_time_entry")
     task_id <- cu_task_id(task_id)
     .cu_delete("task", task_id, "time", interval_id)
 }
