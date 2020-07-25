@@ -54,10 +54,11 @@ the workspace IDs and names.
 The easiest way to get going with the various endpoints is to browse the
 [API v2 documentation](https://clickup.com/api). Once you found what you
 are after, just look at the API heading. There is **Get Teams**, the R
-function is prepended with `cu_` (to facilitate RStudio suggestions),
-then comes the heading in lower case and spaces replaced by underscores.
-For example **Get Filtered Team Tasks** will be
-`cu_get_filtered_team_tasks()`.
+function is prepended with `cu_` (to facilitate RStudio code
+completion), then comes the heading in lower case and spaces replaced by
+underscores. For example **Get Filtered Team Tasks** will be
+`cu_get_filtered_team_tasks()`. Articles (a, an, the) are dropped (e.g.
+**Create a Time Entry**) will be `cu_create_time_entry()`.
 
 Function arguments are the *Parameters* listed on the API page, `...`
 passes optional parameters, query parameters, or elements for the body.
@@ -126,7 +127,7 @@ str(Spaces, 3)
 #>   .. ..$ private           : logi FALSE
 #>   .. ..$ statuses          :List of 4
 #>   .. ..$ multiple_assignees: logi TRUE
-#>   .. ..$ features          :List of 11
+#>   .. ..$ features          :List of 12
 #>   .. ..$ archived          : logi FALSE
 #>   ..$ :List of 7
 #>   .. ..$ id                : chr "6331576"
@@ -134,7 +135,7 @@ str(Spaces, 3)
 #>   .. ..$ private           : logi FALSE
 #>   .. ..$ statuses          :List of 2
 #>   .. ..$ multiple_assignees: logi FALSE
-#>   .. ..$ features          :List of 8
+#>   .. ..$ features          :List of 9
 #>   .. ..$ archived          : logi FALSE
 ```
 
@@ -219,7 +220,7 @@ str(cu_get_lists(folder_id, archived=TRUE), 3)
 #>   .. ..$ status           : NULL
 #>   .. ..$ priority         : NULL
 #>   .. ..$ assignee         : NULL
-#>   .. ..$ task_count       : chr "5"
+#>   .. ..$ task_count       : int 5
 #>   .. ..$ due_date         : NULL
 #>   .. ..$ start_date       : NULL
 #>   .. ..$ folder           :List of 4
@@ -319,13 +320,15 @@ cu_date_to(cu_date_from(Tasks$tasks[[1]]$date_created))
 
 A single task can be accessed through the task ID (note: copying the
 task ID from the ClickUp GUI will prepend the task ID by a hash,
-`"#8ckjp5"`, but the API expects ID without the hash `"8ckjp5"`).
+`"#8ckjp5"`, but the API expects ID without the hash `"8ckjp5"`). Use
+the `cu_task_id` function to get rid of the leading hash (all API call
+use this function to normalize task IDs).
 
 The `$parent` property is `NULL` for Tasks, and it contains the parent
 Task ID for Subtasks
 
 ``` r
-x1 <- cu_get_task("8ckjp5") # task
+x1 <- cu_get_task(cu_task_id("#8ckjp5")) # task
 x1$parent
 #> NULL
 
@@ -365,7 +368,7 @@ str(cu_options())
 ``` r
 cu_response(Teams)
 #> Response [https://api.clickup.com/api/v2/team]
-#>   Date: 2020-06-20 07:13
+#>   Date: 2020-07-25 04:19
 #>   Status: 200
 #>   Content-Type: application/json; charset=utf-8
 #>   Size: 776 B
@@ -379,7 +382,7 @@ cu_ratelimit(subTasks)
 #> [1] 900
 #> 
 #> $remaining
-#> [1] 880
+#> [1] 892
 ```
 
 ### Formatting the request body

@@ -57,8 +57,11 @@ If your setup was successful, `cu_get_teams()` should return a list with the wor
 
 The easiest way to get going with the various endpoints is to browse the [API v2 documentation](https://clickup.com/api).
 Once you found what you are after, just look at the API heading. There is **Get Teams**, the R function
-is prepended with `cu_` (to facilitate RStudio suggestions), then comes the heading in lower case and spaces replaced by underscores.
+is prepended with `cu_` (to facilitate RStudio code completion), 
+then comes the heading in lower case and spaces replaced by underscores.
 For example **Get Filtered Team Tasks** will be `cu_get_filtered_team_tasks()`.
+Articles (a, an, the) are dropped (e.g. **Create a Time Entry**)
+will be `cu_create_time_entry()`.
 
 Function arguments are the *Parameters* listed on the API page, `...` passes optional parameters, query parameters, 
 or elements for the body.
