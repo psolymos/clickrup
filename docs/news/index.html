@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Tags — api-tags • clickrup</title>
+<title>Changelog • clickrup</title>
 
 
 <!-- jquery -->
@@ -35,9 +35,7 @@
 
 
 
-<meta property="og:title" content="Tags — api-tags" />
-<meta property="og:description" content="Working with tags in ClickUp tasks." />
-<meta name="twitter:card" content="summary" />
+<meta property="og:title" content="Changelog" />
 
 
 
@@ -66,7 +64,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-topic">
+    <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -118,70 +116,36 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Tags</h1>
-    <small class="dont-index">Source: <a href='https://github.com/psolymos/clickrup/blob/master/R/api-tags.R'><code>R/api-tags.R</code></a></small>
-    <div class="hidden name"><code>api-tags.Rd</code></div>
+      <h1>Changelog <small></small></h1>
+      <small>Source: <a href='https://github.com/psolymos/clickrup/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div class="ref-description">
-    <p>Working with tags in ClickUp tasks.</p>
-    </div>
-
-    <pre class="usage"><span class='fu'>cu_get_space_tags</span>(<span class='no'>space_id</span>)
-
-<span class='fu'>cu_create_space_tag</span>(<span class='no'>space_id</span>, <span class='no'>name</span>, <span class='no'>...</span>)
-
-<span class='fu'>cu_edit_space_tag</span>(<span class='no'>space_id</span>, <span class='no'>tag_name</span>)
-
-<span class='fu'>cu_delete_space_tag</span>(<span class='no'>task_id</span>, <span class='no'>tag_name</span>)
-
-<span class='fu'>cu_add_tag_to_task</span>(<span class='no'>task_id</span>, <span class='no'>tag_name</span>)
-
-<span class='fu'>cu_delete_space_tag</span>(<span class='no'>task_id</span>, <span class='no'>tag_name</span>)</pre>
-
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>space_id</th>
-      <td><p>Space ID.</p></td>
-    </tr>
-    <tr>
-      <th>name</th>
-      <td><p>Tag name.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Named arguments to be passed to API request body,
-see the ClickUp API documentation (<a href='https://clickup.com/api'>https://clickup.com/api</a>).</p></td>
-    </tr>
-    <tr>
-      <th>tag_name</th>
-      <td><p>Tag name.</p></td>
-    </tr>
-    <tr>
-      <th>task_id</th>
-      <td><p>Task ID.</p></td>
-    </tr>
-    </table>
-
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>A cu object.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><a href='cu-class.html'>cu</a> for the cu object class.</p></div>
-
+    <div id="version-0-0-2" class="section level1">
+<h1 class="page-header">
+<a href="#version-0-0-2" class="anchor"></a>Version 0.0.2</h1>
+<ul>
+<li>Added Time Tracking 2.0 API and deprecation warning to Time Tracking Legacy API (<a href='https://github.com/psolymos/clickrup/issues/3'>#3</a>).</li>
+</ul>
+</div>
+    <div id="version-0-0-1" class="section level1">
+<h1 class="page-header">
+<a href="#version-0-0-1" class="anchor"></a>Version 0.0.1</h1>
+<ul>
+<li>Added all ClickUp v2 API endpoints (see initial roadmap: <a href='https://github.com/psolymos/clickrup/issues/1'>#1</a>).</li>
+</ul>
+</div>
   </div>
+
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#see-also">See also</a></li>
-    </ul>
-
+    <div id="tocnav">
+      <h2>Contents</h2>
+      <ul class="nav nav-pills nav-stacked">
+        <li><a href="#version-0-0-2">0.0.2</a></li>
+        <li><a href="#version-0-0-1">0.0.1</a></li>
+      </ul>
+    </div>
   </div>
+
 </div>
 
 

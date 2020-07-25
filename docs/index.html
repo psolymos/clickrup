@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">clickrup</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.2</span>
       </span>
     </div>
 
@@ -51,6 +51,9 @@
 </li>
 <li>
   <a href="reference/index.html">Reference</a>
+</li>
+<li>
+  <a href="news/index.html">Changelog</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
@@ -108,7 +111,7 @@
 <a href="#api-endpoints" class="anchor"></a>API endpoints</h2>
 <p>The first step you want to do is to get the IDs for your workspaces (teams is the legacy term for this in the API):</p>
 <p>If your setup was successful, <code><a href="reference/api-teams.html">cu_get_teams()</a></code> should return a list with the workspace IDs and names.</p>
-<p>The easiest way to get going with the various endpoints is to browse the <a href="https://clickup.com/api">API v2 documentation</a>. Once you found what you are after, just look at the API heading. There is <strong>Get Teams</strong>, the R function is prepended with <code>cu_</code> (to facilitate RStudio suggestions), then comes the heading in lower case and spaces replaced by underscores. For example <strong>Get Filtered Team Tasks</strong> will be <code><a href="reference/api-tasks.html">cu_get_filtered_team_tasks()</a></code>.</p>
+<p>The easiest way to get going with the various endpoints is to browse the <a href="https://clickup.com/api">API v2 documentation</a>. Once you found what you are after, just look at the API heading. There is <strong>Get Teams</strong>, the R function is prepended with <code>cu_</code> (to facilitate RStudio code completion), then comes the heading in lower case and spaces replaced by underscores. For example <strong>Get Filtered Team Tasks</strong> will be <code><a href="reference/api-tasks.html">cu_get_filtered_team_tasks()</a></code>. Articles (a, an, the) are dropped (e.g. <strong>Create a Time Entry</strong>) will be <code><a href="reference/api-timetracking-2.html">cu_create_time_entry()</a></code>.</p>
 <p>Function arguments are the <em>Parameters</em> listed on the API page, <code>...</code> passes optional parameters, query parameters, or elements for the body.</p>
 </div>
 <div id="examples" class="section level2">
@@ -160,7 +163,7 @@
 <a class="sourceLine" id="cb4-9" data-line-number="9"><span class="co">#&gt;   .. ..$ private           : logi FALSE</span></a>
 <a class="sourceLine" id="cb4-10" data-line-number="10"><span class="co">#&gt;   .. ..$ statuses          :List of 4</span></a>
 <a class="sourceLine" id="cb4-11" data-line-number="11"><span class="co">#&gt;   .. ..$ multiple_assignees: logi TRUE</span></a>
-<a class="sourceLine" id="cb4-12" data-line-number="12"><span class="co">#&gt;   .. ..$ features          :List of 11</span></a>
+<a class="sourceLine" id="cb4-12" data-line-number="12"><span class="co">#&gt;   .. ..$ features          :List of 12</span></a>
 <a class="sourceLine" id="cb4-13" data-line-number="13"><span class="co">#&gt;   .. ..$ archived          : logi FALSE</span></a>
 <a class="sourceLine" id="cb4-14" data-line-number="14"><span class="co">#&gt;   ..$ :List of 7</span></a>
 <a class="sourceLine" id="cb4-15" data-line-number="15"><span class="co">#&gt;   .. ..$ id                : chr "6331576"</span></a>
@@ -168,7 +171,7 @@
 <a class="sourceLine" id="cb4-17" data-line-number="17"><span class="co">#&gt;   .. ..$ private           : logi FALSE</span></a>
 <a class="sourceLine" id="cb4-18" data-line-number="18"><span class="co">#&gt;   .. ..$ statuses          :List of 2</span></a>
 <a class="sourceLine" id="cb4-19" data-line-number="19"><span class="co">#&gt;   .. ..$ multiple_assignees: logi FALSE</span></a>
-<a class="sourceLine" id="cb4-20" data-line-number="20"><span class="co">#&gt;   .. ..$ features          :List of 8</span></a>
+<a class="sourceLine" id="cb4-20" data-line-number="20"><span class="co">#&gt;   .. ..$ features          :List of 9</span></a>
 <a class="sourceLine" id="cb4-21" data-line-number="21"><span class="co">#&gt;   .. ..$ archived          : logi FALSE</span></a></code></pre></div>
 <p>Folders within a specific Space defined by its <code>space_id</code></p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">space_id &lt;-<span class="st"> </span>Spaces<span class="op">$</span>spaces[[<span class="dv">2</span>]]<span class="op">$</span>id</a>
@@ -239,7 +242,7 @@
 <a class="sourceLine" id="cb7-8" data-line-number="8"><span class="co">#&gt;   .. ..$ status           : NULL</span></a>
 <a class="sourceLine" id="cb7-9" data-line-number="9"><span class="co">#&gt;   .. ..$ priority         : NULL</span></a>
 <a class="sourceLine" id="cb7-10" data-line-number="10"><span class="co">#&gt;   .. ..$ assignee         : NULL</span></a>
-<a class="sourceLine" id="cb7-11" data-line-number="11"><span class="co">#&gt;   .. ..$ task_count       : chr "5"</span></a>
+<a class="sourceLine" id="cb7-11" data-line-number="11"><span class="co">#&gt;   .. ..$ task_count       : int 5</span></a>
 <a class="sourceLine" id="cb7-12" data-line-number="12"><span class="co">#&gt;   .. ..$ due_date         : NULL</span></a>
 <a class="sourceLine" id="cb7-13" data-line-number="13"><span class="co">#&gt;   .. ..$ start_date       : NULL</span></a>
 <a class="sourceLine" id="cb7-14" data-line-number="14"><span class="co">#&gt;   .. ..$ folder           :List of 4</span></a>
@@ -311,9 +314,9 @@
 <a class="sourceLine" id="cb12-4" data-line-number="4"><span class="co">#&gt; [1] "2020-06-17 22:01:53 MDT"</span></a>
 <a class="sourceLine" id="cb12-5" data-line-number="5"><span class="kw"><a href="reference/cu-date.html">cu_date_to</a></span>(<span class="kw"><a href="reference/cu-date.html">cu_date_from</a></span>(Tasks<span class="op">$</span>tasks[[<span class="dv">1</span>]]<span class="op">$</span>date_created))</a>
 <a class="sourceLine" id="cb12-6" data-line-number="6"><span class="co">#&gt; [1] "1592452913384"</span></a></code></pre></div>
-<p>A single task can be accessed through the task ID (note: copying the task ID from the ClickUp GUI will prepend the task ID by a hash, <code>"#8ckjp5"</code>, but the API expects ID without the hash <code>"8ckjp5"</code>).</p>
+<p>A single task can be accessed through the task ID (note: copying the task ID from the ClickUp GUI will prepend the task ID by a hash, <code>"#8ckjp5"</code>, but the API expects ID without the hash <code>"8ckjp5"</code>). Use the <code>cu_task_id</code> function to get rid of the leading hash (all API call use this function to normalize task IDs).</p>
 <p>The <code>$parent</code> property is <code>NULL</code> for Tasks, and it contains the parent Task ID for Subtasks</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">x1 &lt;-<span class="st"> </span><span class="kw"><a href="reference/api-tasks.html">cu_get_task</a></span>(<span class="st">"8ckjp5"</span>) <span class="co"># task</span></a>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">x1 &lt;-<span class="st"> </span><span class="kw"><a href="reference/api-tasks.html">cu_get_task</a></span>(<span class="kw"><a href="reference/cu-task-id.html">cu_task_id</a></span>(<span class="st">"#8ckjp5"</span>)) <span class="co"># task</span></a>
 <a class="sourceLine" id="cb13-2" data-line-number="2">x1<span class="op">$</span>parent</a>
 <a class="sourceLine" id="cb13-3" data-line-number="3"><span class="co">#&gt; NULL</span></a>
 <a class="sourceLine" id="cb13-4" data-line-number="4"></a>
@@ -343,7 +346,7 @@
 <p><code>cu_response</code> allows inspecting the response object</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw"><a href="reference/cu-response.html">cu_response</a></span>(Teams)</a>
 <a class="sourceLine" id="cb16-2" data-line-number="2"><span class="co">#&gt; Response [https://api.clickup.com/api/v2/team]</span></a>
-<a class="sourceLine" id="cb16-3" data-line-number="3"><span class="co">#&gt;   Date: 2020-06-20 07:13</span></a>
+<a class="sourceLine" id="cb16-3" data-line-number="3"><span class="co">#&gt;   Date: 2020-07-25 04:19</span></a>
 <a class="sourceLine" id="cb16-4" data-line-number="4"><span class="co">#&gt;   Status: 200</span></a>
 <a class="sourceLine" id="cb16-5" data-line-number="5"><span class="co">#&gt;   Content-Type: application/json; charset=utf-8</span></a>
 <a class="sourceLine" id="cb16-6" data-line-number="6"><span class="co">#&gt;   Size: 776 B</span></a></code></pre></div>
@@ -353,7 +356,7 @@
 <a class="sourceLine" id="cb17-3" data-line-number="3"><span class="co">#&gt; [1] 900</span></a>
 <a class="sourceLine" id="cb17-4" data-line-number="4"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb17-5" data-line-number="5"><span class="co">#&gt; $remaining</span></a>
-<a class="sourceLine" id="cb17-6" data-line-number="6"><span class="co">#&gt; [1] 880</span></a></code></pre></div>
+<a class="sourceLine" id="cb17-6" data-line-number="6"><span class="co">#&gt; [1] 892</span></a></code></pre></div>
 </div>
 <div id="formatting-the-request-body" class="section level3">
 <h3 class="hasAnchor">

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Tags — api-tags • clickrup</title>
+<title>Time tracking 2.0 — api-timetracking-2 • clickrup</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,10 @@
 
 
 
-<meta property="og:title" content="Tags — api-tags" />
-<meta property="og:description" content="Working with tags in ClickUp tasks." />
+<meta property="og:title" content="Time tracking 2.0 — api-timetracking-2" />
+<meta property="og:description" content="Working with time tracking in ClickUp tasks.
+Note: A time entry that has a negative duration means
+that timer is currently ongoing for that user." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -118,50 +120,70 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Tags</h1>
-    <small class="dont-index">Source: <a href='https://github.com/psolymos/clickrup/blob/master/R/api-tags.R'><code>R/api-tags.R</code></a></small>
-    <div class="hidden name"><code>api-tags.Rd</code></div>
+    <h1>Time tracking 2.0</h1>
+    <small class="dont-index">Source: <a href='https://github.com/psolymos/clickrup/blob/master/R/api-timetracking-v2.R'><code>R/api-timetracking-v2.R</code></a></small>
+    <div class="hidden name"><code>api-timetracking-2.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Working with tags in ClickUp tasks.</p>
+    <p>Working with time tracking in ClickUp tasks.
+Note: A time entry that has a negative duration means
+that timer is currently ongoing for that user.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>cu_get_space_tags</span>(<span class='no'>space_id</span>)
+    <pre class="usage"><span class='fu'>cu_get_time_entries_within_date_range</span>(<span class='no'>team_id</span>, <span class='no'>start_date</span>, <span class='no'>end_date</span>, <span class='no'>assignee</span>)
 
-<span class='fu'>cu_create_space_tag</span>(<span class='no'>space_id</span>, <span class='no'>name</span>, <span class='no'>...</span>)
+<span class='fu'>cu_get_singular_time_entry</span>(<span class='no'>team_id</span>, <span class='no'>timer_id</span>)
 
-<span class='fu'>cu_edit_space_tag</span>(<span class='no'>space_id</span>, <span class='no'>tag_name</span>)
+<span class='fu'>cu_get_running_time_entry</span>(<span class='no'>team_id</span>, <span class='no'>timer_id</span>)
 
-<span class='fu'>cu_delete_space_tag</span>(<span class='no'>task_id</span>, <span class='no'>tag_name</span>)
+<span class='fu'>cu_create_time_entry</span>(<span class='no'>team_id</span>, <span class='no'>...</span>)
 
-<span class='fu'>cu_add_tag_to_task</span>(<span class='no'>task_id</span>, <span class='no'>tag_name</span>)
+<span class='fu'>cu_remove_tags_from_time_entries</span>(<span class='no'>team_id</span>, <span class='no'>...</span>)
 
-<span class='fu'>cu_delete_space_tag</span>(<span class='no'>task_id</span>, <span class='no'>tag_name</span>)</pre>
+<span class='fu'>cu_get_all_tags_from_time_entries</span>(<span class='no'>team_id</span>)
+
+<span class='fu'>cu_add_tags_from_time_entries</span>(<span class='no'>team_id</span>, <span class='no'>...</span>)
+
+<span class='fu'>cu_change_tag_names_from_time_entries</span>(<span class='no'>team_id</span>, <span class='no'>...</span>)
+
+<span class='fu'>cu_start_time_entry</span>(<span class='no'>team_id</span>, <span class='no'>timer_id</span>, <span class='no'>...</span>)
+
+<span class='fu'>cu_stop_time_entry</span>(<span class='no'>team_id</span>)
+
+<span class='fu'>cu_delete_time_entry</span>(<span class='no'>team_id</span>, <span class='no'>timer_id</span>)
+
+<span class='fu'>cu_update_time_entry</span>(<span class='no'>team_id</span>, <span class='no'>timer_id</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>space_id</th>
-      <td><p>Space ID.</p></td>
+      <th>team_id</th>
+      <td><p>Team ID.</p></td>
     </tr>
     <tr>
-      <th>name</th>
-      <td><p>Tag name.</p></td>
+      <th>start_date</th>
+      <td><p>POSIX start time in milliseconds.</p></td>
+    </tr>
+    <tr>
+      <th>end_date</th>
+      <td><p>POSIX end time in milliseconds.</p></td>
+    </tr>
+    <tr>
+      <th>assignee</th>
+      <td><p>User ids to filter by separated by commas.
+Note: Only Workspace Owners/Admins have access to do this.</p></td>
+    </tr>
+    <tr>
+      <th>timer_id</th>
+      <td><p>Timer ID.</p></td>
     </tr>
     <tr>
       <th>...</th>
       <td><p>Named arguments to be passed to API request body,
-see the ClickUp API documentation (<a href='https://clickup.com/api'>https://clickup.com/api</a>).</p></td>
-    </tr>
-    <tr>
-      <th>tag_name</th>
-      <td><p>Tag name.</p></td>
-    </tr>
-    <tr>
-      <th>task_id</th>
-      <td><p>Task ID.</p></td>
+see the ClickUp API documentation (<a href='https://clickup.com/api'>https://clickup.com/api</a>).
+Edit the <code>start</code>, <code>end</code>, or total <code>time</code> of a time tracked entry.</p></td>
     </tr>
     </table>
 
@@ -170,7 +192,9 @@ see the ClickUp API documentation (<a href='https://clickup.com/api'>https://cli
     <p>A cu object.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><a href='cu-class.html'>cu</a> for the cu object class.</p></div>
+    <div class='dont-index'><p><a href='api-timetracking-legacy.html'>api-timetracking-legacy</a> for Time tracking legacy API,
+<a href='cu-class.html'>cu</a> for the cu object class,
+<code><a href='cu-date.html'>cu_date_from()</a></code> and <code><a href='cu-date.html'>cu_date_to()</a></code> to deal with POSIX times.</p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
