@@ -12,7 +12,6 @@
 #'   Note: Only Workspace Owners/Admins have access to do this.
 #' @param ... Named arguments to be passed to API request body,
 #'   see the ClickUp API documentation (<https://clickup.com/api>).
-#'   Edit the `start`, `end`, or total `time` of a time tracked entry.
 #'
 #' @return
 #'
