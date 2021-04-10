@@ -4,6 +4,7 @@
 \alias{api-timetracking-2}
 \alias{cu_get_time_entries_within_date_range}
 \alias{cu_get_singular_time_entry}
+\alias{cu_get_time_entry_history}
 \alias{cu_get_running_time_entry}
 \alias{cu_create_time_entry}
 \alias{cu_remove_tags_from_time_entries}
@@ -19,6 +20,8 @@
 cu_get_time_entries_within_date_range(team_id, start_date, end_date, assignee)
 
 cu_get_singular_time_entry(team_id, timer_id)
+
+cu_get_time_entry_history(team_id, timer_id)
 
 cu_get_running_time_entry(team_id, timer_id)
 

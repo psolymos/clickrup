@@ -1,8 +1,8 @@
 Package: clickrup
 Type: Package
 Title: Interacting with the ClickUp v2 API from R
-Version: 0.0.2
-Date: 2020-07-24
+Version: 0.0.3
+Date: 2021-04-09
 Author: Peter Solymos [aut, cre] (<https://orcid.org/0000-0001-7337-1740>)
 Maintainer: Peter Solymos <psolymos@gmail.com>
 Description: Work with ClickUp.
@@ -14,6 +14,6 @@ Suggests: knitr
 URL: https://github.com/psolymos/clickrup
 BugReports: https://github.com/psolymos/clickrup/issues
 VignetteBuilder: knitr
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.1
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

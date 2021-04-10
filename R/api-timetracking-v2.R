@@ -74,6 +74,23 @@ cu_get_singular_time_entry <- function(team_id, timer_id) {
 
 #' @export
 #' @rdname api-timetracking-2
+## Time Tracking 2.0 / Get time entry history
+## GET https://api.clickup.com/api/v2/team/team_id/time_entries/timer_id/history
+##
+##    team_id
+##    Example: 512.
+##    Number
+##
+##    timer_id
+##    Example: 1963465985517105840.
+##    String
+cu_get_time_entry_history <- function(team_id, timer_id) {
+    .cu_get("team", team_id, "time_entries", timer_id, "history")
+}
+
+
+#' @export
+#' @rdname api-timetracking-2
 ## Time Tracking 2.0 / Get running time entry
 ## GET https://api.clickup.com/api/v2/team/team_id/time_entries/current
 ##
