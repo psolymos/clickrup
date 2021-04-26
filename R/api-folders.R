@@ -5,7 +5,7 @@
 #' @param space_id Space ID.
 #' @param name Name of the folder.
 #' @param folder_id Folder ID.
-#' @param archived Logical, to returne archived (`TRUE`) folders.
+#' @param archived Logical, to return archived (`TRUE`) folders.
 #'
 #' @return
 #'
