@@ -2,7 +2,7 @@
 #'
 #' Working with folders in ClickUp tasks (<https://clickup.com/api>).
 
-#' @param space_id SPace ID.
+#' @param space_id Space ID.
 #' @param name Name of the folder.
 #' @param folder_id Folder ID.
 #' @param archived Logical, to returne archived (`TRUE`) folders.
