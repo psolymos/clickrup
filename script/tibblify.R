@@ -12,9 +12,10 @@ clip_spec <- function(x) {
 
     base_name <- gsub("^df_", "", name)
 
-    out <- paste0(base_name, "_spec <- ", out)
+    out <- paste0(base_name, "spec_", name, " <- ", out)
+    out <- gsub("  ", "    ", out)
 
-    # writeLines(out, file.path("R", paste0("spec-", base_name, ".R")))
+    writeLines(out, file.path("R", paste0("spec-", base_name, ".R")))
 }
 
 teams <- cu_get_teams()
@@ -57,3 +58,9 @@ df_folders
 df_folders %>% get_spec()
 
 clip_spec(df_folders)
+
+folder <- cu_get_folder(df_folders$id[[1]])
+folder
+
+df_folder <- tibblify::tibblify(list(unclass(folder)))
+df_folder %>% get_spec()
