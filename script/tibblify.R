@@ -12,7 +12,7 @@ clip_spec <- function(x) {
 
     base_name <- gsub("^df_", "", name)
 
-    out <- paste0(base_name, "spec_", name, " <- ", out)
+    out <- paste0("spec_", base_name, " <- ", out)
     out <- gsub("  ", "    ", out)
 
     writeLines(out, file.path("R", paste0("spec-", base_name, ".R")))
@@ -33,7 +33,12 @@ df_teams$members
 spaces <- cu_get_spaces(df_teams$id[[1]])
 spaces
 
-df_spaces <- cuf_get_spaces(df_teams$id[[1]])
+df_spaces <-
+    spaces$spaces %>%
+    tibblify()
+
+df_spaces %>%
+    get_spec()
 
 clip_spec(df_spaces)
 
