@@ -65,7 +65,7 @@ NULL
 ##     }
 ##   }
 ## }
-cu_create_space <- function(team_id, name, ...) {
+cuf_create_space <- function(team_id, name, ...) {
     .cu_post("team", team_id, "space",
         body=list(name=name, ...))
 }
@@ -93,7 +93,7 @@ cuf_create_space <- function(team_id, name, ...) {
 ##    Number
 ##
 ## Same body as for cu_create_space
-cu_update_space <- function(space_id, ...) {
+cuf_update_space <- function(space_id, ...) {
     .cu_put("space", space_id,
         body=list(...))
 }
@@ -107,7 +107,7 @@ cu_update_space <- function(space_id, ...) {
 ##    space_id
 ##    Example: 790.
 ##    Number
-cu_delete_space <- function(space_id) {
+cuf_delete_space <- function(space_id) {
     .cu_delete("space", space_id)
 }
 
@@ -124,7 +124,7 @@ cu_delete_space <- function(space_id) {
 ##    archived
 ##    Example: false.
 ##    Boolean
-cu_get_spaces <- function(team_id, archived=FALSE) {
+cuf_get_spaces <- function(team_id, archived=FALSE) {
     .cu_get("team", team_id, "space",
         query = list("archived" = tolower(archived)))
 }
@@ -213,6 +213,6 @@ spaces_spec <- lcols(
 ##    space_id
 ##    Example: 790.
 ##    Number
-cu_get_space <- function(space_id) {
+cuf_get_space <- function(space_id) {
     .cu_get("space", space_id)
 }

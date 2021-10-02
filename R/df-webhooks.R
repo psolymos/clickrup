@@ -93,7 +93,7 @@ NULL
 ##
 ## ... passes query params for optional filtering
 ## for space_id, folder_id, list_id, or task_id
-cu_create_webhook <- function(team_id, endpoint, events="*", ...) {
+cuf_create_webhook <- function(team_id, endpoint, events="*", ...) {
     .cu_post("team", team_id, "webhook",
         body=list(endpoint=endpoint, events=events),
         query=list(...))
@@ -121,7 +121,7 @@ cu_create_webhook <- function(team_id, endpoint, events="*", ...) {
 ##   "status": "active"
 ## }
 ## ... passes props to body
-cu_update_webhook <- function(webhook_id, ...) {
+cuf_update_webhook <- function(webhook_id, ...) {
     .cu_put("webhook", webhook_id,
         body=list(...))
 }
@@ -136,7 +136,7 @@ cu_update_webhook <- function(webhook_id, ...) {
 ##     e506-4a29-9d42-26e504e3435e (uuid)
 ##     Example: 4b67ac88.
 ##     String
-cu_delete_webhook <- function(webhook_id) {
+cuf_delete_webhook <- function(webhook_id) {
     .cu_delete("webhook", webhook_id)
 }
 
@@ -149,6 +149,6 @@ cu_delete_webhook <- function(webhook_id) {
 ##     team_id
 ##     Example: 512.
 ##     Number
-cu_get_webhooks <- function(team_id) {
+cuf_get_webhooks <- function(team_id) {
   .cu_get("team", team_id, "webhook")
 }

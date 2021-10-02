@@ -32,7 +32,7 @@ NULL
 ##    code
 ##    Code given in redirect url
 ##    String
-cu_get_access_token <- function(client_id, client_secret, code) {
+cuf_get_access_token <- function(client_id, client_secret, code) {
     .cu_post("oauth", "token",
         query=list(client_id=client_id,
                    client_secret=client_secret,
@@ -44,7 +44,7 @@ cu_get_access_token <- function(client_id, client_secret, code) {
 #' @rdname api-authorization
 ## Authorization / Get Authorized User
 ## GET https://api.clickup.com/api/v2/user
-cu_get_authorized_user <- function() {
+cuf_get_authorized_user <- function() {
     .cu_get("user")
 }
 
@@ -56,6 +56,6 @@ cu_get_authorized_user <- function() {
 ##
 ## Note: this is the same endpoint as for cu_get_teams
 ##
-cu_get_authorized_teams <- function() {
+cuf_get_authorized_teams <- function() {
     .cu_get("team")
 }

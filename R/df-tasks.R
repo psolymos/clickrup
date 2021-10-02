@@ -137,7 +137,7 @@ NULL
 ##
 ## Use I() when providing arrays as part of the body
 ## list(a=1, b=I(2)) will be {"a":1,"b":[2]}
-cu_create_task <- function(list_id, ...) {
+cuf_create_task <- function(list_id, ...) {
     .cu_post("list", list_id, "task",
         body=list(...))
 }
@@ -172,7 +172,7 @@ cu_create_task <- function(list_id, ...) {
 ##     },
 ##     "archived": false,
 ## }
-cu_update_task <- function(task_id, ...) {
+cuf_update_task <- function(task_id, ...) {
     task_id <- cu_task_id(task_id)
     .cu_put("task", task_id,
         body=list(...))
@@ -187,7 +187,7 @@ cu_update_task <- function(task_id, ...) {
 ##     task_id
 ##     Example: 9xh.
 ##     String
-cu_delete_task <- function(task_id) {
+cuf_delete_task <- function(task_id) {
     task_id <- cu_task_id(task_id)
     .cu_delete("task", task_id)
 }
@@ -278,7 +278,7 @@ cu_delete_task <- function(task_id) {
 ## the length of each response to determine if you are on the last page.
 ##
 # ... takes parameters, most importantly page (starting at 0)
-cu_get_tasks <- function(list_id, archived=FALSE, ...) {
+cuf_get_tasks <- function(list_id, archived=FALSE, ...) {
     .cu_get("list", list_id, "task",
             query = list("archived" = tolower(archived), ...))
 }
@@ -292,7 +292,7 @@ cu_get_tasks <- function(list_id, archived=FALSE, ...) {
 ##     task_id
 ##     Example: 9hz.
 ##     String
-cu_get_task <- function(task_id) {
+cuf_get_task <- function(task_id) {
     task_id <- cu_task_id(task_id)
     .cu_get("task", task_id)
 }
@@ -385,7 +385,7 @@ cu_get_task <- function(task_id) {
 ##
 ## By default this does not include closed tasks. To page tasks,
 ## pass the page number you wish to fetch.
-cu_get_filtered_team_tasks <- function(team_id, ...) {
+cuf_get_filtered_team_tasks <- function(team_id, ...) {
     .cu_get("team", team_id, "task",
             query = list(...))
 }

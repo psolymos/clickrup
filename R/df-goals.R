@@ -38,7 +38,7 @@ NULL
 ##   ],
 ##   "color": "#32a852"
 ## }
-cu_create_goal <- function(team_id, ...) {
+cuf_create_goal <- function(team_id, ...) {
     .cu_post("team", team_id, "goal",
         body=list(...))
 }
@@ -64,7 +64,7 @@ cu_create_goal <- function(team_id, ...) {
 ##     "add_owners": [182]
 ##     "color": "#32a852"
 ## }
-cu_update_goal <- function(goal_id, ...) {
+cuf_update_goal <- function(goal_id, ...) {
     .cu_put("goal", goal_id,
         body=list(...))
 }
@@ -79,7 +79,7 @@ cu_update_goal <- function(goal_id, ...) {
 ##     900e-462d-a849-4a216b06d930 (uuid)
 ##     Example: e53a033c.
 ##     String
-cu_delete_goal <- function(goal_id) {
+cuf_delete_goal <- function(goal_id) {
     .cu_delete("goal", goal_id)
 }
 
@@ -92,7 +92,7 @@ cu_delete_goal <- function(goal_id) {
 ##     team_id
 ##     Example: 512.
 ##     Number
-cu_get_goals <- function(team_id) {
+cuf_get_goals <- function(team_id) {
     .cu_get("team", team_id, "goal")
 }
 
@@ -106,7 +106,7 @@ cu_get_goals <- function(team_id) {
 ##     900e-462d-a849-4a216b06d930 (uuid)
 ##     Example: e53a033c.
 ##     String
-cu_get_goal <- function(goal_id) {
+cuf_get_goal <- function(goal_id) {
     .cu_get("goal", goal_id)
 }
 
@@ -139,7 +139,7 @@ cu_get_goal <- function(goal_id) {
 ##   "task_ids": [],
 ##   "list_ids": []
 ## }
-cu_create_key_result <- function(goal_id, ...) {
+cuf_create_key_result <- function(goal_id, ...) {
     .cu_post("goal", goal_id, "key_result",
         body=list(...))
 }
@@ -164,7 +164,7 @@ cu_create_key_result <- function(goal_id, ...) {
 ##   "steps_current": 5,
 ##   "note": "Target achieved"
 ## }
-cu_edit_key_result <- function(key_result_id, ...) {
+cuf_edit_key_result <- function(key_result_id, ...) {
     .cu_put("key_result", key_result_id,
         body=list(...))
 }
@@ -179,7 +179,7 @@ cu_edit_key_result <- function(key_result_id, ...) {
 ##     8480-49bc-8c57-e569747efe93 (uuid)
 ##     Example: 947d46ed.
 ##     String
-cu_delete_key_result <- function(key_result_id) {
+cuf_delete_key_result <- function(key_result_id) {
     .cu_delete("key_result", key_result_id)
 }
 

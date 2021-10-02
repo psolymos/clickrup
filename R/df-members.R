@@ -22,7 +22,7 @@ NULL
 ##    task_id
 ##    Example: 9hz.
 ##    String
-cu_get_task_members <- function(task_id) {
+cuf_get_task_members <- function(task_id) {
     task_id <- cu_task_id(task_id)
     .cu_get("task", task_id, "member")
 }
@@ -36,6 +36,6 @@ cu_get_task_members <- function(task_id) {
 ##    list_id
 ##    Example: 123.
 ##    Number
-cu_get_list_members <- function(list_id) {
+cuf_get_list_members <- function(list_id) {
     .cu_get("list", list_id, "member")
 }

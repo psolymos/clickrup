@@ -44,7 +44,7 @@
 ##   --form 'attachment=@/path/to/the/file/example.png'
 
 ## ... can be used to pass type argument to httr::upload_file
-cu_post_task_attachment <- function(task_id, attachment, filename=NULL, ...) {
+cuf_post_task_attachment <- function(task_id, attachment, filename=NULL, ...) {
     task_id <- cu_task_id(task_id)
     if (is.null(filename))
         filename <- basename(attachment)
