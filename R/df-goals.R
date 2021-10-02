@@ -1,20 +1,5 @@
-#' Goals
-#'
-#' Working with goals in ClickUp tasks.
 
-#' @param team_id Team ID.
-#' @param goal_id Goal ID.
-#' @param key_result_id Key result ID.
-#' @param ... Named arguments to be passed to API request body,
-#'   see the ClickUp API documentation (<https://clickup.com/api>).
-#'
-#' @return
-#'
-#' A cu object.
-#'
-#' @seealso [cu-class] for the cu object class.
-#'
-#' @name api-goals
+#' @rdname api-goals
 NULL
 
 #' @export

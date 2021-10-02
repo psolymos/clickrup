@@ -1,21 +1,5 @@
-#' Dependencies
-#'
-#' Working dependencies xyz in ClickUp tasks (<https://clickup.com/api>).
 
-#' @param task_id Task ID.
-#' @param depends_on A waiting on dependency of the task.
-#'   One and only one of `depends_on` or `dependency_of` must be passed.
-#' @param dependency_of A blocking dependency of the task.
-#'   One and only one of `depends_on` or `dependency_of` must be passed.
-#' @param links_to Link to another task.
-#'
-#' @return
-#'
-#' A cu object.
-#'
-#' @seealso [cu-class] for the cu object class.
-#'
-#' @name api-dependencies
+#' @rdname api-dependencies
 NULL
 
 #' @export

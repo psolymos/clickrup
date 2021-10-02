@@ -1,21 +1,5 @@
-#' Tags
-#'
-#' Working with tags in ClickUp tasks.
 
-#' @param space_id Space ID.
-#' @param task_id  Task ID.
-#' @param tag_name Tag name.
-#' @param name Tag name.
-#' @param ... Named arguments to be passed to API request body,
-#'   see the ClickUp API documentation (<https://clickup.com/api>).
-#'
-#' @return
-#'
-#' A cu object.
-#'
-#' @seealso [cu-class] for the cu object class.
-#'
-#' @name api-tags
+#' @rdname api-tags
 NULL
 
 #' @export

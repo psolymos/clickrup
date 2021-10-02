@@ -1,23 +1,6 @@
-#' Teams (workspaces)
-#'
-#' Working with teams (workspaces) in ClickUp tasks (<https://clickup.com/api>).
-#' Teams is the legacy term for what are now called workspaces in ClickUp.
-#' For compatablitly, the term team is still used in the API v2.
-#' This is NOT the new 'Teams' feature which represents a group of users.
 
-#' @examples
-#' \dontrun{
-#' cu_get_teams()
-#' }
-#'
-#' @return
-#'
-#' A cu object.
-#'
-#' @seealso [cu-class] for the cu object class.
-#'
 #' @export
-#' @name api-teams
+#' @rdname api-teams
 ## Teams / Get Teams
 ## GET https://api.clickup.com/api/v2/team
 ##
@@ -29,10 +12,6 @@ cuf_get_teams <- function() {
 }
 #cuf_get_workspaces <- cu_get_teams
 
-#' cuf_get_teams
-#'
-#' `cuf_get_teams()` returns the same data as a nested tibble.
-#'
 #' @rdname api-teams
 #' @export
 cuf_get_teams <- function() {

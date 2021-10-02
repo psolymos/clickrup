@@ -1,17 +1,5 @@
-#' Members
-#'
-#' Working with members in ClickUp tasks (<https://clickup.com/api>).
 
-#' @param task_id Task ID.
-#' @param list_id List ID.
-#'
-#' @return
-#'
-#' A cu object.
-#'
-#' @seealso [cu-class] for the cu object class.
-#'
-#' @name api-members
+#' @rdname api-members
 NULL
 
 #' @export

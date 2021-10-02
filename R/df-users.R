@@ -1,22 +1,5 @@
-#' Users
-#'
-#' Working with users in ClickUp tasks (Enterprise only feture).
 
-#' @param team_id Team (workspace) ID.
-#' @param email Email.
-#' @param admin Logical, admin account or not
-#' @param user_id User ID.
-#' @param username User name.
-#' @param ... Named arguments to be passed to API request body,
-#'   see the ClickUp API documentation (<https://clickup.com/api>).
-#'
-#' @return
-#'
-#' A cu object.
-#'
-#' @seealso [cu-class] for the cu object class.
-#'
-#' @name api-users
+#' @rdname api-users
 NULL
 
 #' @export

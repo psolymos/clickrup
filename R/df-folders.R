@@ -1,19 +1,5 @@
-#' Folders
-#'
-#' Working with folders in ClickUp tasks (<https://clickup.com/api>).
 
-#' @param space_id Space ID.
-#' @param name Name of the folder.
-#' @param folder_id Folder ID.
-#' @param archived Logical, to return archived (`TRUE`) folders.
-#'
-#' @return
-#'
-#' A cu object.
-#'
-#' @seealso [cu-class] for the cu object class.
-#'
-#' @name api-folders
+#' @rdname api-folders
 NULL
 
 #' @export
@@ -87,10 +73,6 @@ cuf_get_folders <- function(space_id, archived=FALSE) {
 }
 
 
-#' cuf_get_folders()
-#'
-#' `cuf_get_folders()` returns the same data as `cu_get_folders()` as a tibble.
-#'
 #' @export
 #' @rdname api-folders
 cuf_get_folders <- function(team_id, archived=FALSE) {

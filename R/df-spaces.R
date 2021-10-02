@@ -1,21 +1,5 @@
-#' Spaces
-#'
-#' Working with spaces in ClickUp tasks.
 
-#' @param team_id Team ID.
-#' @param name Name of the space.
-#' @param space_id Space ID.
-#' @param archived Logical, to returne archived (`TRUE`) spaces.
-#' @param ... Named arguments to be passed to API request body,
-#'   see the ClickUp API documentation (<https://clickup.com/api>).
-#'
-#' @return
-#'
-#' A cu object.
-#'
-#' @seealso [cu-class] for the cu object class.
-#'
-#' @name api-spaces
+#' @rdname api-spaces
 NULL
 
 #' @export
@@ -71,10 +55,6 @@ cuf_create_space <- function(team_id, name, ...) {
 }
 
 
-#' cuf_create_space()
-#'
-#' `cuf_create_space()` returns the same data as `cu_create_space()` as a tibble.
-#'
 #' @export
 #' @rdname api-spaces
 cuf_create_space <- function(team_id, name, ...) {
@@ -130,10 +110,6 @@ cuf_get_spaces <- function(team_id, archived=FALSE) {
 }
 
 
-#' cuf_get_spaces()
-#'
-#' `cuf_get_spaces()` returns the same data as `cu_get_spaces()` as a tibble.
-#'
 #' @export
 #' @rdname api-spaces
 cuf_get_spaces <- function(team_id, archived=FALSE) {

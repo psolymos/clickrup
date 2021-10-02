@@ -1,21 +1,5 @@
-#' Lists
-#'
-#' Working with lists in ClickUp tasks.
 
-#' @param folder_id Folder ID.
-#' @param space_id SPace ID.
-#' @param list_id List ID.
-#' @param archived Logical, to returne archived (`TRUE`) lists.
-#' @param ... Named arguments to be passed to API request body,
-#'   see the ClickUp API documentation (<https://clickup.com/api>).
-#'
-#' @return
-#'
-#' A cu object.
-#'
-#' @seealso [cu-class] for the cu object class.
-#'
-#' @name api-lists
+#' @rdname api-lists
 NULL
 
 #' @export

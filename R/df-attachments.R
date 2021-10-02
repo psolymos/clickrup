@@ -1,37 +1,6 @@
-#' Attachments
-#'
-#' Result from a call to the API endpoint
-#' POST https://api.clickup.com/api/v2/task/task_id/attachment
 
-#' @param task_id Task ID.
-#' @param attachment Path to a file.
-#' @param filename File name as it will show up in CluckUp,
-#'   deduced from `attachment` when not provided (`NULL`).
-#' @param ... Can be used to pass mime `type` argument to [httr::upload_file()],
-#'   mime type is guessed otherwise.
-#'
-#' @examples
-#' \dontrun{
-#' ## produce a png image
-#' f <- tempfile(fileext=".png")
-#' png(f)
-#' plot(1:10, col=1:10)
-#' dev.off()
-#'
-#' ## attache the image to a task
-#' cu_post_task_attachment("8ach57", f)
-#'
-#' unlink(f) # clean up the image
-#' }
-#'
-#' @return
-#'
-#' A cu object.
-#'
-#' @seealso [cu-class] for the cu object class.
-#'
 #' @export
-#' @name api-attachment
+#' @rdname api-attachment
 
 ## API documentation is actually incorrect about showing the curl request.
 ## The correct curl is this:

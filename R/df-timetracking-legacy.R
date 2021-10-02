@@ -1,28 +1,5 @@
-#' Time tracking legacy
-#'
-#' Working with time tracking in ClickUp tasks.
-#' Note: This is the legacy API for time tracking.
-#' Please use the new Time tracking API.
-#' You won't be able to update timer entries that uses our
-#' Time Tracking 2.0 features that uses labels, descriptions,
-#' and making time entries billable.
 
-#' @param task_id Task ID.
-#' @param interval_id Interval ID.
-#' @param ... Named arguments to be passed to API request body,
-#'   see the ClickUp API documentation (<https://clickup.com/api>).
-#'   Edit the `start`, `end`, or total `time` of a time tracked entry.
-#'
-#' @return
-#'
-#' A cu object.
-#' Note: the legacy API comes with a deprecation warning.
-#'
-#' @seealso [api-timetracking-2] for Time Tracking 2.0,
-#'   [cu-class] for the cu object class,
-#'   [cu_date_from()] and [cu_date_to()] to deal with POSIX times.
-#'
-#' @name api-timetracking-legacy
+#' @rdname api-timetracking-legacy
 NULL
 
 #' @export

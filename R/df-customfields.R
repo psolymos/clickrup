@@ -1,22 +1,5 @@
-#' Custom fields
-#'
-#' Working with custom fields in ClickUp tasks.
 
-#' @param list_id List ID.
-#' @param task_id Task ID.
-#' @param field_id Field ID.
-#' @param ... Named arguments to be passed to API request body.
-#'   The accessible fields can be found on the task object from the
-#'   [cu_get_task()] route. This is where you can retrieve the `field_id`.
-#'   see the ClickUp API documentation (<https://clickup.com/api>).
-#'
-#' @return
-#'
-#' A cu object.
-#'
-#' @seealso [cu-class] for the cu object class.
-#'
-#' @name api-customfields
+#' @rdname api-customfields
 NULL
 
 #' @export

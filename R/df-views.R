@@ -1,24 +1,5 @@
-#' Views
-#'
-#' Working views in ClickUp tasks.
 
-#' @param team_id Team (workspace) ID.
-#' @param name View name.
-#' @param space_id Space ID.
-#' @param folder_id Folder ID.
-#' @param list_id List ID.
-#' @param view_id View ID.
-#' @param page Page to fetch (starts at 0).
-#' @param ... Named arguments to be passed to API request body,
-#'   see the ClickUp API documentation (<https://clickup.com/api>).
-#'
-#' @return
-#'
-#' A cu object.
-#'
-#' @seealso [cu-class] for the cu object class.
-#'
-#' @name api-views
+#' @rdname api-views
 NULL
 
 #' @export

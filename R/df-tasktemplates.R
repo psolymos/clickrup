@@ -1,23 +1,5 @@
-#' Task templates
-#'
-#' Working with task templates in ClickUp tasks.
 
-#' @param team_id Team ID.
-#' @param page Page to fetch (starts at 0).
-#'   To page task templates, pass the page number you wish to fetch.
-#' @param list_id List ID.
-#' @param template_id Template ID.
-#' @param name Name of the task.
-#' @param ... Named arguments to be passed to API request body,
-#'   see the ClickUp API documentation (<https://clickup.com/api>).
-#'
-#' @return
-#'
-#' A cu object.
-#'
-#' @seealso [cu-class] for the cu object class.
-#'
-#' @name api-tasktemplates
+#' @rdname api-tasktemplates
 NULL
 
 #' @export

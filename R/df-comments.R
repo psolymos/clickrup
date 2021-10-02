@@ -1,21 +1,5 @@
-#' Comments
-#'
-#' Working with comments in ClickUp tasks.
 
-#' @param task_id Task ID.
-#' @param view_id View ID.
-#' @param list_id List ID.
-#' @param comment_id Comment ID.
-#' @param ... Named arguments to be passed to API request body,
-#'   see the ClickUp API documentation (<https://clickup.com/api>).
-#'
-#' @return
-#'
-#' A cu object.
-#'
-#' @seealso [cu-class] for the cu object class.
-#'
-#' @name api-comments
+#' @rdname api-comments
 NULL
 
 #' @export

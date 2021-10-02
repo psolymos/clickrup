@@ -1,27 +1,5 @@
-#' Time tracking 2.0
-#'
-#' Working with time tracking in ClickUp tasks.
-#' Note: A time entry that has a negative duration means
-#' that timer is currently ongoing for that user.
 
-#' @param team_id Team ID.
-#' @param timer_id Timer ID.
-#' @param start_date POSIX start time in milliseconds.
-#' @param end_date POSIX end time in milliseconds.
-#' @param assignee User ids to filter by separated by commas.
-#'   Note: Only Workspace Owners/Admins have access to do this.
-#' @param ... Named arguments to be passed to API request body,
-#'   see the ClickUp API documentation (<https://clickup.com/api>).
-#'
-#' @return
-#'
-#' A cu object.
-#'
-#' @seealso [api-timetracking-legacy] for Time tracking legacy API,
-#'   [cu-class] for the cu object class,
-#'   [cu_date_from()] and [cu_date_to()] to deal with POSIX times.
-#'
-#' @name api-timetracking-2
+#' @rdname api-timetracking-2
 NULL
 
 #' @export

@@ -1,24 +1,5 @@
-#' Guests
-#'
-#' Working with guests in ClickUp tasks (Enterprise only feature).
 
-#' @param team_id Team ID.
-#' @param guest_id Guest ID.
-#' @param permission_level Permisson level can be
-#'   `"read"`, `"comment"`, `"edit"`, or `"create"`.
-#' @param folder_id Folder ID.
-#' @param list_id List ID.
-#' @param task_id Task ID.
-#' @param ... Named arguments to be passed to API request body,
-#'   see the ClickUp API documentation (<https://clickup.com/api>).
-#'
-#' @return
-#'
-#' A cu object.
-#'
-#' @seealso [cu-class] for the cu object class.
-#'
-#' @name api-guests
+#' @rdname api-guests
 NULL
 
 #' @export

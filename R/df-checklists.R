@@ -1,47 +1,5 @@
-#' Checklists
-#'
-#' Working with checklists in ClickUp tasks.
 
-#' @param task_id Task ID.
-#' @param name Checklist or checlist item name.
-#' @param checklist_id Checklist ID.
-#' @param position Position is the zero-based index of the order you want
-#'   the checklist to exist on the task. If you want the checklist to be
-#'   in the first position, pass 0.
-#' @param checklist_item_id Checklist item ID.
-#' @param ... Named arguments to be passed to API request body,
-#'   see the ClickUp API documentation (<https://clickup.com/api>).
-#'
-#' @examples
-#' \dontrun{
-#' ## create new checklist
-#' cl <- cu_create_checklist("8ach57", "New checklist")
-#'
-#' ## change position of checklist
-#' cu_edit_checklist(cl$checklist$id, position = 0)
-#'
-#' ## create checklist items
-#' cli <- cu_create_checklist_item(cl$checklist$id, name="New item 1")
-#' cli <- cu_create_checklist_item(cl$checklist$id, name="New item 2",
-#'     assignee = 4471793)
-#' cli <- cu_create_checklist_item(cl$checklist$id, name="New item 3",
-#'      assignee = NA, resolved = TRUE, parent = NA)
-#'
-#' ## delete checklist items
-#' cu_delete_checklist_item(cli$checklist$id,
-#'      cli$checklist$items[[1]]$id)
-#'
-#' ## delete checklist
-#' cu_delete_checklist(cli$checklist$id)
-#' }
-#'
-#' @return
-#'
-#' A cu object.
-#'
-#' @seealso [cu-class] for the cu object class.
-#'
-#' @name api-checklists
+#' @rdname api-checklists
 NULL
 
 #' @export

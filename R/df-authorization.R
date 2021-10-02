@@ -1,20 +1,5 @@
-#' Authorization
-#'
-#' These are the routes for authing the API and
-#' going through the OAuth flow.
-#' Applications utilizing the personal API token do not need these functions.
 
-#' @param client_id Oauth app client id.
-#' @param client_secret Oauth app client secret.
-#' @param code Code given in redirect URL.
-#'
-#' @return
-#'
-#' A cu object.
-#'
-#' @seealso [cu-class] for the cu object class.
-#'
-#' @name api-authorization
+#' @rdname api-authorization
 NULL
 
 #' @export
