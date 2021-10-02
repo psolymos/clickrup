@@ -104,10 +104,17 @@
         return(resp)
     }
 
-    message("ClickUp API: Rate limit reached", appendLF = FALSE)
+    reset <- resp$headers[["x-ratelimit-reset"]]
+    if (!is.null(reset)) {
+        # sleep as indicated, and then retry at most twice
+        sleeps <- c(ceiling(as.numeric(reset) - as.numeric(Sys.time())), 1, 1)
+        message("ClickUp API: Rate limit reached, sleeping for ", sleeps, " seconds", appendLF = FALSE)
+    } else {
+        sleeps <- c(1, 2, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4)
+        # sum(sleeps) >= 60
+        message("ClickUp API: Rate limit reached, sleeping for up to ", sum(sleeps), "seconds", appendLF = FALSE)
+    }
 
-    # sum(sleeps) >= 60
-    sleeps <- c(1, 2, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4)
     for (sleep in sleeps) {
         Sys.sleep(sleep)
         message(".", appendLF = FALSE)
