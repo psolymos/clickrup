@@ -1,9 +1,5 @@
-library(clickrup)
+pkgload::load_all()
 library(tibblify)
-
-cu_options(
-    baseurl = "https://api.clickup.com/api/v2"
-)
 
 clip_spec <- function(x) {
     name <- deparse(substitute(x))
@@ -14,10 +10,11 @@ clip_spec <- function(x) {
         format() %>%
         fansi::strip_sgr()
 
-    out <- paste0(gsub("^df_", "", name), "_spec <- ", out)
+    base_name <- gsub("^df_", "", name)
 
-    out %>%
-        clipr::write_clip()
+    out <- paste0(base_name, "_spec <- ", out)
+
+    # writeLines(out, file.path("R", paste0("spec-", base_name, ".R")))
 }
 
 teams <- cu_get_teams()
@@ -39,8 +36,6 @@ df_spaces <- cuf_get_spaces(df_teams$id[[1]])
 
 clip_spec(df_spaces)
 
-asdf
-
 df_spaces
 df_spaces$statuses
 df_spaces$features
@@ -61,8 +56,4 @@ df_folders <- tibblify::tibblify(folders$folders)
 df_folders
 df_folders %>% get_spec()
 
-folder <- cu_get_folder(df_folders$id[[1]])
-folder
-
-df_folder <- tibblify::tibblify(list(unclass(folder)))
-df_folder %>% get_spec()
+clip_spec(df_folders)
