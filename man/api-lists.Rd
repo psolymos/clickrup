@@ -35,7 +35,7 @@ see the ClickUp API documentation (\url{https://clickup.com/api}).}
 
 \item{list_id}{List ID.}
 
-\item{archived}{Logical, to returne archived (\code{TRUE}) lists.}
+\item{archived}{Logical, to return archived (\code{TRUE}) lists.}
 }
 \value{
 A cu object.

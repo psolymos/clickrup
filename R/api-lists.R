@@ -5,7 +5,7 @@
 #' @param folder_id Folder ID.
 #' @param space_id SPace ID.
 #' @param list_id List ID.
-#' @param archived Logical, to returne archived (`TRUE`) lists.
+#' @param archived Logical, to return archived (`TRUE`) lists.
 #' @param ... Named arguments to be passed to API request body,
 #'   see the ClickUp API documentation (<https://clickup.com/api>).
 #'

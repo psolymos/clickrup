@@ -31,7 +31,7 @@ see the ClickUp API documentation (\url{https://clickup.com/api}).}
 
 \item{task_id}{Task ID. The ClickUp GUI prepends task IDs with a leading hash, \code{\link[=cu_task_id]{cu_task_id()}} is used internally to normalize task IDs.}
 
-\item{archived}{Logical, to returne archived (\code{TRUE}) lists.}
+\item{archived}{Logical, to return archived (\code{TRUE}) lists.}
 
 \item{team_id}{Team (workspace) ID.}
 }
