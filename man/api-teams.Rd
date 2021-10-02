@@ -9,8 +9,6 @@
 cu_get_teams()
 
 cuf_get_teams()
-
-cuf_get_teams()
 }
 \value{
 A cu object.

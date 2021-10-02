@@ -9,7 +9,6 @@
 \alias{cu_get_folder}
 \alias{cuf_create_folder}
 \alias{cuf_update_folder}
-\alias{cuf_delete_folder}
 \alias{cuf_get_folders}
 \alias{cuf_get_folder}
 \title{Folders}
@@ -28,11 +27,7 @@ cuf_create_folder(space_id, name)
 
 cuf_update_folder(folder_id, name)
 
-cuf_delete_folder(folder_id, name)
-
-cuf_get_folders(team_id, archived = FALSE)
-
-cuf_get_folders(team_id, archived = FALSE)
+cuf_get_folders(space_id, archived = FALSE)
 
 cuf_get_folder(folder_id)
 }
