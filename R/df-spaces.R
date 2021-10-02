@@ -1,7 +1,3 @@
-
-#' @rdname api-spaces
-NULL
-
 #' @export
 #' @rdname api-spaces
 ## Spaces / Create Space
@@ -50,14 +46,6 @@ NULL
 ##   }
 ## }
 cuf_create_space <- function(team_id, name, ...) {
-    .cu_post("team", team_id, "space",
-        body=list(name=name, ...))
-}
-
-
-#' @export
-#' @rdname api-spaces
-cuf_create_space <- function(team_id, name, ...) {
     out <- cu_create_space(team_id, name, ...)
     tibblify(list(out), spaces_spec)
 }
@@ -74,21 +62,8 @@ cuf_create_space <- function(team_id, name, ...) {
 ##
 ## Same body as for cu_create_space
 cuf_update_space <- function(space_id, ...) {
-    .cu_put("space", space_id,
-        body=list(...))
-}
-
-
-#' @export
-#' @rdname api-spaces
-## Spaces / Delete Space
-## DELETE https://api.clickup.com/api/v2/space/space_id
-##
-##    space_id
-##    Example: 790.
-##    Number
-cuf_delete_space <- function(space_id) {
-    .cu_delete("space", space_id)
+    out <- cu_update_space(team_id, name, ...)
+    tibblify(list(out), spaces_spec)
 }
 
 
@@ -105,16 +80,21 @@ cuf_delete_space <- function(space_id) {
 ##    Example: false.
 ##    Boolean
 cuf_get_spaces <- function(team_id, archived=FALSE) {
-    .cu_get("team", team_id, "space",
-        query = list("archived" = tolower(archived)))
+    out <- cu_get_spaces(team_id, archived)
+    tibblify(out$spaces, spaces_spec)
 }
-
 
 #' @export
 #' @rdname api-spaces
-cuf_get_spaces <- function(team_id, archived=FALSE) {
-    out <- cu_get_spaces(team_id, archived)$spaces
-    tibblify(out, spaces_spec)
+## Spaces / Get Space
+## GET https://api.clickup.com/api/v2/space/space_id
+##
+##    space_id
+##    Example: 790.
+##    Number
+cuf_get_space <- function(space_id) {
+    out <- cu_get_space(space_id)
+    tibblify(list(out), spaces_spec)
 }
 
 spaces_spec <- lcols(
@@ -180,15 +160,3 @@ spaces_spec <- lcols(
         )
     )
 )
-
-#' @export
-#' @rdname api-spaces
-## Spaces / Get Space
-## GET https://api.clickup.com/api/v2/space/space_id
-##
-##    space_id
-##    Example: 790.
-##    Number
-cuf_get_space <- function(space_id) {
-    .cu_get("space", space_id)
-}
