@@ -8,16 +8,10 @@
 ## For compatablitly, the term team is still used in this API.
 ## This is NOT the new "Teams" feature which represents a group of users.
 cuf_get_teams <- function() {
-    .cu_get("team")
+    out <- cu_get_teams()
+    tibblify(out$teams, teams_spec)
 }
 #cuf_get_workspaces <- cu_get_teams
-
-#' @rdname api-teams
-#' @export
-cuf_get_teams <- function() {
-    out <- cu_get_teams()$teams
-    tibblify(out, teams_spec)
-}
 
 teams_spec <- lcols(
     id = lcol_chr("id"),
