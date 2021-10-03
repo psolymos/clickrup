@@ -46,7 +46,7 @@ spec_spaces <- lcols(
                 id = lcol_chr("id"),
                 priority = lcol_chr("priority"),
                 color = lcol_chr("color"),
-                orderindex = lcol_chr("orderindex")
+                orderindex = lcol_int("orderindex", .parser = as.integer)
             )
         ),
         tags = lcol_df(
