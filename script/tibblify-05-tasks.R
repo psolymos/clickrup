@@ -11,7 +11,8 @@ df_folders
 df_lists <- cuf_get_lists(df_folders$id[[1]])
 df_lists
 
-tasks <- cu_get_tasks(df_lists$id[[1]])
+# tasks <- cu_get_tasks(df_lists$id[[1]])
+tasks <- cu_get_filtered_team_tasks(df_teams$id[[1]])
 
 df_tasks <- tibblify::tibblify(tasks$tasks)
 df_tasks

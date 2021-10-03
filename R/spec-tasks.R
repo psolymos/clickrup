@@ -24,7 +24,16 @@ spec_tasks <- lcols(
         email = lcol_chr("email"),
         profilePicture = lcol_chr("profilePicture")
     ),
-    assignees = lcol_guess("assignees", .default = NULL),
+    assignees = lcol_df_lst(
+        "assignees",
+        id = lcol_chr("id", .parser = as.character),
+        username = lcol_chr("username"),
+        color = lcol_chr("color"),
+        initials = lcol_chr("initials"),
+        email = lcol_chr("email"),
+        profilePicture = lcol_chr("profilePicture"),
+        .default = NULL
+    ),
     watchers = lcol_guess("watchers", .default = NULL),
     checklists = lcol_guess("checklists", .default = NULL),
     tags = lcol_df_lst(
@@ -40,7 +49,8 @@ spec_tasks <- lcols(
     due_date = lcol_chr("due_date", .default = NA_character_),
     start_date = lcol_guess("start_date", .default = NULL),
     points = lcol_guess("points", .default = NULL),
-    time_estimate = lcol_guess("time_estimate", .default = NULL),
+    time_estimate = lcol_int("time_estimate", .default = NA_integer_),
+    time_spent = lcol_int("time_spent", .default = NA_integer_),
     custom_fields = lcol_df_lst(
         "custom_fields",
         id = lcol_chr("id"),
@@ -59,9 +69,10 @@ spec_tasks <- lcols(
             options = lcol_df_lst(
                 "options",
                 id = lcol_chr("id"),
-                name = lcol_chr("name"),
+                name = lcol_chr("name", .default = NA_character_),
                 color = lcol_chr("color", .default = NA_character_),
-                orderindex = lcol_int("orderindex"),
+                orderindex = lcol_int("orderindex", .default = NA_integer_),
+                label = lcol_chr("label", .default = NA_character_),
                 .default = NULL
             ),
             tracking = lcol_df(
@@ -73,6 +84,8 @@ spec_tasks <- lcols(
             ),
             complete_on = lcol_int("complete_on", .default = NA_integer_),
             subtask_rollup = lcol_lgl("subtask_rollup", .default = NA),
+            end = lcol_int("end", .default = NA_integer_),
+            start = lcol_int("start", .default = NA_integer_),
             .default = NULL
         ),
         date_created = lcol_chr("date_created"),
@@ -80,7 +93,15 @@ spec_tasks <- lcols(
         required = lcol_lgl("required"),
         value = lcol_lst("value", .default = NULL)
     ),
-    dependencies = lcol_guess("dependencies", .default = NULL),
+    dependencies = lcol_df_lst(
+        "dependencies",
+        task_id = lcol_chr("task_id"),
+        depends_on = lcol_chr("depends_on"),
+        type = lcol_int("type"),
+        date_created = lcol_chr("date_created"),
+        userid = lcol_chr("userid"),
+        .default = NULL
+    ),
     linked_tasks = lcol_guess("linked_tasks", .default = NULL),
     team_id = lcol_chr("team_id"),
     url = lcol_chr("url"),
