@@ -11,10 +11,11 @@ df_folders
 df_lists <- cuf_get_lists(df_folders$id[[1]])
 df_lists
 
-# tasks <- cu_get_tasks(df_lists$id[[1]])
-tasks <- cu_get_filtered_team_tasks(df_teams$id[[1]])
+tasks_list <- cu_get_tasks(df_lists$id[[1]])
+tasks_list_archived <- cu_get_tasks(df_lists$id[[1]], archived = TRUE)
+tasks_team <- cu_get_filtered_team_tasks(df_teams$id[[1]])
 
-df_tasks <- tibblify::tibblify(tasks$tasks)
+df_tasks <- tibblify::tibblify(c(tasks_team$tasks, tasks_list$tasks, tasks_list_archived$tasks))
 df_tasks
 df_tasks %>% get_spec()
 
