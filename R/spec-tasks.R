@@ -12,8 +12,8 @@ spec_tasks <- lcols(
         orderindex = lcol_int("orderindex")
     ),
     orderindex = lcol_int("orderindex", .parser = as.integer),
-    date_created = lcol_chr("date_created"),
-    date_updated = lcol_chr("date_updated"),
+    date_created = lcol_dtt("date_created", .parser = cu_date_from),
+    date_updated = lcol_dtt("date_updated", .parser = cu_date_from),
     date_closed = lcol_guess("date_closed", .default = NULL),
     archived = lcol_lgl("archived"),
     creator = lcol_df(
@@ -94,7 +94,7 @@ spec_tasks <- lcols(
             start = lcol_int("start", .default = NA_integer_),
             .default = NULL
         ),
-        date_created = lcol_chr("date_created"),
+        date_created = lcol_dtt("date_created", .parser = cu_date_from),
         hide_from_guests = lcol_lgl("hide_from_guests"),
         required = lcol_lgl("required"),
         value = lcol_lst("value", .default = NULL)
@@ -104,7 +104,7 @@ spec_tasks <- lcols(
         task_id = lcol_chr("task_id"),
         depends_on = lcol_chr("depends_on"),
         type = lcol_int("type"),
-        date_created = lcol_chr("date_created"),
+        date_created = lcol_dtt("date_created", .parser = cu_date_from),
         userid = lcol_chr("userid"),
         .default = NULL
     ),
