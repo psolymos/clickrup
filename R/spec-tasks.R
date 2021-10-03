@@ -46,7 +46,7 @@ spec_tasks <- lcols(
     ),
     parent = lcol_guess("parent", .default = NULL),
     priority = lcol_guess("priority", .default = NULL),
-    due_date = lcol_chr("due_date", .default = NA_character_),
+    due_date = lcol_dtt("due_date", .parser = cu_date_from, .default = dttr2::NA_POSIXct_),
     start_date = lcol_guess("start_date", .default = NULL),
     points = lcol_guess("points", .default = NULL),
     time_estimate = lcol_int("time_estimate", .default = NA_integer_),
