@@ -6,18 +6,16 @@ NULL
 #' @rdname api-timetracking-2
 cuf_get_time_entries_within_date_range <- function(team_id,
 start_date, end_date, assignee) {
-    .cu_get("team", team_id, "time_entries",
-        query = list(
-            "start_date"=start_date,
-            "end_date"=end_date,
-            "assignee"=assignee))
+    out <- cu_get_time_entries_within_date_range(team_id, start_date, end_date, assignee)
+    tibblify(out$data, spec_time_entries)
 }
 
 
 #' @export
 #' @rdname api-timetracking-2
 cuf_get_singular_time_entry <- function(team_id, timer_id) {
-    .cu_get("team", team_id, "time_entries", timer_id)
+    out <- cu_get_singular_time_entry(team_id, timer_id)
+    tibblify(list(out$data), spec_time_entries)
 }
 
 
@@ -86,13 +84,6 @@ cuf_start_time_entry <- function(team_id, timer_id, ...) {
 #' @rdname api-timetracking-2
 cuf_stop_time_entry <- function(team_id) {
     .cu_post("team", team_id, "time_entries", "stop")
-}
-
-
-#' @export
-#' @rdname api-timetracking-2
-cuf_delete_time_entry <- function(team_id, timer_id) {
-    .cu_delete("team", team_id, "time_entries", timer_id)
 }
 
 

@@ -26,7 +26,6 @@
 \alias{cuf_change_tag_names_from_time_entries}
 \alias{cuf_start_time_entry}
 \alias{cuf_stop_time_entry}
-\alias{cuf_delete_time_entry}
 \alias{cuf_update_time_entry}
 \title{Time tracking 2.0}
 \usage{
@@ -77,8 +76,6 @@ cuf_change_tag_names_from_time_entries(team_id, ...)
 cuf_start_time_entry(team_id, timer_id, ...)
 
 cuf_stop_time_entry(team_id)
-
-cuf_delete_time_entry(team_id, timer_id)
 
 cuf_update_time_entry(team_id, timer_id, ...)
 }
