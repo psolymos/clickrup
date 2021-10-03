@@ -32,5 +32,5 @@ spec_time_entries <- lcols(
         .default = NULL
     ),
     end = lcol_dtt("end", .parser = cu_date_from, .default = dttr2::NA_POSIXct_),
-    duration = lcol_chr("duration", .default = NA_character_)
+    duration = lcol_vec("duration", hms::new_hms(), .default = dttr2::NA_hms_, .parser = ~ hms::as_hms(as.numeric(.x) / 1000))
 )

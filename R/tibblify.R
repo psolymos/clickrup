@@ -25,6 +25,8 @@ write_spec <- function(x) {
     out <- gsub(paste0('lcol_chr[(]"(', date_cols, ')", .default = NA_character_'), 'lcol_dtt("\\1", .parser = cu_date_from, .default = dttr2::NA_POSIXct_', out)
     out <- gsub(paste0('lcol_chr[(]"(', date_cols, ')"'), 'lcol_dtt("\\1", .parser = cu_date_from', out)
 
+    out <- gsub('lcol_chr("duration", .default = NA_character_)', 'lcol_vec("duration", hms::new_hms(), .default = dttr2::NA_hms_, .parser = ~ hms::as_hms(as.numeric(.x) / 1000))', out, fixed = TRUE)
+
     # Dogfood first
     eval(parse(text = out))
 
