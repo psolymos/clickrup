@@ -4,18 +4,6 @@ NULL
 
 #' @export
 #' @rdname api-folders
-## Folders / Create Folder
-## POST https://api.clickup.com/api/v2/space/space_id/folder
-##
-##     space_id
-##     Example: 789.
-##     Number
-##
-## Body
-##
-## {
-##   "name": "New Folder Name"
-## }
 cuf_create_folder <- function(space_id, name) {
     out <- cu_create_folder(space_id, name)
     tibblify(list(out), spec_folder)
@@ -24,18 +12,6 @@ cuf_create_folder <- function(space_id, name) {
 
 #' @export
 #' @rdname api-folders
-## Folders / Update Folder
-## PUT https://api.clickup.com/api/v2/folder/folder_id
-##
-##     folder_id
-##     Example: 457.
-##     Number
-##
-## Body
-##
-## {
-##   "name": "Updated Folder Name"
-## }
 cuf_update_folder <- function(folder_id, name) {
     out <- cu_update_folder(folder_id, name)
     tibblify(list(out), spec_folder)
@@ -44,16 +20,6 @@ cuf_update_folder <- function(folder_id, name) {
 
 #' @export
 #' @rdname api-folders
-## Folders / Get Folders
-## GET https://api.clickup.com/api/v2/space/space_id/folder?archived=false
-##
-##    space_id
-##    Example: 789.
-##    Number
-##
-##    archived
-##    Example: false.
-##    Boolean
 cuf_get_folders <- function(space_id, archived=FALSE) {
     out <- cu_get_folders(space_id, archived)
     tibblify(out$folders, spec_folder)
@@ -63,12 +29,6 @@ cuf_get_folders <- function(space_id, archived=FALSE) {
 
 #' @export
 #' @rdname api-folders
-## Folders / Get Folder
-## GET https://api.clickup.com/api/v2/folder/folder_id
-##
-##    folder_id
-##    Example: 457.
-##    Number
 cuf_get_folder <- function(folder_id) {
     out <- cu_get_folder(folder_id)
     tibblify(list(out), spec_folder)

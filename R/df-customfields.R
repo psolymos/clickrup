@@ -4,11 +4,6 @@ NULL
 
 #' @export
 #' @rdname api-customfields
-## Custom Fields / Get Accessible Custom Fields
-## GET https://api.clickup.com/api/v2/list/list_id/field
-##    list_id
-##    Example: 123.
-##    Number
 cuf_get_accessible_custom_fields <- function(list_id) {
     .cu_get("list", list_id, "field")
 }
@@ -16,26 +11,6 @@ cuf_get_accessible_custom_fields <- function(list_id) {
 
 #' @export
 #' @rdname api-customfields
-## Custom Fields / Set Custom Field Value
-## POST https://api.clickup.com/api/v2/task/task_id/field/field_id
-##
-##     task_id
-##     Example: 9hv.
-##     String
-##
-##     field_id
-##     b8a8-48d8-a0c6-b4200788a683 (uuid)
-##     Example: b955c4dc.
-##     String
-##
-## The accessible fields can be found on the task object from the
-## get task route. This is where you can retrieve the field_id.
-##
-## Body
-##
-## {
-##   "value": 80
-## }
 #cu_set_custom_field_value
 cuf_set_custom_field_value <- function(task_id, field_id, ...) {
     task_id <- cu_task_id(task_id)
@@ -46,20 +21,6 @@ cuf_set_custom_field_value <- function(task_id, field_id, ...) {
 
 #' @export
 #' @rdname api-customfields
-## Custom Fields / Remove Custom Field Value
-## DELETE https://api.clickup.com/api/v2/task/task_id/field/field_id
-##
-##     task_id
-##     Example: 9hv.
-##     String
-##
-##     field_id
-##     b8a8-48d8-a0c6-b4200788a683 (uuid)
-##     Example: b955c4dc.
-##     String
-##
-## The accessible fields can be found on the task object from the
-## get task route. This is where you can retrieve the field_id
 cuf_remove_field_value <- function(task_id, field_id) {
     task_id <- cu_task_id(task_id)
     .cu_delete("task", task_id, "field", field_id)

@@ -1,50 +1,5 @@
 #' @export
 #' @rdname api-spaces
-## Spaces / Create Space
-## POST https://api.clickup.com/api/v2/team/team_id/space
-##
-##    team_id
-##    Example: 512.
-##    Number
-##
-## Body
-##
-## {
-##   "name": "New Space Name",
-##   "multiple_assignees": true,
-##   "features": {
-##     "due_dates": {
-##       "enabled": true,
-##       "start_date": false,
-##       "remap_due_dates": true,
-##       "remap_closed_due_date": false
-##     },
-##     "time_tracking": {
-##       "enabled": false
-##     },
-##     "tags": {
-##       "enabled": true
-##     },
-##     "time_estimates": {
-##       "enabled": true
-##     },
-##     "checklists": {
-##       "enabled": true
-##     },
-##     "custom_fields": {
-##       "enabled": true
-##     },
-##     "remap_dependencies": {
-##       "enabled": true
-##     },
-##     "dependency_warning": {
-##       "enabled": true
-##     },
-##     "portfolios": {
-##       "enabled": true
-##     }
-##   }
-## }
 cuf_create_space <- function(team_id, name, ...) {
     out <- cu_create_space(team_id, name, ...)
     tibblify(list(out), spaces_spec)
@@ -53,14 +8,6 @@ cuf_create_space <- function(team_id, name, ...) {
 
 #' @export
 #' @rdname api-spaces
-## Spaces / Update Space
-## PUT https://api.clickup.com/api/v2/space/space_id
-##
-##    space_id
-##    Example: 790.
-##    Number
-##
-## Same body as for cu_create_space
 cuf_update_space <- function(space_id, ...) {
     out <- cu_update_space(team_id, name, ...)
     tibblify(list(out), spaces_spec)
@@ -69,16 +16,7 @@ cuf_update_space <- function(space_id, ...) {
 
 #' @export
 #' @rdname api-spaces
-## Spaces / Get Spaces
 ##GET https://api.clickup.com/api/v2/team/team_id/space?archived=false
-##
-##    team_id
-##    Example: 512.
-##    Number
-##
-##    archived
-##    Example: false.
-##    Boolean
 cuf_get_spaces <- function(team_id, archived=FALSE) {
     out <- cu_get_spaces(team_id, archived)
     tibblify(out$spaces, spaces_spec)
@@ -86,12 +24,6 @@ cuf_get_spaces <- function(team_id, archived=FALSE) {
 
 #' @export
 #' @rdname api-spaces
-## Spaces / Get Space
-## GET https://api.clickup.com/api/v2/space/space_id
-##
-##    space_id
-##    Example: 790.
-##    Number
 cuf_get_space <- function(space_id) {
     out <- cu_get_space(space_id)
     tibblify(list(out), spaces_spec)

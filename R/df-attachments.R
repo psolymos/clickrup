@@ -2,17 +2,7 @@
 #' @export
 #' @rdname api-attachment
 
-## API documentation is actually incorrect about showing the curl request.
-## The correct curl is this:
-##
-## curl --location \
-##   --request POST 'https://api.clickup.com/api/v2/task/task_id/attachment' \
-##   --header 'Authorization: pk_xx_xxx' \
-##   --header 'Content-Type: multipart/form-data' \
-##   --form 'filename=imagefilename.png' \
-##   --form 'attachment=@/path/to/the/file/example.png'
 
-## ... can be used to pass type argument to httr::upload_file
 cuf_post_task_attachment <- function(task_id, attachment, filename=NULL, ...) {
     task_id <- cu_task_id(task_id)
     if (is.null(filename))

@@ -4,9 +4,6 @@ NULL
 
 #' @export
 #' @rdname api-checklists
-## Checklists / Create Checklist
-## POST https://api.clickup.com/api/v2/task/task_id/checklist
-##    task_id    Example: 9hz.    String
 cuf_create_checklist <- function(task_id, name) {
     task_id <- cu_task_id(task_id)
     .cu_post("task", task_id, "checklist",
@@ -17,15 +14,6 @@ cuf_create_checklist <- function(task_id, name) {
 
 #' @export
 #' @rdname api-checklists
-## Checklists / Edit Checklist
-## PUT https://api.clickup.com/api/v2/checklist/checklist_id
-##    checklist_id
-##    b8a8-48d8-a0c6-b4200788a683 (uuid)
-##    Example: b955c4dc.
-##    String
-## position is the zero-based index of the order you want the checklist
-## to exist on the task. If you want the checklist to be in the first
-## position, pass '{ "position": 0 }'
 cuf_edit_checklist <- function(checklist_id, position) {
     .cu_put("checklist", checklist_id,
         body=list(position = position))
@@ -35,11 +23,6 @@ cuf_edit_checklist <- function(checklist_id, position) {
 
 #' @export
 #' @rdname api-checklists
-## Checklists / Delete Checklist
-## DELETE https://api.clickup.com/api/v2/checklist/checklist_id
-## checklist_id
-##    b8a8-48d8-a0c6-b4200788a683 (uuid)
-##    Example: b955c4dc. String
 cuf_delete_checklist <- function(checklist_id) {
     .cu_delete("checklist", checklist_id)
 }
@@ -48,20 +31,6 @@ cuf_delete_checklist <- function(checklist_id) {
 
 #' @export
 #' @rdname api-checklists
-## Checklists / Create Checklist Item
-## POST https://api.clickup.com/api/v2/checklist/checklist_id/checklist_item
-##    checklist_id
-##    b8a8-48d8-a0c6-b4200788a683 (uuid)
-##    Example: b955c4dc.
-##    String
-##
-## Body:
-## {
-##   "name": "Updated Checklist Item",
-##   "assignee": null,
-##   "resolved": true,
-##   "parent": null
-## }
 cuf_create_checklist_item <- function(checklist_id, name, ...) {
     .cu_post("checklist", checklist_id, "checklist_item",
         body=list(name = name, ...))
@@ -77,20 +46,6 @@ cuf_create_checklist_item <- function(checklist_id, name, ...) {
 
 #' @export
 #' @rdname api-checklists
-## Checklists / Edit Checklist Item
-## PUT https://api.clickup.com/api/v2/checklist/checklist_id/checklist_item/checklist_item_id
-## checklist_id
-##    b8a8-48d8-a0c6-b4200788a683 (uuid)
-##    Example: b955c4dc.
-##    String
-##
-## checklist_item_id
-##    e491-47f5-9fd8-d1dc4cedcc6f (uuid)
-##    Example: 21e08dc8.
-##    String
-##
-## parent is another checklist item that you want to nest the
-## target checklist item underneath.
 cuf_edit_checklist_item <- function(checklist_id, checklist_item_id, ...) {
     .cu_put("checklist", checklist_id, "checklist_item", checklist_item_id,
         body=list(...))
@@ -102,17 +57,6 @@ cuf_edit_checklist_item <- function(checklist_id, checklist_item_id, ...) {
 
 #' @export
 #' @rdname api-checklists
-## Checklists / Delete Checklist Item
-## DELETE https://api.clickup.com/api/v2/checklist/checklist_id/checklist_item/checklist_item_id
-## checklist_id
-##    b8a8-48d8-a0c6-b4200788a683 (uuid)
-##    Example: b955c4dc.
-##    String
-##
-## checklist_item_id
-##    e491-47f5-9fd8-d1dc4cedcc6f (uuid)
-##    Example: 21e08dc8.
-##    String
 cuf_delete_checklist_item <- function(checklist_id, checklist_item_id) {
     .cu_delete("checklist", checklist_id, "checklist_item", checklist_item_id)
 }

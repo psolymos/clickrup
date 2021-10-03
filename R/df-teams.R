@@ -1,12 +1,6 @@
 
 #' @export
 #' @rdname api-teams
-## Teams / Get Teams
-## GET https://api.clickup.com/api/v2/team
-##
-## Teams is the legacy term for what are now called Workspaces in ClickUp.
-## For compatablitly, the term team is still used in this API.
-## This is NOT the new "Teams" feature which represents a group of users.
 cuf_get_teams <- function() {
     out <- cu_get_teams()
     tibblify(out$teams, teams_spec)
