@@ -108,7 +108,7 @@
     if (!is.null(reset)) {
         # sleep as indicated, and then retry at most twice
         sleeps <- c(ceiling(as.numeric(reset) - as.numeric(Sys.time())), 1, 1)
-        message("ClickUp API: Rate limit reached, sleeping for ", sleeps, " seconds", appendLF = FALSE)
+        message("ClickUp API: Rate limit reached, sleeping for ", sleeps[[1]], " seconds", appendLF = FALSE)
     } else {
         sleeps <- c(1, 2, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4)
         # sum(sleeps) >= 60
