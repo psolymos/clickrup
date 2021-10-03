@@ -1,6 +1,5 @@
 spec_time_entries <- lcols(
     id = lcol_chr("id"),
-    task = lcol_lst("task", .default = NULL),
     wid = lcol_chr("wid"),
     user = lcol_df(
         "user",
@@ -13,10 +12,11 @@ spec_time_entries <- lcols(
     ),
     billable = lcol_lgl("billable"),
     start = lcol_dtt("start", .parser = cu_date_from),
-    end = lcol_dtt("end", .parser = cu_date_from),
-    duration = lcol_chr("duration"),
     description = lcol_chr("description"),
     tags = lcol_guess("tags", .default = NULL),
     source = lcol_chr("source"),
-    at = lcol_chr("at")
+    at = lcol_chr("at"),
+    task = lcol_lst("task", .default = NULL),
+    end = lcol_dtt("end", .parser = cu_date_from, .default = dttr2::NA_POSIXct_),
+    duration = lcol_chr("duration", .default = NA_character_)
 )
