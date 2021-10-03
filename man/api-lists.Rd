@@ -12,7 +12,6 @@
 \alias{cuf_create_list}
 \alias{cuf_create_folderless_list}
 \alias{cuf_update_list}
-\alias{cuf_delete_list}
 \alias{cuf_get_lists}
 \alias{cuf_get_lists_folderless}
 \alias{cuf_get_list}
@@ -37,8 +36,6 @@ cuf_create_list(folder_id, ...)
 cuf_create_folderless_list(space_id, ...)
 
 cuf_update_list(list_id, ...)
-
-cuf_delete_list(list_id, ...)
 
 cuf_get_lists(folder_id, archived = FALSE)
 
