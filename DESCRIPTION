@@ -20,6 +20,7 @@ License: MIT + file LICENSE
 URL: https://github.com/psolymos/clickrup
 BugReports: https://github.com/psolymos/clickrup/issues
 Imports: 
+    dttr2,
     httr,
     jsonlite,
     rlang,

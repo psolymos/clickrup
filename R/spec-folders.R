@@ -42,8 +42,8 @@ spec_folders <- lcols(
             .default = NULL
         ),
         task_count = lcol_int("task_count"),
-        due_date = lcol_chr("due_date", .default = NA_character_),
-        start_date = lcol_chr("start_date", .default = NA_character_),
+        due_date = lcol_dtt("due_date", .parser = cu_date_from, .default = dttr2::NA_POSIXct_),
+        start_date = lcol_dtt("start_date", .parser = cu_date_from, .default = dttr2::NA_POSIXct_),
         space = lcol_df(
             "space",
             id = lcol_chr("id"),
