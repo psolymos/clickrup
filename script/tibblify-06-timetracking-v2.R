@@ -16,6 +16,16 @@ time <- cu_get_time_entries_within_date_range(
     assignee = paste(user_ids, collapse = ",")
 )
 
+good <-
+    time$data %>%
+    map("task") %>%
+    map_lgl(is.list)
+
+# contains garbage sometimes
+for (i in which(!good)) {
+    time$data[[i]]$task <- list()
+}
+
 df_time_entries <- tibblify::tibblify(time$data)
 df_time_entries
 df_time_entries %>% get_spec()
@@ -24,6 +34,13 @@ write_spec(df_time_entries)
 
 # Reload after updating spec
 pkgload::load_all()
+
+cuf_get_time_entries_within_date_range(
+    df_teams$id[[1]],
+    start_date = start_date,
+    end_date = end_date,
+    assignee = paste(user_ids, collapse = ",")
+)
 
 df_time_entries$id
 cuf_get_singular_time_entry(df_teams$id[[1]], df_time_entries$id[[1]])

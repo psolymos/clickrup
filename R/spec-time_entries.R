@@ -16,7 +16,21 @@ spec_time_entries <- lcols(
     tags = lcol_guess("tags", .default = NULL),
     source = lcol_chr("source"),
     at = lcol_chr("at"),
-    task = lcol_lst("task", .default = NULL),
+    task = lcol_df(
+        "task",
+        id = lcol_chr("id", .default = NA_character_),
+        name = lcol_chr("name", .default = NA_character_),
+        status = lcol_df(
+            "status",
+            status = lcol_chr("status", .default = NA_character_),
+            color = lcol_chr("color", .default = NA_character_),
+            type = lcol_chr("type", .default = NA_character_),
+            orderindex = lcol_int("orderindex", .default = NA_integer_),
+            .default = NULL
+        ),
+        custom_type = lcol_guess("custom_type", .default = NULL),
+        .default = NULL
+    ),
     end = lcol_dtt("end", .parser = cu_date_from, .default = dttr2::NA_POSIXct_),
     duration = lcol_chr("duration", .default = NA_character_)
 )
