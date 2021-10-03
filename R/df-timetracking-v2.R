@@ -89,6 +89,13 @@ cuf_stop_time_entry <- function(team_id) {
 
 #' @export
 #' @rdname api-timetracking-2
+cuf_delete_time_entry <- function(team_id, timer_id) {
+    .cu_delete("team", team_id, "time_entries", timer_id)
+}
+
+
+#' @export
+#' @rdname api-timetracking-2
 cuf_update_time_entry <- function(team_id, timer_id, ...) {
     .cu_put("team", team_id, "time_entries", timer_id,
         body=list(...))

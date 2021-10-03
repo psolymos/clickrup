@@ -20,6 +20,13 @@ cuf_update_folder <- function(folder_id, name) {
 
 #' @export
 #' @rdname api-folders
+cuf_delete_folder <- function(folder_id, name) {
+    .cu_delete("folder", folder_id)
+}
+
+
+#' @export
+#' @rdname api-folders
 cuf_get_folders <- function(space_id, archived=FALSE) {
     out <- cu_get_folders(space_id, archived)
     tibblify(out$folders, spec_folders)

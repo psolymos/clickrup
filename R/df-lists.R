@@ -28,6 +28,13 @@ cuf_update_list <- function(list_id, ...) {
 
 #' @export
 #' @rdname api-lists
+cuf_delete_list <- function(list_id, ...) {
+    .cu_delete("list", list_id)
+}
+
+
+#' @export
+#' @rdname api-lists
 cuf_get_lists <- function(folder_id, archived=FALSE) {
     out <- cu_get_lists(folder_id, archived)
     tibblify(out$lists, spec_lists)

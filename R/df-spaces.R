@@ -16,6 +16,13 @@ cuf_update_space <- function(space_id, ...) {
 
 #' @export
 #' @rdname api-spaces
+cuf_delete_space <- function(space_id) {
+    .cu_delete("space", space_id)
+}
+
+
+#' @export
+#' @rdname api-spaces
 ##GET https://api.clickup.com/api/v2/team/team_id/space?archived=false
 cuf_get_spaces <- function(team_id, archived=FALSE) {
     out <- cu_get_spaces(team_id, archived)
