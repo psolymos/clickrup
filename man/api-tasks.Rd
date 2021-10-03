@@ -10,7 +10,6 @@
 \alias{cu_get_filtered_team_tasks}
 \alias{cuf_create_task}
 \alias{cuf_update_task}
-\alias{cuf_delete_task}
 \alias{cuf_get_tasks}
 \alias{cuf_get_task}
 \alias{cuf_get_filtered_team_tasks}
@@ -31,8 +30,6 @@ cu_get_filtered_team_tasks(team_id, ...)
 cuf_create_task(list_id, ...)
 
 cuf_update_task(task_id, ...)
-
-cuf_delete_task(task_id)
 
 cuf_get_tasks(list_id, archived = FALSE, ...)
 
