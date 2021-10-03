@@ -11,8 +11,8 @@ df_folders
 df_lists <- map_dfr(df_folders$id, cuf_get_lists)
 df_lists
 
-tasks_list <- map(df_lists$id, cu_get_tasks)
-tasks_list_archived <- map(df_lists$id, cu_get_tasks, archived = TRUE)
+tasks_list <- map(df_lists$id, cu_get_tasks, subtasks = TRUE, include_closed = TRUE)
+tasks_list_archived <- map(df_lists$id, cu_get_tasks, archived = TRUE, subtasks = TRUE, include_closed = TRUE)
 
 tasks <-
     c(tasks_list, tasks_list_archived) %>%

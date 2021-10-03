@@ -14,7 +14,7 @@ spec_tasks <- lcols(
     orderindex = lcol_int("orderindex", .parser = as.integer),
     date_created = lcol_dtt("date_created", .parser = cu_date_from),
     date_updated = lcol_dtt("date_updated", .parser = cu_date_from),
-    date_closed = lcol_guess("date_closed", .default = NULL),
+    date_closed = lcol_dtt("date_closed", .parser = cu_date_from, .default = dttr2::NA_POSIXct_),
     archived = lcol_lgl("archived"),
     creator = lcol_df(
         "creator",
@@ -22,7 +22,7 @@ spec_tasks <- lcols(
         username = lcol_chr("username"),
         color = lcol_chr("color"),
         email = lcol_chr("email"),
-        profilePicture = lcol_chr("profilePicture")
+        profilePicture = lcol_chr("profilePicture", .default = NA_character_)
     ),
     assignees = lcol_df_lst(
         "assignees",
@@ -35,7 +35,31 @@ spec_tasks <- lcols(
         .default = NULL
     ),
     watchers = lcol_guess("watchers", .default = NULL),
-    checklists = lcol_guess("checklists", .default = NULL),
+    checklists = lcol_df_lst(
+        "checklists",
+        id = lcol_chr("id"),
+        task_id = lcol_chr("task_id"),
+        name = lcol_chr("name"),
+        date_created = lcol_dtt("date_created", .parser = cu_date_from),
+        orderindex = lcol_int("orderindex"),
+        creator = lcol_int("creator"),
+        resolved = lcol_int("resolved"),
+        unresolved = lcol_int("unresolved"),
+        items = lcol_df_lst(
+            "items",
+            id = lcol_chr("id"),
+            name = lcol_chr("name"),
+            orderindex = lcol_int("orderindex"),
+            assignee = lcol_guess("assignee", .default = NULL),
+            group_assignee = lcol_guess("group_assignee", .default = NULL),
+            resolved = lcol_lgl("resolved"),
+            parent = lcol_guess("parent", .default = NULL),
+            date_created = lcol_dtt("date_created", .parser = cu_date_from),
+            children = lcol_guess("children", .default = NULL),
+            .default = NULL
+        ),
+        .default = NULL
+    ),
     tags = lcol_df_lst(
         "tags",
         name = lcol_chr("name"),
@@ -44,7 +68,7 @@ spec_tasks <- lcols(
         creator = lcol_int("creator"),
         .default = NULL
     ),
-    parent = lcol_guess("parent", .default = NULL),
+    parent = lcol_chr("parent", .default = NA_character_),
     priority = lcol_df(
         "priority",
         id = lcol_chr("id", .default = NA_character_),
