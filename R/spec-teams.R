@@ -15,9 +15,9 @@ spec_teams <- lcols(
             initials = lcol_chr("initials"),
             role = lcol_int("role"),
             custom_role = lcol_guess("custom_role", .default = NULL),
-            last_active = lcol_chr("last_active"),
-            date_joined = lcol_chr("date_joined"),
-            date_invited = lcol_chr("date_invited")
+            last_active = lcol_dtt("last_active", .parser = cu_date_from),
+            date_joined = lcol_dtt("date_joined", .parser = cu_date_from),
+            date_invited = lcol_dtt("date_invited", .parser = cu_date_from)
         ),
         invited_by = lcol_df(
             "invited_by",

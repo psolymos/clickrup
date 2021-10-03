@@ -21,6 +21,8 @@ write_spec <- function(x) {
 
     out <- gsub('lcol_chr("orderindex")', 'lcol_int("orderindex", .parser = as.integer)', out, fixed = TRUE)
 
+    out <- gsub('lcol_chr[(]"(last_active|date_joined|date_invited)"', 'lcol_dtt("\\1", .parser = cu_date_from', out)
+
     # Dogfood first
     eval(parse(text = out))
 
