@@ -15,8 +15,8 @@ write_spec <- function(x) {
 
     out <- paste0("spec_", base_name, " <- ", out)
     out <- gsub("  ", "    ", out, fixed = TRUE)
-    out <- gsub('lcol_int("id")', 'lcol_chr("id")', out, fixed = TRUE)
-    out <- gsub('lcol_int("id", .default = NA_integer_', 'lcol_chr("id", .default = NA_character_', out, fixed = TRUE)
+    out <- gsub('lcol_int("id")', 'lcol_chr("id", .parser = as.character)', out, fixed = TRUE)
+    out <- gsub('lcol_int("id", .default = NA_integer_', 'lcol_chr("id", .parser = as.character, .default = NA_character_', out, fixed = TRUE)
 
     # Dogfood first
     eval(parse(text = out))

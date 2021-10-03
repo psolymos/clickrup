@@ -7,7 +7,7 @@ spec_teams <- lcols(
         "members",
         user = lcol_df(
             "user",
-            id = lcol_chr("id"),
+            id = lcol_chr("id", .parser = as.character),
             username = lcol_chr("username"),
             email = lcol_chr("email"),
             color = lcol_chr("color", .default = NA_character_),
@@ -21,7 +21,7 @@ spec_teams <- lcols(
         ),
         invited_by = lcol_df(
             "invited_by",
-            id = lcol_chr("id", .default = NA_character_),
+            id = lcol_chr("id", .parser = as.character, .default = NA_character_),
             username = lcol_chr("username", .default = NA_character_),
             color = lcol_chr("color", .default = NA_character_),
             email = lcol_chr("email", .default = NA_character_),
