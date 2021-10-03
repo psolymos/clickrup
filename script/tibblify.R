@@ -1,22 +1,6 @@
 pkgload::load_all()
 library(tibblify)
-
-clip_spec <- function(x) {
-    name <- deparse(substitute(x))
-
-    out <-
-        x %>%
-        get_spec() %>%
-        format() %>%
-        fansi::strip_sgr()
-
-    base_name <- gsub("^df_", "", name)
-
-    out <- paste0("spec_", base_name, " <- ", out)
-    out <- gsub("  ", "    ", out)
-
-    writeLines(out, file.path("R", paste0("spec-", base_name, ".R")))
-}
+library(tidyverse)
 
 teams <- cu_get_teams()
 teams
@@ -25,10 +9,10 @@ df_teams <- tibblify(teams$teams)
 df_teams
 df_teams %>% get_spec()
 
-clip_spec(df_teams)
-
 df_teams
 df_teams$members
+
+write_spec(df_teams)
 
 spaces <- cu_get_spaces(df_teams$id[[1]])
 spaces
@@ -40,7 +24,7 @@ df_spaces <-
 df_spaces %>%
     get_spec()
 
-clip_spec(df_spaces)
+write_spec(df_spaces)
 
 df_spaces
 df_spaces$statuses
@@ -62,7 +46,7 @@ df_folders <- tibblify::tibblify(folders$folders)
 df_folders
 df_folders %>% get_spec()
 
-clip_spec(df_folders)
+write_spec(df_folders)
 
 folder <- cu_get_folder(df_folders$id[[1]])
 folder
