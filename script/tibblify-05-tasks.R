@@ -5,17 +5,23 @@ library(tidyverse)
 df_teams <- cuf_get_teams()
 df_spaces <- cuf_get_spaces(df_teams$id[[1]])
 
-df_folders <- cuf_get_folders(df_spaces$id[[1]])
+df_folders <- map_dfr(df_spaces$id, cuf_get_folders)
 df_folders
 
-df_lists <- cuf_get_lists(df_folders$id[[1]])
+df_lists <- map_dfr(df_folders$id, cuf_get_lists)
 df_lists
 
-tasks_list <- cu_get_tasks(df_lists$id[[1]])
-tasks_list_archived <- cu_get_tasks(df_lists$id[[1]], archived = TRUE)
+tasks_list <- map(df_lists$id, cu_get_tasks)
+tasks_list_archived <- map(df_lists$id, cu_get_tasks, archived = TRUE)
+
+tasks <-
+    c(tasks_list, tasks_list_archived) %>%
+    map("tasks") %>%
+    unlist(recursive = FALSE)
+
 tasks_team <- cu_get_filtered_team_tasks(df_teams$id[[1]])
 
-df_tasks <- tibblify::tibblify(c(tasks_team$tasks, tasks_list$tasks, tasks_list_archived$tasks))
+df_tasks <- tibblify::tibblify(c(tasks, tasks_list_archived$tasks))
 df_tasks
 df_tasks %>% get_spec()
 

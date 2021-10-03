@@ -31,7 +31,7 @@ spec_tasks <- lcols(
         color = lcol_chr("color"),
         initials = lcol_chr("initials"),
         email = lcol_chr("email"),
-        profilePicture = lcol_chr("profilePicture"),
+        profilePicture = lcol_chr("profilePicture", .default = NA_character_),
         .default = NULL
     ),
     watchers = lcol_guess("watchers", .default = NULL),
@@ -45,12 +45,18 @@ spec_tasks <- lcols(
         .default = NULL
     ),
     parent = lcol_guess("parent", .default = NULL),
-    priority = lcol_guess("priority", .default = NULL),
+    priority = lcol_df(
+        "priority",
+        id = lcol_chr("id", .default = NA_character_),
+        priority = lcol_chr("priority", .default = NA_character_),
+        color = lcol_chr("color", .default = NA_character_),
+        orderindex = lcol_chr("orderindex", .default = NA_character_),
+        .default = NULL
+    ),
     due_date = lcol_dtt("due_date", .parser = cu_date_from, .default = dttr2::NA_POSIXct_),
-    start_date = lcol_guess("start_date", .default = NULL),
+    start_date = lcol_dtt("start_date", .parser = cu_date_from, .default = dttr2::NA_POSIXct_),
     points = lcol_guess("points", .default = NULL),
     time_estimate = lcol_int("time_estimate", .default = NA_integer_),
-    time_spent = lcol_int("time_spent", .default = NA_integer_),
     custom_fields = lcol_df_lst(
         "custom_fields",
         id = lcol_chr("id"),
@@ -129,5 +135,6 @@ spec_tasks <- lcols(
     space = lcol_df(
         "space",
         id = lcol_chr("id")
-    )
+    ),
+    time_spent = lcol_int("time_spent", .default = NA_integer_)
 )
