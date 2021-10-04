@@ -15,7 +15,7 @@ spec_time_entries <- lcols(
     description = lcol_chr("description"),
     tags = lcol_guess("tags", .default = NULL),
     source = lcol_chr("source"),
-    at = lcol_chr("at"),
+    at = lcol_dtt("at", .parser = cu_date_from),
     task = lcol_df(
         "task",
         id = lcol_chr("id", .default = NA_character_),
