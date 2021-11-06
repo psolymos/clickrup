@@ -1,3 +1,10 @@
+# Version 0.0.4
+
+* Make options available after load (#10 by @krlmlr).
+* Retry when rate limits are hit (#8 by @krlmlr).
+* Better error handling (#7 by @krlmlr).
+* @krlmlr added as package author.
+
 # Version 0.0.3
 
 * Added Time Tracking 2.0 / Get time entry history endpoint.

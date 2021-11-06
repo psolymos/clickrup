@@ -20,7 +20,7 @@ cu_get_folders(space_id, archived = FALSE)
 cu_get_folder(folder_id)
 }
 \arguments{
-\item{space_id}{SPace ID.}
+\item{space_id}{Space ID.}
 
 \item{name}{Name of the folder.}
 
