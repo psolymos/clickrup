@@ -9,18 +9,27 @@
 
 ## convenience function to handle responses
 .cu_process <- function(resp) {
+    cont_text <- httr::content(resp, "text", encoding = "utf-8")
     if (httr::http_error(resp)) {
-        stop(
-            sprintf("ClickUp API request failed [%s]\n%s - %s",
-                httr::status_code(resp), cont$err, cont$ECODE),
-          call. = FALSE)
+        if (httr::http_type(resp) == "application/json") {
+            cont <- jsonlite::fromJSON(cont_text, simplifyVector = FALSE)
+            stop(
+                sprintf("ClickUp API request failed [%s]\n%s - %s",
+                        httr::status_code(resp), cont$err, cont$ECODE),
+                call. = FALSE
+            )
+        } else {
+            stop(
+                sprintf("ClickUp API request failed [%s]\n%s",
+                        httr::status_code(resp), cont_text),
+                call. = FALSE
+            )
+        }
     }
     if (httr::http_type(resp) != "application/json") {
         stop("API did not return json", call. = FALSE)
     }
-    cont <- jsonlite::fromJSON(
-        httr::content(resp, "text"),
-        simplifyVector = FALSE)
+    cont <- jsonlite::fromJSON(cont_text, simplifyVector = FALSE)
     attr(cont, "response") <- resp
     class(cont) <- "cu"
     cont
