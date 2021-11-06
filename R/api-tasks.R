@@ -64,7 +64,7 @@
 #' @param team_id Team (workspace) ID.
 #' @param list_id List ID.
 #' @param task_id Task ID. The ClickUp GUI prepends task IDs with a leading hash, [cu_task_id()] is used internally to normalize task IDs.
-#' @param archived Logical, to returne archived (`TRUE`) lists.
+#' @param archived Logical, to return archived (`TRUE`) lists.
 #' @param ... Named arguments to be passed to API request body,
 #'   of as query parameters,
 #'   see the ClickUp API documentation (<https://clickup.com/api>).

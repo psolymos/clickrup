@@ -29,7 +29,7 @@ see the ClickUp API documentation (\url{https://clickup.com/api}).}
 
 \item{space_id}{Space ID.}
 
-\item{archived}{Logical, to returne archived (\code{TRUE}) spaces.}
+\item{archived}{Logical, to return archived (\code{TRUE}) spaces.}
 }
 \value{
 A cu object.

@@ -26,7 +26,7 @@ cu_get_folder(folder_id)
 
 \item{folder_id}{Folder ID.}
 
-\item{archived}{Logical, to returne archived (\code{TRUE}) folders.}
+\item{archived}{Logical, to return archived (\code{TRUE}) folders.}
 }
 \value{
 A cu object.

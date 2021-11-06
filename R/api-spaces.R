@@ -5,7 +5,7 @@
 #' @param team_id Team ID.
 #' @param name Name of the space.
 #' @param space_id Space ID.
-#' @param archived Logical, to returne archived (`TRUE`) spaces.
+#' @param archived Logical, to return archived (`TRUE`) spaces.
 #' @param ... Named arguments to be passed to API request body,
 #'   see the ClickUp API documentation (<https://clickup.com/api>).
 #'
