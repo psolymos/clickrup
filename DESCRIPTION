@@ -9,7 +9,7 @@ Description: Work with ClickUp.
 License: MIT + file LICENSE
 LazyLoad: yes
 LazyData: true
-Imports: httr, jsonlite
+Imports: httr, jsonlite, rlang
 Suggests: knitr
 URL: https://github.com/psolymos/clickrup
 BugReports: https://github.com/psolymos/clickrup/issues

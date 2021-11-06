@@ -37,7 +37,7 @@
 
 ## convenience function for GET requests
 .cu_get <- function(..., query=list()) {
-    resp <- httr::GET(
+    resp <- .rate_insist(httr::GET(
             httr::modify_url(getOption("cu_options")$baseurl,
                        path = .cu_path(...),
                        query = query),
@@ -45,6 +45,7 @@
             httr::content_type_json(),
             httr::accept_json(),
             httr::user_agent(getOption("cu_options")$useragent))
+    )
     cont <- .cu_process(resp)
     class(cont) <- c(class(cont), "cu_get")
     cont
@@ -52,7 +53,7 @@
 
 ## convenience function for POST requests
 .cu_post <- function(..., body=NULL, query=list()) {
-    resp <- httr::POST(
+    resp <- .rate_insist(httr::POST(
             httr::modify_url(getOption("cu_options")$baseurl,
                        path = .cu_path(...),
                        query = query),
@@ -62,6 +63,7 @@
             body=jsonlite::toJSON(body, auto_unbox=TRUE),
             encode="json",
             httr::user_agent(getOption("cu_options")$useragent))
+    )
     cont <- .cu_process(resp)
     class(cont) <- c(class(cont), "cu_post")
     cont
@@ -69,7 +71,7 @@
 
 ## convenience function for PUT requests
 .cu_put <- function(..., body=NULL, query=list()) {
-    resp <- httr::PUT(
+    resp <- .rate_insist(httr::PUT(
             httr::modify_url(getOption("cu_options")$baseurl,
                        path = .cu_path(...),
                        query = query),
@@ -79,6 +81,7 @@
             body=jsonlite::toJSON(body, auto_unbox=TRUE),
             encode="json",
             httr::user_agent(getOption("cu_options")$useragent))
+    )
     cont <- .cu_process(resp)
     class(cont) <- c(class(cont), "cu_put")
     cont
@@ -86,7 +89,7 @@
 
 ## convenience function for DELETE requests
 .cu_delete <- function(..., body=NULL, query=list()) {
-    resp <- httr::DELETE(
+    resp <- .rate_insist(httr::DELETE(
             httr::modify_url(getOption("cu_options")$baseurl,
                        path = .cu_path(...),
                        query = query),
@@ -96,7 +99,41 @@
             body=jsonlite::toJSON(body, auto_unbox=TRUE),
             encode="json",
             httr::user_agent(getOption("cu_options")$useragent))
+    )
     cont <- .cu_process(resp)
     class(cont) <- c(class(cont), "cu_delete")
     cont
+}
+
+.rate_insist <- function(code) {
+    quo <- rlang::enquo(code)
+
+    resp <- rlang::eval_tidy(quo)
+    if (httr::status_code(resp) != 429) {
+        return(resp)
+    }
+
+    reset <- resp$headers[["x-ratelimit-reset"]]
+    if (!is.null(reset)) {
+        # sleep as indicated, and then retry at most twice
+        sleeps <- c(ceiling(as.numeric(reset) - as.numeric(Sys.time())), 1, 1)
+        message("ClickUp API: Rate limit reached, sleeping for ", sleeps[[1]], " seconds", appendLF = FALSE)
+    } else {
+        sleeps <- c(1, 2, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4)
+        # sum(sleeps) >= 60
+        message("ClickUp API: Rate limit reached, sleeping for up to ", sum(sleeps), "seconds", appendLF = FALSE)
+    }
+
+    for (sleep in sleeps) {
+        Sys.sleep(sleep)
+        message(".", appendLF = FALSE)
+        resp <- rlang::eval_tidy(quo)
+        if (httr::status_code(resp) != 429) {
+            message()
+            return(resp)
+        }
+    }
+
+    message()
+    resp
 }
