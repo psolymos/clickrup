@@ -18,7 +18,7 @@ spec_lists <- lcols(
         profilePicture = lcol_chr("profilePicture", .default = NA_character_),
         .default = NULL
     ),
-    task_count = lcol_int("task_count"),
+    task_count = lcol_int("task_count", .parser = as.integer),
     due_date = lcol_dtt("due_date", .parser = cu_date_from, .default = dttr2::NA_POSIXct_),
     start_date = lcol_dtt("start_date", .parser = cu_date_from, .default = dttr2::NA_POSIXct_),
     folder = lcol_df(

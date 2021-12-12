@@ -9,7 +9,7 @@ spec_folders <- lcols(
         id = lcol_chr("id"),
         name = lcol_chr("name")
     ),
-    task_count = lcol_chr("task_count"),
+    task_count = lcol_chr("task_count", .parser = as.integer),
     archived = lcol_lgl("archived"),
     statuses = lcol_df_lst(
         "statuses",
