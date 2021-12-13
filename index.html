@@ -114,9 +114,9 @@
 <div class="section level2">
 <h2 id="api-endpoints">API endpoints<a class="anchor" aria-label="anchor" href="#api-endpoints"></a>
 </h2>
-<p>The first step you want to do is to get the IDs for your workspaces (teams is the legacy term for this in the API):</p>
+<p>The first step you want to do is to get the IDs for your workspaces (teams is the legacy term for this in the API).</p>
 <p>If your setup was successful, <code><a href="reference/api-teams.html">cu_get_teams()</a></code> should return a list with the workspace IDs and names.</p>
-<p>The easiest way to get going with the various endpoints is to browse the <a href="https://clickup.com/api" class="external-link">API v2 documentation</a>. Once you found what you are after, just look at the API heading. There is <strong>Get Teams</strong>, the R function is prepended with <code>cu_</code> (to facilitate RStudio code completion), then comes the heading in lower case and spaces replaced by underscores. For example <strong>Get Filtered Team Tasks</strong> will be <code><a href="reference/api-tasks.html">cu_get_filtered_team_tasks()</a></code>. Articles (a, an, the) are dropped (e.g. <strong>Create a Time Entry</strong>) will be <code><a href="reference/api-timetracking-2.html">cu_create_time_entry()</a></code>.</p>
+<p>The easiest way to get going with the various endpoints is to browse the <a href="https://clickup.com/api" class="external-link">API v2 documentation</a>. Once you found what you are after, just look at the API heading. For example, for <strong>Get Teams</strong>, the R function is prepended with <code>cu_</code> (to facilitate RStudio code completion), then comes the heading in lower case and spaces replaced by underscores. Similarly, <strong>Get Filtered Team Tasks</strong> will be <code><a href="reference/api-tasks.html">cu_get_filtered_team_tasks()</a></code>. Articles (a, an, the) are dropped (e.g. <strong>Create a Time Entry</strong>) will be <code><a href="reference/api-timetracking-2.html">cu_create_time_entry()</a></code>.</p>
 <p>Function arguments are the <em>Parameters</em> listed on the API page, <code>...</code> passes optional parameters, query parameters, or elements for the body.</p>
 </div>
 <div class="section level2">
@@ -125,10 +125,10 @@
 <p>Load the package and set the access token if it is not already set. <code><a href="reference/cu-pat.html">cu_get_pat()</a></code> returns the token invisibly, so it doesn’t end up in logs.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/psolymos/clickrup" class="external-link">clickrup</a></span><span class="op">)</span>
-<span class="co">#&gt; clickrup 0.0.1    2020-06-10</span>
+<span class="co">#&gt; clickrup 0.0.5    2021-12-12</span>
 <span class="fu"><a href="reference/cu-pat.html">cu_get_pat</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># returns PAT invisibly</span></code></pre></div>
 <div class="section level3">
-<h3 id="clikup-hierarchy">ClikUp hierarchy<a class="anchor" aria-label="anchor" href="#clikup-hierarchy"></a>
+<h3 id="clickup-hierarchy">ClickUp hierarchy<a class="anchor" aria-label="anchor" href="#clickup-hierarchy"></a>
 </h3>
 <p>The <a href="https://docs.clickup.com/en/articles/1045623-how-does-the-hierarchy-structure-work-in-clickup" class="external-link">ClickUp hierarchy</a> includes the following levels:</p>
 <ul>
@@ -171,7 +171,7 @@
 <span class="co">#&gt;   .. ..$ private           : logi FALSE</span>
 <span class="co">#&gt;   .. ..$ statuses          :List of 4</span>
 <span class="co">#&gt;   .. ..$ multiple_assignees: logi TRUE</span>
-<span class="co">#&gt;   .. ..$ features          :List of 12</span>
+<span class="co">#&gt;   .. ..$ features          :List of 14</span>
 <span class="co">#&gt;   .. ..$ archived          : logi FALSE</span>
 <span class="co">#&gt;   ..$ :List of 7</span>
 <span class="co">#&gt;   .. ..$ id                : chr "6331576"</span>
@@ -179,7 +179,7 @@
 <span class="co">#&gt;   .. ..$ private           : logi FALSE</span>
 <span class="co">#&gt;   .. ..$ statuses          :List of 2</span>
 <span class="co">#&gt;   .. ..$ multiple_assignees: logi FALSE</span>
-<span class="co">#&gt;   .. ..$ features          :List of 9</span>
+<span class="co">#&gt;   .. ..$ features          :List of 11</span>
 <span class="co">#&gt;   .. ..$ archived          : logi FALSE</span></code></pre></div>
 <p>Folders within a specific Space defined by its <code>space_id</code></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
@@ -214,7 +214,7 @@
 <span class="co">#&gt;   .. ..$ status           : NULL</span>
 <span class="co">#&gt;   .. ..$ priority         : NULL</span>
 <span class="co">#&gt;   .. ..$ assignee         : NULL</span>
-<span class="co">#&gt;   .. ..$ task_count       : chr "5"</span>
+<span class="co">#&gt;   .. ..$ task_count       : int 5</span>
 <span class="co">#&gt;   .. ..$ due_date         : NULL</span>
 <span class="co">#&gt;   .. ..$ start_date       : NULL</span>
 <span class="co">#&gt;   .. ..$ folder           :List of 4</span>
@@ -229,7 +229,7 @@
 <span class="co">#&gt;   .. ..$ status           : NULL</span>
 <span class="co">#&gt;   .. ..$ priority         : NULL</span>
 <span class="co">#&gt;   .. ..$ assignee         : NULL</span>
-<span class="co">#&gt;   .. ..$ task_count       : chr "5"</span>
+<span class="co">#&gt;   .. ..$ task_count       : int 5</span>
 <span class="co">#&gt;   .. ..$ due_date         : NULL</span>
 <span class="co">#&gt;   .. ..$ start_date       : NULL</span>
 <span class="co">#&gt;   .. ..$ folder           :List of 4</span>
@@ -309,6 +309,7 @@
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">Tasks</span><span class="op">$</span><span class="va">tasks</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span><span class="op">)</span>
 <span class="co">#&gt; List of 10</span>
 <span class="co">#&gt;  $ id          : chr "8ckc8h"</span>
+<span class="co">#&gt;  $ custom_id   : NULL</span>
 <span class="co">#&gt;  $ name        : chr "Slow speed report"</span>
 <span class="co">#&gt;  $ text_content: NULL</span>
 <span class="co">#&gt;  $ description : NULL</span>
@@ -317,11 +318,10 @@
 <span class="co">#&gt;   ..$ color     : chr "#ff1010"</span>
 <span class="co">#&gt;   ..$ type      : chr "custom"</span>
 <span class="co">#&gt;   ..$ orderindex: int 2</span>
-<span class="co">#&gt;  $ orderindex  : chr "2.69039285693592680000000000000000"</span>
+<span class="co">#&gt;  $ orderindex  : chr "6.00000000000000000000000000000000"</span>
 <span class="co">#&gt;  $ date_created: chr "1592452913384"</span>
 <span class="co">#&gt;  $ date_updated: chr "1592452913384"</span>
-<span class="co">#&gt;  $ date_closed : NULL</span>
-<span class="co">#&gt;  $ archived    : logi FALSE</span></code></pre></div>
+<span class="co">#&gt;  $ date_closed : NULL</span></code></pre></div>
 <p>Dates are given as Unix time (in milliseconds), <code>cu_date_from</code> and <code>cu_date_to</code> is there to convert back and forth</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">Tasks</span><span class="op">$</span><span class="va">tasks</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">date_created</span>
@@ -366,18 +366,18 @@
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/cu-response.html">cu_response</a></span><span class="op">(</span><span class="va">Teams</span><span class="op">)</span>
 <span class="co">#&gt; Response [https://api.clickup.com/api/v2/team]</span>
-<span class="co">#&gt;   Date: 2020-07-25 04:19</span>
+<span class="co">#&gt;   Date: 2021-12-13 05:23</span>
 <span class="co">#&gt;   Status: 200</span>
 <span class="co">#&gt;   Content-Type: application/json; charset=utf-8</span>
-<span class="co">#&gt;   Size: 776 B</span></code></pre></div>
+<span class="co">#&gt;   Size: 814 B</span></code></pre></div>
 <p>Check rate limits and remaining requests (rate is limited by the minute)</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/cu-ratelimit.html">cu_ratelimit</a></span><span class="op">(</span><span class="va">subTasks</span><span class="op">)</span>
 <span class="co">#&gt; $limit</span>
-<span class="co">#&gt; [1] 900</span>
+<span class="co">#&gt; [1] 100</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $remaining</span>
-<span class="co">#&gt; [1] 892</span></code></pre></div>
+<span class="co">#&gt; [1] 92</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="formatting-the-request-body">Formatting the request body<a class="anchor" aria-label="anchor" href="#formatting-the-request-body"></a>
