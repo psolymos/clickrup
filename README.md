@@ -1,5 +1,7 @@
 # clickrup <img src="https://raw.githubusercontent.com/psolymos/clickrup/master/inst/images/clickrup.jpg" align="right" style="padding-left:10px;background-color:white;" width="200px" />
 
+[![clickrup status badge](https://psolymos.r-universe.dev/badges/clickrup)](https://psolymos.r-universe.dev)
+
 > Interacting with the ClickUp v2 API from R
 
 [ClickUp](https://clickup.com/?noRedirect=true) is a cloud-based
@@ -16,7 +18,14 @@ currently included in the package.
 Install the {clickrup} package:
 
 ``` r
+## using remotes
 remotes::install_github("psolymos/clickrup")
+
+## with r-universe
+options(repos = c(
+    psolymos = "https://psolymos.r-universe.dev",
+    CRAN = "https://cloud.r-project.org"))
+install.packages('clickrup')
 ```
 
 Follow this
