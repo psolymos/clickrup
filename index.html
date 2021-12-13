@@ -75,6 +75,7 @@
 <div class="section level1">
 <div class="page-header"><h1 id="clickrup-">clickrup <img src="https://raw.githubusercontent.com/psolymos/clickrup/master/inst/images/clickrup.jpg" align="right" style="padding-left:10px;background-color:white;" width="200px"><a class="anchor" aria-label="anchor" href="#clickrup-"></a>
 </h1></div>
+
 <blockquote>
 <p>Interacting with the ClickUp v2 API from R</p>
 </blockquote>
@@ -85,7 +86,14 @@
 </h2>
 <p>Install the {clickrup} package:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"psolymos/clickrup"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="co">## using remotes</span>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"psolymos/clickrup"</span><span class="op">)</span>
+
+<span class="co">## with r-universe</span>
+<span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>
+    psolymos <span class="op">=</span> <span class="st">"https://psolymos.r-universe.dev"</span>,
+    CRAN <span class="op">=</span> <span class="st">"https://cloud.r-project.org"</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'clickrup'</span><span class="op">)</span></code></pre></div>
 <p>Follow this <a href="https://docs.clickup.com/en/articles/1367130-getting-started-with-the-clickup-api" class="external-link">tutorial</a>:</p>
 <ul>
 <li>sign up for ClickUp (you can use this referral <a href="https://clickup.com?fp_ref=peter51" class="external-link">link</a> to do so, it’s free),</li>
@@ -439,7 +447,12 @@
 </ul>
 </div>
 
-
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://psolymos.r-universe.dev" class="external-link"><img src="https://psolymos.r-universe.dev/badges/clickrup" alt="clickrup status badge"></a></li>
+</ul>
+</div>
 
   </div>
 </div>
