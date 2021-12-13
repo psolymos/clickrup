@@ -1,3 +1,7 @@
+# Version 0.0.5
+
+* Internal function `.cu_get()` supports paging (#12 by @krlmlr).
+
 # Version 0.0.4
 
 * Make options available after load (#10 by @krlmlr).
