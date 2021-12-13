@@ -61,15 +61,15 @@ the `CU_PAT` environment variable for other processes called from within R or fu
 
 ## API endpoints
 
-The first step you want to do is to get the IDs for your workspaces (teams is the legacy term for this in the API):
+The first step you want to do is to get the IDs for your workspaces (teams is the legacy term for this in the API).
 
 If your setup was successful, `cu_get_teams()` should return a list with the workspace IDs and names.
 
 The easiest way to get going with the various endpoints is to browse the [API v2 documentation](https://clickup.com/api).
-Once you found what you are after, just look at the API heading. There is **Get Teams**, the R function
+Once you found what you are after, just look at the API heading. For example, for **Get Teams**, the R function
 is prepended with `cu_` (to facilitate RStudio code completion), 
 then comes the heading in lower case and spaces replaced by underscores.
-For example **Get Filtered Team Tasks** will be `cu_get_filtered_team_tasks()`.
+Similarly, **Get Filtered Team Tasks** will be `cu_get_filtered_team_tasks()`.
 Articles (a, an, the) are dropped (e.g. **Create a Time Entry**)
 will be `cu_create_time_entry()`.
 
@@ -87,7 +87,7 @@ library(clickrup)
 cu_get_pat() # returns PAT invisibly
 ```
 
-### ClikUp hierarchy
+### ClickUp hierarchy
 
 The [ClickUp hierarchy](https://docs.clickup.com/en/articles/1045623-how-does-the-hierarchy-structure-work-in-clickup) includes the following levels:
 

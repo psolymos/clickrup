@@ -1,6 +1,7 @@
 # clickrup <img src="https://raw.githubusercontent.com/psolymos/clickrup/master/inst/images/clickrup.jpg" align="right" style="padding-left:10px;background-color:white;" width="200px" />
 
-[![clickrup status badge](https://psolymos.r-universe.dev/badges/clickrup)](https://psolymos.r-universe.dev)
+[![clickrup status
+badge](https://psolymos.r-universe.dev/badges/clickrup)](https://psolymos.r-universe.dev)
 
 > Interacting with the ClickUp v2 API from R
 
@@ -31,19 +32,19 @@ install.packages('clickrup')
 Follow this
 [tutorial](https://docs.clickup.com/en/articles/1367130-getting-started-with-the-clickup-api):
 
-  - sign up for ClickUp (you can use this referral
+-   sign up for ClickUp (you can use this referral
     [link](https://clickup.com?fp_ref=peter51) to do so, it’s free),
-  - navigate to your personal *Settings*,
-  - click *Apps* in the left sidebar,
-  - click *Generate* to create your API token,
-  - click *Copy* to copy the token to your clipboard.
+-   navigate to your personal *Settings*,
+-   click *Apps* in the left sidebar,
+-   click *Generate* to create your API token,
+-   click *Copy* to copy the token to your clipboard.
 
 Now add your ClickUp token as an environment variable:
 
-  - open the file `.Renviron`: `file.edit("~/.Renviron")`,
-  - add a line with `CU_PAT="your_token"` to the `.Renviron` file and
+-   open the file `.Renviron`: `file.edit("~/.Renviron")`,
+-   add a line with `CU_PAT="your_token"` to the `.Renviron` file and
     save it,
-  - check with `Sys.getenv("CU_PAT")`, it should return the token.
+-   check with `Sys.getenv("CU_PAT")`, it should return the token.
 
 The ClickUp token will look something like
 `pk_4753994_EXP7MPOJ7XQM5UJDV2M45MPF0YHH5YHO`.
@@ -55,19 +56,19 @@ calls to `Sys.getenv` from the same R process.
 ## API endpoints
 
 The first step you want to do is to get the IDs for your workspaces
-(teams is the legacy term for this in the API):
+(teams is the legacy term for this in the API).
 
 If your setup was successful, `cu_get_teams()` should return a list with
 the workspace IDs and names.
 
 The easiest way to get going with the various endpoints is to browse the
 [API v2 documentation](https://clickup.com/api). Once you found what you
-are after, just look at the API heading. There is **Get Teams**, the R
-function is prepended with `cu_` (to facilitate RStudio code
+are after, just look at the API heading. For example, for **Get Teams**,
+the R function is prepended with `cu_` (to facilitate RStudio code
 completion), then comes the heading in lower case and spaces replaced by
-underscores. For example **Get Filtered Team Tasks** will be
-`cu_get_filtered_team_tasks()`. Articles (a, an, the) are dropped (e.g.
-**Create a Time Entry**) will be `cu_create_time_entry()`.
+underscores. Similarly, **Get Filtered Team Tasks** will be
+`cu_get_filtered_team_tasks()`. Articles (a, an, the) are dropped
+(e.g. **Create a Time Entry**) will be `cu_create_time_entry()`.
 
 Function arguments are the *Parameters* listed on the API page, `...`
 passes optional parameters, query parameters, or elements for the body.
@@ -80,23 +81,23 @@ logs.
 
 ``` r
 library(clickrup)
-#> clickrup 0.0.1    2020-06-10
+#> clickrup 0.0.5    2021-12-12
 cu_get_pat() # returns PAT invisibly
 ```
 
-### ClikUp hierarchy
+### ClickUp hierarchy
 
 The [ClickUp
 hierarchy](https://docs.clickup.com/en/articles/1045623-how-does-the-hierarchy-structure-work-in-clickup)
 includes the following levels:
 
-  - Workspaces (teams is the legacy term for this in the API)
-  - Spaces
-  - Folders
-  - Lists
-  - Tasks
-  - Subtasks
-  - Checklists
+-   Workspaces (teams is the legacy term for this in the API)
+-   Spaces
+-   Folders
+-   Lists
+-   Tasks
+-   Subtasks
+-   Checklists
 
 We can list Workspaces that we have access to using the `cu_get_teams()`
 function. It takes no arguments, it only passes the access token behind
@@ -136,7 +137,7 @@ str(Spaces, 3)
 #>   .. ..$ private           : logi FALSE
 #>   .. ..$ statuses          :List of 4
 #>   .. ..$ multiple_assignees: logi TRUE
-#>   .. ..$ features          :List of 12
+#>   .. ..$ features          :List of 14
 #>   .. ..$ archived          : logi FALSE
 #>   ..$ :List of 7
 #>   .. ..$ id                : chr "6331576"
@@ -144,7 +145,7 @@ str(Spaces, 3)
 #>   .. ..$ private           : logi FALSE
 #>   .. ..$ statuses          :List of 2
 #>   .. ..$ multiple_assignees: logi FALSE
-#>   .. ..$ features          :List of 9
+#>   .. ..$ features          :List of 11
 #>   .. ..$ archived          : logi FALSE
 ```
 
@@ -186,7 +187,7 @@ str(Lists, 3)
 #>   .. ..$ status           : NULL
 #>   .. ..$ priority         : NULL
 #>   .. ..$ assignee         : NULL
-#>   .. ..$ task_count       : chr "5"
+#>   .. ..$ task_count       : int 5
 #>   .. ..$ due_date         : NULL
 #>   .. ..$ start_date       : NULL
 #>   .. ..$ folder           :List of 4
@@ -201,7 +202,7 @@ str(Lists, 3)
 #>   .. ..$ status           : NULL
 #>   .. ..$ priority         : NULL
 #>   .. ..$ assignee         : NULL
-#>   .. ..$ task_count       : chr "5"
+#>   .. ..$ task_count       : int 5
 #>   .. ..$ due_date         : NULL
 #>   .. ..$ start_date       : NULL
 #>   .. ..$ folder           :List of 4
@@ -300,6 +301,7 @@ Let’s inspect the first few elements of a Task object
 str(Tasks$tasks[[1]][1:10])
 #> List of 10
 #>  $ id          : chr "8ckc8h"
+#>  $ custom_id   : NULL
 #>  $ name        : chr "Slow speed report"
 #>  $ text_content: NULL
 #>  $ description : NULL
@@ -308,11 +310,10 @@ str(Tasks$tasks[[1]][1:10])
 #>   ..$ color     : chr "#ff1010"
 #>   ..$ type      : chr "custom"
 #>   ..$ orderindex: int 2
-#>  $ orderindex  : chr "2.69039285693592680000000000000000"
+#>  $ orderindex  : chr "6.00000000000000000000000000000000"
 #>  $ date_created: chr "1592452913384"
 #>  $ date_updated: chr "1592452913384"
 #>  $ date_closed : NULL
-#>  $ archived    : logi FALSE
 ```
 
 Dates are given as Unix time (in milliseconds), `cu_date_from` and
@@ -377,10 +378,10 @@ str(cu_options())
 ``` r
 cu_response(Teams)
 #> Response [https://api.clickup.com/api/v2/team]
-#>   Date: 2020-07-25 04:19
+#>   Date: 2021-12-13 05:23
 #>   Status: 200
 #>   Content-Type: application/json; charset=utf-8
-#>   Size: 776 B
+#>   Size: 814 B
 ```
 
 Check rate limits and remaining requests (rate is limited by the minute)
@@ -388,10 +389,10 @@ Check rate limits and remaining requests (rate is limited by the minute)
 ``` r
 cu_ratelimit(subTasks)
 #> $limit
-#> [1] 900
+#> [1] 100
 #> 
 #> $remaining
-#> [1] 892
+#> [1] 92
 ```
 
 ### Formatting the request body
@@ -402,8 +403,8 @@ an array as part of the body. For example when passing data to
 `cu_create_task`, `assignees` is an array of the assignees’ userids to
 be added. Adding a single userid without `I()` will drop the brackets,
 but `list(name = "New Task Name", assignees = I(183))` will result in
-the expected JSON object: `{ "name": "New Task Name", "assignees": [183]
-}`.
+the expected JSON object:
+`{ "name": "New Task Name", "assignees": [183] }`.
 
 ### Attachments
 
