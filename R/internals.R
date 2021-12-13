@@ -35,8 +35,25 @@
     cont
 }
 
-## convenience function for GET requests
+## convenience function for GET requests with support for paging
 .cu_get <- function(..., query=list()) {
+    chunk <- .cu_get_page(..., query = query)
+    out <- chunk
+    page <- 0
+    while (length(chunk) == 1 && length(chunk[[1]]) == 100) {
+        page <- page + 1
+        query$page <- page
+        chunk <- .cu_get_page(..., query = query)
+        stopifnot(length(chunk) == 1)
+        out[[1]] <- c(out[[1]], chunk[[1]])
+    }
+
+    class(out) <- c(class(out), "cu_get")
+    out
+}
+
+## convenience function for GET requests
+.cu_get_page <- function(..., query=list()) {
     resp <- .rate_insist(httr::GET(
             httr::modify_url(getOption("cu_options")$baseurl,
                        path = .cu_path(...),
@@ -46,9 +63,7 @@
             httr::accept_json(),
             httr::user_agent(getOption("cu_options")$useragent))
     )
-    cont <- .cu_process(resp)
-    class(cont) <- c(class(cont), "cu_get")
-    cont
+    .cu_process(resp)
 }
 
 ## convenience function for POST requests
