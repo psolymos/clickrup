@@ -8,7 +8,7 @@ spec_time_entries <- lcols(
         email = lcol_chr("email"),
         color = lcol_chr("color"),
         initials = lcol_chr("initials"),
-        profilePicture = lcol_chr("profilePicture")
+        profilePicture = lcol_chr("profilePicture", .default = NA_character_)
     ),
     billable = lcol_lgl("billable"),
     start = lcol_dtt("start", .parser = cu_date_from),

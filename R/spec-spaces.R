@@ -111,7 +111,7 @@ spec_spaces <- lcols(
             id = lcol_chr("id", .parser = as.character),
             username = lcol_chr("username"),
             color = lcol_chr("color"),
-            profilePicture = lcol_chr("profilePicture"),
+            profilePicture = lcol_chr("profilePicture", .default = NA_character_),
             initials = lcol_chr("initials")
         ),
         .default = NULL
