@@ -1,7 +1,7 @@
 Type: Package
 Package: clickrup
 Title: Interacting with the ClickUp v2 API from R
-Version: 0.0.5
+Version: 0.0.5.9000
 Date: 2021-12-12
 Authors@R: 
     c(person(given = "Peter",
