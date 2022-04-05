@@ -1,7 +1,7 @@
 spec_folders <- lcols(
     id = lcol_chr("id"),
     name = lcol_chr("name"),
-    orderindex = lcol_int("orderindex"),
+    orderindex = lcol_int("orderindex", .parser = as.integer),
     override_statuses = lcol_lgl("override_statuses"),
     hidden = lcol_lgl("hidden"),
     space = lcol_df(
@@ -16,7 +16,7 @@ spec_folders <- lcols(
         id = lcol_chr("id"),
         status = lcol_chr("status"),
         type = lcol_chr("type"),
-        orderindex = lcol_int("orderindex"),
+        orderindex = lcol_int("orderindex", .parser = as.integer),
         color = lcol_chr("color"),
         .default = NULL
     ),
@@ -24,7 +24,7 @@ spec_folders <- lcols(
         "lists",
         id = lcol_chr("id"),
         name = lcol_chr("name"),
-        orderindex = lcol_int("orderindex"),
+        orderindex = lcol_int("orderindex", .parser = as.integer),
         content = lcol_chr("content", .default = NA_character_),
         status = lcol_df(
             "status",
@@ -56,7 +56,7 @@ spec_folders <- lcols(
             "statuses",
             id = lcol_chr("id"),
             status = lcol_chr("status"),
-            orderindex = lcol_int("orderindex"),
+            orderindex = lcol_int("orderindex", .parser = as.integer),
             color = lcol_chr("color"),
             type = lcol_chr("type")
         ),

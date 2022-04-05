@@ -1,7 +1,7 @@
 spec_lists <- lcols(
     id = lcol_chr("id"),
     name = lcol_chr("name"),
-    orderindex = lcol_int("orderindex"),
+    orderindex = lcol_int("orderindex", .parser = as.integer),
     content = lcol_chr("content", .default = NA_character_),
     status = lcol_df(
         "status",

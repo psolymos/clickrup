@@ -7,7 +7,7 @@ spec_spaces <- lcols(
         id = lcol_chr("id"),
         status = lcol_chr("status"),
         type = lcol_chr("type"),
-        orderindex = lcol_int("orderindex"),
+        orderindex = lcol_int("orderindex", .parser = as.integer),
         color = lcol_chr("color")
     ),
     multiple_assignees = lcol_lgl("multiple_assignees"),

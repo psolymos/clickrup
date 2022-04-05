@@ -9,7 +9,7 @@ spec_tasks <- lcols(
         status = lcol_chr("status"),
         color = lcol_chr("color"),
         type = lcol_chr("type"),
-        orderindex = lcol_int("orderindex")
+        orderindex = lcol_int("orderindex", .parser = as.integer)
     ),
     orderindex = lcol_int("orderindex", .parser = as.integer),
     date_created = lcol_dtt("date_created", .parser = cu_date_from),
@@ -41,7 +41,7 @@ spec_tasks <- lcols(
         task_id = lcol_chr("task_id"),
         name = lcol_chr("name"),
         date_created = lcol_dtt("date_created", .parser = cu_date_from),
-        orderindex = lcol_int("orderindex"),
+        orderindex = lcol_int("orderindex", .parser = as.integer),
         creator = lcol_int("creator"),
         resolved = lcol_int("resolved"),
         unresolved = lcol_int("unresolved"),
@@ -49,7 +49,7 @@ spec_tasks <- lcols(
             "items",
             id = lcol_chr("id"),
             name = lcol_chr("name"),
-            orderindex = lcol_int("orderindex"),
+            orderindex = lcol_int("orderindex", .parser = as.integer),
             assignee = lcol_guess("assignee", .default = NULL),
             group_assignee = lcol_guess("group_assignee", .default = NULL),
             resolved = lcol_lgl("resolved"),
