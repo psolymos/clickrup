@@ -73,14 +73,18 @@
       </header><div class="row">
   <div class="contents col-md-9">
 <div class="section level1">
-<div class="page-header"><h1 id="clickrup-">clickrup <img src="https://raw.githubusercontent.com/psolymos/clickrup/master/inst/images/clickrup.jpg" align="right" style="padding-left:10px;background-color:white;" width="200px"><a class="anchor" aria-label="anchor" href="#clickrup-"></a>
+<div class="page-header"><h1 id="clickrup-">clickrup
+<img src="https://raw.githubusercontent.com/psolymos/clickrup/master/inst/images/clickrup.jpg" align="right" style="padding-left:10px;background-color:white;" width="200px"><a class="anchor" aria-label="anchor" href="#clickrup-"></a>
 </h1></div>
 
 <blockquote>
 <p>Interacting with the ClickUp v2 API from R</p>
 </blockquote>
-<p><a href="https://clickup.com/?noRedirect=true" class="external-link">ClickUp</a> is a cloud-based collaboration and project management tool. Features include tasks, docs, chat, goals, and <a href="https://clickup.com/features" class="external-link">more</a>.</p>
-<p>The {clickrup} R package wraps the ClickUp <a href="https://clickup.com/api" class="external-link">API v2</a>. See the <a href="https://github.com/psolymos/clickrup/issues/1" class="external-link">roadmap</a> for what is currently included in the package.</p>
+<p><a href="https://clickup.com/?noRedirect=true" class="external-link">ClickUp</a> is a
+cloud-based collaboration and project management tool. Features include
+tasks, docs, chat, goals, and <a href="https://clickup.com/features" class="external-link">more</a>.</p>
+<p>The {clickrup} R package wraps the ClickUp <a href="https://clickup.com/api" class="external-link">API v2</a>. See the <a href="https://github.com/psolymos/clickrup/issues/1" class="external-link">roadmap</a> for
+what is currently included in the package.</p>
 <div class="section level2">
 <h2 id="setup">Setup<a class="anchor" aria-label="anchor" href="#setup"></a>
 </h2>
@@ -96,7 +100,8 @@
 <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'clickrup'</span><span class="op">)</span></code></pre></div>
 <p>Follow this <a href="https://docs.clickup.com/en/articles/1367130-getting-started-with-the-clickup-api" class="external-link">tutorial</a>:</p>
 <ul>
-<li>sign up for ClickUp (you can use this referral <a href="https://clickup.com?fp_ref=peter51" class="external-link">link</a> to do so, it’s free),</li>
+<li>sign up for ClickUp (you can use this referral <a href="https://clickup.com?fp_ref=peter51" class="external-link">link</a> to do so, it’s
+free),</li>
 <li>navigate to your personal <em>Settings</em>,</li>
 <li>click <em>Apps</em> in the left sidebar,</li>
 <li>click <em>Generate</em> to create your API token,</li>
@@ -104,25 +109,47 @@
 </ul>
 <p>Now add your ClickUp token as an environment variable:</p>
 <ul>
-<li>open the file <code>.Renviron</code>: <code>file.edit("~/.Renviron")</code>,</li>
-<li>add a line with <code>CU_PAT="your_token"</code> to the <code>.Renviron</code> file and save it,</li>
-<li>check with <code>Sys.getenv("CU_PAT")</code>, it should return the token.</li>
+<li>open the file <code>.Renviron</code>:
+<code>file.edit("~/.Renviron")</code>,</li>
+<li>add a line with <code>CU_PAT="your_token"</code> to the
+<code>.Renviron</code> file and save it,</li>
+<li>check with <code>Sys.getenv("CU_PAT")</code>, it should return the
+token.</li>
 </ul>
-<p>The ClickUp token will look something like <code>pk_4753994_EXP7MPOJ7XQM5UJDV2M45MPF0YHH5YHO</code>.</p>
-<p>The <code>cu_set_pat</code> function uses <code>Sys.setenv</code> to set the <code>CU_PAT</code> environment variable for other processes called from within R or future calls to <code>Sys.getenv</code> from the same R process.</p>
+<p>The ClickUp token will look something like
+<code>pk_4753994_EXP7MPOJ7XQM5UJDV2M45MPF0YHH5YHO</code>.</p>
+<p>The <code>cu_set_pat</code> function uses <code>Sys.setenv</code> to
+set the <code>CU_PAT</code> environment variable for other processes
+called from within R or future calls to <code>Sys.getenv</code> from the
+same R process.</p>
 </div>
 <div class="section level2">
 <h2 id="api-endpoints">API endpoints<a class="anchor" aria-label="anchor" href="#api-endpoints"></a>
 </h2>
-<p>The first step you want to do is to get the IDs for your workspaces (teams is the legacy term for this in the API).</p>
-<p>If your setup was successful, <code><a href="reference/api-teams.html">cu_get_teams()</a></code> should return a list with the workspace IDs and names.</p>
-<p>The easiest way to get going with the various endpoints is to browse the <a href="https://clickup.com/api" class="external-link">API v2 documentation</a>. Once you found what you are after, just look at the API heading. For example, for <strong>Get Teams</strong>, the R function is prepended with <code>cu_</code> (to facilitate RStudio code completion), then comes the heading in lower case and spaces replaced by underscores. Similarly, <strong>Get Filtered Team Tasks</strong> will be <code><a href="reference/api-tasks.html">cu_get_filtered_team_tasks()</a></code>. Articles (a, an, the) are dropped (e.g. <strong>Create a Time Entry</strong>) will be <code><a href="reference/api-timetracking-2.html">cu_create_time_entry()</a></code>.</p>
-<p>Function arguments are the <em>Parameters</em> listed on the API page, <code>...</code> passes optional parameters, query parameters, or elements for the body.</p>
+<p>The first step you want to do is to get the IDs for your workspaces
+(teams is the legacy term for this in the API).</p>
+<p>If your setup was successful, <code><a href="reference/api-teams.html">cu_get_teams()</a></code> should
+return a list with the workspace IDs and names.</p>
+<p>The easiest way to get going with the various endpoints is to browse
+the <a href="https://clickup.com/api" class="external-link">API v2 documentation</a>. Once you
+found what you are after, just look at the API heading. For example, for
+<strong>Get Teams</strong>, the R function is prepended with
+<code>cu_</code> (to facilitate RStudio code completion), then comes the
+heading in lower case and spaces replaced by underscores. Similarly,
+<strong>Get Filtered Team Tasks</strong> will be
+<code><a href="reference/api-tasks.html">cu_get_filtered_team_tasks()</a></code>. Articles (a, an, the) are
+dropped (e.g. <strong>Create a Time Entry</strong>) will be
+<code><a href="reference/api-timetracking-2.html">cu_create_time_entry()</a></code>.</p>
+<p>Function arguments are the <em>Parameters</em> listed on the API
+page, <code>...</code> passes optional parameters, query parameters, or
+elements for the body.</p>
 </div>
 <div class="section level2">
 <h2 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
 </h2>
-<p>Load the package and set the access token if it is not already set. <code><a href="reference/cu-pat.html">cu_get_pat()</a></code> returns the token invisibly, so it doesn’t end up in logs.</p>
+<p>Load the package and set the access token if it is not already set.
+<code><a href="reference/cu-pat.html">cu_get_pat()</a></code> returns the token invisibly, so it doesn’t end
+up in logs.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/psolymos/clickrup" class="external-link">clickrup</a></span><span class="op">)</span>
 <span class="co">#&gt; clickrup 0.0.5    2021-12-12</span>
@@ -130,7 +157,8 @@
 <div class="section level3">
 <h3 id="clickup-hierarchy">ClickUp hierarchy<a class="anchor" aria-label="anchor" href="#clickup-hierarchy"></a>
 </h3>
-<p>The <a href="https://docs.clickup.com/en/articles/1045623-how-does-the-hierarchy-structure-work-in-clickup" class="external-link">ClickUp hierarchy</a> includes the following levels:</p>
+<p>The <a href="https://docs.clickup.com/en/articles/1045623-how-does-the-hierarchy-structure-work-in-clickup" class="external-link">ClickUp
+hierarchy</a> includes the following levels:</p>
 <ul>
 <li>Workspaces (teams is the legacy term for this in the API)</li>
 <li>Spaces</li>
@@ -140,7 +168,10 @@
 <li>Subtasks</li>
 <li>Checklists</li>
 </ul>
-<p>We can list Workspaces that we have access to using the <code><a href="reference/api-teams.html">cu_get_teams()</a></code> function. It takes no arguments, it only passes the access token behind the scenes, so it is a good way to test if things are working as expected</p>
+<p>We can list Workspaces that we have access to using the
+<code><a href="reference/api-teams.html">cu_get_teams()</a></code> function. It takes no arguments, it only
+passes the access token behind the scenes, so it is a good way to test
+if things are working as expected</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">Teams</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/api-teams.html">cu_get_teams</a></span><span class="op">(</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">Teams</span>, <span class="fl">3</span><span class="op">)</span>
@@ -158,7 +189,8 @@
 <span class="co">#&gt;   .. ..$ color  : chr "#ea80fc"</span>
 <span class="co">#&gt;   .. ..$ avatar : NULL</span>
 <span class="co">#&gt;   .. ..$ members:List of 1</span></code></pre></div>
-<p>Spaces within a specific Workspace defined by its <code>team_id</code></p>
+<p>Spaces within a specific Workspace defined by its
+<code>team_id</code></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">team_id</span> <span class="op">&lt;-</span> <span class="va">Teams</span><span class="op">$</span><span class="va">teams</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">id</span>
 <span class="va">Spaces</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/api-spaces.html">cu_get_spaces</a></span><span class="op">(</span><span class="va">team_id</span><span class="op">)</span>
@@ -181,7 +213,8 @@
 <span class="co">#&gt;   .. ..$ multiple_assignees: logi FALSE</span>
 <span class="co">#&gt;   .. ..$ features          :List of 11</span>
 <span class="co">#&gt;   .. ..$ archived          : logi FALSE</span></code></pre></div>
-<p>Folders within a specific Space defined by its <code>space_id</code></p>
+<p>Folders within a specific Space defined by its
+<code>space_id</code></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">space_id</span> <span class="op">&lt;-</span> <span class="va">Spaces</span><span class="op">$</span><span class="va">spaces</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">id</span>
 <span class="va">Folders</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/api-folders.html">cu_get_folders</a></span><span class="op">(</span><span class="va">space_id</span><span class="op">)</span>
@@ -200,7 +233,8 @@
 <span class="co">#&gt;   .. ..$ statuses         :List of 13</span>
 <span class="co">#&gt;   .. ..$ lists            :List of 2</span>
 <span class="co">#&gt;   .. ..$ permission_level : chr "create"</span></code></pre></div>
-<p>Lists within a specific Folder defined by its <code>folder_id</code> (or Folderless Lists based on <code>space_id</code>)</p>
+<p>Lists within a specific Folder defined by its <code>folder_id</code>
+(or Folderless Lists based on <code>space_id</code>)</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">folder_id</span> <span class="op">&lt;-</span> <span class="va">Folders</span><span class="op">$</span><span class="va">folders</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">id</span>
 <span class="va">Lists</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/api-lists.html">cu_get_lists</a></span><span class="op">(</span><span class="va">folder_id</span><span class="op">)</span>
@@ -241,7 +275,10 @@
 <span class="fu"><a href="reference/api-lists.html">cu_get_lists_folderless</a></span><span class="op">(</span><span class="va">space_id</span><span class="op">)</span>
 <span class="co">#&gt; $lists</span>
 <span class="co">#&gt; list()</span></code></pre></div>
-<p>The functions <code>cu_get_spaces</code>, <code>cu_get_folders</code>, and <code>cu_get_lists</code> accept the argument <code>archived</code> to return archived spaces/folders/lists</p>
+<p>The functions <code>cu_get_spaces</code>,
+<code>cu_get_folders</code>, and <code>cu_get_lists</code> accept the
+argument <code>archived</code> to return archived
+spaces/folders/lists</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="fu"><a href="reference/api-lists.html">cu_get_lists</a></span><span class="op">(</span><span class="va">folder_id</span>, archived<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span>
 <span class="co">#&gt; List of 1</span>
@@ -265,7 +302,8 @@
 <div class="section level3">
 <h3 id="tasks">Tasks<a class="anchor" aria-label="anchor" href="#tasks"></a>
 </h3>
-<p>We can list Tasks within a specific List defined by its <code>list_id</code></p>
+<p>We can list Tasks within a specific List defined by its
+<code>list_id</code></p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">list_id</span> <span class="op">&lt;-</span> <span class="va">Lists</span><span class="op">$</span><span class="va">lists</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">id</span>
 <span class="va">Tasks</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/api-tasks.html">cu_get_tasks</a></span><span class="op">(</span><span class="va">list_id</span><span class="op">)</span>
@@ -277,12 +315,18 @@
 <span class="co">#&gt;   ..$ :List of 32</span>
 <span class="co">#&gt;   ..$ :List of 32</span>
 <span class="co">#&gt;   ..$ :List of 32</span></code></pre></div>
-<p>Notice that we have 5 tasks in the list. We can include Subtasks too</p>
+<p>Notice that we have 5 tasks in the list. We can include Subtasks
+too</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">subTasks</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/api-tasks.html">cu_get_tasks</a></span><span class="op">(</span><span class="va">list_id</span>, subtasks<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">subTasks</span><span class="op">$</span><span class="va">tasks</span><span class="op">)</span>
 <span class="co">#&gt; [1] 7</span></code></pre></div>
-<p>Getting all the tasks (possibly filtered) in a Workspace is done via the <code>cu_get_filtered_team_tasks</code> function. This function returns tasks in batches of 100. If you don’t want to deal with paging, use the wrapper function <code>cu_get_all_team_tasks</code> The list of tasks returned does not include closed tasks, to get those as well we need to pass the <code>include_closed</code> query parameter</p>
+<p>Getting all the tasks (possibly filtered) in a Workspace is done via
+the <code>cu_get_filtered_team_tasks</code> function. This function
+returns tasks in batches of 100. If you don’t want to deal with paging,
+use the wrapper function <code>cu_get_all_team_tasks</code> The list of
+tasks returned does not include closed tasks, to get those as well we
+need to pass the <code>include_closed</code> query parameter</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## without closed tasks</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="reference/cu-get-all-team-tasks.html">cu_get_all_team_tasks</a></span><span class="op">(</span><span class="va">team_id</span>, subtasks<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">$</span><span class="va">tasks</span><span class="op">)</span>
@@ -322,7 +366,9 @@
 <span class="co">#&gt;  $ date_created: chr "1592452913384"</span>
 <span class="co">#&gt;  $ date_updated: chr "1592452913384"</span>
 <span class="co">#&gt;  $ date_closed : NULL</span></code></pre></div>
-<p>Dates are given as Unix time (in milliseconds), <code>cu_date_from</code> and <code>cu_date_to</code> is there to convert back and forth</p>
+<p>Dates are given as Unix time (in milliseconds),
+<code>cu_date_from</code> and <code>cu_date_to</code> is there to
+convert back and forth</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">Tasks</span><span class="op">$</span><span class="va">tasks</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">date_created</span>
 <span class="co">#&gt; [1] "1592452913384"</span>
@@ -330,8 +376,14 @@
 <span class="co">#&gt; [1] "2020-06-17 22:01:53 MDT"</span>
 <span class="fu"><a href="reference/cu-date.html">cu_date_to</a></span><span class="op">(</span><span class="fu"><a href="reference/cu-date.html">cu_date_from</a></span><span class="op">(</span><span class="va">Tasks</span><span class="op">$</span><span class="va">tasks</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">date_created</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; [1] "1592452913384"</span></code></pre></div>
-<p>A single task can be accessed through the task ID (note: copying the task ID from the ClickUp GUI will prepend the task ID by a hash, <code>"#8ckjp5"</code>, but the API expects ID without the hash <code>"8ckjp5"</code>). Use the <code>cu_task_id</code> function to get rid of the leading hash (all API call use this function to normalize task IDs).</p>
-<p>The <code>$parent</code> property is <code>NULL</code> for Tasks, and it contains the parent Task ID for Subtasks</p>
+<p>A single task can be accessed through the task ID (note: copying the
+task ID from the ClickUp GUI will prepend the task ID by a hash,
+<code>"#8ckjp5"</code>, but the API expects ID without the hash
+<code>"8ckjp5"</code>). Use the <code>cu_task_id</code> function to get
+rid of the leading hash (all API call use this function to normalize
+task IDs).</p>
+<p>The <code>$parent</code> property is <code>NULL</code> for Tasks, and
+it contains the parent Task ID for Subtasks</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x1</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/api-tasks.html">cu_get_task</a></span><span class="op">(</span><span class="fu"><a href="reference/cu-task-id.html">cu_task_id</a></span><span class="op">(</span><span class="st">"#8ckjp5"</span><span class="op">)</span><span class="op">)</span> <span class="co"># task</span>
 <span class="va">x1</span><span class="op">$</span><span class="va">parent</span>
@@ -340,7 +392,8 @@
 <span class="va">x2</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/api-tasks.html">cu_get_task</a></span><span class="op">(</span><span class="st">"8ckjru"</span><span class="op">)</span> <span class="co"># subtask</span>
 <span class="va">x2</span><span class="op">$</span><span class="va">parent</span>
 <span class="co">#&gt; [1] "8ckjp5"</span></code></pre></div>
-<p>Dependencies are stored in the <code>$dependencies</code> property</p>
+<p>Dependencies are stored in the <code>$dependencies</code>
+property</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">x1</span><span class="op">$</span><span class="va">dependencies</span><span class="op">)</span>
 <span class="co">#&gt; List of 1</span>
@@ -370,7 +423,8 @@
 <span class="co">#&gt;   Status: 200</span>
 <span class="co">#&gt;   Content-Type: application/json; charset=utf-8</span>
 <span class="co">#&gt;   Size: 814 B</span></code></pre></div>
-<p>Check rate limits and remaining requests (rate is limited by the minute)</p>
+<p>Check rate limits and remaining requests (rate is limited by the
+minute)</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/cu-ratelimit.html">cu_ratelimit</a></span><span class="op">(</span><span class="va">subTasks</span><span class="op">)</span>
 <span class="co">#&gt; $limit</span>
@@ -382,7 +436,16 @@
 <div class="section level3">
 <h3 id="formatting-the-request-body">Formatting the request body<a class="anchor" aria-label="anchor" href="#formatting-the-request-body"></a>
 </h3>
-<p><code>PUSH</code> and <code>PUT</code> requests often require to send data as part of the request body. Check the API examples and use <code><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I()</a></code> when the API expects an array as part of the body. For example when passing data to <code>cu_create_task</code>, <code>assignees</code> is an array of the assignees’ userids to be added. Adding a single userid without <code><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I()</a></code> will drop the brackets, but <code>list(name = "New Task Name", assignees = I(183))</code> will result in the expected JSON object: <code>{ "name": "New Task Name", "assignees": [183] }</code>.</p>
+<p><code>PUSH</code> and <code>PUT</code> requests often require to send
+data as part of the request body. Check the API examples and use
+<code><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I()</a></code> when the API expects an array as part of the body. For
+example when passing data to <code>cu_create_task</code>,
+<code>assignees</code> is an array of the assignees’ userids to be
+added. Adding a single userid without <code><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I()</a></code> will drop the
+brackets, but
+<code>list(name = "New Task Name", assignees = I(183))</code> will
+result in the expected JSON object:
+<code>{ "name": "New Task Name", "assignees": [183] }</code>.</p>
 </div>
 <div class="section level3">
 <h3 id="attachments">Attachments<a class="anchor" aria-label="anchor" href="#attachments"></a>
@@ -465,7 +528,8 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
+2.0.2.</p>
 </div>
 
       </footer>
