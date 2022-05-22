@@ -26,11 +26,13 @@ for (i in which(!good)) {
     time$data[[i]]$task <- list()
 }
 
+spec_time_entries <- guess_spec(time$data)
+
 df_time_entries <- tibblify::tibblify(time$data)
 df_time_entries
 df_time_entries %>% get_spec()
 
-write_spec(df_time_entries)
+write_spec(spec_time_entries)
 
 # Reload after updating spec
 pkgload::load_all()

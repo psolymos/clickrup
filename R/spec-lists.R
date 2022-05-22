@@ -1,40 +1,38 @@
-spec_lists <- lcols(
-    id = lcol_chr("id"),
-    name = lcol_chr("name"),
-    orderindex = lcol_int("orderindex", .parser = as.integer),
-    content = lcol_chr("content", .default = NA_character_),
-    status = lcol_df(
+spec_lists <- spec_df(
+    id = tib_chr("id"),
+    name = tib_chr("name"),
+    orderindex = tib_int("orderindex"),
+    content = tib_chr("content", required = FALSE),
+    status = tib_row(
         "status",
-        status = lcol_chr("status", .default = NA_character_),
-        color = lcol_chr("color", .default = NA_character_),
-        .default = NULL
+        status = tib_chr("status", required = FALSE),
+        color = tib_chr("color", required = FALSE)
     ),
-    priority = lcol_guess("priority", .default = NULL),
-    assignee = lcol_df(
+    priority = tib_unspecified("priority"),
+    assignee = tib_row(
         "assignee",
-        color = lcol_chr("color", .default = NA_character_),
-        username = lcol_chr("username", .default = NA_character_),
-        initials = lcol_chr("initials", .default = NA_character_),
-        profilePicture = lcol_chr("profilePicture", .default = NA_character_),
-        .default = NULL
+        color = tib_chr("color", required = FALSE),
+        username = tib_chr("username", required = FALSE),
+        initials = tib_chr("initials", required = FALSE),
+        profilePicture = tib_chr("profilePicture", required = FALSE)
     ),
-    task_count = lcol_int("task_count", .parser = as.integer),
-    due_date = lcol_dtt("due_date", .parser = cu_date_from, .default = dttr2::NA_POSIXct_),
-    start_date = lcol_dtt("start_date", .parser = cu_date_from, .default = dttr2::NA_POSIXct_),
-    folder = lcol_df(
+    task_count = tib_int("task_count"),
+    due_date = tib_chr("due_date"),
+    start_date = tib_chr("start_date"),
+    folder = tib_row(
         "folder",
-        id = lcol_chr("id"),
-        name = lcol_chr("name"),
-        hidden = lcol_lgl("hidden"),
-        access = lcol_lgl("access")
+        id = tib_chr("id"),
+        name = tib_chr("name"),
+        hidden = tib_lgl("hidden"),
+        access = tib_lgl("access")
     ),
-    space = lcol_df(
+    space = tib_row(
         "space",
-        id = lcol_chr("id"),
-        name = lcol_chr("name"),
-        access = lcol_lgl("access")
+        id = tib_chr("id"),
+        name = tib_chr("name"),
+        access = tib_lgl("access")
     ),
-    archived = lcol_lgl("archived"),
-    override_statuses = lcol_lgl("override_statuses", .default = NA),
-    permission_level = lcol_chr("permission_level")
+    archived = tib_lgl("archived"),
+    override_statuses = tib_lgl("override_statuses"),
+    permission_level = tib_chr("permission_level")
 )

@@ -1,164 +1,135 @@
-spec_tasks <- lcols(
-    id = lcol_chr("id"),
-    custom_id = lcol_guess("custom_id", .default = NULL),
-    name = lcol_chr("name"),
-    text_content = lcol_chr("text_content", .default = NA_character_),
-    description = lcol_chr("description", .default = NA_character_),
-    status = lcol_df(
+spec_tasks <- spec_df(
+    id = tib_chr("id"),
+    custom_id = tib_unspecified("custom_id"),
+    name = tib_chr("name"),
+    text_content = tib_chr("text_content"),
+    description = tib_chr("description"),
+    status = tib_row(
         "status",
-        status = lcol_chr("status"),
-        color = lcol_chr("color"),
-        type = lcol_chr("type"),
-        orderindex = lcol_int("orderindex", .parser = as.integer)
+        status = tib_chr("status"),
+        color = tib_chr("color"),
+        type = tib_chr("type"),
+        orderindex = tib_int("orderindex")
     ),
-    orderindex = lcol_int("orderindex", .parser = as.integer),
-    date_created = lcol_dtt("date_created", .parser = cu_date_from),
-    date_updated = lcol_dtt("date_updated", .parser = cu_date_from),
-    date_closed = lcol_dtt("date_closed", .parser = cu_date_from, .default = dttr2::NA_POSIXct_),
-    archived = lcol_lgl("archived"),
-    creator = lcol_df(
+    orderindex = tib_chr("orderindex"),
+    date_created = tib_chr("date_created"),
+    date_updated = tib_chr("date_updated"),
+    date_closed = tib_chr("date_closed"),
+    archived = tib_lgl("archived"),
+    creator = tib_row(
         "creator",
-        id = lcol_chr("id", .parser = as.character),
-        username = lcol_chr("username"),
-        color = lcol_chr("color"),
-        email = lcol_chr("email"),
-        profilePicture = lcol_chr("profilePicture", .default = NA_character_)
+        id = tib_int("id"),
+        username = tib_chr("username"),
+        color = tib_chr("color"),
+        email = tib_chr("email"),
+        profilePicture = tib_chr("profilePicture")
     ),
-    assignees = lcol_df_lst(
+    assignees = tib_df(
         "assignees",
-        id = lcol_chr("id", .parser = as.character),
-        username = lcol_chr("username"),
-        color = lcol_chr("color"),
-        initials = lcol_chr("initials"),
-        email = lcol_chr("email"),
-        profilePicture = lcol_chr("profilePicture", .default = NA_character_),
-        .default = NULL
+        id = tib_int("id"),
+        username = tib_chr("username"),
+        color = tib_chr("color"),
+        initials = tib_chr("initials"),
+        email = tib_chr("email"),
+        profilePicture = tib_chr("profilePicture")
     ),
-    watchers = lcol_guess("watchers", .default = NULL),
-    checklists = lcol_df_lst(
+    watchers = tib_unspecified("watchers"),
+    checklists = tib_df(
         "checklists",
-        id = lcol_chr("id"),
-        task_id = lcol_chr("task_id"),
-        name = lcol_chr("name"),
-        date_created = lcol_dtt("date_created", .parser = cu_date_from),
-        orderindex = lcol_int("orderindex", .parser = as.integer),
-        creator = lcol_int("creator"),
-        resolved = lcol_int("resolved"),
-        unresolved = lcol_int("unresolved"),
-        items = lcol_df_lst(
+        id = tib_chr("id"),
+        task_id = tib_chr("task_id"),
+        name = tib_chr("name"),
+        date_created = tib_chr("date_created"),
+        orderindex = tib_int("orderindex"),
+        creator = tib_int("creator"),
+        resolved = tib_int("resolved"),
+        unresolved = tib_int("unresolved"),
+        items = tib_df(
             "items",
-            id = lcol_chr("id"),
-            name = lcol_chr("name"),
-            orderindex = lcol_int("orderindex", .parser = as.integer),
-            assignee = lcol_guess("assignee", .default = NULL),
-            group_assignee = lcol_guess("group_assignee", .default = NULL),
-            resolved = lcol_lgl("resolved"),
-            parent = lcol_guess("parent", .default = NULL),
-            date_created = lcol_dtt("date_created", .parser = cu_date_from),
-            children = lcol_guess("children", .default = NULL),
-            .default = NULL
-        ),
-        .default = NULL
+            id = tib_chr("id"),
+            name = tib_chr("name"),
+            orderindex = tib_dbl("orderindex"),
+            assignee = tib_row(
+                "assignee",
+                id = tib_int("id", required = FALSE),
+                username = tib_chr("username", required = FALSE),
+                email = tib_chr("email", required = FALSE),
+                color = tib_chr("color", required = FALSE),
+                initials = tib_chr("initials", required = FALSE),
+                profilePicture = tib_chr("profilePicture", required = FALSE)
+            ),
+            group_assignee = tib_unspecified("group_assignee"),
+            resolved = tib_lgl("resolved"),
+            parent = tib_unspecified("parent"),
+            date_created = tib_chr("date_created"),
+            children = tib_unspecified("children")
+        )
     ),
-    tags = lcol_df_lst(
+    tags = tib_df(
         "tags",
-        name = lcol_chr("name"),
-        tag_fg = lcol_chr("tag_fg"),
-        tag_bg = lcol_chr("tag_bg"),
-        creator = lcol_int("creator"),
-        .default = NULL
+        name = tib_chr("name"),
+        tag_fg = tib_chr("tag_fg"),
+        tag_bg = tib_chr("tag_bg"),
+        creator = tib_int("creator")
     ),
-    parent = lcol_chr("parent", .default = NA_character_),
-    priority = lcol_df(
+    parent = tib_chr("parent"),
+    priority = tib_row(
         "priority",
-        id = lcol_chr("id", .default = NA_character_),
-        priority = lcol_chr("priority", .default = NA_character_),
-        color = lcol_chr("color", .default = NA_character_),
-        orderindex = lcol_chr("orderindex", .default = NA_character_),
-        .default = NULL
+        id = tib_chr("id", required = FALSE),
+        priority = tib_chr("priority", required = FALSE),
+        color = tib_chr("color", required = FALSE),
+        orderindex = tib_chr("orderindex", required = FALSE)
     ),
-    due_date = lcol_dtt("due_date", .parser = cu_date_from, .default = dttr2::NA_POSIXct_),
-    start_date = lcol_dtt("start_date", .parser = cu_date_from, .default = dttr2::NA_POSIXct_),
-    points = lcol_guess("points", .default = NULL),
-    time_estimate = lcol_int("time_estimate", .default = NA_integer_),
-    custom_fields = lcol_df_lst(
+    due_date = tib_chr("due_date"),
+    start_date = tib_chr("start_date"),
+    points = tib_int("points"),
+    time_estimate = tib_int("time_estimate"),
+    custom_fields = tib_df(
         "custom_fields",
-        id = lcol_chr("id"),
-        name = lcol_chr("name"),
-        type = lcol_chr("type"),
-        type_config = lcol_df(
-            "type_config",
-            simple = lcol_lgl("simple", .default = NA),
-            formula = lcol_chr("formula", .default = NA_character_),
-            include_guests = lcol_lgl("include_guests", .default = NA),
-            include_team_members = lcol_lgl("include_team_members", .default = NA),
-            single_user = lcol_lgl("single_user", .default = NA),
-            default = lcol_int("default", .default = NA_integer_),
-            placeholder = lcol_guess("placeholder", .default = NULL),
-            new_drop_down = lcol_lgl("new_drop_down", .default = NA),
-            options = lcol_df_lst(
-                "options",
-                id = lcol_chr("id"),
-                name = lcol_chr("name", .default = NA_character_),
-                color = lcol_chr("color", .default = NA_character_),
-                orderindex = lcol_int("orderindex", .default = NA_integer_),
-                label = lcol_chr("label", .default = NA_character_),
-                .default = NULL
-            ),
-            tracking = lcol_df(
-                "tracking",
-                subtasks = lcol_lgl("subtasks", .default = NA),
-                checklists = lcol_lgl("checklists", .default = NA),
-                assigned_comments = lcol_lgl("assigned_comments", .default = NA),
-                .default = NULL
-            ),
-            complete_on = lcol_int("complete_on", .default = NA_integer_),
-            subtask_rollup = lcol_lgl("subtask_rollup", .default = NA),
-            end = lcol_int("end", .default = NA_integer_),
-            start = lcol_int("start", .default = NA_integer_),
-            .default = NULL
-        ),
-        date_created = lcol_dtt("date_created", .parser = cu_date_from),
-        hide_from_guests = lcol_lgl("hide_from_guests"),
-        required = lcol_lgl("required"),
-        value = lcol_lst("value", .default = NULL)
+        id = tib_chr("id"),
+        name = tib_chr("name"),
+        type = tib_chr("type"),
+        type_config = tib_list("type_config"),
+        date_created = tib_chr("date_created"),
+        hide_from_guests = tib_lgl("hide_from_guests"),
+        required = tib_lgl("required"),
+        value = tib_list("value", required = FALSE)
     ),
-    dependencies = lcol_df_lst(
+    dependencies = tib_df(
         "dependencies",
-        task_id = lcol_chr("task_id"),
-        depends_on = lcol_chr("depends_on"),
-        type = lcol_int("type"),
-        date_created = lcol_dtt("date_created", .parser = cu_date_from),
-        userid = lcol_chr("userid"),
-        .default = NULL
+        task_id = tib_chr("task_id"),
+        depends_on = tib_chr("depends_on"),
+        type = tib_int("type"),
+        date_created = tib_chr("date_created"),
+        userid = tib_chr("userid")
     ),
-    linked_tasks = lcol_guess("linked_tasks", .default = NULL),
-    team_id = lcol_chr("team_id"),
-    url = lcol_chr("url"),
-    permission_level = lcol_chr("permission_level"),
-    list = lcol_df(
+    linked_tasks = tib_unspecified("linked_tasks"),
+    team_id = tib_chr("team_id"),
+    url = tib_chr("url"),
+    permission_level = tib_chr("permission_level"),
+    list = tib_row(
         "list",
-        id = lcol_chr("id"),
-        name = lcol_chr("name"),
-        access = lcol_lgl("access")
+        id = tib_chr("id"),
+        name = tib_chr("name"),
+        access = tib_lgl("access")
     ),
-    project = lcol_df(
+    project = tib_row(
         "project",
-        id = lcol_chr("id"),
-        name = lcol_chr("name"),
-        hidden = lcol_lgl("hidden"),
-        access = lcol_lgl("access")
+        id = tib_chr("id"),
+        name = tib_chr("name"),
+        hidden = tib_lgl("hidden"),
+        access = tib_lgl("access")
     ),
-    folder = lcol_df(
+    folder = tib_row(
         "folder",
-        id = lcol_chr("id"),
-        name = lcol_chr("name"),
-        hidden = lcol_lgl("hidden"),
-        access = lcol_lgl("access")
+        id = tib_chr("id"),
+        name = tib_chr("name"),
+        hidden = tib_lgl("hidden"),
+        access = tib_lgl("access")
     ),
-    space = lcol_df(
+    space = tib_row(
         "space",
-        id = lcol_chr("id")
+        id = tib_chr("id")
     ),
-    time_spent = lcol_int("time_spent", .default = NA_integer_)
+    time_spent = tib_int("time_spent", required = FALSE)
 )

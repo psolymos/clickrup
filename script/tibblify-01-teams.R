@@ -5,11 +5,14 @@ library(tidyverse)
 teams <- cu_get_teams()
 teams
 
-df_teams <- tibblify(teams$teams)
+# Needs https://github.com/mgirlich/tibblify/pull/50
+spec_teams <- guess_spec(teams$teams)
+
+df_teams <- tibblify(teams$teams, spec = spec_teams)
 df_teams
 df_teams %>% get_spec()
 
 df_teams
 df_teams$members
 
-write_spec(df_teams)
+write_spec(spec_teams)

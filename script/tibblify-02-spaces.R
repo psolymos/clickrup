@@ -6,6 +6,8 @@ df_teams <- cuf_get_teams()
 spaces <- cu_get_spaces(df_teams$id[[1]])
 spaces
 
+spec_spaces <- guess_spec(spaces$spaces)
+
 df_spaces <-
     spaces$spaces %>%
     tibblify()
@@ -13,4 +15,4 @@ df_spaces <-
 df_spaces %>%
     get_spec()
 
-write_spec(df_spaces)
+write_spec(spec_spaces)

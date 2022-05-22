@@ -14,8 +14,10 @@ lists <-
     map("lists") %>%
     unlist(recursive = FALSE)
 
+spec_lists <- guess_spec(lists)
+
 df_lists <- tibblify::tibblify(lists)
 df_lists
 df_lists %>% get_spec()
 
-write_spec(df_lists)
+write_spec(spec_lists)

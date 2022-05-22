@@ -1,36 +1,49 @@
-spec_time_entries <- lcols(
-    id = lcol_chr("id"),
-    wid = lcol_chr("wid"),
-    user = lcol_df(
+spec_time_entries <- spec_df(
+    id = tib_chr("id"),
+    wid = tib_chr("wid"),
+    user = tib_row(
         "user",
-        id = lcol_chr("id", .parser = as.character),
-        username = lcol_chr("username"),
-        email = lcol_chr("email"),
-        color = lcol_chr("color"),
-        initials = lcol_chr("initials"),
-        profilePicture = lcol_chr("profilePicture", .default = NA_character_)
+        id = tib_int("id"),
+        username = tib_chr("username"),
+        email = tib_chr("email"),
+        color = tib_chr("color"),
+        initials = tib_chr("initials"),
+        profilePicture = tib_chr("profilePicture")
     ),
-    billable = lcol_lgl("billable"),
-    start = lcol_dtt("start", .parser = cu_date_from),
-    description = lcol_chr("description"),
-    tags = lcol_guess("tags", .default = NULL),
-    source = lcol_chr("source"),
-    at = lcol_dtt("at", .parser = cu_date_from),
-    task = lcol_df(
+    billable = tib_lgl("billable"),
+    start = tib_chr("start"),
+    description = tib_chr("description"),
+    tags = tib_df(
+        "tags",
+        name = tib_chr("name"),
+        tag_bg = tib_chr("tag_bg"),
+        tag_fg = tib_chr("tag_fg"),
+        creator = tib_int("creator")
+    ),
+    source = tib_chr("source"),
+    at = tib_chr("at"),
+    task_location = tib_row(
+        "task_location",
+        .required = FALSE,
+        list_id = tib_chr("list_id", required = FALSE),
+        folder_id = tib_chr("folder_id", required = FALSE),
+        space_id = tib_chr("space_id", required = FALSE)
+    ),
+    task_url = tib_chr("task_url", required = FALSE),
+    task = tib_row(
         "task",
-        id = lcol_chr("id", .default = NA_character_),
-        name = lcol_chr("name", .default = NA_character_),
-        status = lcol_df(
+        id = tib_chr("id", required = FALSE),
+        name = tib_chr("name", required = FALSE),
+        status = tib_row(
             "status",
-            status = lcol_chr("status", .default = NA_character_),
-            color = lcol_chr("color", .default = NA_character_),
-            type = lcol_chr("type", .default = NA_character_),
-            orderindex = lcol_int("orderindex", .default = NA_integer_),
-            .default = NULL
+            .required = FALSE,
+            status = tib_chr("status"),
+            color = tib_chr("color"),
+            type = tib_chr("type"),
+            orderindex = tib_int("orderindex")
         ),
-        custom_type = lcol_guess("custom_type", .default = NULL),
-        .default = NULL
+        custom_type = tib_int("custom_type", required = FALSE)
     ),
-    end = lcol_dtt("end", .parser = cu_date_from, .default = dttr2::NA_POSIXct_),
-    duration = lcol_vec("duration", hms::new_hms(), .default = dttr2::NA_hms_, .parser = ~ hms::as_hms(as.numeric(.x) / 1000))
+    end = tib_chr("end", required = FALSE),
+    duration = tib_chr("duration", required = FALSE)
 )

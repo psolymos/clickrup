@@ -1,7 +1,7 @@
 Type: Package
 Package: clickrup
 Title: Interacting with the ClickUp v2 API from R
-Version: 0.0.5.9001
+Version: 0.0.5.9002
 Date: 2021-12-12
 Authors@R: 
     c(person(given = "Peter",
@@ -25,7 +25,7 @@ Imports:
     jsonlite,
     rlang,
     tibble,
-    tibblify
+    tibblify (>= 0.1.0.9000)
 Suggests: 
     fansi,
     knitr,
@@ -38,3 +38,5 @@ LazyData: true
 LazyLoad: yes
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
+Remotes: 
+    mgirlich/tibblify

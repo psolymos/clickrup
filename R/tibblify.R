@@ -7,11 +7,11 @@ write_spec <- function(x) {
 
     out <-
         x %>%
-        get_spec() %>%
         format() %>%
         fansi::strip_sgr()
 
-    base_name <- gsub("^df_", "", name)
+    base_name <- gsub("^spec_", "", name)
+    stopifnot(base_name != name)
 
     out <- paste0("spec_", base_name, " <- ", out)
     out <- gsub("  ", "    ", out, fixed = TRUE)

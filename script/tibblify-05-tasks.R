@@ -21,8 +21,12 @@ tasks <-
 
 tasks_team <- cu_get_filtered_team_tasks(df_teams$id[[1]])
 
+spec_tasks <- guess_spec(c(tasks, tasks_team$tasks))
+
+# Error in tibblify_impl(x, spec) :
+#   SET_VECTOR_ELT() can only be applied to a 'list', not a 'NULL'
 df_tasks <- tibblify::tibblify(c(tasks, tasks_team$tasks))
 df_tasks
 df_tasks %>% get_spec()
 
-write_spec(df_tasks)
+write_spec(spec_tasks)

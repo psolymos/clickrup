@@ -12,8 +12,10 @@ folders <-
     unlist(recursive = FALSE)
 folders
 
+spec_folders <- guess_spec(folders)
+
 df_folders <- tibblify::tibblify(folders)
 df_folders
 df_folders %>% get_spec()
 
-write_spec(df_folders)
+write_spec(spec_folders)

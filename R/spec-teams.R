@@ -1,37 +1,38 @@
-spec_teams <- lcols(
-    id = lcol_chr("id"),
-    name = lcol_chr("name"),
-    color = lcol_chr("color"),
-    avatar = lcol_chr("avatar"),
-    members = lcol_df_lst(
+spec_teams <- spec_df(
+    id = tib_chr("id"),
+    name = tib_chr("name"),
+    color = tib_chr("color"),
+    avatar = tib_chr("avatar"),
+    members = tib_df(
         "members",
-        user = lcol_df(
+        user = tib_row(
             "user",
-            id = lcol_chr("id", .parser = as.character),
-            username = lcol_chr("username"),
-            email = lcol_chr("email"),
-            color = lcol_chr("color", .default = NA_character_),
-            profilePicture = lcol_chr("profilePicture", .default = NA_character_),
-            initials = lcol_chr("initials"),
-            role = lcol_int("role"),
-            custom_role = lcol_guess("custom_role", .default = NULL),
-            last_active = lcol_dtt("last_active", .parser = cu_date_from),
-            date_joined = lcol_dtt("date_joined", .parser = cu_date_from),
-            date_invited = lcol_dtt("date_invited", .parser = cu_date_from)
+            id = tib_int("id"),
+            username = tib_chr("username"),
+            email = tib_chr("email"),
+            color = tib_chr("color"),
+            profilePicture = tib_chr("profilePicture"),
+            initials = tib_chr("initials"),
+            role = tib_int("role"),
+            custom_role = tib_unspecified("custom_role"),
+            last_active = tib_chr("last_active"),
+            date_joined = tib_chr("date_joined"),
+            date_invited = tib_chr("date_invited")
         ),
-        invited_by = lcol_df(
+        invited_by = tib_row(
             "invited_by",
-            id = lcol_chr("id", .parser = as.character, .default = NA_character_),
-            username = lcol_chr("username", .default = NA_character_),
-            color = lcol_chr("color", .default = NA_character_),
-            email = lcol_chr("email", .default = NA_character_),
-            initials = lcol_chr("initials", .default = NA_character_),
-            profilePicture = lcol_chr("profilePicture", .default = NA_character_),
-            .default = NULL
+            .required = FALSE,
+            id = tib_int("id", required = FALSE),
+            username = tib_chr("username", required = FALSE),
+            color = tib_chr("color", required = FALSE),
+            email = tib_chr("email", required = FALSE),
+            initials = tib_chr("initials", required = FALSE),
+            profilePicture = tib_chr("profilePicture", required = FALSE)
         ),
-        can_see_time_spent = lcol_lgl("can_see_time_spent", .default = NA),
-        can_see_time_estimated = lcol_lgl("can_see_time_estimated", .default = NA),
-        can_see_points_estimated = lcol_lgl("can_see_points_estimated", .default = NA),
-        can_edit_tags = lcol_lgl("can_edit_tags", .default = NA)
+        can_see_time_spent = tib_lgl("can_see_time_spent", required = FALSE),
+        can_see_time_estimated = tib_lgl("can_see_time_estimated", required = FALSE),
+        can_see_points_estimated = tib_lgl("can_see_points_estimated", required = FALSE),
+        can_edit_tags = tib_lgl("can_edit_tags", required = FALSE),
+        can_create_views = tib_lgl("can_create_views", required = FALSE)
     )
 )
