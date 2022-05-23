@@ -28,9 +28,8 @@ for (i in which(!good)) {
 
 spec_time_entries <- guess_spec(time$data)
 
-df_time_entries <- tibblify::tibblify(time$data)
+df_time_entries <- tibblify::tibblify(time$data, spec_time_entries)
 df_time_entries
-df_time_entries %>% get_spec()
 
 write_spec(spec_time_entries)
 

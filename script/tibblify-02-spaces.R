@@ -8,11 +8,7 @@ spaces
 
 spec_spaces <- guess_spec(spaces$spaces)
 
-df_spaces <-
-    spaces$spaces %>%
-    tibblify()
-
-df_spaces %>%
-    get_spec()
+spaces$spaces %>%
+    tibblify(spec = spec_spaces)
 
 write_spec(spec_spaces)

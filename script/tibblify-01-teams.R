@@ -10,7 +10,6 @@ spec_teams <- guess_spec(teams$teams)
 
 df_teams <- tibblify(teams$teams, spec = spec_teams)
 df_teams
-df_teams %>% get_spec()
 
 df_teams
 df_teams$members
