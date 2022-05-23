@@ -29,7 +29,7 @@ spec_spaces <- spec_df(
             id = tib_chr("id"),
             priority = tib_chr("priority"),
             color = tib_chr("color"),
-            orderindex = tib_chr("orderindex")
+            orderindex = tib_int("orderindex", transform = as.integer)
         ),
         per_assignee = tib_lgl("per_assignee", required = FALSE),
         subtasks = tib_lgl("subtasks", required = FALSE),
@@ -42,7 +42,7 @@ spec_spaces <- spec_df(
         .required = FALSE,
         user = tib_row(
             "user",
-            id = tib_int("id"),
+            id = tib_chr("id", transform = as.character),
             username = tib_chr("username"),
             color = tib_chr("color"),
             profilePicture = tib_chr("profilePicture"),

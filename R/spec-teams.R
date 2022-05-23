@@ -7,7 +7,7 @@ spec_teams <- spec_df(
         "members",
         user = tib_row(
             "user",
-            id = tib_int("id"),
+            id = tib_chr("id", transform = as.character),
             username = tib_chr("username"),
             email = tib_chr("email"),
             color = tib_chr("color"),
@@ -15,9 +15,9 @@ spec_teams <- spec_df(
             initials = tib_chr("initials"),
             role = tib_int("role"),
             custom_role = tib_unspecified("custom_role"),
-            last_active = tib_chr("last_active"),
-            date_joined = tib_chr("date_joined"),
-            date_invited = tib_chr("date_invited")
+            last_active = tib_vector("last_active", ptype = vctrs::new_datetime(), transform = cu_date_from),
+            date_joined = tib_vector("date_joined", ptype = vctrs::new_datetime(), transform = cu_date_from),
+            date_invited = tib_vector("date_invited", ptype = vctrs::new_datetime(), transform = cu_date_from)
         ),
         invited_by = tib_row(
             "invited_by",

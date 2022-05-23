@@ -3,7 +3,7 @@ spec_time_entries <- spec_df(
     wid = tib_chr("wid"),
     user = tib_row(
         "user",
-        id = tib_int("id"),
+        id = tib_chr("id", transform = as.character),
         username = tib_chr("username"),
         email = tib_chr("email"),
         color = tib_chr("color"),
@@ -11,7 +11,7 @@ spec_time_entries <- spec_df(
         profilePicture = tib_chr("profilePicture")
     ),
     billable = tib_lgl("billable"),
-    start = tib_chr("start"),
+    start = tib_vector("start", ptype = vctrs::new_datetime(), transform = cu_date_from),
     description = tib_chr("description"),
     tags = tib_df(
         "tags",
@@ -21,7 +21,7 @@ spec_time_entries <- spec_df(
         creator = tib_int("creator")
     ),
     source = tib_chr("source"),
-    at = tib_chr("at"),
+    at = tib_vector("at", ptype = vctrs::new_datetime(), transform = cu_date_from),
     task_location = tib_row(
         "task_location",
         .required = FALSE,
@@ -32,6 +32,7 @@ spec_time_entries <- spec_df(
     task_url = tib_chr("task_url", required = FALSE),
     task = tib_row(
         "task",
+        .required = FALSE,
         id = tib_chr("id", required = FALSE),
         name = tib_chr("name", required = FALSE),
         status = tib_row(
@@ -44,6 +45,6 @@ spec_time_entries <- spec_df(
         ),
         custom_type = tib_int("custom_type", required = FALSE)
     ),
-    end = tib_chr("end", required = FALSE),
+    end = tib_vector("end", ptype = vctrs::new_datetime(), transform = cu_date_from, required = FALSE),
     duration = tib_chr("duration", required = FALSE)
 )

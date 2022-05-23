@@ -1,5 +1,5 @@
 spec_members <- spec_df(
-    id = tib_int("id"),
+    id = tib_chr("id", transform = as.character),
     username = tib_chr("username"),
     email = tib_chr("email"),
     color = tib_chr("color"),
@@ -11,8 +11,12 @@ spec_members <- spec_df(
         verified_ambassador = tib_unspecified("verified_ambassador"),
         verified_consultant = tib_unspecified("verified_consultant"),
         top_tier_user = tib_unspecified("top_tier_user"),
-        viewed_verified_ambassador = tib_unspecified("viewed_verified_ambassador"),
-        viewed_verified_consultant = tib_unspecified("viewed_verified_consultant"),
+        viewed_verified_ambassador = tib_unspecified(
+            "viewed_verified_ambassador"
+        ),
+        viewed_verified_consultant = tib_unspecified(
+            "viewed_verified_consultant"
+        ),
         viewed_top_tier_user = tib_unspecified("viewed_top_tier_user")
     )
 )
