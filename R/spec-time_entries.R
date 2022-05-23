@@ -46,5 +46,5 @@ spec_time_entries <- spec_df(
         custom_type = tib_int("custom_type", required = FALSE)
     ),
     end = tib_scalar("end", ptype = vctrs::new_datetime(), transform = cu_date_from, required = FALSE),
-    duration = tib_scalar("duration", hms::new_hms(), default = dttr2::NA_hms_, transform = ~ hms::as_hms(as.numeric(.x) / 1000)),
+    duration = tib_scalar("duration", hms::new_hms(), required = FALSE, default = dttr2::NA_hms_, transform = ~ hms::as_hms(as.numeric(.x) / 1000)),
 )
