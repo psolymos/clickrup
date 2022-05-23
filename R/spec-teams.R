@@ -15,9 +15,9 @@ spec_teams <- spec_df(
             initials = tib_chr("initials"),
             role = tib_int("role"),
             custom_role = tib_unspecified("custom_role"),
-            last_active = tib_vector("last_active", ptype = vctrs::new_datetime(), transform = cu_date_from),
-            date_joined = tib_vector("date_joined", ptype = vctrs::new_datetime(), transform = cu_date_from),
-            date_invited = tib_vector("date_invited", ptype = vctrs::new_datetime(), transform = cu_date_from)
+            last_active = tib_scalar("last_active", ptype = vctrs::new_datetime(), transform = cu_date_from),
+            date_joined = tib_scalar("date_joined", ptype = vctrs::new_datetime(), transform = cu_date_from),
+            date_invited = tib_scalar("date_invited", ptype = vctrs::new_datetime(), transform = cu_date_from)
         ),
         invited_by = tib_row(
             "invited_by",

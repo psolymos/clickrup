@@ -12,9 +12,9 @@ spec_tasks <- spec_df(
         orderindex = tib_int("orderindex")
     ),
     orderindex = tib_int("orderindex", transform = as.integer),
-    date_created = tib_vector("date_created", ptype = vctrs::new_datetime(), transform = cu_date_from),
-    date_updated = tib_vector("date_updated", ptype = vctrs::new_datetime(), transform = cu_date_from),
-    date_closed = tib_vector("date_closed", ptype = vctrs::new_datetime(), transform = cu_date_from),
+    date_created = tib_scalar("date_created", ptype = vctrs::new_datetime(), transform = cu_date_from),
+    date_updated = tib_scalar("date_updated", ptype = vctrs::new_datetime(), transform = cu_date_from),
+    date_closed = tib_scalar("date_closed", ptype = vctrs::new_datetime(), transform = cu_date_from),
     archived = tib_lgl("archived"),
     creator = tib_row(
         "creator",
@@ -39,7 +39,7 @@ spec_tasks <- spec_df(
         id = tib_chr("id"),
         task_id = tib_chr("task_id"),
         name = tib_chr("name"),
-        date_created = tib_vector("date_created", ptype = vctrs::new_datetime(), transform = cu_date_from),
+        date_created = tib_scalar("date_created", ptype = vctrs::new_datetime(), transform = cu_date_from),
         orderindex = tib_int("orderindex"),
         creator = tib_int("creator"),
         resolved = tib_int("resolved"),
@@ -61,7 +61,7 @@ spec_tasks <- spec_df(
             group_assignee = tib_unspecified("group_assignee"),
             resolved = tib_lgl("resolved"),
             parent = tib_unspecified("parent"),
-            date_created = tib_vector("date_created", ptype = vctrs::new_datetime(), transform = cu_date_from),
+            date_created = tib_scalar("date_created", ptype = vctrs::new_datetime(), transform = cu_date_from),
             children = tib_unspecified("children")
         )
     ),
@@ -80,8 +80,8 @@ spec_tasks <- spec_df(
         color = tib_chr("color", required = FALSE),
         orderindex = tib_chr("orderindex", required = FALSE)
     ),
-    due_date = tib_vector("due_date", ptype = vctrs::new_datetime(), transform = cu_date_from),
-    start_date = tib_vector("start_date", ptype = vctrs::new_datetime(), transform = cu_date_from),
+    due_date = tib_scalar("due_date", ptype = vctrs::new_datetime(), transform = cu_date_from),
+    start_date = tib_scalar("start_date", ptype = vctrs::new_datetime(), transform = cu_date_from),
     points = tib_int("points"),
     time_estimate = tib_int("time_estimate"),
     custom_fields = tib_df(
@@ -90,7 +90,7 @@ spec_tasks <- spec_df(
         name = tib_chr("name"),
         type = tib_chr("type"),
         type_config = tib_list("type_config"),
-        date_created = tib_vector("date_created", ptype = vctrs::new_datetime(), transform = cu_date_from),
+        date_created = tib_scalar("date_created", ptype = vctrs::new_datetime(), transform = cu_date_from),
         hide_from_guests = tib_lgl("hide_from_guests"),
         required = tib_lgl("required"),
         value = tib_list("value", required = FALSE)
@@ -100,7 +100,7 @@ spec_tasks <- spec_df(
         task_id = tib_chr("task_id"),
         depends_on = tib_chr("depends_on"),
         type = tib_int("type"),
-        date_created = tib_vector("date_created", ptype = vctrs::new_datetime(), transform = cu_date_from),
+        date_created = tib_scalar("date_created", ptype = vctrs::new_datetime(), transform = cu_date_from),
         userid = tib_chr("userid")
     ),
     linked_tasks = tib_unspecified("linked_tasks"),

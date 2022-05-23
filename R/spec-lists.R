@@ -17,8 +17,8 @@ spec_lists <- spec_df(
         profilePicture = tib_chr("profilePicture", required = FALSE)
     ),
     task_count = tib_int("task_count"),
-    due_date = tib_vector("due_date", ptype = vctrs::new_datetime(), transform = cu_date_from),
-    start_date = tib_vector("start_date", ptype = vctrs::new_datetime(), transform = cu_date_from),
+    due_date = tib_scalar("due_date", ptype = vctrs::new_datetime(), transform = cu_date_from),
+    start_date = tib_scalar("start_date", ptype = vctrs::new_datetime(), transform = cu_date_from),
     folder = tib_row(
         "folder",
         id = tib_chr("id"),

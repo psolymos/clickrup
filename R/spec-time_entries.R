@@ -11,7 +11,7 @@ spec_time_entries <- spec_df(
         profilePicture = tib_chr("profilePicture")
     ),
     billable = tib_lgl("billable"),
-    start = tib_vector("start", ptype = vctrs::new_datetime(), transform = cu_date_from),
+    start = tib_scalar("start", ptype = vctrs::new_datetime(), transform = cu_date_from),
     description = tib_chr("description"),
     tags = tib_df(
         "tags",
@@ -21,7 +21,7 @@ spec_time_entries <- spec_df(
         creator = tib_int("creator")
     ),
     source = tib_chr("source"),
-    at = tib_vector("at", ptype = vctrs::new_datetime(), transform = cu_date_from),
+    at = tib_scalar("at", ptype = vctrs::new_datetime(), transform = cu_date_from),
     task_location = tib_row(
         "task_location",
         .required = FALSE,
@@ -45,6 +45,6 @@ spec_time_entries <- spec_df(
         ),
         custom_type = tib_int("custom_type", required = FALSE)
     ),
-    end = tib_vector("end", ptype = vctrs::new_datetime(), transform = cu_date_from, required = FALSE),
+    end = tib_scalar("end", ptype = vctrs::new_datetime(), transform = cu_date_from, required = FALSE),
     duration = tib_chr("duration", required = FALSE)
 )
