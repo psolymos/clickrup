@@ -29,7 +29,7 @@ Goal: A `cuf_*()` function for each `cu_()` function that returns a tibble with 
 
 ## Test instance
 
-For testing, I created a throwaway ClickUp workspace that can be populatd with the `create.R` script.
+For testing, I created a throwaway ClickUp workspace that can be populated with the `create.R` script.
 The data in a live workspace is richer, but modification and deletion can only reliably be tested on a toy workspace.
 The "team ID" is hard-coded in `create.R` to ensure that the code doesn't accidentally wipe the live workspace.
 
@@ -38,7 +38,6 @@ The "team ID" is hard-coded in `create.R` to ensure that the code doesn't accide
 - Fix warnings in `devtools::document()` -- delete first four lines in most `df-*.R` files
 - Enhance `create.R` script
     - Rerun `tibblify-all.R`, ensure that the generated specs are not worse than the existing specs
-    - Eliminate all instances of `lcol_guess()` in the specs by creating a richer example workspace in `create.R`
 - Add tests against toy workspace
 
 ## Problems
