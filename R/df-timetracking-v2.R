@@ -7,7 +7,16 @@ NULL
 cuf_get_time_entries_within_date_range <- function(team_id,
 start_date, end_date, assignee) {
     out <- cu_get_time_entries_within_date_range(team_id, start_date, end_date, assignee)
-    tibblify(out$data, spec_time_entries)
+
+    # Patch time entries without associated task
+    entries <- lapply(out$data, function(.x) {
+        if (is.null(names(.x[["task"]]))) {
+            .x[["task"]] <- NULL
+        }
+        .x
+    })
+
+    tibblify(entries, spec_time_entries)
 }
 
 
