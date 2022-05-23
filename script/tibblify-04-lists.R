@@ -20,3 +20,7 @@ df_lists <- tibblify::tibblify(lists, spec = spec_lists)
 df_lists
 
 write_spec(spec_lists)
+
+pkgload::load_all()
+
+cuf_get_lists(df_folders$id[[1]])
