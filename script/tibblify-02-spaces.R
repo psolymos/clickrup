@@ -9,6 +9,6 @@ spaces
 spec_spaces <- spec_guess(spaces$spaces)
 
 spaces$spaces %>%
-    tibblify(spec = spec_spaces)
+    tibblify(spec = spec_spaces, unspecified = "inform")
 
 write_spec(spec_spaces)

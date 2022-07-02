@@ -4,14 +4,14 @@ spec_spaces <- spec_df(
     tib_chr("color"),
     tib_lgl("private"),
     tib_chr("avatar"),
-    tib_unspecified("admin_can_manage"),
+    # tib_unspecified("admin_can_manage"),
     tib_df(
         "statuses",
         tib_chr("id"),
         tib_chr("status"),
         tib_chr("type"),
         tib_int("orderindex"),
-        tib_chr("color")
+        tib_chr("color"),
     ),
     tib_lgl("multiple_assignees"),
     tib_df(
@@ -29,12 +29,12 @@ spec_spaces <- spec_df(
             tib_chr("id"),
             tib_chr("priority"),
             tib_chr("color"),
-            tib_int("orderindex", transform = as.integer)
+            tib_int("orderindex", transform = as.integer),
         ),
         tib_lgl("per_assignee", required = FALSE),
         tib_lgl("subtasks", required = FALSE),
-        tib_unspecified("checklists", required = FALSE),
-        tib_unspecified("comments", required = FALSE)
+        # tib_unspecified("checklists", required = FALSE),
+        # tib_unspecified("comments", required = FALSE),
     ),
     tib_lgl("archived"),
     tib_df(
@@ -46,7 +46,7 @@ spec_spaces <- spec_df(
             tib_chr("username"),
             tib_chr("color"),
             tib_chr("profilePicture"),
-            tib_chr("initials")
-        )
-    )
+            tib_chr("initials"),
+        ),
+    ),
 )
