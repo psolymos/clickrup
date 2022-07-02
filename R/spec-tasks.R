@@ -89,11 +89,11 @@ spec_tasks <- spec_df(
         id = tib_chr("id"),
         name = tib_chr("name"),
         type = tib_chr("type"),
-        type_config = tib_list("type_config"),
+        type_config = tib_variant("type_config"),
         date_created = tib_scalar("date_created", ptype = vctrs::new_datetime(), transform = cu_date_from),
         hide_from_guests = tib_lgl("hide_from_guests"),
         required = tib_lgl("required"),
-        value = tib_list("value", required = FALSE)
+        value = tib_variant("value", required = FALSE)
     ),
     dependencies = tib_df(
         "dependencies",
