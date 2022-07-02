@@ -25,7 +25,7 @@ spec_tasks <- spec_guess(c(tasks, tasks_team$tasks))
 
 # Error in tibblify_impl(x, spec) :
 #   SET_VECTOR_ELT() can only be applied to a 'list', not a 'NULL'
-df_tasks <- tibblify::tibblify(c(tasks, tasks_team$tasks), spec = spec_tasks)
+df_tasks <- tibblify::tibblify(c(tasks, tasks_team$tasks), spec = spec_tasks, unspecified = "inform")
 df_tasks
 
 write_spec(spec_tasks)

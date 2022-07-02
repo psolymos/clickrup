@@ -1,6 +1,6 @@
 spec_tasks <- spec_df(
     tib_chr("id"),
-    tib_unspecified("custom_id"),
+    # tib_unspecified("custom_id"),
     tib_chr("name"),
     tib_chr("text_content"),
     tib_chr("description"),
@@ -9,7 +9,7 @@ spec_tasks <- spec_df(
         tib_chr("status"),
         tib_chr("color"),
         tib_chr("type"),
-        tib_int("orderindex")
+        tib_int("orderindex"),
     ),
     tib_int("orderindex", transform = as.integer),
     tib_scalar("date_created", ptype = vctrs::new_datetime(), transform = cu_date_from),
@@ -22,7 +22,7 @@ spec_tasks <- spec_df(
         tib_chr("username"),
         tib_chr("color"),
         tib_chr("email"),
-        tib_chr("profilePicture")
+        tib_chr("profilePicture"),
     ),
     tib_df(
         "assignees",
@@ -31,9 +31,9 @@ spec_tasks <- spec_df(
         tib_chr("color"),
         tib_chr("initials"),
         tib_chr("email"),
-        tib_chr("profilePicture")
+        tib_chr("profilePicture"),
     ),
-    tib_unspecified("watchers"),
+    # tib_unspecified("watchers"),
     tib_df(
         "checklists",
         tib_chr("id"),
@@ -56,21 +56,21 @@ spec_tasks <- spec_df(
                 tib_chr("email", required = FALSE),
                 tib_chr("color", required = FALSE),
                 tib_chr("initials", required = FALSE),
-                tib_chr("profilePicture", required = FALSE)
+                tib_chr("profilePicture", required = FALSE),
             ),
-            tib_unspecified("group_assignee"),
+            # tib_unspecified("group_assignee"),
             tib_lgl("resolved"),
-            tib_unspecified("parent"),
+            # tib_unspecified("parent"),
             tib_scalar("date_created", ptype = vctrs::new_datetime(), transform = cu_date_from),
-            tib_unspecified("children")
-        )
+            # tib_unspecified("children"),
+        ),
     ),
     tib_df(
         "tags",
         tib_chr("name"),
         tib_chr("tag_fg"),
         tib_chr("tag_bg"),
-        tib_int("creator")
+        tib_int("creator"),
     ),
     tib_chr("parent"),
     tib_row(
@@ -78,12 +78,13 @@ spec_tasks <- spec_df(
         tib_chr("id", required = FALSE),
         tib_chr("priority", required = FALSE),
         tib_chr("color", required = FALSE),
-        tib_chr("orderindex", required = FALSE)
+        tib_chr("orderindex", required = FALSE),
     ),
     tib_scalar("due_date", ptype = vctrs::new_datetime(), transform = cu_date_from),
     tib_scalar("start_date", ptype = vctrs::new_datetime(), transform = cu_date_from),
     tib_int("points"),
     tib_int("time_estimate"),
+    tib_int("time_spent", required = FALSE),
     tib_df(
         "custom_fields",
         tib_chr("id"),
@@ -93,7 +94,7 @@ spec_tasks <- spec_df(
         tib_scalar("date_created", ptype = vctrs::new_datetime(), transform = cu_date_from),
         tib_lgl("hide_from_guests"),
         tib_lgl("required"),
-        tib_variant("value", required = FALSE)
+        tib_variant("value", required = FALSE),
     ),
     tib_df(
         "dependencies",
@@ -101,9 +102,10 @@ spec_tasks <- spec_df(
         tib_chr("depends_on"),
         tib_int("type"),
         tib_scalar("date_created", ptype = vctrs::new_datetime(), transform = cu_date_from),
-        tib_chr("userid")
+        tib_chr("userid"),
+        # tib_unspecified("workspace_id"),
     ),
-    tib_unspecified("linked_tasks"),
+    # tib_unspecified("linked_tasks"),
     tib_chr("team_id"),
     tib_chr("url"),
     tib_chr("permission_level"),
@@ -111,25 +113,24 @@ spec_tasks <- spec_df(
         "list",
         tib_chr("id"),
         tib_chr("name"),
-        tib_lgl("access")
+        tib_lgl("access"),
     ),
     tib_row(
         "project",
         tib_chr("id"),
         tib_chr("name"),
         tib_lgl("hidden"),
-        tib_lgl("access")
+        tib_lgl("access"),
     ),
     tib_row(
         "folder",
         tib_chr("id"),
         tib_chr("name"),
         tib_lgl("hidden"),
-        tib_lgl("access")
+        tib_lgl("access"),
     ),
     tib_row(
         "space",
-        tib_chr("id")
+        tib_chr("id"),
     ),
-    tib_int("time_spent", required = FALSE)
 )
