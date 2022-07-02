@@ -14,7 +14,7 @@ folders
 
 spec_folders <- spec_guess(folders)
 
-df_folders <- tibblify::tibblify(folders, spec = spec_folders)
+df_folders <- tibblify::tibblify(folders, spec = spec_folders, unspecified = "inform")
 df_folders
 
 write_spec(spec_folders)

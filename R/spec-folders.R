@@ -7,7 +7,7 @@ spec_folders <- spec_df(
     tib_row(
         "space",
         tib_chr("id"),
-        tib_chr("name")
+        tib_chr("name"),
     ),
     tib_chr("task_count"),
     tib_lgl("archived"),
@@ -17,7 +17,7 @@ spec_folders <- spec_df(
         tib_chr("status"),
         tib_chr("type"),
         tib_int("orderindex"),
-        tib_chr("color")
+        tib_chr("color"),
     ),
     tib_df(
         "lists",
@@ -28,15 +28,15 @@ spec_folders <- spec_df(
         tib_row(
             "status",
             tib_chr("status", required = FALSE),
-            tib_chr("color", required = FALSE)
+            tib_chr("color", required = FALSE),
         ),
-        tib_unspecified("priority"),
+        # tib_unspecified("priority"),
         tib_row(
             "assignee",
             tib_chr("color", required = FALSE),
             tib_chr("username", required = FALSE),
             tib_chr("initials", required = FALSE),
-            tib_chr("profilePicture", required = FALSE)
+            tib_chr("profilePicture", required = FALSE),
         ),
         tib_int("task_count"),
         tib_scalar("due_date", ptype = vctrs::new_datetime(), transform = cu_date_from),
@@ -45,7 +45,7 @@ spec_folders <- spec_df(
             "space",
             tib_chr("id"),
             tib_chr("name"),
-            tib_lgl("access")
+            tib_lgl("access"),
         ),
         tib_lgl("archived"),
         tib_lgl("override_statuses"),
@@ -55,9 +55,9 @@ spec_folders <- spec_df(
             tib_chr("status"),
             tib_int("orderindex"),
             tib_chr("color"),
-            tib_chr("type")
+            tib_chr("type"),
         ),
-        tib_chr("permission_level")
+        tib_chr("permission_level"),
     ),
-    tib_chr("permission_level")
+    tib_chr("permission_level"),
 )
