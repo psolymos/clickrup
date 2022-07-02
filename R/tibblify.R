@@ -27,7 +27,7 @@ write_spec <- function(x) {
     out <- gsub(paste0('tib_chr[(]"(', date_cols, ')", default = NA_character_'), 'tib_scalar("\\1", ptype = vctrs::new_datetime(), transform = cu_date_from, default = dttr2::NA_POSIXct_', out)
     out <- gsub(paste0('tib_chr[(]"(', date_cols, ')"'), 'tib_scalar("\\1", ptype = vctrs::new_datetime(), transform = cu_date_from', out)
 
-    out <- gsub('tib_chr("duration", required = FALSE)', 'tib_scalar("duration", required = FALSE, hms::new_hms(), default = dttr2::NA_hms_, transform = ~ hms::as_hms(as.numeric(.x) / 1000))', out, fixed = TRUE)
+    out <- gsub('tib_chr("duration", required = FALSE)', 'tib_scalar("duration", hms::new_hms(), required = FALSE, transform = ~ hms::as_hms(as.numeric(.x) / 1000))', out, fixed = TRUE)
 
     # Dogfood first
     eval(parse(text = out))

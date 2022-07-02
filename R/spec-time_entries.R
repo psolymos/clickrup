@@ -8,7 +8,7 @@ spec_time_entries <- spec_df(
         tib_chr("email"),
         tib_chr("color"),
         tib_chr("initials"),
-        tib_chr("profilePicture")
+        tib_chr("profilePicture"),
     ),
     tib_lgl("billable"),
     tib_scalar("start", ptype = vctrs::new_datetime(), transform = cu_date_from),
@@ -18,7 +18,7 @@ spec_time_entries <- spec_df(
         tib_chr("name"),
         tib_chr("tag_bg"),
         tib_chr("tag_fg"),
-        tib_int("creator")
+        tib_int("creator"),
     ),
     tib_chr("source"),
     tib_scalar("at", ptype = vctrs::new_datetime(), transform = cu_date_from),
@@ -27,7 +27,7 @@ spec_time_entries <- spec_df(
         .required = FALSE,
         tib_chr("list_id", required = FALSE),
         tib_chr("folder_id", required = FALSE),
-        tib_chr("space_id", required = FALSE)
+        tib_chr("space_id", required = FALSE),
     ),
     tib_chr("task_url", required = FALSE),
     tib_row(
@@ -41,9 +41,9 @@ spec_time_entries <- spec_df(
             tib_chr("status"),
             tib_chr("color"),
             tib_chr("type"),
-            tib_int("orderindex")
+            tib_int("orderindex"),
         ),
-        tib_int("custom_type", required = FALSE)
+        tib_int("custom_type", required = FALSE),
     ),
     tib_scalar("end", ptype = vctrs::new_datetime(), transform = cu_date_from, required = FALSE),
     tib_scalar("duration", hms::new_hms(), required = FALSE, transform = ~ hms::as_hms(as.numeric(.x) / 1000)),
