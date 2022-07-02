@@ -6,7 +6,7 @@ teams <- cu_get_teams()
 teams
 
 # Needs https://github.com/mgirlich/tibblify/pull/50
-spec_teams <- guess_spec(teams$teams)
+spec_teams <- spec_guess(teams$teams)
 
 df_teams <- tibblify(teams$teams, spec = spec_teams)
 df_teams

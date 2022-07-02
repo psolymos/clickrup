@@ -13,7 +13,7 @@ df_lists
 
 members <- cu_get_list_members(df_lists$id[[1]])
 
-spec_members <- guess_spec(members$members)
+spec_members <- spec_guess(members$members)
 
 df_members <- tibblify::tibblify(members$members, spec_members)
 df_members

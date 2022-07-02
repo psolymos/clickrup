@@ -26,7 +26,7 @@ for (i in which(!good)) {
     time$data[[i]]$task <- list()
 }
 
-spec_time_entries <- guess_spec(time$data)
+spec_time_entries <- spec_guess(time$data)
 
 df_time_entries <- tibblify::tibblify(time$data, spec_time_entries)
 df_time_entries
