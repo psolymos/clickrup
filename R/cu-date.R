@@ -51,6 +51,9 @@ cu_date_from <- function(ms, tz = NULL, ...) {
 #' @export
 #' @rdname cu-date
 ## turning POSIXct to unix time
-cu_date_to <- function(dt) {
+cu_date_to <- function(dt, tz = NULL) {
+    if (is.null(tz))
+        tz <- getOption("cu_options")$tz
+
     as.character(round(unclass(as.POSIXct(dt))*1000))
 }

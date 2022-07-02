@@ -8,7 +8,7 @@
 \usage{
 cu_date_from(ms, tz = NULL, ...)
 
-cu_date_to(dt)
+cu_date_to(dt, tz = NULL)
 }
 \arguments{
 \item{ms}{ClickUp date/time format, Unix time in milliseconds.}
