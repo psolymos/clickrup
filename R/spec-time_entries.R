@@ -1,50 +1,50 @@
 spec_time_entries <- spec_df(
-    id = tib_chr("id"),
-    wid = tib_chr("wid"),
-    user = tib_row(
+    tib_chr("id"),
+    tib_chr("wid"),
+    tib_row(
         "user",
-        id = tib_chr("id", transform = as.character),
-        username = tib_chr("username"),
-        email = tib_chr("email"),
-        color = tib_chr("color"),
-        initials = tib_chr("initials"),
-        profilePicture = tib_chr("profilePicture")
+        tib_chr("id", transform = as.character),
+        tib_chr("username"),
+        tib_chr("email"),
+        tib_chr("color"),
+        tib_chr("initials"),
+        tib_chr("profilePicture")
     ),
-    billable = tib_lgl("billable"),
-    start = tib_scalar("start", ptype = vctrs::new_datetime(), transform = cu_date_from),
-    description = tib_chr("description"),
-    tags = tib_df(
+    tib_lgl("billable"),
+    tib_scalar("start", ptype = vctrs::new_datetime(), transform = cu_date_from),
+    tib_chr("description"),
+    tib_df(
         "tags",
-        name = tib_chr("name"),
-        tag_bg = tib_chr("tag_bg"),
-        tag_fg = tib_chr("tag_fg"),
-        creator = tib_int("creator")
+        tib_chr("name"),
+        tib_chr("tag_bg"),
+        tib_chr("tag_fg"),
+        tib_int("creator")
     ),
-    source = tib_chr("source"),
-    at = tib_scalar("at", ptype = vctrs::new_datetime(), transform = cu_date_from),
-    task_location = tib_row(
+    tib_chr("source"),
+    tib_scalar("at", ptype = vctrs::new_datetime(), transform = cu_date_from),
+    tib_row(
         "task_location",
         .required = FALSE,
-        list_id = tib_chr("list_id", required = FALSE),
-        folder_id = tib_chr("folder_id", required = FALSE),
-        space_id = tib_chr("space_id", required = FALSE)
+        tib_chr("list_id", required = FALSE),
+        tib_chr("folder_id", required = FALSE),
+        tib_chr("space_id", required = FALSE)
     ),
-    task_url = tib_chr("task_url", required = FALSE),
-    task = tib_row(
+    tib_chr("task_url", required = FALSE),
+    tib_row(
         "task",
         .required = FALSE,
-        id = tib_chr("id", required = FALSE),
-        name = tib_chr("name", required = FALSE),
-        status = tib_row(
+        tib_chr("id", required = FALSE),
+        tib_chr("name", required = FALSE),
+        tib_row(
             "status",
             .required = FALSE,
-            status = tib_chr("status"),
-            color = tib_chr("color"),
-            type = tib_chr("type"),
-            orderindex = tib_int("orderindex")
+            tib_chr("status"),
+            tib_chr("color"),
+            tib_chr("type"),
+            tib_int("orderindex")
         ),
-        custom_type = tib_int("custom_type", required = FALSE)
+        tib_int("custom_type", required = FALSE)
     ),
-    end = tib_scalar("end", ptype = vctrs::new_datetime(), transform = cu_date_from, required = FALSE),
-    duration = tib_scalar("duration", hms::new_hms(), required = FALSE, transform = ~ hms::as_hms(as.numeric(.x) / 1000)),
+    tib_scalar("end", ptype = vctrs::new_datetime(), transform = cu_date_from, required = FALSE),
+    tib_scalar("duration", hms::new_hms(), required = FALSE, transform = ~ hms::as_hms(as.numeric(.x) / 1000)),
 )
