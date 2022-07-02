@@ -15,7 +15,7 @@ members <- cu_get_list_members(df_lists$id[[1]])
 
 spec_members <- spec_guess(members$members)
 
-df_members <- tibblify::tibblify(members$members, spec_members)
+df_members <- tibblify::tibblify(members$members, spec_members, unspecified = "inform")
 df_members
 
 write_spec(spec_members)
