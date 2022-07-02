@@ -9,6 +9,7 @@
 \alias{cu_get_space}
 \alias{cuf_create_space}
 \alias{cuf_update_space}
+\alias{cuf_delete_space}
 \alias{cuf_get_spaces}
 \alias{cuf_get_space}
 \title{Spaces}
@@ -26,6 +27,8 @@ cu_get_space(space_id)
 cuf_create_space(team_id, name, ...)
 
 cuf_update_space(space_id, ...)
+
+cuf_delete_space(space_id)
 
 cuf_get_spaces(team_id, archived = FALSE)
 
