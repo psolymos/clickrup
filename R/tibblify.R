@@ -16,6 +16,8 @@ write_spec <- function(x) {
     out <- paste0("spec_", base_name, " <- ", out)
     out <- gsub("  ", "    ", out, fixed = TRUE)
 
+    out <- gsub('tib_unspecified(', '# tib_unspecified(', out, fixed = TRUE)
+
     out <- gsub('tib_int("id")', 'tib_chr("id", transform = as.character)', out, fixed = TRUE)
     out <- gsub('tib_int("id", default = NA_integer_', 'tib_chr("id", transform = as.character, default = NA_character_', out, fixed = TRUE)
 

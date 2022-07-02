@@ -8,7 +8,7 @@ teams
 # Needs https://github.com/mgirlich/tibblify/pull/50
 spec_teams <- spec_guess(teams$teams)
 
-df_teams <- tibblify(teams$teams, spec = spec_teams)
+df_teams <- tibblify(teams$teams, spec = spec_teams, unspecified = "inform")
 df_teams
 
 df_teams

@@ -14,10 +14,10 @@ spec_teams <- spec_df(
             tib_chr("profilePicture"),
             tib_chr("initials"),
             tib_int("role"),
-            tib_unspecified("custom_role"),
+            # tib_unspecified("custom_role"),
             tib_scalar("last_active", ptype = vctrs::new_datetime(), transform = cu_date_from),
             tib_scalar("date_joined", ptype = vctrs::new_datetime(), transform = cu_date_from),
-            tib_scalar("date_invited", ptype = vctrs::new_datetime(), transform = cu_date_from)
+            tib_scalar("date_invited", ptype = vctrs::new_datetime(), transform = cu_date_from),
         ),
         tib_row(
             "invited_by",
@@ -27,12 +27,12 @@ spec_teams <- spec_df(
             tib_chr("color", required = FALSE),
             tib_chr("email", required = FALSE),
             tib_chr("initials", required = FALSE),
-            tib_chr("profilePicture", required = FALSE)
+            tib_chr("profilePicture", required = FALSE),
         ),
         tib_lgl("can_see_time_spent", required = FALSE),
         tib_lgl("can_see_time_estimated", required = FALSE),
         tib_lgl("can_see_points_estimated", required = FALSE),
         tib_lgl("can_edit_tags", required = FALSE),
-        tib_lgl("can_create_views", required = FALSE)
-    )
+        tib_lgl("can_create_views", required = FALSE),
+    ),
 )
