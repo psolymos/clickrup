@@ -16,7 +16,7 @@ lists <-
 
 spec_lists <- spec_guess(lists)
 
-df_lists <- tibblify::tibblify(lists, spec = spec_lists)
+df_lists <- tibblify::tibblify(lists, spec = spec_lists, unspecified = "inform")
 df_lists
 
 write_spec(spec_lists)
