@@ -4,104 +4,95 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Work with the ClickUp productivity app from R to
+    manage tasks, goals, time tracking, and more.">
 <title>Interacting with the ClickUp v2 API from R • clickrup</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
-<script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="Interacting with the ClickUp v2 API from R">
+<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Interacting with the ClickUp v2 API from R">
 <meta property="og:description" content="Work with the ClickUp productivity app from R to
     manage tasks, goals, time tracking, and more.">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]--><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=UA-55877016-2"></script><script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-55877016-2');
-</script>
+<![endif]--><script src="https://cdn.usefathom.com/script.js" data-site="KTMJHUPR" defer></script><link rel="icon" href="https://peter.solymos.org/favicon.ico">
 </head>
-<body data-spy="scroll" data-target="#toc">
+<body>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <div class="container template-home">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">clickrup</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.5</span>
-      </span>
-    </div>
+    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-primary"><div class="container">
+    
+    <a class="navbar-brand me-2" href="index.html">clickrup</a>
 
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-<li>
-  <a href="reference/index.html">Reference</a>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.5</small>
+
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar" class="collapse navbar-collapse ms-3">
+      <ul class="navbar-nav me-auto">
+<li class="nav-item">
+  <a class="nav-link" href="reference/index.html">Reference</a>
 </li>
-<li>
-  <a href="news/index.html">Changelog</a>
+<li class="nav-item">
+  <a class="nav-link" href="news/index.html">Changelog</a>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-  <a href="https://github.com/psolymos/clickrup/" class="external-link">
-    <span class="fab fa-github fa-lg"></span>
+<form class="form-inline my-2 my-lg-0" role="search">
+        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="search.json" id="search-input" placeholder="Search for" autocomplete="off">
+</form>
+
+      <ul class="navbar-nav">
+<li class="nav-item">
+  <a class="external-link nav-link" href="http://twitter.com/psolymos" aria-label="Twitter">
+    <span class="fa fa-twitter"></span>
+     
+  </a>
+</li>
+<li class="nav-item">
+  <a class="external-link nav-link" href="http://github.com/psolymos" aria-label="GitHub">
+    <span class="fa fa-github"></span>
      
   </a>
 </li>
       </ul>
 </div>
-<!--/.nav-collapse -->
+
+    
   </div>
-<!--/.container -->
-</div>
-<!--/.navbar -->
-
-      
-
-      </header><div class="row">
-  <div class="contents col-md-9">
-<div class="section level1">
-<div class="page-header"><h1 id="clickrup-">clickrup
-<img src="https://raw.githubusercontent.com/psolymos/clickrup/master/inst/images/clickrup.jpg" align="right" style="padding-left:10px;background-color:white;" width="200px"><a class="anchor" aria-label="anchor" href="#clickrup-"></a>
+</nav><div class="container template-home">
+<div class="row">
+  <main id="main" class="col-md-9"><div class="section level1">
+<div class="page-header"><h1 id="clickrup-">clickrup <img src="https://raw.githubusercontent.com/psolymos/clickrup/master/inst/images/clickrup.jpg" align="right" style="padding-left:10px;background-color:white;" width="200px"><a class="anchor" aria-label="anchor" href="#clickrup-"></a>
 </h1></div>
 
 <blockquote>
 <p>Interacting with the ClickUp v2 API from R</p>
 </blockquote>
-<p><a href="https://clickup.com/?noRedirect=true" class="external-link">ClickUp</a> is a
-cloud-based collaboration and project management tool. Features include
-tasks, docs, chat, goals, and <a href="https://clickup.com/features" class="external-link">more</a>.</p>
-<p>The {clickrup} R package wraps the ClickUp <a href="https://clickup.com/api" class="external-link">API v2</a>. See the <a href="https://github.com/psolymos/clickrup/issues/1" class="external-link">roadmap</a> for
-what is currently included in the package.</p>
+<p><a href="https://clickup.com/?noRedirect=true" class="external-link">ClickUp</a> is a cloud-based collaboration and project management tool. Features include tasks, docs, chat, goals, and <a href="https://clickup.com/features" class="external-link">more</a>.</p>
+<p>The {clickrup} R package wraps the ClickUp <a href="https://clickup.com/api" class="external-link">API v2</a>. See the <a href="https://github.com/psolymos/clickrup/issues/1" class="external-link">roadmap</a> for what is currently included in the package.</p>
 <div class="section level2">
 <h2 id="setup">Setup<a class="anchor" aria-label="anchor" href="#setup"></a>
 </h2>
 <p>Install the {clickrup} package:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## using remotes</span>
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"psolymos/clickrup"</span><span class="op">)</span>
-
-<span class="co">## with r-universe</span>
-<span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>
-    psolymos <span class="op">=</span> <span class="st">"https://psolymos.r-universe.dev"</span>,
-    CRAN <span class="op">=</span> <span class="st">"https://cloud.r-project.org"</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'clickrup'</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">## using remotes</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"psolymos/clickrup"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## with r-universe</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
+<span>    psolymos <span class="op">=</span> <span class="st">"https://psolymos.r-universe.dev"</span>,</span>
+<span>    CRAN <span class="op">=</span> <span class="st">"https://cloud.r-project.org"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'clickrup'</span><span class="op">)</span></span></code></pre></div>
 <p>Follow this <a href="https://docs.clickup.com/en/articles/1367130-getting-started-with-the-clickup-api" class="external-link">tutorial</a>:</p>
 <ul>
-<li>sign up for ClickUp (you can use this referral <a href="https://clickup.com?fp_ref=peter51" class="external-link">link</a> to do so, it’s
-free),</li>
+<li>sign up for ClickUp (you can use this referral <a href="https://clickup.com?fp_ref=peter51" class="external-link">link</a> to do so, it’s free),</li>
 <li>navigate to your personal <em>Settings</em>,</li>
 <li>click <em>Apps</em> in the left sidebar,</li>
 <li>click <em>Generate</em> to create your API token,</li>
@@ -109,56 +100,33 @@ free),</li>
 </ul>
 <p>Now add your ClickUp token as an environment variable:</p>
 <ul>
-<li>open the file <code>.Renviron</code>:
-<code>file.edit("~/.Renviron")</code>,</li>
-<li>add a line with <code>CU_PAT="your_token"</code> to the
-<code>.Renviron</code> file and save it,</li>
-<li>check with <code>Sys.getenv("CU_PAT")</code>, it should return the
-token.</li>
+<li>open the file <code>.Renviron</code>: <code>file.edit("~/.Renviron")</code>,</li>
+<li>add a line with <code>CU_PAT="your_token"</code> to the <code>.Renviron</code> file and save it,</li>
+<li>check with <code>Sys.getenv("CU_PAT")</code>, it should return the token.</li>
 </ul>
-<p>The ClickUp token will look something like
-<code>pk_4753994_EXP7MPOJ7XQM5UJDV2M45MPF0YHH5YHO</code>.</p>
-<p>The <code>cu_set_pat</code> function uses <code>Sys.setenv</code> to
-set the <code>CU_PAT</code> environment variable for other processes
-called from within R or future calls to <code>Sys.getenv</code> from the
-same R process.</p>
+<p>The ClickUp token will look something like <code>pk_4753994_EXP7MPOJ7XQM5UJDV2M45MPF0YHH5YHO</code>.</p>
+<p>The <code>cu_set_pat</code> function uses <code>Sys.setenv</code> to set the <code>CU_PAT</code> environment variable for other processes called from within R or future calls to <code>Sys.getenv</code> from the same R process.</p>
 </div>
 <div class="section level2">
 <h2 id="api-endpoints">API endpoints<a class="anchor" aria-label="anchor" href="#api-endpoints"></a>
 </h2>
-<p>The first step you want to do is to get the IDs for your workspaces
-(teams is the legacy term for this in the API).</p>
-<p>If your setup was successful, <code><a href="reference/api-teams.html">cu_get_teams()</a></code> should
-return a list with the workspace IDs and names.</p>
-<p>The easiest way to get going with the various endpoints is to browse
-the <a href="https://clickup.com/api" class="external-link">API v2 documentation</a>. Once you
-found what you are after, just look at the API heading. For example, for
-<strong>Get Teams</strong>, the R function is prepended with
-<code>cu_</code> (to facilitate RStudio code completion), then comes the
-heading in lower case and spaces replaced by underscores. Similarly,
-<strong>Get Filtered Team Tasks</strong> will be
-<code><a href="reference/api-tasks.html">cu_get_filtered_team_tasks()</a></code>. Articles (a, an, the) are
-dropped (e.g. <strong>Create a Time Entry</strong>) will be
-<code><a href="reference/api-timetracking-2.html">cu_create_time_entry()</a></code>.</p>
-<p>Function arguments are the <em>Parameters</em> listed on the API
-page, <code>...</code> passes optional parameters, query parameters, or
-elements for the body.</p>
+<p>The first step you want to do is to get the IDs for your workspaces (teams is the legacy term for this in the API).</p>
+<p>If your setup was successful, <code><a href="reference/api-teams.html">cu_get_teams()</a></code> should return a list with the workspace IDs and names.</p>
+<p>The easiest way to get going with the various endpoints is to browse the <a href="https://clickup.com/api" class="external-link">API v2 documentation</a>. Once you found what you are after, just look at the API heading. For example, for <strong>Get Teams</strong>, the R function is prepended with <code>cu_</code> (to facilitate RStudio code completion), then comes the heading in lower case and spaces replaced by underscores. Similarly, <strong>Get Filtered Team Tasks</strong> will be <code><a href="reference/api-tasks.html">cu_get_filtered_team_tasks()</a></code>. Articles (a, an, the) are dropped (e.g. <strong>Create a Time Entry</strong>) will be <code><a href="reference/api-timetracking-2.html">cu_create_time_entry()</a></code>.</p>
+<p>Function arguments are the <em>Parameters</em> listed on the API page, <code>...</code> passes optional parameters, query parameters, or elements for the body.</p>
 </div>
 <div class="section level2">
 <h2 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
 </h2>
-<p>Load the package and set the access token if it is not already set.
-<code><a href="reference/cu-pat.html">cu_get_pat()</a></code> returns the token invisibly, so it doesn’t end
-up in logs.</p>
+<p>Load the package and set the access token if it is not already set. <code><a href="reference/cu-pat.html">cu_get_pat()</a></code> returns the token invisibly, so it doesn’t end up in logs.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/psolymos/clickrup" class="external-link">clickrup</a></span><span class="op">)</span>
-<span class="co">#&gt; clickrup 0.0.5    2021-12-12</span>
-<span class="fu"><a href="reference/cu-pat.html">cu_get_pat</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># returns PAT invisibly</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/psolymos/clickrup" class="external-link">clickrup</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; clickrup 0.0.5    2021-12-12</span></span>
+<span><span class="fu"><a href="reference/cu-pat.html">cu_get_pat</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># returns PAT invisibly</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="clickup-hierarchy">ClickUp hierarchy<a class="anchor" aria-label="anchor" href="#clickup-hierarchy"></a>
 </h3>
-<p>The <a href="https://docs.clickup.com/en/articles/1045623-how-does-the-hierarchy-structure-work-in-clickup" class="external-link">ClickUp
-hierarchy</a> includes the following levels:</p>
+<p>The <a href="https://docs.clickup.com/en/articles/1045623-how-does-the-hierarchy-structure-work-in-clickup" class="external-link">ClickUp hierarchy</a> includes the following levels:</p>
 <ul>
 <li>Workspaces (teams is the legacy term for this in the API)</li>
 <li>Spaces</li>
@@ -168,299 +136,264 @@ hierarchy</a> includes the following levels:</p>
 <li>Subtasks</li>
 <li>Checklists</li>
 </ul>
-<p>We can list Workspaces that we have access to using the
-<code><a href="reference/api-teams.html">cu_get_teams()</a></code> function. It takes no arguments, it only
-passes the access token behind the scenes, so it is a good way to test
-if things are working as expected</p>
+<p>We can list Workspaces that we have access to using the <code><a href="reference/api-teams.html">cu_get_teams()</a></code> function. It takes no arguments, it only passes the access token behind the scenes, so it is a good way to test if things are working as expected</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">Teams</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/api-teams.html">cu_get_teams</a></span><span class="op">(</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">Teams</span>, <span class="fl">3</span><span class="op">)</span>
-<span class="co">#&gt; List of 1</span>
-<span class="co">#&gt;  $ teams:List of 2</span>
-<span class="co">#&gt;   ..$ :List of 5</span>
-<span class="co">#&gt;   .. ..$ id     : chr "2253762"</span>
-<span class="co">#&gt;   .. ..$ name   : chr "Peter's Workspace"</span>
-<span class="co">#&gt;   .. ..$ color  : chr "#40BC86"</span>
-<span class="co">#&gt;   .. ..$ avatar : NULL</span>
-<span class="co">#&gt;   .. ..$ members:List of 1</span>
-<span class="co">#&gt;   ..$ :List of 5</span>
-<span class="co">#&gt;   .. ..$ id     : chr "2399763"</span>
-<span class="co">#&gt;   .. ..$ name   : chr "My Workspace"</span>
-<span class="co">#&gt;   .. ..$ color  : chr "#ea80fc"</span>
-<span class="co">#&gt;   .. ..$ avatar : NULL</span>
-<span class="co">#&gt;   .. ..$ members:List of 1</span></code></pre></div>
-<p>Spaces within a specific Workspace defined by its
-<code>team_id</code></p>
+<code class="sourceCode R"><span><span class="va">Teams</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/api-teams.html">cu_get_teams</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">Teams</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="co">#&gt; List of 1</span></span>
+<span><span class="co">#&gt;  $ teams:List of 2</span></span>
+<span><span class="co">#&gt;   ..$ :List of 5</span></span>
+<span><span class="co">#&gt;   .. ..$ id     : chr "2253762"</span></span>
+<span><span class="co">#&gt;   .. ..$ name   : chr "Peter's Workspace"</span></span>
+<span><span class="co">#&gt;   .. ..$ color  : chr "#40BC86"</span></span>
+<span><span class="co">#&gt;   .. ..$ avatar : NULL</span></span>
+<span><span class="co">#&gt;   .. ..$ members:List of 1</span></span>
+<span><span class="co">#&gt;   ..$ :List of 5</span></span>
+<span><span class="co">#&gt;   .. ..$ id     : chr "2399763"</span></span>
+<span><span class="co">#&gt;   .. ..$ name   : chr "My Workspace"</span></span>
+<span><span class="co">#&gt;   .. ..$ color  : chr "#ea80fc"</span></span>
+<span><span class="co">#&gt;   .. ..$ avatar : NULL</span></span>
+<span><span class="co">#&gt;   .. ..$ members:List of 1</span></span></code></pre></div>
+<p>Spaces within a specific Workspace defined by its <code>team_id</code></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">team_id</span> <span class="op">&lt;-</span> <span class="va">Teams</span><span class="op">$</span><span class="va">teams</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">id</span>
-<span class="va">Spaces</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/api-spaces.html">cu_get_spaces</a></span><span class="op">(</span><span class="va">team_id</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">Spaces</span>, <span class="fl">3</span><span class="op">)</span>
-<span class="co">#&gt; List of 1</span>
-<span class="co">#&gt;  $ spaces:List of 2</span>
-<span class="co">#&gt;   ..$ :List of 7</span>
-<span class="co">#&gt;   .. ..$ id                : chr "6331651"</span>
-<span class="co">#&gt;   .. ..$ name              : chr "Extras"</span>
-<span class="co">#&gt;   .. ..$ private           : logi FALSE</span>
-<span class="co">#&gt;   .. ..$ statuses          :List of 4</span>
-<span class="co">#&gt;   .. ..$ multiple_assignees: logi TRUE</span>
-<span class="co">#&gt;   .. ..$ features          :List of 14</span>
-<span class="co">#&gt;   .. ..$ archived          : logi FALSE</span>
-<span class="co">#&gt;   ..$ :List of 7</span>
-<span class="co">#&gt;   .. ..$ id                : chr "6331576"</span>
-<span class="co">#&gt;   .. ..$ name              : chr "Bugs"</span>
-<span class="co">#&gt;   .. ..$ private           : logi FALSE</span>
-<span class="co">#&gt;   .. ..$ statuses          :List of 2</span>
-<span class="co">#&gt;   .. ..$ multiple_assignees: logi FALSE</span>
-<span class="co">#&gt;   .. ..$ features          :List of 11</span>
-<span class="co">#&gt;   .. ..$ archived          : logi FALSE</span></code></pre></div>
-<p>Folders within a specific Space defined by its
-<code>space_id</code></p>
+<code class="sourceCode R"><span><span class="va">team_id</span> <span class="op">&lt;-</span> <span class="va">Teams</span><span class="op">$</span><span class="va">teams</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">id</span></span>
+<span><span class="va">Spaces</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/api-spaces.html">cu_get_spaces</a></span><span class="op">(</span><span class="va">team_id</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">Spaces</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="co">#&gt; List of 1</span></span>
+<span><span class="co">#&gt;  $ spaces:List of 2</span></span>
+<span><span class="co">#&gt;   ..$ :List of 7</span></span>
+<span><span class="co">#&gt;   .. ..$ id                : chr "6331651"</span></span>
+<span><span class="co">#&gt;   .. ..$ name              : chr "Extras"</span></span>
+<span><span class="co">#&gt;   .. ..$ private           : logi FALSE</span></span>
+<span><span class="co">#&gt;   .. ..$ statuses          :List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ multiple_assignees: logi TRUE</span></span>
+<span><span class="co">#&gt;   .. ..$ features          :List of 14</span></span>
+<span><span class="co">#&gt;   .. ..$ archived          : logi FALSE</span></span>
+<span><span class="co">#&gt;   ..$ :List of 7</span></span>
+<span><span class="co">#&gt;   .. ..$ id                : chr "6331576"</span></span>
+<span><span class="co">#&gt;   .. ..$ name              : chr "Bugs"</span></span>
+<span><span class="co">#&gt;   .. ..$ private           : logi FALSE</span></span>
+<span><span class="co">#&gt;   .. ..$ statuses          :List of 2</span></span>
+<span><span class="co">#&gt;   .. ..$ multiple_assignees: logi FALSE</span></span>
+<span><span class="co">#&gt;   .. ..$ features          :List of 11</span></span>
+<span><span class="co">#&gt;   .. ..$ archived          : logi FALSE</span></span></code></pre></div>
+<p>Folders within a specific Space defined by its <code>space_id</code></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">space_id</span> <span class="op">&lt;-</span> <span class="va">Spaces</span><span class="op">$</span><span class="va">spaces</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">id</span>
-<span class="va">Folders</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/api-folders.html">cu_get_folders</a></span><span class="op">(</span><span class="va">space_id</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">Folders</span>, <span class="fl">3</span><span class="op">)</span>
-<span class="co">#&gt; List of 1</span>
-<span class="co">#&gt;  $ folders:List of 1</span>
-<span class="co">#&gt;   ..$ :List of 11</span>
-<span class="co">#&gt;   .. ..$ id               : chr "12783555"</span>
-<span class="co">#&gt;   .. ..$ name             : chr "Bug queues"</span>
-<span class="co">#&gt;   .. ..$ orderindex       : int 1</span>
-<span class="co">#&gt;   .. ..$ override_statuses: logi TRUE</span>
-<span class="co">#&gt;   .. ..$ hidden           : logi FALSE</span>
-<span class="co">#&gt;   .. ..$ space            :List of 2</span>
-<span class="co">#&gt;   .. ..$ task_count       : chr "10"</span>
-<span class="co">#&gt;   .. ..$ archived         : logi FALSE</span>
-<span class="co">#&gt;   .. ..$ statuses         :List of 13</span>
-<span class="co">#&gt;   .. ..$ lists            :List of 2</span>
-<span class="co">#&gt;   .. ..$ permission_level : chr "create"</span></code></pre></div>
-<p>Lists within a specific Folder defined by its <code>folder_id</code>
-(or Folderless Lists based on <code>space_id</code>)</p>
+<code class="sourceCode R"><span><span class="va">space_id</span> <span class="op">&lt;-</span> <span class="va">Spaces</span><span class="op">$</span><span class="va">spaces</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">id</span></span>
+<span><span class="va">Folders</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/api-folders.html">cu_get_folders</a></span><span class="op">(</span><span class="va">space_id</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">Folders</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="co">#&gt; List of 1</span></span>
+<span><span class="co">#&gt;  $ folders:List of 1</span></span>
+<span><span class="co">#&gt;   ..$ :List of 11</span></span>
+<span><span class="co">#&gt;   .. ..$ id               : chr "12783555"</span></span>
+<span><span class="co">#&gt;   .. ..$ name             : chr "Bug queues"</span></span>
+<span><span class="co">#&gt;   .. ..$ orderindex       : int 1</span></span>
+<span><span class="co">#&gt;   .. ..$ override_statuses: logi TRUE</span></span>
+<span><span class="co">#&gt;   .. ..$ hidden           : logi FALSE</span></span>
+<span><span class="co">#&gt;   .. ..$ space            :List of 2</span></span>
+<span><span class="co">#&gt;   .. ..$ task_count       : chr "10"</span></span>
+<span><span class="co">#&gt;   .. ..$ archived         : logi FALSE</span></span>
+<span><span class="co">#&gt;   .. ..$ statuses         :List of 13</span></span>
+<span><span class="co">#&gt;   .. ..$ lists            :List of 2</span></span>
+<span><span class="co">#&gt;   .. ..$ permission_level : chr "create"</span></span></code></pre></div>
+<p>Lists within a specific Folder defined by its <code>folder_id</code> (or Folderless Lists based on <code>space_id</code>)</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">folder_id</span> <span class="op">&lt;-</span> <span class="va">Folders</span><span class="op">$</span><span class="va">folders</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">id</span>
-<span class="va">Lists</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/api-lists.html">cu_get_lists</a></span><span class="op">(</span><span class="va">folder_id</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">Lists</span>, <span class="fl">3</span><span class="op">)</span>
-<span class="co">#&gt; List of 1</span>
-<span class="co">#&gt;  $ lists:List of 2</span>
-<span class="co">#&gt;   ..$ :List of 14</span>
-<span class="co">#&gt;   .. ..$ id               : chr "31538033"</span>
-<span class="co">#&gt;   .. ..$ name             : chr "Hotfix"</span>
-<span class="co">#&gt;   .. ..$ orderindex       : int 2</span>
-<span class="co">#&gt;   .. ..$ status           : NULL</span>
-<span class="co">#&gt;   .. ..$ priority         : NULL</span>
-<span class="co">#&gt;   .. ..$ assignee         : NULL</span>
-<span class="co">#&gt;   .. ..$ task_count       : int 5</span>
-<span class="co">#&gt;   .. ..$ due_date         : NULL</span>
-<span class="co">#&gt;   .. ..$ start_date       : NULL</span>
-<span class="co">#&gt;   .. ..$ folder           :List of 4</span>
-<span class="co">#&gt;   .. ..$ space            :List of 3</span>
-<span class="co">#&gt;   .. ..$ archived         : logi FALSE</span>
-<span class="co">#&gt;   .. ..$ override_statuses: logi FALSE</span>
-<span class="co">#&gt;   .. ..$ permission_level : chr "create"</span>
-<span class="co">#&gt;   ..$ :List of 14</span>
-<span class="co">#&gt;   .. ..$ id               : chr "31538032"</span>
-<span class="co">#&gt;   .. ..$ name             : chr "Internal Bugs"</span>
-<span class="co">#&gt;   .. ..$ orderindex       : int 3</span>
-<span class="co">#&gt;   .. ..$ status           : NULL</span>
-<span class="co">#&gt;   .. ..$ priority         : NULL</span>
-<span class="co">#&gt;   .. ..$ assignee         : NULL</span>
-<span class="co">#&gt;   .. ..$ task_count       : int 5</span>
-<span class="co">#&gt;   .. ..$ due_date         : NULL</span>
-<span class="co">#&gt;   .. ..$ start_date       : NULL</span>
-<span class="co">#&gt;   .. ..$ folder           :List of 4</span>
-<span class="co">#&gt;   .. ..$ space            :List of 3</span>
-<span class="co">#&gt;   .. ..$ archived         : logi FALSE</span>
-<span class="co">#&gt;   .. ..$ override_statuses: logi FALSE</span>
-<span class="co">#&gt;   .. ..$ permission_level : chr "create"</span>
-
-<span class="fu"><a href="reference/api-lists.html">cu_get_lists_folderless</a></span><span class="op">(</span><span class="va">space_id</span><span class="op">)</span>
-<span class="co">#&gt; $lists</span>
-<span class="co">#&gt; list()</span></code></pre></div>
-<p>The functions <code>cu_get_spaces</code>,
-<code>cu_get_folders</code>, and <code>cu_get_lists</code> accept the
-argument <code>archived</code> to return archived
-spaces/folders/lists</p>
+<code class="sourceCode R"><span><span class="va">folder_id</span> <span class="op">&lt;-</span> <span class="va">Folders</span><span class="op">$</span><span class="va">folders</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">id</span></span>
+<span><span class="va">Lists</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/api-lists.html">cu_get_lists</a></span><span class="op">(</span><span class="va">folder_id</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">Lists</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="co">#&gt; List of 1</span></span>
+<span><span class="co">#&gt;  $ lists:List of 2</span></span>
+<span><span class="co">#&gt;   ..$ :List of 14</span></span>
+<span><span class="co">#&gt;   .. ..$ id               : chr "31538033"</span></span>
+<span><span class="co">#&gt;   .. ..$ name             : chr "Hotfix"</span></span>
+<span><span class="co">#&gt;   .. ..$ orderindex       : int 2</span></span>
+<span><span class="co">#&gt;   .. ..$ status           : NULL</span></span>
+<span><span class="co">#&gt;   .. ..$ priority         : NULL</span></span>
+<span><span class="co">#&gt;   .. ..$ assignee         : NULL</span></span>
+<span><span class="co">#&gt;   .. ..$ task_count       : int 5</span></span>
+<span><span class="co">#&gt;   .. ..$ due_date         : NULL</span></span>
+<span><span class="co">#&gt;   .. ..$ start_date       : NULL</span></span>
+<span><span class="co">#&gt;   .. ..$ folder           :List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ space            :List of 3</span></span>
+<span><span class="co">#&gt;   .. ..$ archived         : logi FALSE</span></span>
+<span><span class="co">#&gt;   .. ..$ override_statuses: logi FALSE</span></span>
+<span><span class="co">#&gt;   .. ..$ permission_level : chr "create"</span></span>
+<span><span class="co">#&gt;   ..$ :List of 14</span></span>
+<span><span class="co">#&gt;   .. ..$ id               : chr "31538032"</span></span>
+<span><span class="co">#&gt;   .. ..$ name             : chr "Internal Bugs"</span></span>
+<span><span class="co">#&gt;   .. ..$ orderindex       : int 3</span></span>
+<span><span class="co">#&gt;   .. ..$ status           : NULL</span></span>
+<span><span class="co">#&gt;   .. ..$ priority         : NULL</span></span>
+<span><span class="co">#&gt;   .. ..$ assignee         : NULL</span></span>
+<span><span class="co">#&gt;   .. ..$ task_count       : int 5</span></span>
+<span><span class="co">#&gt;   .. ..$ due_date         : NULL</span></span>
+<span><span class="co">#&gt;   .. ..$ start_date       : NULL</span></span>
+<span><span class="co">#&gt;   .. ..$ folder           :List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ space            :List of 3</span></span>
+<span><span class="co">#&gt;   .. ..$ archived         : logi FALSE</span></span>
+<span><span class="co">#&gt;   .. ..$ override_statuses: logi FALSE</span></span>
+<span><span class="co">#&gt;   .. ..$ permission_level : chr "create"</span></span>
+<span></span>
+<span><span class="fu"><a href="reference/api-lists.html">cu_get_lists_folderless</a></span><span class="op">(</span><span class="va">space_id</span><span class="op">)</span></span>
+<span><span class="co">#&gt; $lists</span></span>
+<span><span class="co">#&gt; list()</span></span></code></pre></div>
+<p>The functions <code>cu_get_spaces</code>, <code>cu_get_folders</code>, and <code>cu_get_lists</code> accept the argument <code>archived</code> to return archived spaces/folders/lists</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="fu"><a href="reference/api-lists.html">cu_get_lists</a></span><span class="op">(</span><span class="va">folder_id</span>, archived<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span>
-<span class="co">#&gt; List of 1</span>
-<span class="co">#&gt;  $ lists:List of 1</span>
-<span class="co">#&gt;   ..$ :List of 14</span>
-<span class="co">#&gt;   .. ..$ id               : chr "31538034"</span>
-<span class="co">#&gt;   .. ..$ name             : chr "Backlog"</span>
-<span class="co">#&gt;   .. ..$ orderindex       : int 4</span>
-<span class="co">#&gt;   .. ..$ status           : NULL</span>
-<span class="co">#&gt;   .. ..$ priority         : NULL</span>
-<span class="co">#&gt;   .. ..$ assignee         : NULL</span>
-<span class="co">#&gt;   .. ..$ task_count       : int 5</span>
-<span class="co">#&gt;   .. ..$ due_date         : NULL</span>
-<span class="co">#&gt;   .. ..$ start_date       : NULL</span>
-<span class="co">#&gt;   .. ..$ folder           :List of 4</span>
-<span class="co">#&gt;   .. ..$ space            :List of 3</span>
-<span class="co">#&gt;   .. ..$ archived         : logi TRUE</span>
-<span class="co">#&gt;   .. ..$ override_statuses: logi FALSE</span>
-<span class="co">#&gt;   .. ..$ permission_level : chr "create"</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="fu"><a href="reference/api-lists.html">cu_get_lists</a></span><span class="op">(</span><span class="va">folder_id</span>, archived<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="co">#&gt; List of 1</span></span>
+<span><span class="co">#&gt;  $ lists:List of 1</span></span>
+<span><span class="co">#&gt;   ..$ :List of 14</span></span>
+<span><span class="co">#&gt;   .. ..$ id               : chr "31538034"</span></span>
+<span><span class="co">#&gt;   .. ..$ name             : chr "Backlog"</span></span>
+<span><span class="co">#&gt;   .. ..$ orderindex       : int 4</span></span>
+<span><span class="co">#&gt;   .. ..$ status           : NULL</span></span>
+<span><span class="co">#&gt;   .. ..$ priority         : NULL</span></span>
+<span><span class="co">#&gt;   .. ..$ assignee         : NULL</span></span>
+<span><span class="co">#&gt;   .. ..$ task_count       : int 5</span></span>
+<span><span class="co">#&gt;   .. ..$ due_date         : NULL</span></span>
+<span><span class="co">#&gt;   .. ..$ start_date       : NULL</span></span>
+<span><span class="co">#&gt;   .. ..$ folder           :List of 4</span></span>
+<span><span class="co">#&gt;   .. ..$ space            :List of 3</span></span>
+<span><span class="co">#&gt;   .. ..$ archived         : logi TRUE</span></span>
+<span><span class="co">#&gt;   .. ..$ override_statuses: logi FALSE</span></span>
+<span><span class="co">#&gt;   .. ..$ permission_level : chr "create"</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="tasks">Tasks<a class="anchor" aria-label="anchor" href="#tasks"></a>
 </h3>
-<p>We can list Tasks within a specific List defined by its
-<code>list_id</code></p>
+<p>We can list Tasks within a specific List defined by its <code>list_id</code></p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">list_id</span> <span class="op">&lt;-</span> <span class="va">Lists</span><span class="op">$</span><span class="va">lists</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">id</span>
-<span class="va">Tasks</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/api-tasks.html">cu_get_tasks</a></span><span class="op">(</span><span class="va">list_id</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">Tasks</span>, <span class="fl">2</span><span class="op">)</span>
-<span class="co">#&gt; List of 1</span>
-<span class="co">#&gt;  $ tasks:List of 5</span>
-<span class="co">#&gt;   ..$ :List of 32</span>
-<span class="co">#&gt;   ..$ :List of 32</span>
-<span class="co">#&gt;   ..$ :List of 32</span>
-<span class="co">#&gt;   ..$ :List of 32</span>
-<span class="co">#&gt;   ..$ :List of 32</span></code></pre></div>
-<p>Notice that we have 5 tasks in the list. We can include Subtasks
-too</p>
+<code class="sourceCode R"><span><span class="va">list_id</span> <span class="op">&lt;-</span> <span class="va">Lists</span><span class="op">$</span><span class="va">lists</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">id</span></span>
+<span><span class="va">Tasks</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/api-tasks.html">cu_get_tasks</a></span><span class="op">(</span><span class="va">list_id</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">Tasks</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="co">#&gt; List of 1</span></span>
+<span><span class="co">#&gt;  $ tasks:List of 5</span></span>
+<span><span class="co">#&gt;   ..$ :List of 32</span></span>
+<span><span class="co">#&gt;   ..$ :List of 32</span></span>
+<span><span class="co">#&gt;   ..$ :List of 32</span></span>
+<span><span class="co">#&gt;   ..$ :List of 32</span></span>
+<span><span class="co">#&gt;   ..$ :List of 32</span></span></code></pre></div>
+<p>Notice that we have 5 tasks in the list. We can include Subtasks too</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">subTasks</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/api-tasks.html">cu_get_tasks</a></span><span class="op">(</span><span class="va">list_id</span>, subtasks<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">subTasks</span><span class="op">$</span><span class="va">tasks</span><span class="op">)</span>
-<span class="co">#&gt; [1] 7</span></code></pre></div>
-<p>Getting all the tasks (possibly filtered) in a Workspace is done via
-the <code>cu_get_filtered_team_tasks</code> function. This function
-returns tasks in batches of 100. If you don’t want to deal with paging,
-use the wrapper function <code>cu_get_all_team_tasks</code> The list of
-tasks returned does not include closed tasks, to get those as well we
-need to pass the <code>include_closed</code> query parameter</p>
+<code class="sourceCode R"><span><span class="va">subTasks</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/api-tasks.html">cu_get_tasks</a></span><span class="op">(</span><span class="va">list_id</span>, subtasks<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">subTasks</span><span class="op">$</span><span class="va">tasks</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 7</span></span></code></pre></div>
+<p>Getting all the tasks (possibly filtered) in a Workspace is done via the <code>cu_get_filtered_team_tasks</code> function. This function returns tasks in batches of 100. If you don’t want to deal with paging, use the wrapper function <code>cu_get_all_team_tasks</code> The list of tasks returned does not include closed tasks, to get those as well we need to pass the <code>include_closed</code> query parameter</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## without closed tasks</span>
-<span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="reference/cu-get-all-team-tasks.html">cu_get_all_team_tasks</a></span><span class="op">(</span><span class="va">team_id</span>, subtasks<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">$</span><span class="va">tasks</span><span class="op">)</span>
-<span class="co">#&gt; [1] 17</span>
-
-<span class="co">## with closed tasks</span>
-<span class="va">allSubTasks</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/cu-get-all-team-tasks.html">cu_get_all_team_tasks</a></span><span class="op">(</span><span class="va">team_id</span>, subtasks<span class="op">=</span><span class="cn">TRUE</span>,
-                                include_closed<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">allSubTasks</span><span class="op">$</span><span class="va">tasks</span><span class="op">)</span>
-<span class="co">#&gt; [1] 18</span>
-
-<span class="va">Status</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">allSubTasks</span><span class="op">$</span><span class="va">tasks</span>, <span class="kw">function</span><span class="op">(</span><span class="va">z</span><span class="op">)</span> <span class="va">z</span><span class="op">$</span><span class="va">status</span><span class="op">$</span><span class="va">status</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">Status</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt;          Status Freq</span>
-<span class="co">#&gt; 1        Closed    1</span>
-<span class="co">#&gt; 2   in progress    3</span>
-<span class="co">#&gt; 3 investigating    2</span>
-<span class="co">#&gt; 4          Open    5</span>
-<span class="co">#&gt; 5    production    1</span>
-<span class="co">#&gt; 6        review    4</span>
-<span class="co">#&gt; 7        staged    2</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">## without closed tasks</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="reference/cu-get-all-team-tasks.html">cu_get_all_team_tasks</a></span><span class="op">(</span><span class="va">team_id</span>, subtasks<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">$</span><span class="va">tasks</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 17</span></span>
+<span></span>
+<span><span class="co">## with closed tasks</span></span>
+<span><span class="va">allSubTasks</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/cu-get-all-team-tasks.html">cu_get_all_team_tasks</a></span><span class="op">(</span><span class="va">team_id</span>, subtasks<span class="op">=</span><span class="cn">TRUE</span>,</span>
+<span>                                include_closed<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">allSubTasks</span><span class="op">$</span><span class="va">tasks</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 18</span></span>
+<span></span>
+<span><span class="va">Status</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">allSubTasks</span><span class="op">$</span><span class="va">tasks</span>, <span class="kw">function</span><span class="op">(</span><span class="va">z</span><span class="op">)</span> <span class="va">z</span><span class="op">$</span><span class="va">status</span><span class="op">$</span><span class="va">status</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">Status</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;          Status Freq</span></span>
+<span><span class="co">#&gt; 1        Closed    1</span></span>
+<span><span class="co">#&gt; 2   in progress    3</span></span>
+<span><span class="co">#&gt; 3 investigating    2</span></span>
+<span><span class="co">#&gt; 4          Open    5</span></span>
+<span><span class="co">#&gt; 5    production    1</span></span>
+<span><span class="co">#&gt; 6        review    4</span></span>
+<span><span class="co">#&gt; 7        staged    2</span></span></code></pre></div>
 <p>Let’s inspect the first few elements of a Task object</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">Tasks</span><span class="op">$</span><span class="va">tasks</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span><span class="op">)</span>
-<span class="co">#&gt; List of 10</span>
-<span class="co">#&gt;  $ id          : chr "8ckc8h"</span>
-<span class="co">#&gt;  $ custom_id   : NULL</span>
-<span class="co">#&gt;  $ name        : chr "Slow speed report"</span>
-<span class="co">#&gt;  $ text_content: NULL</span>
-<span class="co">#&gt;  $ description : NULL</span>
-<span class="co">#&gt;  $ status      :List of 4</span>
-<span class="co">#&gt;   ..$ status    : chr "investigating"</span>
-<span class="co">#&gt;   ..$ color     : chr "#ff1010"</span>
-<span class="co">#&gt;   ..$ type      : chr "custom"</span>
-<span class="co">#&gt;   ..$ orderindex: int 2</span>
-<span class="co">#&gt;  $ orderindex  : chr "6.00000000000000000000000000000000"</span>
-<span class="co">#&gt;  $ date_created: chr "1592452913384"</span>
-<span class="co">#&gt;  $ date_updated: chr "1592452913384"</span>
-<span class="co">#&gt;  $ date_closed : NULL</span></code></pre></div>
-<p>Dates are given as Unix time (in milliseconds),
-<code>cu_date_from</code> and <code>cu_date_to</code> is there to
-convert back and forth</p>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">Tasks</span><span class="op">$</span><span class="va">tasks</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="co">#&gt; List of 10</span></span>
+<span><span class="co">#&gt;  $ id          : chr "8ckc8h"</span></span>
+<span><span class="co">#&gt;  $ custom_id   : NULL</span></span>
+<span><span class="co">#&gt;  $ name        : chr "Slow speed report"</span></span>
+<span><span class="co">#&gt;  $ text_content: NULL</span></span>
+<span><span class="co">#&gt;  $ description : NULL</span></span>
+<span><span class="co">#&gt;  $ status      :List of 4</span></span>
+<span><span class="co">#&gt;   ..$ status    : chr "investigating"</span></span>
+<span><span class="co">#&gt;   ..$ color     : chr "#ff1010"</span></span>
+<span><span class="co">#&gt;   ..$ type      : chr "custom"</span></span>
+<span><span class="co">#&gt;   ..$ orderindex: int 2</span></span>
+<span><span class="co">#&gt;  $ orderindex  : chr "6.00000000000000000000000000000000"</span></span>
+<span><span class="co">#&gt;  $ date_created: chr "1592452913384"</span></span>
+<span><span class="co">#&gt;  $ date_updated: chr "1592452913384"</span></span>
+<span><span class="co">#&gt;  $ date_closed : NULL</span></span></code></pre></div>
+<p>Dates are given as Unix time (in milliseconds), <code>cu_date_from</code> and <code>cu_date_to</code> is there to convert back and forth</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">Tasks</span><span class="op">$</span><span class="va">tasks</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">date_created</span>
-<span class="co">#&gt; [1] "1592452913384"</span>
-<span class="fu"><a href="reference/cu-date.html">cu_date_from</a></span><span class="op">(</span><span class="va">Tasks</span><span class="op">$</span><span class="va">tasks</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">date_created</span><span class="op">)</span>
-<span class="co">#&gt; [1] "2020-06-17 22:01:53 MDT"</span>
-<span class="fu"><a href="reference/cu-date.html">cu_date_to</a></span><span class="op">(</span><span class="fu"><a href="reference/cu-date.html">cu_date_from</a></span><span class="op">(</span><span class="va">Tasks</span><span class="op">$</span><span class="va">tasks</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">date_created</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] "1592452913384"</span></code></pre></div>
-<p>A single task can be accessed through the task ID (note: copying the
-task ID from the ClickUp GUI will prepend the task ID by a hash,
-<code>"#8ckjp5"</code>, but the API expects ID without the hash
-<code>"8ckjp5"</code>). Use the <code>cu_task_id</code> function to get
-rid of the leading hash (all API call use this function to normalize
-task IDs).</p>
-<p>The <code>$parent</code> property is <code>NULL</code> for Tasks, and
-it contains the parent Task ID for Subtasks</p>
+<code class="sourceCode R"><span><span class="va">Tasks</span><span class="op">$</span><span class="va">tasks</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">date_created</span></span>
+<span><span class="co">#&gt; [1] "1592452913384"</span></span>
+<span><span class="fu"><a href="reference/cu-date.html">cu_date_from</a></span><span class="op">(</span><span class="va">Tasks</span><span class="op">$</span><span class="va">tasks</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">date_created</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "2020-06-17 22:01:53 MDT"</span></span>
+<span><span class="fu"><a href="reference/cu-date.html">cu_date_to</a></span><span class="op">(</span><span class="fu"><a href="reference/cu-date.html">cu_date_from</a></span><span class="op">(</span><span class="va">Tasks</span><span class="op">$</span><span class="va">tasks</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">date_created</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "1592452913384"</span></span></code></pre></div>
+<p>A single task can be accessed through the task ID (note: copying the task ID from the ClickUp GUI will prepend the task ID by a hash, <code>"#8ckjp5"</code>, but the API expects ID without the hash <code>"8ckjp5"</code>). Use the <code>cu_task_id</code> function to get rid of the leading hash (all API call use this function to normalize task IDs).</p>
+<p>The <code>$parent</code> property is <code>NULL</code> for Tasks, and it contains the parent Task ID for Subtasks</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">x1</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/api-tasks.html">cu_get_task</a></span><span class="op">(</span><span class="fu"><a href="reference/cu-task-id.html">cu_task_id</a></span><span class="op">(</span><span class="st">"#8ckjp5"</span><span class="op">)</span><span class="op">)</span> <span class="co"># task</span>
-<span class="va">x1</span><span class="op">$</span><span class="va">parent</span>
-<span class="co">#&gt; NULL</span>
-
-<span class="va">x2</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/api-tasks.html">cu_get_task</a></span><span class="op">(</span><span class="st">"8ckjru"</span><span class="op">)</span> <span class="co"># subtask</span>
-<span class="va">x2</span><span class="op">$</span><span class="va">parent</span>
-<span class="co">#&gt; [1] "8ckjp5"</span></code></pre></div>
-<p>Dependencies are stored in the <code>$dependencies</code>
-property</p>
+<code class="sourceCode R"><span><span class="va">x1</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/api-tasks.html">cu_get_task</a></span><span class="op">(</span><span class="fu"><a href="reference/cu-task-id.html">cu_task_id</a></span><span class="op">(</span><span class="st">"#8ckjp5"</span><span class="op">)</span><span class="op">)</span> <span class="co"># task</span></span>
+<span><span class="va">x1</span><span class="op">$</span><span class="va">parent</span></span>
+<span><span class="co">#&gt; NULL</span></span>
+<span></span>
+<span><span class="va">x2</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/api-tasks.html">cu_get_task</a></span><span class="op">(</span><span class="st">"8ckjru"</span><span class="op">)</span> <span class="co"># subtask</span></span>
+<span><span class="va">x2</span><span class="op">$</span><span class="va">parent</span></span>
+<span><span class="co">#&gt; [1] "8ckjp5"</span></span></code></pre></div>
+<p>Dependencies are stored in the <code>$dependencies</code> property</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">x1</span><span class="op">$</span><span class="va">dependencies</span><span class="op">)</span>
-<span class="co">#&gt; List of 1</span>
-<span class="co">#&gt;  $ :List of 5</span>
-<span class="co">#&gt;   ..$ task_id     : chr "8ckjp5"</span>
-<span class="co">#&gt;   ..$ depends_on  : chr "8ckjpg"</span>
-<span class="co">#&gt;   ..$ type        : int 1</span>
-<span class="co">#&gt;   ..$ date_created: chr "1592458378628"</span>
-<span class="co">#&gt;   ..$ userid      : chr "4300475"</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">x1</span><span class="op">$</span><span class="va">dependencies</span><span class="op">)</span></span>
+<span><span class="co">#&gt; List of 1</span></span>
+<span><span class="co">#&gt;  $ :List of 5</span></span>
+<span><span class="co">#&gt;   ..$ task_id     : chr "8ckjp5"</span></span>
+<span><span class="co">#&gt;   ..$ depends_on  : chr "8ckjpg"</span></span>
+<span><span class="co">#&gt;   ..$ type        : int 1</span></span>
+<span><span class="co">#&gt;   ..$ date_created: chr "1592458378628"</span></span>
+<span><span class="co">#&gt;   ..$ userid      : chr "4300475"</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="helper-functions">Helper functions<a class="anchor" aria-label="anchor" href="#helper-functions"></a>
 </h3>
 <p><code>cu_options</code> stores the API settings</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="fu"><a href="reference/cu-options.html">cu_options</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; List of 4</span>
-<span class="co">#&gt;  $ baseurl  : chr "https://api.clickup.com"</span>
-<span class="co">#&gt;  $ version  : chr "v2"</span>
-<span class="co">#&gt;  $ tz       : chr ""</span>
-<span class="co">#&gt;  $ useragent: chr "http://github.com/psolymos/clickrup"</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="fu"><a href="reference/cu-options.html">cu_options</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; List of 4</span></span>
+<span><span class="co">#&gt;  $ baseurl  : chr "https://api.clickup.com"</span></span>
+<span><span class="co">#&gt;  $ version  : chr "v2"</span></span>
+<span><span class="co">#&gt;  $ tz       : chr ""</span></span>
+<span><span class="co">#&gt;  $ useragent: chr "http://github.com/psolymos/clickrup"</span></span></code></pre></div>
 <p><code>cu_response</code> allows inspecting the response object</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/cu-response.html">cu_response</a></span><span class="op">(</span><span class="va">Teams</span><span class="op">)</span>
-<span class="co">#&gt; Response [https://api.clickup.com/api/v2/team]</span>
-<span class="co">#&gt;   Date: 2021-12-13 05:23</span>
-<span class="co">#&gt;   Status: 200</span>
-<span class="co">#&gt;   Content-Type: application/json; charset=utf-8</span>
-<span class="co">#&gt;   Size: 814 B</span></code></pre></div>
-<p>Check rate limits and remaining requests (rate is limited by the
-minute)</p>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/cu-response.html">cu_response</a></span><span class="op">(</span><span class="va">Teams</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Response [https://api.clickup.com/api/v2/team]</span></span>
+<span><span class="co">#&gt;   Date: 2021-12-13 05:23</span></span>
+<span><span class="co">#&gt;   Status: 200</span></span>
+<span><span class="co">#&gt;   Content-Type: application/json; charset=utf-8</span></span>
+<span><span class="co">#&gt;   Size: 814 B</span></span></code></pre></div>
+<p>Check rate limits and remaining requests (rate is limited by the minute)</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/cu-ratelimit.html">cu_ratelimit</a></span><span class="op">(</span><span class="va">subTasks</span><span class="op">)</span>
-<span class="co">#&gt; $limit</span>
-<span class="co">#&gt; [1] 100</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $remaining</span>
-<span class="co">#&gt; [1] 92</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/cu-ratelimit.html">cu_ratelimit</a></span><span class="op">(</span><span class="va">subTasks</span><span class="op">)</span></span>
+<span><span class="co">#&gt; $limit</span></span>
+<span><span class="co">#&gt; [1] 100</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $remaining</span></span>
+<span><span class="co">#&gt; [1] 92</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="formatting-the-request-body">Formatting the request body<a class="anchor" aria-label="anchor" href="#formatting-the-request-body"></a>
 </h3>
-<p><code>PUSH</code> and <code>PUT</code> requests often require to send
-data as part of the request body. Check the API examples and use
-<code><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I()</a></code> when the API expects an array as part of the body. For
-example when passing data to <code>cu_create_task</code>,
-<code>assignees</code> is an array of the assignees’ userids to be
-added. Adding a single userid without <code><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I()</a></code> will drop the
-brackets, but
-<code>list(name = "New Task Name", assignees = I(183))</code> will
-result in the expected JSON object:
-<code>{ "name": "New Task Name", "assignees": [183] }</code>.</p>
+<p><code>PUSH</code> and <code>PUT</code> requests often require to send data as part of the request body. Check the API examples and use <code><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I()</a></code> when the API expects an array as part of the body. For example when passing data to <code>cu_create_task</code>, <code>assignees</code> is an array of the assignees’ userids to be added. Adding a single userid without <code><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I()</a></code> will drop the brackets, but <code>list(name = "New Task Name", assignees = I(183))</code> will result in the expected JSON object: <code>{ "name": "New Task Name", "assignees": [183] }</code>.</p>
 </div>
 <div class="section level3">
 <h3 id="attachments">Attachments<a class="anchor" aria-label="anchor" href="#attachments"></a>
 </h3>
 <p>We can upload files as attachments to tasks:</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"example.png"</span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/grDevices/png.html" class="external-link">png</a></span><span class="op">(</span><span class="va">f</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">^</span><span class="fl">6</span><span class="op">)</span>, col<span class="op">=</span><span class="fl">2</span>, main<span class="op">=</span><span class="st">"Example"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.off</a></span><span class="op">(</span><span class="op">)</span>
-
-<span class="fu"><a href="reference/api-attachment.html">cu_post_task_attachment</a></span><span class="op">(</span><span class="st">"8ach57"</span>, <span class="va">f</span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="va">f</span><span class="op">)</span> <span class="co"># delete file</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"example.png"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/grDevices/png.html" class="external-link">png</a></span><span class="op">(</span><span class="va">f</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">^</span><span class="fl">6</span><span class="op">)</span>, col<span class="op">=</span><span class="fl">2</span>, main<span class="op">=</span><span class="st">"Example"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.off</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="reference/api-attachment.html">cu_post_task_attachment</a></span><span class="op">(</span><span class="st">"8ach57"</span>, <span class="va">f</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="va">f</span><span class="op">)</span> <span class="co"># delete file</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -474,10 +407,7 @@ result in the expected JSON object:
 <p><a href="LICENSE">MIT</a> © 2020 Peter Solymos</p>
 </div>
 </div>
-  </div>
-
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <div class="links">
+  </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
 <li><a href="https://github.com/psolymos/clickrup/" class="external-link">Browse source code</a></li>
@@ -517,26 +447,24 @@ result in the expected JSON object:
 </ul>
 </div>
 
-  </div>
+  </aside>
 </div>
 
 
-      <footer><div class="copyright">
+    <footer><div class="pkgdown-footer-left">
   <p></p>
 <p>Developed by Peter Solymos, Kirill Müller.</p>
 </div>
 
-<div class="pkgdown">
+<div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
-      </footer>
+    </footer>
 </div>
 
   
-
 
   
 
