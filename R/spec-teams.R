@@ -7,7 +7,7 @@ spec_teams <- tspec_df(
         "members",
         tib_row(
             "user",
-            tib_chr("id", transform = as.character),
+            tib_chr("id", transform = as.character, ptype_inner = integer()),
             tib_chr("username"),
             tib_chr("email"),
             tib_chr("color"),
