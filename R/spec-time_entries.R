@@ -1,9 +1,24 @@
 spec_time_entries <- tspec_df(
     tib_chr("id"),
+    tib_row(
+        "task",
+        .required = FALSE,
+        tib_chr("id", required = FALSE),
+        tib_chr("name", required = FALSE),
+        tib_row(
+            "status",
+            .required = FALSE,
+            tib_chr("status"),
+            tib_chr("color"),
+            tib_chr("type"),
+            tib_int("orderindex"),
+        ),
+        tib_int("custom_type", required = FALSE),
+    ),
     tib_chr("wid"),
     tib_row(
         "user",
-        tib_chr("id", transform = as.character),
+        tib_chr("id", transform = as.character, ptype_inner = integer()),
         tib_chr("username"),
         tib_chr("email"),
         tib_chr("color"),
@@ -12,6 +27,8 @@ spec_time_entries <- tspec_df(
     ),
     tib_lgl("billable"),
     tib_custom("start", cu_date_from),
+    tib_custom("end", cu_date_from, required = FALSE),
+    tib_custom("duration", required = FALSE, transform = ~ hms::as_hms(as.numeric(.x) / 1000)),
     tib_chr("description"),
     tib_df(
         "tags",
@@ -30,21 +47,4 @@ spec_time_entries <- tspec_df(
         tib_chr("space_id", required = FALSE),
     ),
     tib_chr("task_url", required = FALSE),
-    tib_row(
-        "task",
-        .required = FALSE,
-        tib_chr("id", required = FALSE),
-        tib_chr("name", required = FALSE),
-        tib_row(
-            "status",
-            .required = FALSE,
-            tib_chr("status"),
-            tib_chr("color"),
-            tib_chr("type"),
-            tib_int("orderindex"),
-        ),
-        tib_int("custom_type", required = FALSE),
-    ),
-    tib_custom("end", cu_date_from, required = FALSE),
-    tib_custom("duration", required = FALSE, transform = ~ hms::as_hms(as.numeric(.x) / 1000)),
 )
