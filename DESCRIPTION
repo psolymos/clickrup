@@ -12,7 +12,7 @@ Authors@R:
       person(given = "Kirill",
              family = "M\u00fcller",
              role = "aut",
-             email = "krlmlr+r@mailbox.org"))
+             email = "kirill@cynkra.com"))
 Maintainer: Peter Solymos <psolymos@gmail.com>
 Description: Work with the ClickUp productivity app from R to
     manage tasks, goals, time tracking, and more.
