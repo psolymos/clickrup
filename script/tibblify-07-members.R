@@ -13,16 +13,14 @@ df_lists
 
 members <- cu_get_list_members(df_lists$id[[1]])
 
-spec_members <- spec_guess(members$members)
-
-df_members <- tibblify::tibblify(members$members, spec_members, unspecified = "inform")
-df_members
+spec_members <- guess_tspec(members$members)
 
 write_spec(spec_members)
+rm(spec_members)
 
 # Reload
 pkgload::load_all()
 
-df_tasks <- cuf_get_tasks(df_lists$id[[1]])
+df_tasks <- cuf_get_tasks(df_lists$id[[2]])
 
 cuf_get_task_members(df_tasks$id[[1]])
