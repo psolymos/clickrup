@@ -1,4 +1,4 @@
-spec_members <- spec_df(
+spec_members <- tspec_df(
     tib_chr("id", transform = as.character),
     tib_chr("username"),
     tib_chr("email"),

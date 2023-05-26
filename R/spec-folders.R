@@ -1,4 +1,4 @@
-spec_folders <- spec_df(
+spec_folders <- tspec_df(
     tib_chr("id"),
     tib_chr("name"),
     tib_int("orderindex"),

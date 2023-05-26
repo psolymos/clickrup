@@ -1,4 +1,4 @@
-spec_lists <- spec_df(
+spec_lists <- tspec_df(
     tib_chr("id"),
     tib_chr("name"),
     tib_int("orderindex"),

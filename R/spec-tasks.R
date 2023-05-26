@@ -1,4 +1,4 @@
-spec_tasks <- spec_df(
+spec_tasks <- tspec_df(
     tib_chr("id"),
     # tib_unspecified("custom_id"),
     tib_chr("name"),

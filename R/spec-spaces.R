@@ -1,4 +1,4 @@
-spec_spaces <- spec_df(
+spec_spaces <- tspec_df(
     tib_chr("id"),
     tib_chr("name"),
     tib_chr("color"),

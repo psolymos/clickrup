@@ -25,7 +25,7 @@ Imports:
     jsonlite,
     rlang,
     tibble,
-    tibblify (>= 0.1.0.9000)
+    tibblify (>= 0.3.0)
 Suggests: 
     fansi,
     knitr,

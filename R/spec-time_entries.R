@@ -1,4 +1,4 @@
-spec_time_entries <- spec_df(
+spec_time_entries <- tspec_df(
     tib_chr("id"),
     tib_chr("wid"),
     tib_row(
