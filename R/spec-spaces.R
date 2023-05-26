@@ -26,10 +26,10 @@ spec_spaces <- tspec_df(
         tib_df(
             "priorities",
             .required = FALSE,
-            tib_chr("id"),
-            tib_chr("priority"),
             tib_chr("color"),
-            tib_int("orderindex", transform = as.integer),
+            tib_chr("id"),
+            tib_int("orderindex", transform = as.integer, ptype_inner = character()),
+            tib_chr("priority"),
         ),
         tib_lgl("per_assignee", required = FALSE),
         tib_lgl("subtasks", required = FALSE),
@@ -42,7 +42,7 @@ spec_spaces <- tspec_df(
         .required = FALSE,
         tib_row(
             "user",
-            tib_chr("id", transform = as.character),
+            tib_chr("id", transform = as.character, ptype_inner = integer()),
             tib_chr("username"),
             tib_chr("color"),
             tib_chr("profilePicture"),

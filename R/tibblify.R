@@ -21,7 +21,7 @@ write_spec <- function(x) {
     out <- gsub('tib_int("id")', 'tib_chr("id", transform = as.character, ptype_inner = integer())', out, fixed = TRUE)
     out <- gsub('tib_int("id", default = NA_integer_', 'tib_chr("id", transform = as.character, default = NA_character_', out, fixed = TRUE)
 
-    out <- gsub('tib_chr("orderindex")', 'tib_int("orderindex", transform = as.integer)', out, fixed = TRUE)
+    out <- gsub('tib_chr("orderindex")', 'tib_int("orderindex", transform = as.integer, ptype_inner = character())', out, fixed = TRUE)
 
     date_cols <- "last_active|date_joined|date_invited|start_date|end_date|due_date|start|end|date_created|date_updated|date_closed|at"
     out <- gsub(paste0('tib_chr[(]"(', date_cols, ')", default = NA_character_'), 'tib_custom("\\1", transform = cu_date_from, default = dttr2::NA_POSIXct_', out)
