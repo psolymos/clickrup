@@ -14,12 +14,9 @@ lists <-
     map("lists") %>%
     unlist(recursive = FALSE)
 
-spec_lists <- spec_guess(lists)
-
-df_lists <- tibblify::tibblify(lists, spec = spec_lists, unspecified = "inform")
-df_lists
-
+spec_lists <- guess_tspec(lists)
 write_spec(spec_lists)
+rm(spec_lists)
 
 pkgload::load_all()
 
