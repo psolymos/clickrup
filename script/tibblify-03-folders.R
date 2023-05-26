@@ -12,9 +12,11 @@ folders <-
     unlist(recursive = FALSE)
 folders
 
-spec_folders <- spec_guess(folders)
+spec_folders <- guess_tspec(folders)
+write_spec(spec_folders)
+rm(spec_folders)
+
+pkgload::load_all()
 
 df_folders <- tibblify::tibblify(folders, spec = spec_folders, unspecified = "inform")
 df_folders
-
-write_spec(spec_folders)
