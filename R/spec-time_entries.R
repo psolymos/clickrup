@@ -11,7 +11,7 @@ spec_time_entries <- tspec_df(
         tib_chr("profilePicture"),
     ),
     tib_lgl("billable"),
-    tib_scalar("start", ptype = vctrs::new_datetime(), transform = cu_date_from),
+    tib_custom("start", cu_date_from),
     tib_chr("description"),
     tib_df(
         "tags",
@@ -21,7 +21,7 @@ spec_time_entries <- tspec_df(
         tib_int("creator"),
     ),
     tib_chr("source"),
-    tib_scalar("at", ptype = vctrs::new_datetime(), transform = cu_date_from),
+    tib_custom("at", cu_date_from),
     tib_row(
         "task_location",
         .required = FALSE,
@@ -45,6 +45,6 @@ spec_time_entries <- tspec_df(
         ),
         tib_int("custom_type", required = FALSE),
     ),
-    tib_scalar("end", ptype = vctrs::new_datetime(), transform = cu_date_from, required = FALSE),
-    tib_scalar("duration", hms::new_hms(), required = FALSE, transform = ~ hms::as_hms(as.numeric(.x) / 1000)),
+    tib_custom("end", cu_date_from, required = FALSE),
+    tib_custom("duration", required = FALSE, transform = ~ hms::as_hms(as.numeric(.x) / 1000)),
 )

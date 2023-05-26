@@ -39,8 +39,8 @@ spec_folders <- tspec_df(
             tib_chr("profilePicture", required = FALSE),
         ),
         tib_int("task_count"),
-        tib_scalar("due_date", ptype = vctrs::new_datetime(), transform = cu_date_from),
-        tib_scalar("start_date", ptype = vctrs::new_datetime(), transform = cu_date_from),
+        tib_custom("due_date", cu_date_from),
+        tib_custom("start_date", cu_date_from),
         tib_row(
             "space",
             tib_chr("id"),
