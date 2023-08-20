@@ -36,11 +36,11 @@
 }
 
 ## convenience function for GET requests with support for paging
-.cu_get <- function(..., query=list()) {
+.cu_get <- function(..., query=list(), paging=TRUE) {
     chunk <- .cu_get_page(..., query = query)
     out <- chunk
     page <- 0
-    while (length(chunk) == 1 && length(chunk[[1]]) == 100) {
+    while (paging && length(chunk) == 1 && length(chunk[[1]]) == 100) {
         page <- page + 1
         query$page <- page
         chunk <- .cu_get_page(..., query = query)

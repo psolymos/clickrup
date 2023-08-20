@@ -47,7 +47,7 @@ NULL
 ##    Number
 cu_get_time_entries_within_date_range <- function(team_id,
 start_date, end_date, assignee) {
-    .cu_get("team", team_id, "time_entries",
+    .cu_get("team", team_id, "time_entries", paging = FALSE,
         query = list(
             "start_date"=start_date,
             "end_date"=end_date,
