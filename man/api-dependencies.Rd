@@ -5,15 +5,16 @@
 \alias{cu_add_dependency}
 \alias{cu_delete_dependency}
 \alias{cu_add_task_link}
-\title{Dependencies}
+\alias{cu_delete_task_link}
+\title{Task relationships}
 \usage{
 cu_add_dependency(task_id, depends_on, dependency_of)
 
-cu_delete_dependency(task_id, links_to)
+cu_delete_dependency(task_id, depends_on, dependency_of)
 
 cu_add_task_link(task_id, links_to)
 
-cu_delete_dependency(task_id, links_to)
+cu_delete_task_link(task_id, links_to)
 }
 \arguments{
 \item{task_id}{Task ID.}

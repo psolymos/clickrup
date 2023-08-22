@@ -8,7 +8,7 @@
 \alias{cu_create_checklist_item}
 \alias{cu_edit_checklist_item}
 \alias{cu_delete_checklist_item}
-\title{Checklists}
+\title{Task checklists}
 \usage{
 cu_create_checklist(task_id, name)
 
