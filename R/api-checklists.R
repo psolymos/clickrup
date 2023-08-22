@@ -1,4 +1,4 @@
-#' Checklists
+#' Task checklists
 #'
 #' Working with checklists in ClickUp tasks.
 
