@@ -27,7 +27,7 @@ NULL
 #' @export
 #' @rdname api-timetracking-2
 ## Time Tracking 2.0 / Get time entries within a date range
-## GET https://api.clickup.com/api/v2/team/team_id/time_entries?start_date=&end_date=&assignee=
+## GET https://api.clickup.com/api/v2/team/team_Id/time_entries?start_date=&end_date=&assignee=&include_task_tags=&include_location_names=&space_id=&folder_id=&list_id=&task_id=&custom_task_ids=&team_id=
 ##
 ##    team_id
 ##    Example: 512.
@@ -45,6 +45,38 @@ NULL
 ##    User ids to filter by separated by commas.
 ##        Note: Only Workspace Owners/Admins have access to do this.
 ##    Number
+##
+##    include_task_tags
+##    Include task tags in the response for time entries associated with tasks.
+##    Boolean
+##
+##    include_location_names
+##    Include the names of the List, Folder, and Space along with list_id,folder_id, and space_id.
+##    Boolean
+##
+##    space_id
+##    Only include time entries associated with tasks in a specific Space
+##    Number
+##
+##    folder_id
+##    Only include time entries associated with tasks in a specific Folder
+##    Number
+##
+##    list_id
+##    Only include time entries associated with tasks in a specific List
+##    Number
+##
+##    task_id
+##    Only include time entries associated with a specific task
+##    Number
+##
+##    custom_task_ids
+##    If you want to reference a task by it's custom task id, this value must be true
+##    String
+##
+##    team_id
+##    Only used when the parameter is set to custom_task_ids=true
+##        Example: custom_task_ids=true&team_id=123
 cu_get_time_entries_within_date_range <- function(team_id,
 start_date, end_date, assignee) {
     .cu_get("team", team_id, "time_entries",
@@ -55,10 +87,20 @@ start_date, end_date, assignee) {
 }
 
 
+include_task_tags,
+include_location_names,
+space_id,
+folder_id,
+list_id,
+task_id,
+custom_task_ids,
+team_id
+
 #' @export
 #' @rdname api-timetracking-2
 ## Time Tracking 2.0 / Get singular time entry
 ## GET https://api.clickup.com/api/v2/team/team_id/time_entries/timer_id
+## GET https://api.clickup.com/api/v2/team/team_Id/time_entries/timer_id/?include_task_tags=&include_location_names=
 ##
 ##    team_id
 ##    Example: 512.
@@ -93,6 +135,7 @@ cu_get_time_entry_history <- function(team_id, timer_id) {
 #' @rdname api-timetracking-2
 ## Time Tracking 2.0 / Get running time entry
 ## GET https://api.clickup.com/api/v2/team/team_id/time_entries/current
+## GET https://api.clickup.com/api/v2/team/team_Id/time_entries/current?assignee=
 ##
 ##    team_id
 ##    Example: 512.
@@ -106,6 +149,7 @@ cu_get_running_time_entry <- function(team_id, timer_id) {
 #' @rdname api-timetracking-2
 ## Time Tracking 2.0 / Create a time entry
 ## POST https://api.clickup.com/api/v2/team/team_id/time_entries
+## POST https://api.clickup.com/api/v2/team/team_Id/time_entries/?custom_task_ids=&team_id=
 ##
 ##    team_id
 ##    Example: 512.
@@ -215,6 +259,7 @@ cu_change_tag_names_from_time_entries <- function(team_id, ...) {
 #' @rdname api-timetracking-2
 ## Time Tracking 2.0 / Start a time Entry
 ## POST https://api.clickup.com/api/v2/team/team_id/time_entries/start/timer_id
+## POST https://api.clickup.com/api/v2/team/team_Id/time_entries/start/timer_id/?custom_task_ids=&team_id=
 ##
 ##     team_id
 ##     Example: 512.
@@ -272,6 +317,7 @@ cu_delete_time_entry <- function(team_id, timer_id) {
 #' @rdname api-timetracking-2
 ## Time Tracking 2.0 / Update a time Entry
 ## PUT https://api.clickup.com/api/v2/team/team_id/time_entries/timer_id
+## PUT https://api.clickup.com/api/v2/team/team_Id/time_entries/timer_id/?custom_task_ids=&team_id=
 ##
 ##     team_id
 ##     Example: 512.
