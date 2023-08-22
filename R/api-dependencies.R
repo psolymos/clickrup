@@ -1,4 +1,4 @@
-#' Dependencies
+#' Task relationships
 #'
 #' Working dependencies xyz in ClickUp tasks (<https://clickup.com/api>).
 
@@ -113,7 +113,7 @@ cu_add_task_link <- function(task_id, links_to) {
 ##     links_to
 ##     Example: 9hz.
 ##     String
-cu_delete_dependency <- function(task_id, links_to) {
+cu_delete_task_link <- function(task_id, links_to) {
     task_id <- cu_task_id(task_id)
     .cu_delete("task", task_id, "link", links_to)
 }
