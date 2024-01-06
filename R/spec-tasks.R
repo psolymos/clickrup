@@ -85,7 +85,7 @@ spec_tasks <- tspec_df(
     tib_custom("start_date", cu_date_from),
     tib_int("points"),
     tib_int("time_estimate"),
-    tib_int("time_spent", required = FALSE),
+    tib_dbl("time_spent", required = FALSE),
     tib_df(
         "custom_fields",
         tib_chr("id"),
