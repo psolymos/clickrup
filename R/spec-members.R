@@ -8,10 +8,10 @@ spec_members <- tspec_df(
     tib_row(
         "profileInfo",
         tib_lgl("display_profile"),
-        tib_lgl("verified_ambassador"),
+        # tib_unspecified("verified_ambassador"),
         # tib_unspecified("verified_consultant"),
         # tib_unspecified("top_tier_user"),
-        tib_lgl("viewed_verified_ambassador"),
+        # tib_unspecified("viewed_verified_ambassador"),
         # tib_unspecified("viewed_verified_consultant"),
         # tib_unspecified("viewed_top_tier_user"),
     ),

@@ -1,6 +1,7 @@
 spec_tasks <- tspec_df(
     tib_chr("id"),
     # tib_unspecified("custom_id"),
+    tib_int("custom_item_id"),
     tib_chr("name"),
     tib_chr("text_content"),
     tib_chr("description"),

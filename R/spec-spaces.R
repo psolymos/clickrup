@@ -4,7 +4,7 @@ spec_spaces <- tspec_df(
     tib_chr("color"),
     tib_lgl("private"),
     tib_chr("avatar"),
-    # tib_unspecified("admin_can_manage"),
+    tib_lgl("admin_can_manage"),
     tib_df(
         "statuses",
         tib_chr("id"),
