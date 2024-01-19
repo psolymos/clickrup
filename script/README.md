@@ -7,6 +7,7 @@ Goal: A `cuf_*()` function for each `cu_()` function that returns a tibble with 
 - [x] `cu_get_folders()`
 - [x] `cu_get_lists()`
 - [x] `cu_get_tasks()`
+- [x] `cu_get_filtered_team_tasks()`
 - [x] `cu_get_time_entries_within_date_range()`
 - [x] `cu_get_singular_time_entry()`
 - [x] `cu_get_list_members()`
