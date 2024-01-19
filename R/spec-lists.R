@@ -7,6 +7,7 @@ spec_lists <- tspec_df(
         "status",
         tib_chr("status", required = FALSE),
         tib_chr("color", required = FALSE),
+        tib_lgl("hide_label", required = FALSE),
     ),
     # tib_unspecified("priority"),
     tib_row(
