@@ -158,6 +158,11 @@ spec_tasks <- tspec_df(
         tib_chr("userid"),
         tib_chr("workspace_id"),
     ),
+    tib_df(
+        "locations",
+        tib_chr("id"),
+        tib_chr("name"),
+    ),
     tib_chr("team_id"),
     tib_chr("url"),
     tib_row(
