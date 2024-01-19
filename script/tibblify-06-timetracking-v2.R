@@ -23,10 +23,12 @@ good <-
 
 # contains garbage sometimes
 for (i in which(!good)) {
+    # Handled below with spec_time_entries$fields$task$required <- FALSE
     time$data[[i]]$task <- list()
 }
 
 spec_time_entries <- guess_tspec(time$data)
+spec_time_entries$fields$task$required <- FALSE
 write_spec(spec_time_entries)
 rm(spec_time_entries)
 
