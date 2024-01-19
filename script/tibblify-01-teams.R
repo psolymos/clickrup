@@ -12,8 +12,6 @@ rm(spec_teams)
 
 pkgload::load_all()
 
-df_teams <- tibblify(teams$teams, spec = spec_teams, unspecified = "inform")
-df_teams
-
+df_teams <- cuf_get_teams()
 df_teams
 df_teams$members

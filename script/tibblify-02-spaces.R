@@ -12,6 +12,6 @@ rm(spec_spaces)
 
 pkgload::load_all()
 
-spaces$spaces %>%
-    tibblify(spec = spec_spaces, unspecified = "inform")
-
+df_spaces <- cuf_get_spaces(df_teams$id[[1]])
+df_spaces
+df_spaces$statuses[[1]]

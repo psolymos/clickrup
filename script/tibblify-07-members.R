@@ -22,5 +22,7 @@ rm(spec_members)
 pkgload::load_all()
 
 df_tasks <- cuf_get_tasks(df_lists$id[[2]])
+df_tasks$assignees[[1]]
 
-cuf_get_task_members(df_tasks$id[[1]])
+df_task_members <- cuf_get_task_members(df_tasks$id[[1]])
+df_task_members

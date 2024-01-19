@@ -18,5 +18,6 @@ rm(spec_folders)
 
 pkgload::load_all()
 
-df_folders <- tibblify::tibblify(folders, spec = spec_folders, unspecified = "inform")
+df_folders <- cuf_get_folders(df_spaces$id[[1]])
 df_folders
+df_folders$lists[[1]]

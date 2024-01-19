@@ -40,7 +40,10 @@ df_time_entries <- cuf_get_time_entries_within_date_range(
     assignee = paste(user_ids, collapse = ",")
 )
 df_time_entries
+df_time_entries$task
 
-df_time_entries$id
-cuf_get_singular_time_entry(df_teams$id[[1]], df_time_entries$id[[1]])
-cuf_get_time_entry_history(df_teams$id[[1]], df_time_entries$id[[253]])
+df_time_entry <- cuf_get_singular_time_entry(df_teams$id[[1]], df_time_entries$id[[1]])
+df_time_entry
+
+# Doesn't work yet:
+# cuf_get_time_entry_history(df_teams$id[[1]], df_time_entries$id[[260]])

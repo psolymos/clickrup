@@ -20,4 +20,6 @@ rm(spec_lists)
 
 pkgload::load_all()
 
-cuf_get_lists(df_folders$id[[1]])
+df_lists <- cuf_get_lists(df_folders$id[[1]])
+df_lists
+df_lists$folder

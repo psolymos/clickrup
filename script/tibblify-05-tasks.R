@@ -27,4 +27,11 @@ rm(spec_tasks)
 
 pkgload::load_all()
 
-cuf_get_tasks(df_lists$id[[1]])
+df_tasks <- cuf_get_tasks(df_lists$id[[1]])
+df_tasks
+df_tasks$priority
+df_tasks$custom_fields[[1]]
+df_tasks$dependencies[[1]]
+df_tasks$sharing
+df_tasks$sharing$public_fields[[1]]
+
