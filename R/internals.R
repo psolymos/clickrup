@@ -41,6 +41,9 @@
     out <- chunk
     page <- 0
     repeat {
+        if (!paging) {
+            break
+        }
         if (length(chunk) == 1) {
             if (length(chunk[[1]]) < 100) {
                 break
