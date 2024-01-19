@@ -40,11 +40,28 @@
     chunk <- .cu_get_page(..., query = query)
     out <- chunk
     page <- 0
-    while (paging && length(chunk) == 1 && length(chunk[[1]]) == 100) {
+    repeat {
+        if (length(chunk) == 1) {
+            if (length(chunk[[1]]) < 100) {
+                break
+            }
+        } else if (length(chunk) == 2) {
+            if (names(chunk)[[2]] != "last_page") {
+                break
+            }
+            # Clear output
+            out[["last_page"]] <- NULL
+            if (chunk[["last_page"]]) {
+                break
+            }
+        } else {
+            break
+        }
+
         page <- page + 1
         query$page <- page
         chunk <- .cu_get_page(..., query = query)
-        stopifnot(length(chunk) == 1)
+        stopifnot(length(chunk) %in% 1:2)
         out[[1]] <- c(out[[1]], chunk[[1]])
     }
 
