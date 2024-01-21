@@ -28,7 +28,7 @@ spec_spaces <- tspec_df(
             .required = FALSE,
             tib_chr("color"),
             tib_chr("id"),
-            tib_dbl("orderindex", transform = as.integer, ptype_inner = character()),
+            tib_dbl("orderindex", transform = as.numeric, ptype_inner = character()),
             tib_chr("priority"),
         ),
         tib_lgl("per_assignee", required = FALSE),

@@ -12,7 +12,7 @@ spec_tasks <- tspec_df(
         tib_chr("type"),
         tib_dbl("orderindex"),
     ),
-    tib_dbl("orderindex", transform = as.integer, ptype_inner = character()),
+    tib_dbl("orderindex", transform = as.numeric, ptype_inner = character()),
     tib_custom("date_created", cu_date_from),
     tib_custom("date_updated", cu_date_from),
     tib_custom("date_closed", cu_date_from),
