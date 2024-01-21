@@ -1,7 +1,7 @@
 spec_folders <- tspec_df(
     tib_chr("id"),
     tib_chr("name"),
-    tib_int("orderindex"),
+    tib_dbl("orderindex"),
     tib_lgl("override_statuses"),
     tib_lgl("hidden"),
     tib_row(
@@ -16,14 +16,14 @@ spec_folders <- tspec_df(
         tib_chr("id"),
         tib_chr("status"),
         tib_chr("type"),
-        tib_int("orderindex"),
+        tib_dbl("orderindex"),
         tib_chr("color"),
     ),
     tib_df(
         "lists",
         tib_chr("id"),
         tib_chr("name"),
-        tib_int("orderindex"),
+        tib_dbl("orderindex"),
         tib_chr("content", required = FALSE),
         tib_row(
             "status",
@@ -54,7 +54,7 @@ spec_folders <- tspec_df(
             "statuses",
             tib_chr("id"),
             tib_chr("status"),
-            tib_int("orderindex"),
+            tib_dbl("orderindex"),
             tib_chr("color"),
             tib_chr("type"),
         ),

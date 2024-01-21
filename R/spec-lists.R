@@ -1,7 +1,7 @@
 spec_lists <- tspec_df(
     tib_chr("id"),
     tib_chr("name"),
-    tib_int("orderindex"),
+    tib_dbl("orderindex"),
     tib_chr("content", required = FALSE),
     tib_row(
         "status",

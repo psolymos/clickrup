@@ -11,7 +11,7 @@ spec_time_entries <- tspec_df(
             tib_chr("status"),
             tib_chr("color"),
             tib_chr("type"),
-            tib_int("orderindex"),
+            tib_dbl("orderindex"),
         ),
         tib_int("custom_type", required = FALSE),
     ),
