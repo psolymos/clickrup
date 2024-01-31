@@ -9,6 +9,8 @@
 #'   deduced from `attachment` when not provided (`NULL`).
 #' @param ... Can be used to pass mime `type` argument to [httr::upload_file()],
 #'   mime type is guessed otherwise.
+#' @param cu_token ClickUp personal access token or an access token from the OAuth flow.
+#'   The `CU_PAT` environment variable is used when `NULL`.
 #'
 #' @examples
 #' \dontrun{

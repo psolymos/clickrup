@@ -1,6 +1,6 @@
 #' Turn ClickUp API priority scores to labels
 #'
-#' The ClickUp API returns prority values as integer scores.
+#' The ClickUp API returns priority values as integer scores.
 #' The `cu_priority` function maps these scores to the priority labels
 #' Urgent (1), High (2), Normal (3), Low (4).
 

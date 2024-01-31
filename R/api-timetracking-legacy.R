@@ -12,6 +12,8 @@
 #' @param ... Named arguments to be passed to API request body,
 #'   see the ClickUp API documentation (<https://clickup.com/api>).
 #'   Edit the `start`, `end`, or total `time` of a time tracked entry.
+#' @param cu_token ClickUp personal access token or an access token from the OAuth flow.
+#'   The `CU_PAT` environment variable is used when `NULL`.
 #'
 #' @return
 #'
@@ -45,11 +47,11 @@ NULL
 ##
 ## use cu_time to turn POSIXct into unix time for start/end
 ## note: unix time is also in milliseconds (sec x 1000)
-cu_track_time <- function(task_id, ...) {
+cu_track_time <- function(task_id, ..., cu_token = NULL) {
     .Deprecated("cu_create_time_entry")
     task_id <- cu_task_id(task_id)
     .cu_post("task", task_id, "time",
-        body=list(...))
+        body=list(...), cu_token = cu_token)
 }
 
 
@@ -63,10 +65,10 @@ cu_track_time <- function(task_id, ...) {
 ##     String
 ##
 ## Get time tracked for a task.
-cu_get_tracked_time <- function(task_id) {
+cu_get_tracked_time <- function(task_id, cu_token = NULL) {
     .Deprecated("cu_get_time_entries_within_date_range")
     task_id <- cu_task_id(task_id)
-    .cu_get("task", task_id, "time")
+    .cu_get("task", task_id, "time", cu_token = cu_token)
 }
 
 
@@ -93,11 +95,11 @@ cu_get_tracked_time <- function(task_id) {
 ##
 ## use cu_time to turn POSIXct into unix time for start/end
 ## note: unix time is also in milliseconds (sec x 1000)
-cu_edit_time_tracked <- function(task_id, interval_id, ...) {
+cu_edit_time_tracked <- function(task_id, interval_id, ..., cu_token = NULL) {
     .Deprecated("cu_update_time_entry")
     task_id <- cu_task_id(task_id)
     .cu_put("task", task_id, "time", interval_id,
-        body=list(...))
+        body=list(...), cu_token = cu_token)
 }
 
 
@@ -115,8 +117,8 @@ cu_edit_time_tracked <- function(task_id, interval_id, ...) {
 ##     String
 ##
 ## Delete a time tracked entry
-cu_delete_time_tracked <- function(task_id, interval_id) {
+cu_delete_time_tracked <- function(task_id, interval_id, cu_token = NULL) {
     .Deprecated("cu_delete_time_entry")
     task_id <- cu_task_id(task_id)
-    .cu_delete("task", task_id, "time", interval_id)
+    .cu_delete("task", task_id, "time", interval_id, cu_token = cu_token)
 }

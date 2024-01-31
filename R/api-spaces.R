@@ -8,6 +8,8 @@
 #' @param archived Logical, to return archived (`TRUE`) spaces.
 #' @param ... Named arguments to be passed to API request body,
 #'   see the ClickUp API documentation (<https://clickup.com/api>).
+#' @param cu_token ClickUp personal access token or an access token from the OAuth flow.
+#'   The `CU_PAT` environment variable is used when `NULL`.
 #'
 #' @return
 #'
@@ -65,9 +67,9 @@ NULL
 ##     }
 ##   }
 ## }
-cu_create_space <- function(team_id, name, ...) {
+cu_create_space <- function(team_id, name, ..., cu_token = NULL) {
     .cu_post("team", team_id, "space",
-        body=list(name=name, ...))
+        body=list(name=name, ...), cu_token = cu_token)
 }
 
 
@@ -81,9 +83,9 @@ cu_create_space <- function(team_id, name, ...) {
 ##    Number
 ##
 ## Same body as for cu_create_space
-cu_update_space <- function(space_id, ...) {
+cu_update_space <- function(space_id, ..., cu_token = NULL) {
     .cu_put("space", space_id,
-        body=list(...))
+        body=list(...), cu_token = cu_token)
 }
 
 
@@ -95,8 +97,8 @@ cu_update_space <- function(space_id, ...) {
 ##    space_id
 ##    Example: 790.
 ##    Number
-cu_delete_space <- function(space_id) {
-    .cu_delete("space", space_id)
+cu_delete_space <- function(space_id, cu_token = NULL) {
+    .cu_delete("space", space_id, cu_token = cu_token)
 }
 
 
@@ -112,9 +114,10 @@ cu_delete_space <- function(space_id) {
 ##    archived
 ##    Example: false.
 ##    Boolean
-cu_get_spaces <- function(team_id, archived=FALSE) {
+cu_get_spaces <- function(team_id, archived=FALSE, cu_token = NULL) {
     .cu_get("team", team_id, "space",
-        query = list("archived" = tolower(archived)))
+        query = list("archived" = tolower(archived)),
+        cu_token = cu_token)
 }
 
 
@@ -126,6 +129,6 @@ cu_get_spaces <- function(team_id, archived=FALSE) {
 ##    space_id
 ##    Example: 790.
 ##    Number
-cu_get_space <- function(space_id) {
-    .cu_get("space", space_id)
+cu_get_space <- function(space_id, cu_token = NULL) {
+    .cu_get("space", space_id, cu_token = cu_token)
 }

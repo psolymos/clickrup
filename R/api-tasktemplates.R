@@ -10,6 +10,8 @@
 #' @param name Name of the task.
 #' @param ... Named arguments to be passed to API request body,
 #'   see the ClickUp API documentation (<https://clickup.com/api>).
+#' @param cu_token ClickUp personal access token or an access token from the OAuth flow.
+#'   The `CU_PAT` environment variable is used when `NULL`.
 #'
 #' @return
 #'
@@ -34,9 +36,9 @@ NULL
 ##    Integer
 ##
 ## To page task templates, pass the page number you wish to fetch.
-cu_get_task_templates <- function(team_id, page) {
+cu_get_task_templates <- function(team_id, page, cu_token = NULL) {
     .cu_get("team", team_id, "taskTemplate",
-            query = list(page = page))
+            query = list(page = page), cu_token = cu_token)
 }
 
 
@@ -58,7 +60,7 @@ cu_get_task_templates <- function(team_id, page) {
 ## {
 ##   "name": "New task name"
 ## }
-cu_create_task_from_template <- function(list_id, template_id, name, ...) {
+cu_create_task_from_template <- function(list_id, template_id, name, ..., cu_token = NULL) {
     .cu_post("list", list_id, "taskTemplate", template_id,
-        body=list(name=name, ...))
+        body=list(name=name, ...), cu_token = cu_token)
 }

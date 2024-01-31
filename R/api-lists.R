@@ -8,6 +8,8 @@
 #' @param archived Logical, to return archived (`TRUE`) lists.
 #' @param ... Named arguments to be passed to API request body,
 #'   see the ClickUp API documentation (<https://clickup.com/api>).
+#' @param cu_token ClickUp personal access token or an access token from the OAuth flow.
+#'   The `CU_PAT` environment variable is used when `NULL`.
 #'
 #' @return
 #'
@@ -41,9 +43,9 @@ NULL
 ##   "assignee": 183,
 ##   "status": "red"
 ## }
-cu_create_list <- function(folder_id, ...) {
+cu_create_list <- function(folder_id, ..., cu_token = NULL) {
     .cu_post("folder", folder_id, "list",
-        body=list(...))
+        body=list(...), cu_token = cu_token)
 }
 
 
@@ -70,9 +72,9 @@ cu_create_list <- function(folder_id, ...) {
 ##   "assignee": 183,
 ##   "status": "red"
 ## }
-cu_create_folderless_list <- function(space_id, ...) {
+cu_create_folderless_list <- function(space_id, ..., cu_token = NULL) {
     .cu_post("space", space_id, "list",
-        body=list(...))
+        body=list(...), cu_token = cu_token)
 }
 
 
@@ -101,9 +103,9 @@ cu_create_folderless_list <- function(space_id, ...) {
 ##   "assignee": "none",
 ##   "unset_status": true
 ## }
-cu_update_list <- function(list_id, ...) {
+cu_update_list <- function(list_id, ..., cu_token = NULL) {
     .cu_put("list", list_id,
-        body=list(...))
+        body=list(...), cu_token = cu_token)
 }
 
 
@@ -115,8 +117,8 @@ cu_update_list <- function(list_id, ...) {
 ##     list_id
 ##     Example: 124.
 ##     Number
-cu_delete_list <- function(list_id, ...) {
-    .cu_delete("list", list_id)
+cu_delete_list <- function(list_id, ..., cu_token = NULL) {
+    .cu_delete("list", list_id, cu_token = cu_token)
 }
 
 
@@ -132,9 +134,10 @@ cu_delete_list <- function(list_id, ...) {
 ##     archived
 ##     Example: false.
 ##     Boolean
-cu_get_lists <- function(folder_id, archived=FALSE) {
+cu_get_lists <- function(folder_id, archived=FALSE, cu_token = NULL) {
     .cu_get("folder", folder_id, "list",
-            query = list("archived" = tolower(archived)))
+            query = list("archived" = tolower(archived)),
+            cu_token = cu_token)
 }
 
 
@@ -150,9 +153,10 @@ cu_get_lists <- function(folder_id, archived=FALSE) {
 ##     archived
 ##     Example: false.
 ##     Boolean
-cu_get_lists_folderless <- function(space_id, archived=FALSE) {
+cu_get_lists_folderless <- function(space_id, archived=FALSE, cu_token = NULL) {
     .cu_get("space", space_id, "list",
-            query = list("archived" = tolower(archived)))
+            query = list("archived" = tolower(archived)),
+            cu_token = cu_token)
 }
 
 
@@ -164,6 +168,6 @@ cu_get_lists_folderless <- function(space_id, archived=FALSE) {
 ##     list_id
 ##     Example: 124.
 ##     Number
-cu_get_list <- function(list_id) {
-    .cu_get("list", list_id)
+cu_get_list <- function(list_id, cu_token = NULL) {
+    .cu_get("list", list_id, cu_token = cu_token)
 }

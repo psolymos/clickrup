@@ -12,6 +12,8 @@
 #'   Note: Only Workspace Owners/Admins have access to do this.
 #' @param ... Named arguments to be passed to API request body,
 #'   see the ClickUp API documentation (<https://clickup.com/api>).
+#' @param cu_token ClickUp personal access token or an access token from the OAuth flow.
+#'   The `CU_PAT` environment variable is used when `NULL`.
 #'
 #' @return
 #'
@@ -46,12 +48,13 @@ NULL
 ##        Note: Only Workspace Owners/Admins have access to do this.
 ##    Number
 cu_get_time_entries_within_date_range <- function(team_id,
-start_date, end_date, assignee) {
+start_date, end_date, assignee, cu_token = NULL) {
     .cu_get("team", team_id, "time_entries", paging = FALSE,
         query = list(
             "start_date"=start_date,
             "end_date"=end_date,
-            "assignee"=assignee))
+            "assignee"=assignee),
+        cu_token = cu_token)
 }
 
 
@@ -67,8 +70,8 @@ start_date, end_date, assignee) {
 ##    timer_id
 ##    Example: 1963465985517105840.
 ##    String
-cu_get_singular_time_entry <- function(team_id, timer_id) {
-    .cu_get("team", team_id, "time_entries", timer_id)
+cu_get_singular_time_entry <- function(team_id, timer_id, cu_token = NULL) {
+    .cu_get("team", team_id, "time_entries", timer_id, cu_token = cu_token)
 }
 
 
@@ -84,8 +87,8 @@ cu_get_singular_time_entry <- function(team_id, timer_id) {
 ##    timer_id
 ##    Example: 1963465985517105840.
 ##    String
-cu_get_time_entry_history <- function(team_id, timer_id) {
-    .cu_get("team", team_id, "time_entries", timer_id, "history")
+cu_get_time_entry_history <- function(team_id, timer_id, cu_token = NULL) {
+    .cu_get("team", team_id, "time_entries", timer_id, "history", cu_token = cu_token)
 }
 
 
@@ -97,8 +100,8 @@ cu_get_time_entry_history <- function(team_id, timer_id) {
 ##    team_id
 ##    Example: 512.
 ##    Number
-cu_get_running_time_entry <- function(team_id, timer_id) {
-    .cu_get("team", team_id, "time_entries", "current")
+cu_get_running_time_entry <- function(team_id, timer_id, cu_token = NULL) {
+    .cu_get("team", team_id, "time_entries", "current", cu_token = cu_token)
 }
 
 
@@ -125,9 +128,9 @@ cu_get_running_time_entry <- function(team_id, timer_id) {
 ##   "duration": 50000,
 ##   "assignee": 1
 ## }
-cu_create_time_entry <- function(team_id, ...) {
+cu_create_time_entry <- function(team_id, ..., cu_token = NULL) {
     .cu_post("team", team_id, "time_entries",
-        body=list(...))
+        body=list(...), cu_token = cu_token)
 }
 
 
@@ -148,9 +151,9 @@ cu_create_time_entry <- function(team_id, ...) {
 ##     "name of tag"
 ##   ]
 ## }
-cu_remove_tags_from_time_entries <- function(team_id, ...) {
+cu_remove_tags_from_time_entries <- function(team_id, ..., cu_token = NULL) {
     .cu_delete("team", team_id, "time_entries", "tags",
-        body=list(...))
+        body=list(...), cu_token = cu_token)
 }
 
 
@@ -162,8 +165,8 @@ cu_remove_tags_from_time_entries <- function(team_id, ...) {
 ##     team_id
 ##     Example: 512.
 ##     Number
-cu_get_all_tags_from_time_entries <- function(team_id) {
-    .cu_get("team", team_id, "time_entries", "tags")
+cu_get_all_tags_from_time_entries <- function(team_id, cu_token = NULL) {
+    .cu_get("team", team_id, "time_entries", "tags", cu_token = cu_token)
 }
 
 
@@ -184,9 +187,9 @@ cu_get_all_tags_from_time_entries <- function(team_id) {
 ##     "name of tags"
 ##   ]
 ## }
-cu_add_tags_from_time_entries <- function(team_id, ...) {
+cu_add_tags_from_time_entries <- function(team_id, ..., cu_token = NULL) {
     .cu_post("team", team_id, "time_entries", "tags",
-        body=list(...))
+        body=list(...), cu_token = cu_token)
 }
 
 
@@ -205,9 +208,9 @@ cu_add_tags_from_time_entries <- function(team_id, ...) {
 ##   "tag_bg": "#000000",
 ##   "tag_fg": "#000000"
 ## }
-cu_change_tag_names_from_time_entries <- function(team_id, ...) {
+cu_change_tag_names_from_time_entries <- function(team_id, ..., cu_token = NULL) {
     .cu_put("team", team_id, "time_entries", "tags",
-        body=list(...))
+        body=list(...), cu_token = cu_token)
 }
 
 
@@ -232,9 +235,9 @@ cu_change_tag_names_from_time_entries <- function(team_id, ...) {
 ##   "tid": "task_id",
 ##   "billable": false
 ## }
-cu_start_time_entry <- function(team_id, timer_id, ...) {
+cu_start_time_entry <- function(team_id, timer_id, ..., cu_token = NULL) {
     .cu_post("team", team_id, "time_entries", "start", timer_id,
-        body=list(...))
+        body=list(...), cu_token = cu_token)
 }
 
 
@@ -246,8 +249,8 @@ cu_start_time_entry <- function(team_id, timer_id, ...) {
 ##    team_id
 ##    Example: 512.
 ##    Number
-cu_stop_time_entry <- function(team_id) {
-    .cu_post("team", team_id, "time_entries", "stop")
+cu_stop_time_entry <- function(team_id, cu_token = NULL) {
+    .cu_post("team", team_id, "time_entries", "stop", cu_token = cu_token)
 }
 
 
@@ -263,8 +266,8 @@ cu_stop_time_entry <- function(team_id) {
 ##     timer_id
 ##     List of timer ids to delete separated by commas
 ##     Number
-cu_delete_time_entry <- function(team_id, timer_id) {
-    .cu_delete("team", team_id, "time_entries", timer_id)
+cu_delete_time_entry <- function(team_id, timer_id, cu_token = NULL) {
+    .cu_delete("team", team_id, "time_entries", timer_id, cu_token = cu_token)
 }
 
 
@@ -294,7 +297,7 @@ cu_delete_time_entry <- function(team_id, timer_id) {
 ##   "billable": true,
 ##   "duration": 100000
 ## }
-cu_update_time_entry <- function(team_id, timer_id, ...) {
+cu_update_time_entry <- function(team_id, timer_id, ..., cu_token = NULL) {
     .cu_put("team", team_id, "time_entries", timer_id,
-        body=list(...))
+        body=list(...), cu_token = cu_token)
 }
