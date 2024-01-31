@@ -37,7 +37,7 @@
 
 ## convenience function for GET requests with support for paging
 .cu_get <- function(..., query=list(), paging=TRUE, cu_token = NULL) {
-    chunk <- .cu_get_page(..., query = query)
+    chunk <- .cu_get_page(..., query = query, cu_token = cu_token)
     out <- chunk
     page <- 0
     while (paging && length(chunk) == 1 && length(chunk[[1]]) == 100) {
