@@ -8,6 +8,8 @@
 #' @param comment_id Comment ID.
 #' @param ... Named arguments to be passed to API request body,
 #'   see the ClickUp API documentation (<https://clickup.com/api>).
+#' @param cu_token ClickUp personal access token or an access token from the OAuth flow.
+#'   The `CU_PAT` environment variable is used when `NULL`.
 #'
 #' @return
 #'
@@ -35,10 +37,11 @@ NULL
 ##   "assignee": 183,
 ##   "notify_all": true
 ## }
-cu_post_task_comment <- function(task_id, ...) {
+cu_post_task_comment <- function(task_id, ..., cu_token = NULL) {
     task_id <- cu_task_id(task_id)
     .cu_post("task", task_id, "comment",
-        body=list(...))
+        body=list(...),
+        cu_token = cu_token)
 }
 
 
@@ -60,9 +63,10 @@ cu_post_task_comment <- function(task_id, ...) {
 ##   "comment_text": "View comment content",
 ##   "notify_all": true
 ## }
-cu_post_view_comment <- function(view_id, ...) {
+cu_post_view_comment <- function(view_id, ..., cu_token = NULL) {
     .cu_post("view", view_id, "comment",
-        body=list(...))
+        body=list(...),
+        cu_token = cu_token)
 }
 
 
@@ -84,9 +88,10 @@ cu_post_view_comment <- function(view_id, ...) {
 ##   "assignee": 183,
 ##   "notify_all": true
 ## }
-cu_post_list_comment <- function(list_id, ...) {
+cu_post_list_comment <- function(list_id, ..., cu_token = NULL) {
     .cu_post("list", list_id, "comment",
-        body=list(...))
+        body=list(...),
+        cu_token = cu_token)
 }
 
 
@@ -97,9 +102,9 @@ cu_post_list_comment <- function(list_id, ...) {
 ##    task_id
 ##    Example: 9hz.
 ##    String
-cu_get_task_comments <- function(task_id) {
+cu_get_task_comments <- function(task_id, cu_token = NULL) {
     task_id <- cu_task_id(task_id)
-    .cu_get("task", task_id, "comment")
+    .cu_get("task", task_id, "comment", cu_token = cu_token)
 }
 
 
@@ -111,8 +116,8 @@ cu_get_task_comments <- function(task_id) {
 ##    105 (string)
 ##    Example: 3c.
 ##    String
-cu_get_view_comments <- function(view_id) {
-    .cu_get("view", view_id, "comment")
+cu_get_view_comments <- function(view_id, cu_token = NULL) {
+    .cu_get("view", view_id, "comment", cu_token = cu_token)
 }
 
 
@@ -123,8 +128,8 @@ cu_get_view_comments <- function(view_id) {
 ##     list_id
 ##     Example: 124.
 ##     Number
-cu_get_list_comments <- function(list_id) {
-    .cu_get("list", list_id, "comment")
+cu_get_list_comments <- function(list_id, cu_token = NULL) {
+    .cu_get("list", list_id, "comment", cu_token = cu_token)
 }
 
 
@@ -143,9 +148,10 @@ cu_get_list_comments <- function(list_id) {
 ##    "assignee": 183,
 ##    "resolved": true
 ## }
-cu_put_update_comment <- function(comment_id, ...) {
+cu_put_update_comment <- function(comment_id, ..., cu_token = NULL) {
     .cu_put("comment", comment_id,
-        body=list(...))
+        body=list(...),
+        cu_token = cu_token)
 }
 
 
@@ -156,6 +162,6 @@ cu_put_update_comment <- function(comment_id, ...) {
 ##     comment_id
 ##     Example: 456.
 ##     Number
-cu_delete_comment <- function(comment_id) {
-    .cu_delete("comment", comment_id)
+cu_delete_comment <- function(comment_id, cu_token = NULL) {
+    .cu_delete("comment", comment_id, cu_token = cu_token)
 }

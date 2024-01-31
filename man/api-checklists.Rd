@@ -10,22 +10,25 @@
 \alias{cu_delete_checklist_item}
 \title{Task checklists}
 \usage{
-cu_create_checklist(task_id, name)
+cu_create_checklist(task_id, name, cu_token = NULL)
 
-cu_edit_checklist(checklist_id, position)
+cu_edit_checklist(checklist_id, position, cu_token = NULL)
 
-cu_delete_checklist(checklist_id)
+cu_delete_checklist(checklist_id, cu_token = NULL)
 
-cu_create_checklist_item(checklist_id, name, ...)
+cu_create_checklist_item(checklist_id, name, ..., cu_token = NULL)
 
-cu_edit_checklist_item(checklist_id, checklist_item_id, ...)
+cu_edit_checklist_item(checklist_id, checklist_item_id, ..., cu_token = NULL)
 
-cu_delete_checklist_item(checklist_id, checklist_item_id)
+cu_delete_checklist_item(checklist_id, checklist_item_id, cu_token = NULL)
 }
 \arguments{
 \item{task_id}{Task ID.}
 
 \item{name}{Checklist or checlist item name.}
+
+\item{cu_token}{ClickUp personal access token or an access token from the OAuth flow.
+The \code{CU_PAT} environment variable is used when \code{NULL}.}
 
 \item{checklist_id}{Checklist ID.}
 

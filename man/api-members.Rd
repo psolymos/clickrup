@@ -6,12 +6,15 @@
 \alias{cu_get_list_members}
 \title{Members}
 \usage{
-cu_get_task_members(task_id)
+cu_get_task_members(task_id, cu_token = NULL)
 
-cu_get_list_members(list_id)
+cu_get_list_members(list_id, cu_token = NULL)
 }
 \arguments{
 \item{task_id}{Task ID.}
+
+\item{cu_token}{ClickUp personal access token or an access token from the OAuth flow.
+The \code{CU_PAT} environment variable is used when \code{NULL}.}
 
 \item{list_id}{List ID.}
 }

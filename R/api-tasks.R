@@ -68,6 +68,8 @@
 #' @param ... Named arguments to be passed to API request body,
 #'   of as query parameters,
 #'   see the ClickUp API documentation (<https://clickup.com/api>).
+#' @param cu_token ClickUp personal access token or an access token from the OAuth flow.
+#'   The `CU_PAT` environment variable is used when `NULL`.
 #'
 #' @return
 #'
@@ -137,9 +139,9 @@ NULL
 ##
 ## Use I() when providing arrays as part of the body
 ## list(a=1, b=I(2)) will be {"a":1,"b":[2]}
-cu_create_task <- function(list_id, ...) {
+cu_create_task <- function(list_id, ..., cu_token = NULL) {
     .cu_post("list", list_id, "task",
-        body=list(...))
+        body=list(...), cu_token = cu_token)
 }
 
 
@@ -172,10 +174,10 @@ cu_create_task <- function(list_id, ...) {
 ##     },
 ##     "archived": false,
 ## }
-cu_update_task <- function(task_id, ...) {
+cu_update_task <- function(task_id, ..., cu_token = NULL) {
     task_id <- cu_task_id(task_id)
     .cu_put("task", task_id,
-        body=list(...))
+        body=list(...), cu_token = cu_token)
 }
 
 
@@ -187,9 +189,9 @@ cu_update_task <- function(task_id, ...) {
 ##     task_id
 ##     Example: 9xh.
 ##     String
-cu_delete_task <- function(task_id) {
+cu_delete_task <- function(task_id, cu_token = NULL) {
     task_id <- cu_task_id(task_id)
-    .cu_delete("task", task_id)
+    .cu_delete("task", task_id, cu_token = cu_token)
 }
 
 
@@ -278,9 +280,9 @@ cu_delete_task <- function(task_id) {
 ## the length of each response to determine if you are on the last page.
 ##
 # ... takes parameters, most importantly page (starting at 0)
-cu_get_tasks <- function(list_id, archived=FALSE, ...) {
+cu_get_tasks <- function(list_id, archived=FALSE, ..., cu_token = NULL) {
     .cu_get("list", list_id, "task",
-            query = list("archived" = tolower(archived), ...))
+            query = list("archived" = tolower(archived), ...), cu_token = cu_token)
 }
 
 
@@ -292,9 +294,9 @@ cu_get_tasks <- function(list_id, archived=FALSE, ...) {
 ##     task_id
 ##     Example: 9hz.
 ##     String
-cu_get_task <- function(task_id) {
+cu_get_task <- function(task_id, cu_token = NULL) {
     task_id <- cu_task_id(task_id)
-    .cu_get("task", task_id)
+    .cu_get("task", task_id, cu_token = cu_token)
 }
 
 
@@ -385,8 +387,8 @@ cu_get_task <- function(task_id) {
 ##
 ## By default this does not include closed tasks. To page tasks,
 ## pass the page number you wish to fetch.
-cu_get_filtered_team_tasks <- function(team_id, ...) {
+cu_get_filtered_team_tasks <- function(team_id, ..., cu_token = NULL) {
     .cu_get("team", team_id, "task",
-            query = list(...))
+            query = list(...), cu_token = cu_token)
 }
 

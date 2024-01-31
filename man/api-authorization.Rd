@@ -7,11 +7,11 @@
 \alias{cu_get_authorized_teams}
 \title{Authorization}
 \usage{
-cu_get_access_token(client_id, client_secret, code)
+cu_get_access_token(client_id, client_secret, code, cu_token = NULL)
 
-cu_get_authorized_user()
+cu_get_authorized_user(cu_token = NULL)
 
-cu_get_authorized_teams()
+cu_get_authorized_teams(cu_token = NULL)
 }
 \arguments{
 \item{client_id}{Oauth app client id.}
@@ -19,6 +19,9 @@ cu_get_authorized_teams()
 \item{client_secret}{Oauth app client secret.}
 
 \item{code}{Code given in redirect URL.}
+
+\item{cu_token}{ClickUp personal access token or an access token from the OAuth flow.
+The \code{CU_PAT} environment variable is used when \code{NULL}.}
 }
 \value{
 A cu object.

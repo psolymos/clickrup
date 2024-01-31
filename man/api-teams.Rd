@@ -5,7 +5,11 @@
 \alias{cu_get_teams}
 \title{Teams (workspaces)}
 \usage{
-cu_get_teams()
+cu_get_teams(cu_token = NULL)
+}
+\arguments{
+\item{cu_token}{ClickUp personal access token or an access token from the OAuth flow.
+The \code{CU_PAT} environment variable is used when \code{NULL}.}
 }
 \value{
 A cu object.

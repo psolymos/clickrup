@@ -5,7 +5,13 @@
 \alias{cu_post_task_attachment}
 \title{Attachments}
 \usage{
-cu_post_task_attachment(task_id, attachment, filename = NULL, ...)
+cu_post_task_attachment(
+  task_id,
+  attachment,
+  filename = NULL,
+  ...,
+  cu_token = NULL
+)
 }
 \arguments{
 \item{task_id}{Task ID.}
@@ -17,6 +23,9 @@ deduced from \code{attachment} when not provided (\code{NULL}).}
 
 \item{...}{Can be used to pass mime \code{type} argument to \code{\link[httr:upload_file]{httr::upload_file()}},
 mime type is guessed otherwise.}
+
+\item{cu_token}{ClickUp personal access token or an access token from the OAuth flow.
+The \code{CU_PAT} environment variable is used when \code{NULL}.}
 }
 \value{
 A cu object.

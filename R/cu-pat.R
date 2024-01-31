@@ -25,6 +25,7 @@
 #' * check with `Sys.getenv("CU_PAT")`, it should return the token.
 #'
 #' @param token ClickUp personal access token or an access token from the OAuth flow.
+#'   The `CU_PAT` environment variable is used when `NULL`.
 #'
 #' @return
 #'

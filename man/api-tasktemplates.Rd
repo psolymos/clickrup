@@ -6,15 +6,18 @@
 \alias{cu_create_task_from_template}
 \title{Task templates}
 \usage{
-cu_get_task_templates(team_id, page)
+cu_get_task_templates(team_id, page, cu_token = NULL)
 
-cu_create_task_from_template(list_id, template_id, name, ...)
+cu_create_task_from_template(list_id, template_id, name, ..., cu_token = NULL)
 }
 \arguments{
 \item{team_id}{Team ID.}
 
 \item{page}{Page to fetch (starts at 0).
 To page task templates, pass the page number you wish to fetch.}
+
+\item{cu_token}{ClickUp personal access token or an access token from the OAuth flow.
+The \code{CU_PAT} environment variable is used when \code{NULL}.}
 
 \item{list_id}{List ID.}
 

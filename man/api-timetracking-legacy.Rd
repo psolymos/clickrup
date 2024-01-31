@@ -8,13 +8,13 @@
 \alias{cu_delete_time_tracked}
 \title{Time tracking legacy}
 \usage{
-cu_track_time(task_id, ...)
+cu_track_time(task_id, ..., cu_token = NULL)
 
-cu_get_tracked_time(task_id)
+cu_get_tracked_time(task_id, cu_token = NULL)
 
-cu_edit_time_tracked(task_id, interval_id, ...)
+cu_edit_time_tracked(task_id, interval_id, ..., cu_token = NULL)
 
-cu_delete_time_tracked(task_id, interval_id)
+cu_delete_time_tracked(task_id, interval_id, cu_token = NULL)
 }
 \arguments{
 \item{task_id}{Task ID.}
@@ -22,6 +22,9 @@ cu_delete_time_tracked(task_id, interval_id)
 \item{...}{Named arguments to be passed to API request body,
 see the ClickUp API documentation (\url{https://clickup.com/api}).
 Edit the \code{start}, \code{end}, or total \code{time} of a time tracked entry.}
+
+\item{cu_token}{ClickUp personal access token or an access token from the OAuth flow.
+The \code{CU_PAT} environment variable is used when \code{NULL}.}
 
 \item{interval_id}{Interval ID.}
 }

@@ -14,28 +14,46 @@
 \alias{cu_remove_guest_from_folder}
 \title{Guests}
 \usage{
-cu_invite_guest_to_workspace(team_id)
+cu_invite_guest_to_workspace(team_id, cu_token = NULL)
 
-cu_edit_guest_on_workspace(team_id, guest_id, ...)
+cu_edit_guest_on_workspace(team_id, guest_id, ..., cu_token = NULL)
 
-cu_remove_guest_from_workspace(team_id, guest_id)
+cu_remove_guest_from_workspace(team_id, guest_id, cu_token = NULL)
 
-cu_get_guest(team_id, guest_id)
+cu_get_guest(team_id, guest_id, cu_token = NULL)
 
-cu_add_guest_to_task(task_id, guest_id, permission_level = "read")
+cu_add_guest_to_task(
+  task_id,
+  guest_id,
+  permission_level = "read",
+  cu_token = NULL
+)
 
-cu_remove_guest_from_task(task_id, guest_id)
+cu_remove_guest_from_task(task_id, guest_id, cu_token = NULL)
 
-cu_add_guest_to_list(list_id, guest_id, permission_level = "read")
+cu_add_guest_to_list(
+  list_id,
+  guest_id,
+  permission_level = "read",
+  cu_token = NULL
+)
 
-cu_remove_guest_from_list(list_id, guest_id)
+cu_remove_guest_from_list(list_id, guest_id, cu_token = NULL)
 
-cu_add_guest_to_folder(folder_id, guest_id, permission_level = "read")
+cu_add_guest_to_folder(
+  folder_id,
+  guest_id,
+  permission_level = "read",
+  cu_token = NULL
+)
 
-cu_remove_guest_from_folder(folder_id, guest_id)
+cu_remove_guest_from_folder(folder_id, guest_id, cu_token = NULL)
 }
 \arguments{
 \item{team_id}{Team ID.}
+
+\item{cu_token}{ClickUp personal access token or an access token from the OAuth flow.
+The \code{CU_PAT} environment variable is used when \code{NULL}.}
 
 \item{guest_id}{Guest ID.}
 

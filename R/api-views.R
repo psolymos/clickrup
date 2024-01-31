@@ -11,6 +11,8 @@
 #' @param page Page to fetch (starts at 0).
 #' @param ... Named arguments to be passed to API request body,
 #'   see the ClickUp API documentation (<https://clickup.com/api>).
+#' @param cu_token ClickUp personal access token or an access token from the OAuth flow.
+#'   The `CU_PAT` environment variable is used when `NULL`.
 #'
 #' @return
 #'
@@ -76,9 +78,9 @@ NULL
 ##     "me_checklists": true
 ##   }
 ## }
-cu_create_team_view <- function(team_id, name, ...) {
+cu_create_team_view <- function(team_id, name, ..., cu_token = NULL) {
     .cu_post("team", team_id, "view",
-        body=list(name=name, ...))
+        body=list(name=name, ...), cu_token = cu_token)
 }
 
 
@@ -137,9 +139,9 @@ cu_create_team_view <- function(team_id, name, ...) {
 ##       "me_checklists": true
 ##     }
 ## }
-cu_create_space_view <- function(space_id, name, ...) {
+cu_create_space_view <- function(space_id, name, ..., cu_token = NULL) {
     .cu_post("space", space_id, "view",
-        body=list(name=name, ...))
+        body=list(name=name, ...), cu_token = cu_token)
 }
 
 
@@ -198,9 +200,9 @@ cu_create_space_view <- function(space_id, name, ...) {
 ##     "me_checklists": true
 ##   }
 ## }
-cu_create_folder_view <- function(folder_id, name, ...) {
+cu_create_folder_view <- function(folder_id, name, ..., cu_token = NULL) {
     .cu_post("folder", folder_id, "view",
-        body=list(name=name, ...))
+        body=list(name=name, ...), cu_token = cu_token)
 }
 
 
@@ -259,9 +261,9 @@ cu_create_folder_view <- function(folder_id, name, ...) {
 ##     "me_checklists": true
 ##   }
 ## }
-cu_create_list_view <- function(list_id, name, ...) {
+cu_create_list_view <- function(list_id, name, ..., cu_token = NULL) {
     .cu_post("list", list_id, "view",
-        body=list(name=name, ...))
+        body=list(name=name, ...), cu_token = cu_token)
 }
 
 
@@ -273,8 +275,8 @@ cu_create_list_view <- function(list_id, name, ...) {
 ##     team_id
 ##     Example: 512.
 ##     Number
-cu_get_team_views <- function(team_id) {
-    .cu_get("team", team_id, "view")
+cu_get_team_views <- function(team_id, cu_token = NULL) {
+    .cu_get("team", team_id, "view", cu_token = cu_token)
 }
 
 
@@ -286,8 +288,8 @@ cu_get_team_views <- function(team_id) {
 ##    space_id
 ##    Example: 790.
 ##    Number
-cu_get_space_views <- function(space_id) {
-    .cu_get("space", space_id, "view")
+cu_get_space_views <- function(space_id, cu_token = NULL) {
+    .cu_get("space", space_id, "view", cu_token = cu_token)
 }
 
 
@@ -299,8 +301,8 @@ cu_get_space_views <- function(space_id) {
 ##    folder_id
 ##    Example: 457.
 ##    Number
-cu_get_folder_views <- function(folder_id) {
-    .cu_get("folder", folder_id, "view")
+cu_get_folder_views <- function(folder_id, cu_token = NULL) {
+    .cu_get("folder", folder_id, "view", cu_token = cu_token)
 }
 
 
@@ -312,8 +314,8 @@ cu_get_folder_views <- function(folder_id) {
 ##     list_id
 ##     Example: 124.
 ##     Number
-cu_get_list_views <- function(list_id) {
-    .cu_get("list", list_id, "view")
+cu_get_list_views <- function(list_id, cu_token = NULL) {
+    .cu_get("list", list_id, "view", cu_token = cu_token)
 }
 
 
@@ -326,8 +328,8 @@ cu_get_list_views <- function(list_id) {
 ##    105 (string)
 ##    Example: 3c.
 ##    String
-cu_get_view <- function(view_id) {
-    .cu_get("view", view_id)
+cu_get_view <- function(view_id, cu_token = NULL) {
+    .cu_get("view", view_id, cu_token = cu_token)
 }
 
 
@@ -346,9 +348,9 @@ cu_get_view <- function(view_id) {
 ##     Integer
 ##
 ## To page the tasks returned, include the page param
-cu_get_view_tasks <- function(view_id, page) {
+cu_get_view_tasks <- function(view_id, page, cu_token = NULL) {
     .cu_get("view", view_id, "task",
-            query = list(page = page))
+            query = list(page = page), cu_token = cu_token)
 }
 
 
@@ -414,9 +416,9 @@ cu_get_view_tasks <- function(view_id, page) {
 ## }
 ## Views / Update View
 ## PUT https://api.clickup.com/api/v2/view/view_id
-cu_update_view <- function(view_id, ...) {
+cu_update_view <- function(view_id, ..., cu_token = NULL) {
     .cu_put("view", view_id,
-        body=list(...))
+        body=list(...), cu_token = cu_token)
 }
 
 
@@ -429,6 +431,6 @@ cu_update_view <- function(view_id, ...) {
 ##     105 (string)
 ##     Example: 3c.
 ##     String
-cu_delete_view <- function(view_id) {
-    .cu_delete("view", view_id)
+cu_delete_view <- function(view_id, cu_token = NULL) {
+    .cu_delete("view", view_id, cu_token = cu_token)
 }
