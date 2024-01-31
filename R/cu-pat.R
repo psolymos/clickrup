@@ -24,14 +24,16 @@
 #' * add a line with `CU_PAT="your_token"` to the `.Renviron` file and save it,
 #' * check with `Sys.getenv("CU_PAT")`, it should return the token.
 #'
-#' @param token ClickUp personal access token.
+#' @param token ClickUp personal access token or an access token from the OAuth flow.
 #'
 #' @return
 #'
 #' `cu_set_pat` returns logical similarly to [Sys.setenv()].
 #'
-#' `cu_get_pat` returns the ClickUp PAT will look something like
+#' `cu_get_pat` returns the ClickUp PAT that will look something like
 #' `pk_4753994_EXP7MPOJ7XQM5UJDV2M45MPF0YHH5YHO`.
+#' When `token` is not `NULL` it will simply pass through the token value
+#' and not look for the `CU_PAT` environment variable.
 #'
 #' @seealso [Sys.setenv()] and [Sys.getenv()]
 #'
@@ -42,7 +44,9 @@ NULL
 
 #' @export
 #' @rdname cu-pat
-cu_get_pat <- function() {
+cu_get_pat <- function(token = NULL) {
+    if (!is.null(token))
+        return(invisible(token))
     pat <- Sys.getenv("CU_PAT")
     if (identical(pat, ""))
         stop("Set CU_PAT env var as your ClickUp personal access token",
