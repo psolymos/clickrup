@@ -9,20 +9,23 @@
 \alias{cu_get_folder}
 \title{Folders}
 \usage{
-cu_create_folder(space_id, name)
+cu_create_folder(space_id, name, cu_token = NULL)
 
-cu_update_folder(folder_id, name)
+cu_update_folder(folder_id, name, cu_token = NULL)
 
-cu_delete_folder(folder_id, name)
+cu_delete_folder(folder_id, name, cu_token = NULL)
 
-cu_get_folders(space_id, archived = FALSE)
+cu_get_folders(space_id, archived = FALSE, cu_token = NULL)
 
-cu_get_folder(folder_id)
+cu_get_folder(folder_id, cu_token = NULL)
 }
 \arguments{
 \item{space_id}{Space ID.}
 
 \item{name}{Name of the folder.}
+
+\item{cu_token}{ClickUp personal access token or an access token from the OAuth flow.
+The \code{CU_PAT} environment variable is used when \code{NULL}.}
 
 \item{folder_id}{Folder ID.}
 

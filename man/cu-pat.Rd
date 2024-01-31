@@ -6,18 +6,21 @@
 \alias{cu_set_pat}
 \title{Managing ClickUp personal access token}
 \usage{
-cu_get_pat()
+cu_get_pat(token = NULL)
 
 cu_set_pat(token)
 }
 \arguments{
-\item{token}{ClickUp personal access token.}
+\item{token}{ClickUp personal access token or an access token from the OAuth flow.
+The \code{CU_PAT} environment variable is used when \code{NULL}.}
 }
 \value{
 \code{cu_set_pat} returns logical similarly to \code{\link[=Sys.setenv]{Sys.setenv()}}.
 
-\code{cu_get_pat} returns the ClickUp PAT will look something like
+\code{cu_get_pat} returns the ClickUp PAT that will look something like
 \code{pk_4753994_EXP7MPOJ7XQM5UJDV2M45MPF0YHH5YHO}.
+When \code{token} is not \code{NULL} it will simply pass through the token value
+and not look for the \code{CU_PAT} environment variable.
 }
 \description{
 The ClickUp API requires a personal access token (PAT)
