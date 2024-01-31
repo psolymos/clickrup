@@ -49,8 +49,8 @@
 #' * project_ids: projects to query, array.
 #' * statuses: statuses to query, array.
 #' * include_closed: by default, the api does not include closed tasks.
-#'     Set this to true and dont send a status filter to include closed tasks.
-#' * assignees: ssignees to query, array.
+#'     Set this to true and don't send a status filter to include closed tasks.
+#' * assignees: assignees to query, array.
 #' * due_date_gt: filter due date greater than posix time.
 #' * due_date_lt: filter due date less than posix time.
 #' * date_created_gt: filter date created greater than posix time.
