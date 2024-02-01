@@ -12,13 +12,13 @@
 \alias{cuf_get_webhooks}
 \title{Webhooks}
 \usage{
-cu_create_webhook(team_id, endpoint, events = "*", ...)
+cu_create_webhook(team_id, endpoint, events = "*", ..., cu_token = NULL)
 
-cu_update_webhook(webhook_id, ...)
+cu_update_webhook(webhook_id, ..., cu_token = NULL)
 
-cu_delete_webhook(webhook_id)
+cu_delete_webhook(webhook_id, cu_token = NULL)
 
-cu_get_webhooks(team_id)
+cu_get_webhooks(team_id, cu_token = NULL)
 
 cuf_create_webhook(team_id, endpoint, events = "*", ...)
 
@@ -38,6 +38,9 @@ cuf_get_webhooks(team_id)
 \item{...}{Named arguments to be passed to API request body,
 e.g. \code{"endpoint"}, \code{"events"}, or \code{"status"},
 see the ClickUp API documentation (\url{https://clickup.com/api}).}
+
+\item{cu_token}{ClickUp personal access token or an access token from the OAuth flow.
+The \code{CU_PAT} environment variable is used when \code{NULL}.}
 
 \item{webhook_id}{Webhook ID.}
 }

@@ -14,15 +14,15 @@
 \alias{cuf_get_space}
 \title{Spaces}
 \usage{
-cu_create_space(team_id, name, ...)
+cu_create_space(team_id, name, ..., cu_token = NULL)
 
-cu_update_space(space_id, ...)
+cu_update_space(space_id, ..., cu_token = NULL)
 
-cu_delete_space(space_id)
+cu_delete_space(space_id, cu_token = NULL)
 
-cu_get_spaces(team_id, archived = FALSE)
+cu_get_spaces(team_id, archived = FALSE, cu_token = NULL)
 
-cu_get_space(space_id)
+cu_get_space(space_id, cu_token = NULL)
 
 cuf_create_space(team_id, name, ...)
 
@@ -41,6 +41,9 @@ cuf_get_space(space_id)
 
 \item{...}{Named arguments to be passed to API request body,
 see the ClickUp API documentation (\url{https://clickup.com/api}).}
+
+\item{cu_token}{ClickUp personal access token or an access token from the OAuth flow.
+The \code{CU_PAT} environment variable is used when \code{NULL}.}
 
 \item{space_id}{Space ID.}
 

@@ -36,8 +36,8 @@
 }
 
 ## convenience function for GET requests with support for paging
-.cu_get <- function(..., query=list(), paging=TRUE) {
-    chunk <- .cu_get_page(..., query = query)
+.cu_get <- function(..., query=list(), paging=TRUE, cu_token = NULL) {
+    chunk <- .cu_get_page(..., query = query, cu_token = cu_token)
     out <- chunk
     page <- 0
     repeat {
@@ -63,7 +63,7 @@
 
         page <- page + 1
         query$page <- page
-        chunk <- .cu_get_page(..., query = query)
+        chunk <- .cu_get_page(..., query = query, cu_token = cu_token)
         stopifnot(length(chunk) %in% 1:2)
         out[[1]] <- c(out[[1]], chunk[[1]])
     }
@@ -73,12 +73,12 @@
 }
 
 ## convenience function for GET requests
-.cu_get_page <- function(..., query=list()) {
+.cu_get_page <- function(..., query=list(), cu_token = NULL) {
     resp <- .rate_insist(httr::GET(
             httr::modify_url(getOption("cu_options")$baseurl,
                        path = .cu_path(...),
                        query = query),
-            httr::add_headers(Authorization = cu_get_pat()),
+            httr::add_headers(Authorization = cu_get_pat(token = cu_token)),
             httr::content_type_json(),
             httr::accept_json(),
             httr::user_agent(getOption("cu_options")$useragent))
@@ -87,12 +87,12 @@
 }
 
 ## convenience function for POST requests
-.cu_post <- function(..., body=NULL, query=list()) {
+.cu_post <- function(..., body=NULL, query=list(), cu_token = NULL) {
     resp <- .rate_insist(httr::POST(
             httr::modify_url(getOption("cu_options")$baseurl,
                        path = .cu_path(...),
                        query = query),
-            httr::add_headers(Authorization = cu_get_pat()),
+            httr::add_headers(Authorization = cu_get_pat(token = cu_token)),
             httr::content_type_json(),
             httr::accept_json(),
             body=jsonlite::toJSON(body, auto_unbox=TRUE),
@@ -105,12 +105,12 @@
 }
 
 ## convenience function for PUT requests
-.cu_put <- function(..., body=NULL, query=list()) {
+.cu_put <- function(..., body=NULL, query=list(), cu_token = NULL) {
     resp <- .rate_insist(httr::PUT(
             httr::modify_url(getOption("cu_options")$baseurl,
                        path = .cu_path(...),
                        query = query),
-            httr::add_headers(Authorization = cu_get_pat()),
+            httr::add_headers(Authorization = cu_get_pat(token = cu_token)),
             httr::content_type_json(),
             httr::accept_json(),
             body=jsonlite::toJSON(body, auto_unbox=TRUE),
@@ -123,12 +123,12 @@
 }
 
 ## convenience function for DELETE requests
-.cu_delete <- function(..., body=NULL, query=list()) {
+.cu_delete <- function(..., body=NULL, query=list(), cu_token = NULL) {
     resp <- .rate_insist(httr::DELETE(
             httr::modify_url(getOption("cu_options")$baseurl,
                        path = .cu_path(...),
                        query = query),
-            httr::add_headers(Authorization = cu_get_pat()),
+            httr::add_headers(Authorization = cu_get_pat(token = cu_token)),
             httr::content_type_json(),
             httr::accept_json(),
             body=jsonlite::toJSON(body, auto_unbox=TRUE),

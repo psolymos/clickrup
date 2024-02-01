@@ -16,17 +16,17 @@
 \alias{cuf_get_filtered_team_tasks}
 \title{Tasks}
 \usage{
-cu_create_task(list_id, ...)
+cu_create_task(list_id, ..., cu_token = NULL)
 
-cu_update_task(task_id, ...)
+cu_update_task(task_id, ..., cu_token = NULL)
 
-cu_delete_task(task_id)
+cu_delete_task(task_id, cu_token = NULL)
 
-cu_get_tasks(list_id, archived = FALSE, ...)
+cu_get_tasks(list_id, archived = FALSE, ..., cu_token = NULL)
 
-cu_get_task(task_id)
+cu_get_task(task_id, cu_token = NULL)
 
-cu_get_filtered_team_tasks(team_id, ...)
+cu_get_filtered_team_tasks(team_id, ..., cu_token = NULL)
 
 cuf_create_task(list_id, ...)
 
@@ -46,6 +46,9 @@ cuf_get_filtered_team_tasks(team_id, ...)
 \item{...}{Named arguments to be passed to API request body,
 of as query parameters,
 see the ClickUp API documentation (\url{https://clickup.com/api}).}
+
+\item{cu_token}{ClickUp personal access token or an access token from the OAuth flow.
+The \code{CU_PAT} environment variable is used when \code{NULL}.}
 
 \item{task_id}{Task ID. The ClickUp GUI prepends task IDs with a leading hash, \code{\link[=cu_task_id]{cu_task_id()}} is used internally to normalize task IDs.}
 
@@ -108,8 +111,8 @@ updated, due_date.
 \item project_ids: projects to query, array.
 \item statuses: statuses to query, array.
 \item include_closed: by default, the api does not include closed tasks.
-Set this to true and dont send a status filter to include closed tasks.
-\item assignees: ssignees to query, array.
+Set this to true and don't send a status filter to include closed tasks.
+\item assignees: assignees to query, array.
 \item due_date_gt: filter due date greater than posix time.
 \item due_date_lt: filter due date less than posix time.
 \item date_created_gt: filter date created greater than posix time.

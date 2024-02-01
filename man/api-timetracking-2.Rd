@@ -30,31 +30,37 @@
 \alias{cuf_update_time_entry}
 \title{Time tracking 2.0}
 \usage{
-cu_get_time_entries_within_date_range(team_id, start_date, end_date, assignee)
+cu_get_time_entries_within_date_range(
+  team_id,
+  start_date,
+  end_date,
+  assignee,
+  cu_token = NULL
+)
 
-cu_get_singular_time_entry(team_id, timer_id)
+cu_get_singular_time_entry(team_id, timer_id, cu_token = NULL)
 
-cu_get_time_entry_history(team_id, timer_id)
+cu_get_time_entry_history(team_id, timer_id, cu_token = NULL)
 
-cu_get_running_time_entry(team_id, timer_id)
+cu_get_running_time_entry(team_id, timer_id, cu_token = NULL)
 
-cu_create_time_entry(team_id, ...)
+cu_create_time_entry(team_id, ..., cu_token = NULL)
 
-cu_remove_tags_from_time_entries(team_id, ...)
+cu_remove_tags_from_time_entries(team_id, ..., cu_token = NULL)
 
-cu_get_all_tags_from_time_entries(team_id)
+cu_get_all_tags_from_time_entries(team_id, cu_token = NULL)
 
-cu_add_tags_from_time_entries(team_id, ...)
+cu_add_tags_from_time_entries(team_id, ..., cu_token = NULL)
 
-cu_change_tag_names_from_time_entries(team_id, ...)
+cu_change_tag_names_from_time_entries(team_id, ..., cu_token = NULL)
 
-cu_start_time_entry(team_id, timer_id, ...)
+cu_start_time_entry(team_id, timer_id, ..., cu_token = NULL)
 
-cu_stop_time_entry(team_id)
+cu_stop_time_entry(team_id, cu_token = NULL)
 
-cu_delete_time_entry(team_id, timer_id)
+cu_delete_time_entry(team_id, timer_id, cu_token = NULL)
 
-cu_update_time_entry(team_id, timer_id, ...)
+cu_update_time_entry(team_id, timer_id, ..., cu_token = NULL)
 
 cuf_get_time_entries_within_date_range(team_id, start_date, end_date, assignee)
 
@@ -91,6 +97,9 @@ cuf_update_time_entry(team_id, timer_id, ...)
 
 \item{assignee}{User ids to filter by separated by commas.
 Note: Only Workspace Owners/Admins have access to do this.}
+
+\item{cu_token}{ClickUp personal access token or an access token from the OAuth flow.
+The \code{CU_PAT} environment variable is used when \code{NULL}.}
 
 \item{timer_id}{Timer ID.}
 

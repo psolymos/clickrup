@@ -9,6 +9,8 @@
 #'   deduced from `attachment` when not provided (`NULL`).
 #' @param ... Can be used to pass mime `type` argument to [httr::upload_file()],
 #'   mime type is guessed otherwise.
+#' @param cu_token ClickUp personal access token or an access token from the OAuth flow.
+#'   The `CU_PAT` environment variable is used when `NULL`.
 #'
 #' @examples
 #' \dontrun{
@@ -44,7 +46,7 @@
 ##   --form 'attachment=@/path/to/the/file/example.png'
 
 ## ... can be used to pass type argument to httr::upload_file
-cu_post_task_attachment <- function(task_id, attachment, filename=NULL, ...) {
+cu_post_task_attachment <- function(task_id, attachment, filename=NULL, ..., cu_token = NULL) {
     task_id <- cu_task_id(task_id)
     if (is.null(filename))
         filename <- basename(attachment)
@@ -52,7 +54,7 @@ cu_post_task_attachment <- function(task_id, attachment, filename=NULL, ...) {
         httr::modify_url(getOption("cu_options")$baseurl,
             path = .cu_path("task", task_id, "attachment")),
         httr::add_headers(
-            Authorization = cu_get_pat(),
+            Authorization = cu_get_pat(token = cu_token),
             "Content-Type" = "multipart/form-data"),
         httr::accept_json(),
         body=list(

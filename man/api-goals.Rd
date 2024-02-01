@@ -20,21 +20,21 @@
 \alias{cuf_delete_key_result}
 \title{Goals}
 \usage{
-cu_create_goal(team_id, ...)
+cu_create_goal(team_id, ..., cu_token = NULL)
 
-cu_update_goal(goal_id, ...)
+cu_update_goal(goal_id, ..., cu_token = NULL)
 
-cu_delete_goal(goal_id)
+cu_delete_goal(goal_id, cu_token = NULL)
 
-cu_get_goals(team_id)
+cu_get_goals(team_id, cu_token = NULL)
 
-cu_get_goal(goal_id)
+cu_get_goal(goal_id, cu_token = NULL)
 
-cu_create_key_result(goal_id, ...)
+cu_create_key_result(goal_id, ..., cu_token = NULL)
 
-cu_edit_key_result(key_result_id, ...)
+cu_edit_key_result(key_result_id, ..., cu_token = NULL)
 
-cu_delete_key_result(key_result_id)
+cu_delete_key_result(key_result_id, cu_token = NULL)
 
 cuf_create_goal(team_id, ...)
 
@@ -57,6 +57,9 @@ cuf_delete_key_result(key_result_id)
 
 \item{...}{Named arguments to be passed to API request body,
 see the ClickUp API documentation (\url{https://clickup.com/api}).}
+
+\item{cu_token}{ClickUp personal access token or an access token from the OAuth flow.
+The \code{CU_PAT} environment variable is used when \code{NULL}.}
 
 \item{goal_id}{Goal ID.}
 

@@ -6,12 +6,15 @@
 \alias{cuf_get_shared}
 \title{Shared hierarchy}
 \usage{
-cu_get_shared(team_id)
+cu_get_shared(team_id, cu_token = NULL)
 
 cuf_get_shared(team_id)
 }
 \arguments{
 \item{team_id}{Team ID.}
+
+\item{cu_token}{ClickUp personal access token or an access token from the OAuth flow.
+The \code{CU_PAT} environment variable is used when \code{NULL}.}
 }
 \value{
 A cu object.

@@ -10,11 +10,11 @@
 \alias{cuf_remove_field_value}
 \title{Custom fields}
 \usage{
-cu_get_accessible_custom_fields(list_id)
+cu_get_accessible_custom_fields(list_id, cu_token = NULL)
 
-cu_set_custom_field_value(task_id, field_id, ...)
+cu_set_custom_field_value(task_id, field_id, ..., cu_token = NULL)
 
-cu_remove_field_value(task_id, field_id)
+cu_remove_field_value(task_id, field_id, cu_token = NULL)
 
 cuf_get_accessible_custom_fields(list_id)
 
@@ -24,6 +24,9 @@ cuf_remove_field_value(task_id, field_id)
 }
 \arguments{
 \item{list_id}{List ID.}
+
+\item{cu_token}{ClickUp personal access token or an access token from the OAuth flow.
+The \code{CU_PAT} environment variable is used when \code{NULL}.}
 
 \item{task_id}{Task ID.}
 

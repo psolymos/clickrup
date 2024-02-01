@@ -12,13 +12,26 @@
 \alias{cuf_get_user}
 \title{Users}
 \usage{
-cu_invite_user_to_workspace(team_id, email, admin = FALSE, ...)
+cu_invite_user_to_workspace(
+  team_id,
+  email,
+  admin = FALSE,
+  ...,
+  cu_token = NULL
+)
 
-cu_edit_user_on_workspace(team_id, user_id, username, admin = FALSE, ...)
+cu_edit_user_on_workspace(
+  team_id,
+  user_id,
+  username,
+  admin = FALSE,
+  ...,
+  cu_token = NULL
+)
 
-cu_remove_user_from_workspace(team_id, user_id)
+cu_remove_user_from_workspace(team_id, user_id, cu_token = NULL)
 
-cu_get_user(team_id, user_id)
+cu_get_user(team_id, user_id, cu_token = NULL)
 
 cuf_invite_user_to_workspace(team_id, email, admin = FALSE, ...)
 
@@ -37,6 +50,9 @@ cuf_get_user(team_id, user_id)
 
 \item{...}{Named arguments to be passed to API request body,
 see the ClickUp API documentation (\url{https://clickup.com/api}).}
+
+\item{cu_token}{ClickUp personal access token or an access token from the OAuth flow.
+The \code{CU_PAT} environment variable is used when \code{NULL}.}
 
 \item{user_id}{User ID.}
 

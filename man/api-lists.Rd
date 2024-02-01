@@ -18,19 +18,19 @@
 \alias{cuf_get_list}
 \title{Lists}
 \usage{
-cu_create_list(folder_id, ...)
+cu_create_list(folder_id, ..., cu_token = NULL)
 
-cu_create_folderless_list(space_id, ...)
+cu_create_folderless_list(space_id, ..., cu_token = NULL)
 
-cu_update_list(list_id, ...)
+cu_update_list(list_id, ..., cu_token = NULL)
 
-cu_delete_list(list_id, ...)
+cu_delete_list(list_id, ..., cu_token = NULL)
 
-cu_get_lists(folder_id, archived = FALSE)
+cu_get_lists(folder_id, archived = FALSE, cu_token = NULL)
 
-cu_get_lists_folderless(space_id, archived = FALSE)
+cu_get_lists_folderless(space_id, archived = FALSE, cu_token = NULL)
 
-cu_get_list(list_id)
+cu_get_list(list_id, cu_token = NULL)
 
 cuf_create_list(folder_id, ...)
 
@@ -51,6 +51,9 @@ cuf_get_list(list_id)
 
 \item{...}{Named arguments to be passed to API request body,
 see the ClickUp API documentation (\url{https://clickup.com/api}).}
+
+\item{cu_token}{ClickUp personal access token or an access token from the OAuth flow.
+The \code{CU_PAT} environment variable is used when \code{NULL}.}
 
 \item{space_id}{SPace ID.}
 

@@ -1,7 +1,7 @@
 Type: Package
 Package: clickrup
 Title: Interacting with the ClickUp v2 API from R
-Version: 0.0.5.9013
+Version: 0.0.6.9013
 Date: 2021-12-12
 Authors@R: 
     c(person(given = "Peter",
@@ -37,4 +37,4 @@ Encoding: UTF-8
 LazyData: true
 LazyLoad: yes
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.0
+RoxygenNote: 7.3.0.9000

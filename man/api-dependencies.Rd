@@ -5,18 +5,19 @@
 \alias{cu_add_dependency}
 \alias{cu_delete_dependency}
 \alias{cu_add_task_link}
+\alias{cu_delete_task_link}
 \alias{cuf_add_dependency}
 \alias{cuf_delete_dependency}
 \alias{cuf_add_task_link}
-\title{Dependencies}
+\title{Task relationships}
 \usage{
-cu_add_dependency(task_id, depends_on, dependency_of)
+cu_add_dependency(task_id, depends_on, dependency_of, cu_token = NULL)
 
-cu_delete_dependency(task_id, links_to)
+cu_delete_dependency(task_id, depends_on, dependency_of, cu_token = NULL)
 
-cu_add_task_link(task_id, links_to)
+cu_add_task_link(task_id, links_to, cu_token = NULL)
 
-cu_delete_dependency(task_id, links_to)
+cu_delete_task_link(task_id, links_to, cu_token = NULL)
 
 cuf_add_dependency(task_id, depends_on, dependency_of)
 
@@ -34,6 +35,9 @@ One and only one of \code{depends_on} or \code{dependency_of} must be passed.}
 
 \item{dependency_of}{A blocking dependency of the task.
 One and only one of \code{depends_on} or \code{dependency_of} must be passed.}
+
+\item{cu_token}{ClickUp personal access token or an access token from the OAuth flow.
+The \code{CU_PAT} environment variable is used when \code{NULL}.}
 
 \item{links_to}{Link to another task.}
 }

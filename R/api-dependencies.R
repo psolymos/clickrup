@@ -1,4 +1,4 @@
-#' Dependencies
+#' Task relationships
 #'
 #' Working dependencies xyz in ClickUp tasks (<https://clickup.com/api>).
 
@@ -8,6 +8,8 @@
 #' @param dependency_of A blocking dependency of the task.
 #'   One and only one of `depends_on` or `dependency_of` must be passed.
 #' @param links_to Link to another task.
+#' @param cu_token ClickUp personal access token or an access token from the OAuth flow.
+#'   The `CU_PAT` environment variable is used when `NULL`.
 #'
 #' @return
 #'
@@ -34,7 +36,7 @@ NULL
 ## {
 ##   "depends_on": "9hw"
 ## }
-cu_add_dependency <- function(task_id, depends_on, dependency_of) {
+cu_add_dependency <- function(task_id, depends_on, dependency_of, cu_token = NULL) {
     task_id <- cu_task_id(task_id)
     if (missing(depends_on) && missing(dependency_of))
         stop("Provide one of depends_on or dependency_of", call.=FALSE)
@@ -45,7 +47,7 @@ cu_add_dependency <- function(task_id, depends_on, dependency_of) {
     if (missing(depends_on) && !missing(dependency_of))
         body <- list(dependency_of=dependency_of)
     .cu_post("task", task_id, "dependency",
-        body=body)
+        body=body, cu_token = cu_token)
 }
 
 
@@ -68,7 +70,7 @@ cu_add_dependency <- function(task_id, depends_on, dependency_of) {
 ##
 ## One and only one of depends_on or dependency_of must be passed in the
 ## query params.
-cu_delete_dependency <- function(task_id, depends_on, dependency_of) {
+cu_delete_dependency <- function(task_id, depends_on, dependency_of, cu_token = NULL) {
     task_id <- cu_task_id(task_id)
     if (missing(depends_on) && missing(dependency_of))
         stop("Provide one of depends_on or dependency_of", call.=FALSE)
@@ -79,7 +81,7 @@ cu_delete_dependency <- function(task_id, depends_on, dependency_of) {
     if (missing(depends_on) && !missing(dependency_of))
         query <- list(dependency_of=dependency_of)
     .cu_delete("task", task_id, "dependency",
-        query=query)
+        query=query, cu_token = cu_token)
 }
 
 
@@ -95,9 +97,9 @@ cu_delete_dependency <- function(task_id, depends_on, dependency_of) {
 ##     links_to
 ##     Example: 9hz.
 ##     String
-cu_add_task_link <- function(task_id, links_to) {
+cu_add_task_link <- function(task_id, links_to, cu_token = NULL) {
     task_id <- cu_task_id(task_id)
-    .cu_post("task", task_id, "link", links_to)
+    .cu_post("task", task_id, "link", links_to, cu_token = cu_token)
 }
 
 
@@ -113,7 +115,7 @@ cu_add_task_link <- function(task_id, links_to) {
 ##     links_to
 ##     Example: 9hz.
 ##     String
-cu_delete_dependency <- function(task_id, links_to) {
+cu_delete_task_link <- function(task_id, links_to, cu_token = NULL) {
     task_id <- cu_task_id(task_id)
-    .cu_delete("task", task_id, "link", links_to)
+    .cu_delete("task", task_id, "link", links_to, cu_token = cu_token)
 }

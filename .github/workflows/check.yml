@@ -2,6 +2,9 @@ on:
   push:
     branches:
       - master
+  pull_request:
+    branches:
+      - master
 
 name: check
 
@@ -10,27 +13,32 @@ jobs:
     runs-on: macOS-latest
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: R setup
-        uses: r-lib/actions/setup-r@v1
+        uses: r-lib/actions/setup-r@v2
 
-      - name: Install sysreqs
-        run: brew install pandoc harfbuzz fribidi
+      - name: Install pandoc
+        run: |
+          brew install pandoc
+          brew install --cask xquartz
 
       - name: Install dependencies
         run: |
-          Rscript -e 'install.packages(c("pkgdown", "devtools", "textshaping"))'
+          Rscript -e 'install.packages(c("pkgdown", "devtools"))'
           Rscript -e 'devtools::install_dev_deps()'
 
       - name: Check package
         run: Rscript -e 'devtools::check()'
 
       - name: Build site
-        run: Rscript -e 'pkgdown::build_site()'
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+        run: Rscript -e 'pkgdown::build_site_github_pages(install=TRUE)'
 
       - name: Deploy site
-        uses: JamesIves/github-pages-deploy-action@4.0.0
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
           folder: docs
+          clean: true

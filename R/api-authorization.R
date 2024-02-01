@@ -7,6 +7,8 @@
 #' @param client_id Oauth app client id.
 #' @param client_secret Oauth app client secret.
 #' @param code Code given in redirect URL.
+#' @param cu_token ClickUp personal access token or an access token from the OAuth flow.
+#'   The `CU_PAT` environment variable is used when `NULL`.
 #'
 #' @return
 #'
@@ -32,11 +34,12 @@ NULL
 ##    code
 ##    Code given in redirect url
 ##    String
-cu_get_access_token <- function(client_id, client_secret, code) {
+cu_get_access_token <- function(client_id, client_secret, code, cu_token = NULL) {
     .cu_post("oauth", "token",
         query=list(client_id=client_id,
                    client_secret=client_secret,
-                   code=code))
+                   code=code),
+        cu_token = cu_token)
 }
 
 
@@ -44,8 +47,8 @@ cu_get_access_token <- function(client_id, client_secret, code) {
 #' @rdname api-authorization
 ## Authorization / Get Authorized User
 ## GET https://api.clickup.com/api/v2/user
-cu_get_authorized_user <- function() {
-    .cu_get("user")
+cu_get_authorized_user <- function(cu_token = NULL) {
+    .cu_get("user", cu_token = cu_token)
 }
 
 
@@ -56,6 +59,6 @@ cu_get_authorized_user <- function() {
 ##
 ## Note: this is the same endpoint as for cu_get_teams
 ##
-cu_get_authorized_teams <- function() {
-    .cu_get("team")
+cu_get_authorized_teams <- function(cu_token = NULL) {
+    .cu_get("team", cu_token = cu_token)
 }

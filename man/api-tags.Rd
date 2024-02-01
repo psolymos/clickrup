@@ -14,17 +14,17 @@
 \alias{cuf_add_tag_to_task}
 \title{Tags}
 \usage{
-cu_get_space_tags(space_id)
+cu_get_space_tags(space_id, cu_token = NULL)
 
-cu_create_space_tag(space_id, name, ...)
+cu_create_space_tag(space_id, name, ..., cu_token = NULL)
 
-cu_edit_space_tag(space_id, tag_name)
+cu_edit_space_tag(space_id, tag_name, cu_token = NULL)
 
-cu_delete_space_tag(task_id, tag_name)
+cu_delete_space_tag(task_id, tag_name, cu_token = NULL)
 
-cu_add_tag_to_task(task_id, tag_name)
+cu_add_tag_to_task(task_id, tag_name, cu_token = NULL)
 
-cu_delete_space_tag(task_id, tag_name)
+cu_delete_space_tag(task_id, tag_name, cu_token = NULL)
 
 cuf_get_space_tags(space_id)
 
@@ -40,6 +40,9 @@ cuf_delete_space_tag(task_id, tag_name)
 }
 \arguments{
 \item{space_id}{Space ID.}
+
+\item{cu_token}{ClickUp personal access token or an access token from the OAuth flow.
+The \code{CU_PAT} environment variable is used when \code{NULL}.}
 
 \item{name}{Tag name.}
 

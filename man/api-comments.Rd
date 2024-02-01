@@ -20,21 +20,21 @@
 \alias{cuf_delete_comment}
 \title{Comments}
 \usage{
-cu_post_task_comment(task_id, ...)
+cu_post_task_comment(task_id, ..., cu_token = NULL)
 
-cu_post_view_comment(view_id, ...)
+cu_post_view_comment(view_id, ..., cu_token = NULL)
 
-cu_post_list_comment(list_id, ...)
+cu_post_list_comment(list_id, ..., cu_token = NULL)
 
-cu_get_task_comments(task_id)
+cu_get_task_comments(task_id, cu_token = NULL)
 
-cu_get_view_comments(view_id)
+cu_get_view_comments(view_id, cu_token = NULL)
 
-cu_get_list_comments(list_id)
+cu_get_list_comments(list_id, cu_token = NULL)
 
-cu_put_update_comment(comment_id, ...)
+cu_put_update_comment(comment_id, ..., cu_token = NULL)
 
-cu_delete_comment(comment_id)
+cu_delete_comment(comment_id, cu_token = NULL)
 
 cuf_post_task_comment(task_id, ...)
 
@@ -57,6 +57,9 @@ cuf_delete_comment(comment_id)
 
 \item{...}{Named arguments to be passed to API request body,
 see the ClickUp API documentation (\url{https://clickup.com/api}).}
+
+\item{cu_token}{ClickUp personal access token or an access token from the OAuth flow.
+The \code{CU_PAT} environment variable is used when \code{NULL}.}
 
 \item{view_id}{View ID.}
 
