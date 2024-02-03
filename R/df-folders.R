@@ -4,16 +4,16 @@ NULL
 
 #' @export
 #' @rdname api-folders
-cuf_create_folder <- function(space_id, name) {
-    out <- cu_create_folder(space_id, name)
+cuf_create_folder <- function(space_id, name, cu_token = NULL) {
+    out <- cu_create_folder(space_id, name, cu_token = cu_token)
     tibblify(list(out), spec_folders)
 }
 
 
 #' @export
 #' @rdname api-folders
-cuf_update_folder <- function(folder_id, name) {
-    out <- cu_update_folder(folder_id, name)
+cuf_update_folder <- function(folder_id, name, cu_token = NULL) {
+    out <- cu_update_folder(folder_id, name, cu_token = cu_token)
     tibblify(list(out), spec_folders)
 }
 
@@ -27,8 +27,8 @@ cuf_delete_folder <- function(folder_id, name) {
 
 #' @export
 #' @rdname api-folders
-cuf_get_folders <- function(space_id, archived=FALSE) {
-    out <- cu_get_folders(space_id, archived)
+cuf_get_folders <- function(space_id, archived=FALSE, cu_token = NULL) {
+    out <- cu_get_folders(space_id, archived, cu_token = cu_token)
     tibblify(out$folders, spec_folders)
 }
 
@@ -36,7 +36,7 @@ cuf_get_folders <- function(space_id, archived=FALSE) {
 
 #' @export
 #' @rdname api-folders
-cuf_get_folder <- function(folder_id) {
-    out <- cu_get_folder(folder_id)
+cuf_get_folder <- function(folder_id, cu_token = NULL) {
+    out <- cu_get_folder(folder_id, cu_token = cu_token)
     tibblify(list(out), spec_folders)
 }

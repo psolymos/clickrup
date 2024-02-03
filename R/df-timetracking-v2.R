@@ -4,9 +4,8 @@ NULL
 
 #' @export
 #' @rdname api-timetracking-2
-cuf_get_time_entries_within_date_range <- function(team_id,
-start_date, end_date, assignee) {
-    out <- cu_get_time_entries_within_date_range(team_id, start_date, end_date, assignee)
+cuf_get_time_entries_within_date_range <- function(team_id, start_date, end_date, assignee, cu_token = NULL) {
+    out <- cu_get_time_entries_within_date_range(team_id, start_date, end_date, assignee, cu_token = cu_token)
 
     # Patch time entries without associated task
     entries <- lapply(out$data, function(.x) {
@@ -22,8 +21,8 @@ start_date, end_date, assignee) {
 
 #' @export
 #' @rdname api-timetracking-2
-cuf_get_singular_time_entry <- function(team_id, timer_id) {
-    out <- cu_get_singular_time_entry(team_id, timer_id)
+cuf_get_singular_time_entry <- function(team_id, timer_id, cu_token = NULL) {
+    out <- cu_get_singular_time_entry(team_id, timer_id, cu_token = cu_token)
     tibblify(list(out$data), spec_time_entries)
 }
 
