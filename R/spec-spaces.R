@@ -17,12 +17,13 @@ spec_spaces <- tspec_df(
     tib_df(
         "features",
         .names_to = ".names",
-        tib_lgl("enabled"),
+        tib_lgl("enabled", required = FALSE),
         tib_lgl("start_date", required = FALSE),
         tib_lgl("remap_due_dates", required = FALSE),
         tib_lgl("remap_closed_due_date", required = FALSE),
         tib_lgl("harvest", required = FALSE),
         tib_lgl("rollup", required = FALSE),
+        tib_int("default_to_billable", required = FALSE),
         tib_df(
             "priorities",
             .required = FALSE,
