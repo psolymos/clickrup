@@ -1,7 +1,7 @@
-Package: clickrup
 Type: Package
+Package: clickrup
 Title: Interacting with the ClickUp v2 API from R
-Version: 0.0.6
+Version: 0.0.6.9016
 Date: 2021-12-12
 Authors@R: 
     c(person(given = "Peter",
@@ -12,18 +12,29 @@ Authors@R:
       person(given = "Kirill",
              family = "M\u00fcller",
              role = "aut",
-             email = "krlmlr+r@mailbox.org"))
+             email = "kirill@cynkra.com"))
 Maintainer: Peter Solymos <psolymos@gmail.com>
 Description: Work with the ClickUp productivity app from R to
     manage tasks, goals, time tracking, and more.
 License: MIT + file LICENSE
-LazyLoad: yes
-LazyData: true
-Imports: httr, jsonlite, rlang
-Suggests: knitr
 URL: https://github.com/psolymos/clickrup
 BugReports: https://github.com/psolymos/clickrup/issues
-VignetteBuilder: knitr
-RoxygenNote: 7.2.3
+Imports: 
+    dttr2,
+    httr,
+    jsonlite,
+    rlang,
+    tibble,
+    tibblify (>= 0.3.0)
+Suggests: 
+    fansi,
+    knitr,
+    testthat (>= 3.0.0)
+VignetteBuilder: 
+    knitr
+Config/testthat/edition: 3
 Encoding: UTF-8
+LazyData: true
+LazyLoad: yes
 Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.0.9000
