@@ -79,6 +79,7 @@ spec_spaces <- tspec_df(
         tib_row(
             "zoom",
             tib_lgl("enabled"),
+            .required = FALSE,
         ),
         tib_row(
             "milestones",
