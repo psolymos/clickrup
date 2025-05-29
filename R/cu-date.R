@@ -52,5 +52,5 @@ cu_date_from <- function(ms, tz = NULL, ...) {
 #' @rdname cu-date
 ## turning POSIXct to unix time
 cu_date_to <- function(dt) {
-    as.character(round(unclass(as.POSIXct(dt))*1000))
+    sprintf("%.0f", round(unclass(as.POSIXct(dt))*1000))
 }
