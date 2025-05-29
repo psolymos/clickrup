@@ -1,0 +1,130 @@
+spec_spaces <- tspec_df(
+    tib_chr("id"),
+    tib_chr("name"),
+    tib_chr("color"),
+    tib_lgl("private"),
+    tib_chr("avatar"),
+    tib_lgl("admin_can_manage"),
+    tib_df(
+        "statuses",
+        tib_chr("id"),
+        tib_chr("status"),
+        tib_chr("type"),
+        tib_int("orderindex"),
+        tib_chr("color"),
+    ),
+    tib_lgl("multiple_assignees"),
+    tib_row(
+        "features",
+        tib_row(
+            "due_dates",
+            tib_lgl("enabled"),
+            tib_lgl("start_date"),
+            tib_lgl("remap_due_dates"),
+            tib_lgl("remap_closed_due_date"),
+        ),
+        tib_row(
+            "sprints",
+            tib_lgl("enabled"),
+        ),
+        tib_row(
+            "time_tracking",
+            tib_lgl("enabled", required = FALSE),
+            tib_lgl("harvest", required = FALSE),
+            tib_lgl("rollup", required = FALSE),
+            tib_int("default_to_billable"),
+        ),
+        tib_row(
+            "points",
+            tib_lgl("enabled"),
+        ),
+        tib_row(
+            "custom_items",
+            tib_lgl("enabled"),
+        ),
+        tib_row(
+            "priorities",
+            tib_lgl("enabled"),
+            tib_df(
+                "priorities",
+                tib_chr("color"),
+                tib_chr("id"),
+                tib_dbl("orderindex", transform = as.numeric, ptype_inner = character()),
+                tib_chr("priority"),
+            ),
+        ),
+        tib_row(
+            "tags",
+            tib_lgl("enabled"),
+        ),
+        tib_row(
+            "wip_limits",
+            .required = FALSE,
+            tib_lgl("enabled", required = FALSE),
+        ),
+        tib_row(
+            "time_estimates",
+            .required = FALSE,
+            tib_lgl("enabled", required = FALSE),
+            tib_lgl("rollup", required = FALSE),
+            tib_lgl("per_assignee", required = FALSE),
+        ),
+        tib_row(
+            "check_unresolved",
+            tib_lgl("enabled"),
+            tib_lgl("subtasks"),
+            # tib_unspecified("checklists"),
+            # tib_unspecified("comments"),
+        ),
+        tib_row(
+            "zoom",
+            tib_lgl("enabled"),
+            .required = FALSE,
+        ),
+        tib_row(
+            "milestones",
+            tib_lgl("enabled"),
+        ),
+        tib_row(
+            "custom_fields",
+            tib_lgl("enabled"),
+        ),
+        tib_row(
+            "remap_dependencies",
+            .required = FALSE,
+            tib_lgl("enabled", required = FALSE),
+        ),
+        tib_row(
+            "dependency_warning",
+            tib_lgl("enabled"),
+        ),
+        tib_row(
+            "status_pies",
+            tib_lgl("enabled"),
+        ),
+        tib_row(
+            "multiple_assignees",
+            .required = FALSE,
+            tib_lgl("enabled", required = FALSE),
+        ),
+        tib_row(
+            "emails",
+            .required = FALSE,
+            tib_lgl("enabled", required = FALSE),
+        ),
+        tib_lgl("scheduler_enabled"),
+    ),
+    tib_lgl("archived"),
+    tib_df(
+        "members",
+        .required = FALSE,
+        tib_row(
+            "user",
+            tib_chr("id", transform = as.character, ptype_inner = integer()),
+            tib_chr("username"),
+            tib_chr("color"),
+            tib_chr("profilePicture"),
+            tib_chr("initials"),
+        ),
+    ),
+)

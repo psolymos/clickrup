@@ -294,9 +294,9 @@ cu_get_tasks <- function(list_id, archived=FALSE, ..., cu_token = NULL) {
 ##     task_id
 ##     Example: 9hz.
 ##     String
-cu_get_task <- function(task_id, cu_token = NULL) {
+cu_get_task <- function(task_id, ..., cu_token = NULL) {
     task_id <- cu_task_id(task_id)
-    .cu_get("task", task_id, cu_token = cu_token)
+    .cu_get("task", task_id, query = list(...), cu_token = cu_token)
 }
 
 

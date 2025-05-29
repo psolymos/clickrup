@@ -21,6 +21,8 @@ The return object does not have a response attribute.
 \description{
 The wrapper function uses \code{\link[=cu_get_filtered_team_tasks]{cu_get_filtered_team_tasks()}}
 but takes care of paging.
+No longer needed because paging is now handled automatically for all functions,
+including \code{\link[=cu_get_filtered_team_tasks]{cu_get_filtered_team_tasks()}}.
 }
 \seealso{
 \linkS4class{cu} for the cu object class.

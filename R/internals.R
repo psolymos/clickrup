@@ -40,11 +40,31 @@
     chunk <- .cu_get_page(..., query = query, cu_token = cu_token)
     out <- chunk
     page <- 0
-    while (paging && length(chunk) == 1 && length(chunk[[1]]) == 100) {
+    repeat {
+        if (!paging) {
+            break
+        }
+        if (length(chunk) == 1) {
+            if (length(chunk[[1]]) < 100) {
+                break
+            }
+        } else if (length(chunk) == 2) {
+            if (names(chunk)[[2]] != "last_page") {
+                break
+            }
+            # Clear output
+            out[["last_page"]] <- NULL
+            if (chunk[["last_page"]]) {
+                break
+            }
+        } else {
+            break
+        }
+
         page <- page + 1
         query$page <- page
         chunk <- .cu_get_page(..., query = query, cu_token = cu_token)
-        stopifnot(length(chunk) == 1)
+        stopifnot(length(chunk) %in% 1:2)
         out[[1]] <- c(out[[1]], chunk[[1]])
     }
 
@@ -54,6 +74,13 @@
 
 ## convenience function for GET requests
 .cu_get_page <- function(..., query=list(), cu_token = NULL) {
+    query <- lapply(query, function(.x) {
+        if (is.logical(.x)) {
+            .x <- if (.x) "true" else "false"
+        }
+        .x
+    })
+
     resp <- .rate_insist(httr::GET(
             httr::modify_url(getOption("cu_options")$baseurl,
                        path = .cu_path(...),
